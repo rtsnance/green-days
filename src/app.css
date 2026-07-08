@@ -1,0 +1,134 @@
+/* Green Days — app shell. On phones the app is the page; on wide screens it
+   sits in the framed phone from the prototype. */
+html, body { margin: 0; height: 100%; }
+#root { min-height: 100%; }
+
+.gd-stage {
+  min-height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background-body);
+  font-family: var(--font-body);
+}
+.gd-phone {
+  width: 100%;
+  height: 100dvh;
+  background: var(--color-background-body);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.gd-statusbar { display: none; }
+
+@media (min-width: 700px) {
+  .gd-stage {
+    padding: 24px;
+    background: radial-gradient(120% 80% at 50% 0%, #eef4f0, #e4ece7);
+  }
+  .gd-phone {
+    width: 390px;
+    height: 820px;
+    max-height: calc(100dvh - 48px);
+    border-radius: 46px;
+    box-shadow: 0 0 0 11px #12181e, 0 0 0 13px #2b343d, var(--shadow-high);
+  }
+  .gd-statusbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px 6px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--color-text-primary);
+    flex-shrink: 0;
+  }
+}
+
+.gd-screen-wrap {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.gd-screen {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+.gd-screen::-webkit-scrollbar { width: 0; }
+
+.gd-tabbar {
+  flex-shrink: 0;
+  display: flex;
+  background: var(--color-background-surface);
+  border-top: 1px solid var(--color-border);
+  padding: 8px 8px calc(12px + env(safe-area-inset-bottom, 0px));
+}
+.gd-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 0;
+  font-family: var(--font-body);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+.gd-tab__count {
+  position: absolute;
+  top: -6px;
+  right: -11px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #E4572E;
+  color: #FCF8EE;
+  font-size: 10px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@keyframes gd-welcome-in {
+  from { opacity: 0; transform: translateY(10px) scale(.985); }
+  to { opacity: 1; transform: none; }
+}
+.gd-welcome { animation: gd-welcome-in .5s var(--ease-standard) both; }
+@keyframes gd-welcome-leaf {
+  from { opacity: 0; transform: scale(.5) rotate(-12deg); }
+  to { opacity: 1; transform: none; }
+}
+.gd-welcome-leaf { animation: gd-welcome-leaf .55s var(--ease-standard) .12s both; }
+
+@keyframes gd-simmer {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-6px) rotate(3deg); }
+}
+.gd-simmer { animation: gd-simmer 1.6s var(--ease-standard) infinite; }
+
+/* Invisible native <select> laid over the location line — the "correctable"
+   market country, one thumb-tap opens the platform picker. */
+.gd-locpick {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  appearance: none;
+}
+
+a { color: var(--color-text-accent); }
+a:hover { color: var(--color-accent-strong); }

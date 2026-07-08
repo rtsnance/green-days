@@ -1,0 +1,33 @@
+/* Green Days — Typography tokens
+   Brand   : Annie Use Your Telescope (wordmark + warm greetings, use sparingly & large)
+   Display : Nunito 800/900 (headings)
+   Body/UI : Nunito 400–700
+   Code    : JetBrains Mono */
+:root {
+  --font-brand: 'Annie Use Your Telescope', 'Bradley Hand', cursive;
+  --font-heading: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Weights (Nunito) */
+  --font-weight-regular: 400;
+  --font-weight-medium: 600;
+  --font-weight-semibold: 700;
+  --font-weight-bold: 800;
+  --font-weight-black: 900;
+
+  /* Type scale — mobile-first (px) */
+  --text-brand-size: 40px;      --text-brand-leading: 1.0;    /* Annie hero */
+  --text-display-size: 32px;    --text-display-leading: 1.12;
+  --text-title-lg-size: 26px;   --text-title-lg-leading: 1.18;
+  --text-title-size: 21px;      --text-title-leading: 1.25;
+  --text-heading-size: 18px;    --text-heading-leading: 1.3;
+  --text-body-size: 16px;       --text-body-leading: 1.55;
+  --text-label-size: 15px;      --text-label-leading: 1.2;    /* buttons / controls */
+  --text-supporting-size: 13px; --text-supporting-leading: 1.35; /* badges / captions */
+  --text-caption-size: 12px;    --text-caption-leading: 1.35;
+
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.04em;
+}

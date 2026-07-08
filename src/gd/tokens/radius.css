@@ -1,0 +1,8 @@
+/* Green Days — Radius tokens (gently rounded / moderate) */
+:root {
+  --radius-inner: 8px;      /* inputs, small chips */
+  --radius-element: 12px;   /* buttons, controls */
+  --radius-container: 18px; /* cards, sheets */
+  --radius-page: 28px;      /* large surfaces, modals */
+  --radius-full: 999px;     /* pills, avatars */
+}

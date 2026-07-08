@@ -1,0 +1,105 @@
+/* Green Days — Color tokens (single mode: "sunny Sunday morning")
+   Palette
+   Primaries : Seagrass #529d7f · Jungle Teal #42917c · Twilight Indigo #1f3661
+               Vanilla Custard #ead394 · Blue Slate #4d606b
+   Support   : Mint Cream #f2f8f5 · Frozen Water #d5ece6 · Arctic Blue #eff3fa
+               Floral White #fcf8ee · Carbon Black #1a2023
+   Highlight : Dusty Denim #6489ce · Spicy Paprika #e4572e · Metallic Gold #ddb140
+   Shared    : Gray 5 #e5e5ea */
+:root {
+  /* ---- Raw palette (reference values) ---- */
+  --seagrass: #529d7f;
+  --jungle-teal: #42917c;
+  --twilight-indigo: #1f3661;
+  --vanilla-custard: #ead394;
+  --blue-slate: #4d606b;
+  --mint-cream: #f2f8f5;
+  --frozen-water: #d5ece6;
+  --arctic-blue: #eff3fa;
+  --floral-white: #fcf8ee;
+  --carbon-black: #1a2023;
+  --dusty-denim: #6489ce;
+  --spicy-paprika: #e4572e;
+  --metallic-gold: #ddb140;
+  --gray-5: #e5e5ea;
+
+  /* ---- Accent (Seagrass → Jungle Teal) ---- */
+  --color-accent: #529d7f;
+  --color-accent-hover: #4a9276;
+  --color-accent-strong: #42917c;
+  --color-accent-muted: #529d7f22;
+  --color-on-accent: #ffffff;
+
+  /* ---- Neutral / overlays ---- */
+  --color-neutral: #1a20230d;
+  --color-overlay: #1a202399;
+  --color-overlay-hover: #1a20230d;
+  --color-overlay-pressed: #1a202318;
+  --color-tint-hover: #1a2023;
+
+  /* ---- Backgrounds ---- */
+  --color-background-body: #fcf8ee;      /* warm cream — the sunny-morning ground */
+  --color-background-surface: #ffffff;
+  --color-background-card: #ffffff;
+  --color-background-muted: #f2f8f5;     /* Mint Cream */
+  --color-background-subtle: #eff3fa;    /* Arctic Blue */
+  --color-background-accent-subtle: #d5ece6; /* Frozen Water */
+  --color-background-inverted: #1f3661;  /* Twilight Indigo — dark chrome */
+  --color-background-popover: #ffffff;
+
+  /* ---- Text ---- */
+  --color-text-primary: #1a2023;
+  --color-text-secondary: #4d606b;
+  --color-text-tertiary: #4d606b99;
+  --color-text-disabled: #4d606b66;
+  --color-text-accent: #42917c;
+  --color-text-on-inverted: #f2f8f5;
+  --color-on-inverted: #f2f8f5;
+
+  /* ---- Icons ---- */
+  --color-icon-primary: #1a2023;
+  --color-icon-secondary: #4d606b;
+  --color-icon-accent: #529d7f;
+  --color-icon-disabled: #4d606b66;
+
+  /* ---- Borders ---- */
+  --color-border: #e5e5ea;
+  --color-border-strong: #d3d7dd;
+  --color-border-accent: #d5ece6;
+  --border-width: 1px;
+
+  /* ---- Status / sentiment ---- */
+  --color-success: #42917c;              /* fresh green */
+  --color-success-muted: #42917c22;
+  --color-on-success: #ffffff;
+  --color-warning: #ddb140;              /* Metallic Gold */
+  --color-warning-muted: #ddb14026;
+  --color-on-warning: #1a2023;
+  --color-error: #e4572e;                /* Spicy Paprika */
+  --color-error-muted: #e4572e1f;
+  --color-on-error: #ffffff;
+  --color-info: #6489ce;                 /* Dusty Denim */
+  --color-info-muted: #6489ce1f;
+  --color-on-info: #ffffff;
+
+  /* ---- Brand highlights (direct hues) ---- */
+  --color-custard: #ead394;
+  --color-indigo: #1f3661;
+  --color-gold: #ddb140;
+  --color-paprika: #e4572e;
+  --color-denim: #6489ce;
+
+  /* ---- Categorical badge/tag pairs (bg + text) ---- */
+  --color-background-green: #529d7f22;   --color-text-green: #35735b;
+  --color-background-teal: #42917c22;    --color-text-teal: #2f6b5b;
+  --color-background-blue: #6489ce22;    --color-text-blue: #3a5c9c;
+  --color-background-indigo: #1f366118;  --color-text-indigo: #1f3661;
+  --color-background-gold: #ddb14026;    --color-text-gold: #96741d;
+  --color-background-paprika: #e4572e1f; --color-text-paprika: #b23c1a;
+  --color-background-slate: #4d606b1f;   --color-text-slate: #3a4a53;
+
+  /* ---- Effects ---- */
+  --color-skeleton: #e5e5ea;
+  --color-shadow: #1f36611a;
+  --color-focus-ring: #529d7f;
+}

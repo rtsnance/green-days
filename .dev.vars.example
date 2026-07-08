@@ -1,0 +1,5 @@
+# Copy to .dev.vars for local development (never committed).
+# Real recipe calls: set your key.
+#ANTHROPIC_API_KEY=sk-ant-...
+# Or run the engine against a canned recipe (no key, no cost):
+MOCK_RECIPES=1
