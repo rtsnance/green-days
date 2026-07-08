@@ -3,8 +3,13 @@
 html, body { margin: 0; height: 100%; }
 #root { min-height: 100%; }
 
+/* --app-height is the true visible viewport height, synced from
+   visualViewport/innerHeight in JS. iOS Safari's 100dvh can stick at the
+   toolbar-expanded value when the page has nothing to scroll, floating the
+   tab bar above the real bottom; --app-height tracks the toolbar collapse.
+   The 100dvh fallback covers first paint and non-JS/desktop. */
 .gd-stage {
-  min-height: 100dvh;
+  min-height: var(--app-height, 100dvh);
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -14,7 +19,7 @@ html, body { margin: 0; height: 100%; }
 }
 .gd-phone {
   width: 100%;
-  height: 100dvh;
+  height: var(--app-height, 100dvh);
   background: var(--color-background-body);
   overflow: hidden;
   position: relative;

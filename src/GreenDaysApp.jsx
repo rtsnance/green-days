@@ -745,6 +745,26 @@ export default function GreenDaysApp() {
   const sessionAvoid = React.useRef([]);
   const liveEntryId = React.useRef(null); // the not-yet-committed entry "Try another" may swap
 
+  // Pin the layout to the true visible viewport. iOS Safari's 100dvh can stick
+  // at the toolbar-expanded value when nothing scrolls, floating the tab bar
+  // above the real bottom; visualViewport.height tracks the toolbar collapse.
+  React.useEffect(() => {
+    const vv = window.visualViewport;
+    const setH = () => {
+      const h = (vv && vv.height) || window.innerHeight;
+      document.documentElement.style.setProperty('--app-height', h + 'px');
+    };
+    setH();
+    window.addEventListener('resize', setH);
+    window.addEventListener('orientationchange', setH);
+    if (vv) { vv.addEventListener('resize', setH); vv.addEventListener('scroll', setH); }
+    return () => {
+      window.removeEventListener('resize', setH);
+      window.removeEventListener('orientationchange', setH);
+      if (vv) { vv.removeEventListener('resize', setH); vv.removeEventListener('scroll', setH); }
+    };
+  }, []);
+
   // Basket persists and auto-clears 36 hours after the first item is added to
   // an empty basket; the timer resets with each new shop.
   const [basketState, setBasketState] = React.useState(() => {
