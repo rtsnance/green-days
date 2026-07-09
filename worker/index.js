@@ -232,9 +232,14 @@ function normalizeRecipe(r, basket) {
     throw new Error('missing title or method');
   }
   const stars = (Array.isArray(r.stars) ? r.stars : []).filter((id) => basket.includes(id));
-  const grab = typeof r.grabOneMore === 'string' && BY_ID.has(r.grabOneMore) && !basket.includes(r.grabOneMore)
-    ? r.grabOneMore
-    : null;
+  // Prefer a valid catalogue id (skip anything already in the basket); if the
+  // model returned a name instead, pass it through so the client can resolve it
+  // to a produce detail or fall back to a Home search.
+  let grab = null;
+  if (typeof r.grabOneMore === 'string') {
+    const g = r.grabOneMore.trim();
+    if (g) grab = BY_ID.has(g) ? (basket.includes(g) ? null : g) : g.slice(0, 60);
+  }
   return {
     title: r.title,
     time: typeof r.time === 'string' ? r.time : '',

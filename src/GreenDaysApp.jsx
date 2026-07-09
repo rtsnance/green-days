@@ -185,9 +185,8 @@ async function requestRecipe({ basket, country, prefs, avoid }) {
 }
 
 /* ================= Home ================= */
-function HomeScreen({ basket, lang, country, onSetCountry, weather, onAdd, onOpen, onCook, onOpenPrefs }) {
+function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQuery, onAdd, onOpen, onCook, onOpenPrefs }) {
   const [cat, setCat] = React.useState('All');
-  const [query, setQuery] = React.useState('');
   const term = query.trim();
   const q = stripDia(term);
   const searching = q.length > 0;
@@ -413,7 +412,23 @@ function ListScreen({ basket, checked, lang, country, onAdd, onRemove, onToggle,
 }
 
 /* ================= Recipe detail (the payoff) ================= */
-function RecipeDetailScreen({ view, lang, onOpen, onClose, onGoHome, onTryAnother }) {
+// Resolve a "grab one more" suggestion (a produce id, or a local/English name)
+// to its catalogue item. Returns null when nothing in produce.json matches.
+function resolveSuggestion(term) {
+  const raw = String(term || '').trim();
+  if (!raw) return null;
+  const direct = byId(raw);
+  if (direct) return direct;
+  const t = stripDia(raw);
+  if (!t) return null;
+  // exact name match, English or any local language, case/diacritic-insensitive
+  const exact = PRODUCE.find((p) => stripDia(p.name) === t || Object.values(p.name_local).some((n) => stripDia(n) === t));
+  if (exact) return exact;
+  // looser contains match as a last resort
+  return PRODUCE.find((p) => stripDia(p.name).includes(t) || Object.values(p.name_local).some((n) => stripDia(n).includes(t))) || null;
+}
+
+function RecipeDetailScreen({ view, lang, onOpen, onSearchProduce, onClose, onGoHome, onTryAnother }) {
   const { entry, status, error, live } = view;
   const banner = seasonBannerSrc(entry ? entry.country : 'PT', entry ? entry.month0 : MONTH);
   const r = entry && entry.recipe;
@@ -425,7 +440,8 @@ function RecipeDetailScreen({ view, lang, onOpen, onClose, onGoHome, onTryAnothe
   const stars = r ? r.stars.map(byId).filter(Boolean) : [];
   const fresh = r ? r.ingredients.filter((i) => !i.pantry) : [];
   const pantry = r ? r.ingredients.filter((i) => i.pantry) : [];
-  const oneMore = r && r.grabOneMore ? byId(r.grabOneMore) : null;
+  const grabTerm = r && r.grabOneMore ? String(r.grabOneMore).trim() : '';
+  const oneMore = grabTerm ? resolveSuggestion(grabTerm) : null;
 
   // Match a fresh-ingredient line back to a produce print where possible.
   const freshProduce = (item) => {
@@ -545,15 +561,21 @@ function RecipeDetailScreen({ view, lang, onOpen, onClose, onGoHome, onTryAnothe
             </div>
           )}
 
-          {/* ZONE 5 — Grab one more (forward, Seagrass) */}
-          {oneMore && (
+          {/* ZONE 5 — Grab one more (forward, Seagrass). A resolved suggestion
+              opens its product detail; an unmatched one opens Home with the
+              term pre-filled in search (never a bare Home fallback). */}
+          {grabTerm && (
             <div>
               {label(<span><Icon d={I.pin} size={13} w={2.4} /> Grab one more at the stalls</span>, true)}
-              <button onClick={onGoHome} style={{ width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', padding: 12, borderRadius: 'var(--radius-container)', background: 'linear-gradient(120deg, var(--color-accent-strong), var(--color-accent))', color: '#fff', display: 'flex', alignItems: 'center', gap: 14, boxShadow: 'var(--shadow-med)', fontFamily: 'var(--font-body)' }}>
-                <div style={{ background: 'rgba(255,255,255,.9)', borderRadius: 14, flexShrink: 0 }}><ProduceThumb p={oneMore} size={48} radius={14} /></div>
+              <button onClick={() => (oneMore ? onOpen(oneMore.id) : onSearchProduce(grabTerm))} style={{ width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', padding: 12, borderRadius: 'var(--radius-container)', background: 'linear-gradient(120deg, var(--color-accent-strong), var(--color-accent))', color: '#fff', display: 'flex', alignItems: 'center', gap: 14, boxShadow: 'var(--shadow-med)', fontFamily: 'var(--font-body)' }}>
+                <div style={{ background: 'rgba(255,255,255,.9)', borderRadius: 14, flexShrink: 0 }}>
+                  {oneMore
+                    ? <ProduceThumb p={oneMore} size={48} radius={14} />
+                    : <div style={{ width: 48, height: 48 }}><Flourish /></div>}
+                </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontWeight: 800, fontSize: 17 }}>{(lang && oneMore.name_local[lang]) || oneMore.name}</div>
-                  <div style={{ fontSize: 13, opacity: .9 }}>In season now · finishes the dish</div>
+                  <div style={{ fontWeight: 800, fontSize: 17 }}>{oneMore ? ((lang && oneMore.name_local[lang]) || oneMore.name) : grabTerm}</div>
+                  <div style={{ fontSize: 13, opacity: .9 }}>{oneMore ? 'In season now · finishes the dish' : 'Find it at the stalls'}</div>
                 </div>
                 <Icon d={I.arrow} size={22} />
               </button>
@@ -763,6 +785,7 @@ const HRS36 = 36 * 3600 * 1000;
 export default function GreenDaysApp() {
   const [tab, setTab] = React.useState('home');
   const [detail, setDetail] = React.useState(null);
+  const [homeQuery, setHomeQuery] = React.useState(''); // Home search, lifted so other screens can pre-fill it
   // recipeView: null | { status: 'loading'|'ready'|'error', entry, error, live }
   const [recipeView, setRecipeView] = React.useState(null);
   const sessionAvoid = React.useRef([]);
@@ -901,6 +924,9 @@ export default function GreenDaysApp() {
   // Leaving the recipe screen commits it: the entry stays in Recipes and a
   // later "Try another" can no longer swap it.
   const closeRecipe = () => { setRecipeView(null); sessionAvoid.current = []; liveEntryId.current = null; };
+  // Leave the recipe and land on Home with a term pre-filled in search (used as
+  // the fallback for an unmatched "grab one more" suggestion).
+  const searchProduce = (term) => { setHomeQuery(term); setDetail(null); closeRecipe(); setTab('home'); };
 
   const navItems = [
     { id: 'home', d: I.home, label: 'Home' },
@@ -924,12 +950,12 @@ export default function GreenDaysApp() {
             them is scrolled; only .gd-screen itself scrolls. */}
         <div className="gd-screen-wrap">
           <div className="gd-screen">
-            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} onSetCountry={pickCountry} weather={weather} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)} />}
+            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} onSetCountry={pickCountry} weather={weather} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)} />}
             {tab === 'list' && <ListScreen basket={basket} checked={checked} lang={lang} country={country} onAdd={add} onRemove={(id) => setQty(id, 0)} onToggle={toggle} onCook={cookThis} />}
             {tab === 'recipes' && <RecipesListScreen history={history} onOpenEntry={openEntry} onGoHome={() => setTab('home')} />}
           </div>
           {recipeView && (
-            <RecipeDetailScreen view={recipeView} lang={lang} onOpen={setDetail} onClose={closeRecipe}
+            <RecipeDetailScreen view={recipeView} lang={lang} onOpen={setDetail} onSearchProduce={searchProduce} onClose={closeRecipe}
               onGoHome={() => { closeRecipe(); setTab('home'); }} onTryAnother={tryAnother} />
           )}
           {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={add} onClose={() => setDetail(null)} onOpen={setDetail} />}
