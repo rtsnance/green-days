@@ -188,12 +188,21 @@ async function requestRecipe({ basket, country, prefs, avoid }) {
 function HomeScreen({ basket, lang, country, onSetCountry, weather, onAdd, onOpen, onCook, onOpenPrefs }) {
   const [cat, setCat] = React.useState('All');
   const [query, setQuery] = React.useState('');
-  const q = stripDia(query.trim());
+  const term = query.trim();
+  const q = stripDia(term);
+  const searching = q.length > 0;
+  // Search overrides categories: while a term is active the tabs snap to All
+  // and the whole catalogue is searched (across every language, via matchesQuery).
+  const activeCat = searching ? 'All' : cat;
   const list = PRODUCE
-    .filter((p) => cat === 'All' || p.tab === cat || (cat === 'Herbs' && p.tab === 'Herb'))
+    .filter((p) => searching || activeCat === 'All' || p.tab === activeCat || (activeCat === 'Herbs' && p.tab === 'Herb'))
     .filter((p) => matchesQuery(p, q))
     .slice()
     .sort((a, b) => SEASON_RANK[a.seasonality] - SEASON_RANK[b.seasonality] || a.name.localeCompare(b.name));
+  // Clearing the filter returns to All and the full seasonal palette.
+  const clearSearch = () => { setQuery(''); setCat('All'); };
+  // Picking a category tab takes effect by clearing any active search.
+  const pickCat = (c) => { setQuery(''); setCat(c); };
   const basketCount = Object.values(basket).reduce((s, n) => s + n, 0);
   // The cook banner appears once the basket has something in it, fading in
   const [showCook, setShowCook] = React.useState(false);
@@ -268,12 +277,26 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, onAdd, onOpe
         </button>
       )}
 
-      <div style={{ margin: '18px 0 14px', display: 'flex', justifyContent: 'center' }}>
-        <div className="gd-segmented">
+      {/* Filter row — left-aligned to the grid edge, scrolls horizontally so the
+          active-search pill can sit past Herbs on narrow screens */}
+      <div className="gd-filterrow" style={{ margin: '18px 0 14px', display: 'flex', alignItems: 'center', gap: 8, overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        <div className="gd-segmented" style={{ flexShrink: 0 }}>
           {['All', 'Fruit', 'Veg', 'Herbs'].map((c) => (
-            <button key={c} className={'gd-segmented__item' + (c === cat ? ' gd-segmented__item--active' : '')} onClick={() => setCat(c)}>{c}</button>
+            <button key={c} className={'gd-segmented__item' + (c === activeCat ? ' gd-segmented__item--active' : '')} onClick={() => pickCat(c)}>{c}</button>
           ))}
         </div>
+        {searching && (
+          <button onClick={clearSearch} aria-label={'Clear search: ' + term}
+            style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 6, maxWidth: 170, height: 34,
+              padding: '0 6px 0 14px', borderRadius: 999, border: 'none', cursor: 'pointer',
+              background: 'var(--color-accent)', color: 'var(--color-on-accent)',
+              fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13, boxShadow: 'var(--shadow-low)' }}>
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{term}</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 20, height: 20, borderRadius: 999, background: 'rgba(255,255,255,0.22)', flexShrink: 0 }}>
+              <Icon d={I.x} size={12} w={2.8} />
+            </span>
+          </button>
+        )}
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
@@ -307,7 +330,7 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, onAdd, onOpe
       {list.length === 0 && (
         <div className="gd-card gd-card--muted" style={{ textAlign: 'center', padding: 28, marginTop: 4 }}>
           <div style={{ fontSize: 34 }}>🧺</div>
-          <div style={{ fontWeight: 800, marginTop: 8 }}>No produce matches “{query}”</div>
+          <div style={{ fontWeight: 800, marginTop: 8 }}>No produce matches “{term}”</div>
           <div style={{ color: 'var(--color-text-secondary)', fontSize: 14, marginTop: 4 }}>Try another produce name, in any language.</div>
         </div>
       )}

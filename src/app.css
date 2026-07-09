@@ -68,6 +68,10 @@ html, body { margin: 0; height: 100%; }
 }
 .gd-screen::-webkit-scrollbar { width: 0; }
 
+/* Horizontal filter row scrolls but hides its scrollbar */
+.gd-filterrow { scrollbar-width: none; -ms-overflow-style: none; }
+.gd-filterrow::-webkit-scrollbar { height: 0; width: 0; }
+
 .gd-tabbar {
   flex-shrink: 0;
   display: flex;
