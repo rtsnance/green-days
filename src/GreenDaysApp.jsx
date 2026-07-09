@@ -338,7 +338,7 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQu
 }
 
 /* ================= Basket ================= */
-function ListScreen({ basket, checked, lang, country, onAdd, onRemove, onToggle, onCook }) {
+function ListScreen({ basket, checked, lang, country, onAdd, onRemove, onToggle, onOpen, onCook }) {
   const items = PRODUCE.filter((p) => basket[p.id] > 0);
   const doneCount = items.filter((p) => checked[p.id]).length;
   const outItems = items.filter((p) => p.seasonality === 'out');
@@ -377,9 +377,11 @@ function ListScreen({ basket, checked, lang, country, onAdd, onRemove, onToggle,
           {items.map((p) => {
             const on = !!checked[p.id];
             return (
-              <div key={p.id} className="gd-list-item" style={{ borderRadius: 14, opacity: on ? 0.55 : 1 }}>
+              // Whole row opens the product detail, like a Home card. The check,
+              // Add, and remove controls stop propagation so they act in place.
+              <div key={p.id} className="gd-list-item" onClick={() => onOpen(p.id)} style={{ borderRadius: 14, opacity: on ? 0.55 : 1 }}>
                 <span className="gd-list-item__media">
-                  <label className={'gd-check' + (on ? ' gd-check--checked' : '')} onClick={() => onToggle(p.id)}>
+                  <label className={'gd-check' + (on ? ' gd-check--checked' : '')} onClick={(e) => { e.stopPropagation(); onToggle(p.id); }}>
                     <span className="gd-check__box"><Icon d={I.check} size={14} w={3.5} /></span>
                   </label>
                 </span>
@@ -390,9 +392,11 @@ function ListScreen({ basket, checked, lang, country, onAdd, onRemove, onToggle,
                 </span>
                 <span className="gd-list-item__trailing" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   <AddControl p={p} qty={basket[p.id]} onAdd={onAdd} />
-                  <button className="gd-btn gd-btn--ghost gd-btn--icon-only gd-btn--sm" aria-label={'Remove ' + p.name} onClick={() => onRemove(p.id)} style={{ color: 'var(--color-text-tertiary)' }}>
+                  <button className="gd-btn gd-btn--ghost gd-btn--icon-only gd-btn--sm" aria-label={'Remove ' + p.name} onClick={(e) => { e.stopPropagation(); onRemove(p.id); }} style={{ color: 'var(--color-text-tertiary)' }}>
                     <span className="gd-btn__icon"><Icon d={I.x} size={16} w={2.4} /></span>
                   </button>
+                  {/* Trailing chevron marks the row as tappable (as in Recipes) */}
+                  <span style={{ color: 'var(--color-text-tertiary)', display: 'flex', flexShrink: 0, marginLeft: 2, pointerEvents: 'none' }} aria-hidden="true"><Icon d={I.chevron} size={18} /></span>
                 </span>
               </div>
             );
@@ -951,7 +955,7 @@ export default function GreenDaysApp() {
         <div className="gd-screen-wrap">
           <div className="gd-screen">
             {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} onSetCountry={pickCountry} weather={weather} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)} />}
-            {tab === 'list' && <ListScreen basket={basket} checked={checked} lang={lang} country={country} onAdd={add} onRemove={(id) => setQty(id, 0)} onToggle={toggle} onCook={cookThis} />}
+            {tab === 'list' && <ListScreen basket={basket} checked={checked} lang={lang} country={country} onAdd={add} onRemove={(id) => setQty(id, 0)} onToggle={toggle} onOpen={setDetail} onCook={cookThis} />}
             {tab === 'recipes' && <RecipesListScreen history={history} onOpenEntry={openEntry} onGoHome={() => setTab('home')} />}
           </div>
           {recipeView && (
