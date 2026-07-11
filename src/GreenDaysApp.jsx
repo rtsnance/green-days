@@ -739,10 +739,12 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen }) {
 /* ================= One-time preferences ================= */
 const DIETS = [['none', 'No limits'], ['vegetarian', 'Vegetarian'], ['vegan', 'Vegan']];
 const ALLERGIES = ['Nuts', 'Dairy', 'Gluten', 'Eggs', 'Shellfish', 'Soy'];
-function PrefsScreen({ prefs, firstRun, onSave, onClose }) {
+function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }) {
   const [diet, setDiet] = React.useState(prefs.diet || 'none');
   const [allergies, setAllergies] = React.useState(prefs.allergies || []);
+  const [market, setMarket] = React.useState(country || 'PT');
   const toggle = (a) => setAllergies((s) => s.indexOf(a) === -1 ? s.concat(a) : s.filter((x) => x !== a));
+  const save = () => { if (market !== country) onSetCountry(market); onSave({ diet, allergies }); };
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 40, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
       <div style={{ flex: 1, padding: '22px 22px 12px' }}>
@@ -751,6 +753,21 @@ function PrefsScreen({ prefs, firstRun, onSave, onClose }) {
         )}
         <div style={{ fontFamily: 'var(--font-brand)', fontSize: 34, lineHeight: 1.05, color: 'var(--color-accent)' }}>A few quick things</div>
         <p style={{ fontSize: 15, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '8px 0 26px' }}>Set these once and every recipe quietly follows. We won't ask again.</p>
+
+        {/* Market — displays the current location and lets the shopper pick
+            another; a real <select> overlays the row (same picker as Home). */}
+        <div style={{ fontSize: 12, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 10 }}>Where you shop</div>
+        <div style={{ position: 'relative', marginBottom: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '13px 16px', borderRadius: 'var(--radius-element)', border: '1px solid var(--color-border)', background: 'var(--color-background-surface)' }}>
+            <Icon d={I.pin} size={18} style={{ color: 'var(--color-accent)', flexShrink: 0 }} />
+            <span style={{ flex: 1, minWidth: 0, fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary)' }}>{countryLabel(market)}</span>
+            <Icon d={I.chevron} size={18} style={{ color: 'var(--color-text-tertiary)', flexShrink: 0, transform: 'rotate(90deg)' }} />
+          </div>
+          <select className="gd-locpick" aria-label="Market country" value={market} onChange={(e) => setMarket(e.target.value)}>
+            {COUNTRIES.map(([code, label]) => <option key={code} value={code}>{label}</option>)}
+          </select>
+        </div>
+        <p style={{ fontSize: 12.5, lineHeight: 1.4, color: 'var(--color-text-tertiary)', margin: '0 0 28px' }}>Sets your market's produce names and what's in season.</p>
 
         <div style={{ fontSize: 12, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 10 }}>How you eat</div>
         <div className="gd-segmented" style={{ display: 'flex', width: '100%', marginBottom: 28 }}>
@@ -773,7 +790,7 @@ function PrefsScreen({ prefs, firstRun, onSave, onClose }) {
       </div>
 
       <div style={{ position: 'sticky', bottom: 0, background: 'var(--color-background-surface)', borderTop: '1px solid var(--color-border)', padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
-        <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" onClick={() => onSave({ diet, allergies })}>
+        <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" onClick={save}>
           <span>{firstRun ? 'Save and start shopping' : 'Save'}</span>
         </button>
         <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--color-text-tertiary)' }}>Change these anytime from Home</div>
@@ -963,7 +980,7 @@ export default function GreenDaysApp() {
               onGoHome={() => { closeRecipe(); setTab('home'); }} onTryAnother={tryAnother} />
           )}
           {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={add} onClose={() => setDetail(null)} onOpen={setDetail} />}
-          {showPrefs && <PrefsScreen prefs={prefs} firstRun={!prefs.seen} onSave={savePrefs} onClose={() => setShowPrefs(false)} />}
+          {showPrefs && <PrefsScreen prefs={prefs} firstRun={!prefs.seen} country={country} onSetCountry={pickCountry} onSave={savePrefs} onClose={() => setShowPrefs(false)} />}
         </div>
 
         <div className="gd-tabbar">
