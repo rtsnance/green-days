@@ -751,10 +751,12 @@ const ALLERGIES = ['Nuts', 'Dairy', 'Gluten', 'Eggs', 'Shellfish', 'Soy'];
    Shown once, gated by the persisted gd_onboarded flag. Three forward-only
    steps (welcome, market, diet & allergies); "Get started" persists prefs +
    the market and lands on Home. Replaces the first-run role of PrefsScreen. */
-function OnboardScreen({ country, onSetCountry, onDone }) {
+function OnboardScreen({ country, onSetCountry, prefs, onDone }) {
   const [step, setStep] = React.useState(0);
-  const [diet, setDiet] = React.useState('none');
-  const [allergies, setAllergies] = React.useState([]);
+  // Pre-fill from existing prefs so a returning user who taps through keeps
+  // their saved diet/allergies; new users start at the defaults.
+  const [diet, setDiet] = React.useState((prefs && prefs.diet) || 'none');
+  const [allergies, setAllergies] = React.useState((prefs && prefs.allergies) || []);
   const toggle = (a) => setAllergies((s) => s.indexOf(a) === -1 ? s.concat(a) : s.filter((x) => x !== a));
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
@@ -967,10 +969,11 @@ export default function GreenDaysApp() {
     setShowPrefs(false);
   };
 
-  // First-run onboarding gate. Treat a pre-existing seen-prefs install as
-  // already onboarded so returning users never see the walkthrough again.
+  // First-run onboarding gate. Governed solely by the persisted flag: existing
+  // users (seen prefs, no flag) see the walkthrough once more, then never again.
+  // Their saved diet/allergies pre-fill it, so tapping through preserves them.
   const [onboarded, setOnboarded] = React.useState(() => {
-    try { return localStorage.getItem(ONBOARD_KEY) === '1' || prefs.seen === true; } catch (e) { return false; }
+    try { return localStorage.getItem(ONBOARD_KEY) === '1'; } catch (e) { return false; }
   });
   const finishOnboarding = (diet, allergies) => {
     const np = { diet, allergies, seen: true };
@@ -1103,7 +1106,7 @@ export default function GreenDaysApp() {
         )}
 
         {/* First-run walkthrough — covers the whole phone until "Get started" */}
-        {!onboarded && <OnboardScreen country={country} onSetCountry={pickCountry} onDone={finishOnboarding} />}
+        {!onboarded && <OnboardScreen country={country} onSetCountry={pickCountry} prefs={prefs} onDone={finishOnboarding} />}
       </div>
     </div>
   );
