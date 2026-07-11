@@ -6,7 +6,7 @@ import MARKETS from '../data/markets.json';
 
 const DATASET = 'Green_Days_Early_Days';
 const num = (x) => { const n = Number(x); return Number.isFinite(n) ? n : 0; };
-const pct = (x) => (x == null ? '—' : (x * 100).toFixed(1) + '%');
+const pct = (x) => (x == null || !Number.isFinite(x) ? '—' : (x * 100).toFixed(1) + '%');
 const countryName = (c) => (MARKETS[c] && MARKETS[c].country) || (c || 'Unknown');
 
 // --- Analytics Engine SQL client ---
@@ -77,7 +77,7 @@ export async function handleMetrics(request, env) {
   const activation = {
     app_open_sessions: act.app_open || 0,
     recipe_sessions: act.recipe_generated || 0,
-    rate: act.app_open ? act.recipe_generated / act.app_open : null,
+    rate: act.app_open ? (act.recipe_generated || 0) / act.app_open : null,
   };
 
   const ONB_STEPS = ['welcome', 'market', 'diet'];
@@ -99,7 +99,7 @@ export async function handleMetrics(request, env) {
   const tryAnother = {
     recipe_generated: ta.recipe_generated || 0,
     recipe_try_another: ta.recipe_try_another || 0,
-    rate: ta.recipe_generated ? ta.recipe_try_another / ta.recipe_generated : null,
+    rate: ta.recipe_generated ? (ta.recipe_try_another || 0) / ta.recipe_generated : null,
   };
 
   let hit = 0, miss = 0;
