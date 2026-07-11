@@ -3,20 +3,17 @@
            POST /greendays/api/recipe   → the recipe engine (Anthropic API)
    Everything else is served from the built front-end by the assets binding. */
 import PRODUCE from '../data/produce.json';
+import MARKETS from '../data/markets.json';
 import { SYSTEM_PROMPT, RECIPE_SCHEMA, buildUserMessage } from './prompt.js';
 
 const BY_ID = new Map(PRODUCE.map((p) => [p.id, p]));
-const MED = new Set(['PT', 'ES', 'IT', 'GR', 'FR']);
 const DIETS = new Set(['none', 'vegetarian', 'vegan']);
 const ALLERGIES = new Set(['nuts', 'dairy', 'gluten', 'eggs', 'shellfish', 'soy']);
 const SEASON_MONTHS = { spring: [2, 3, 4], summer: [5, 6, 7], autumn: [8, 9, 10], winter: [11, 0, 1] };
-const COUNTRY_NAMES = {
-  PT: 'Portugal', ES: 'Spain', FR: 'France', IT: 'Italy', GR: 'Greece', DE: 'Germany',
-  AT: 'Austria', CH: 'Switzerland', NL: 'Netherlands', BE: 'Belgium', DK: 'Denmark',
-  GB: 'United Kingdom', IE: 'Ireland', SE: 'Sweden',
-};
 
-const bandOf = (c) => (MED.has(c) ? 'mediterranean' : 'temperate');
+// Country → { country, lang, band } from markets.json (same source as the app).
+const bandOf = (c) => (MARKETS[c] || {}).band || 'temperate';
+const countryName = (c) => (MARKETS[c] || {}).country || c;
 const seasonForMonth0 = (m) => Object.keys(SEASON_MONTHS).find((s) => SEASON_MONTHS[s].includes(m)) || 'summer';
 
 // Mirror of the front-end's rough-season parser so both sides agree on
@@ -38,11 +35,16 @@ function seasonMonthSet(str) {
   names.forEach((n) => SEASON_MONTHS[n].forEach((m) => set.add(m)));
   return set;
 }
-function seasonalityOf(seasonStr, month0) {
+function seasonalityOf(seasonStr, month0, band) {
+  const s = (seasonStr || '').toLowerCase();
   const set = seasonMonthSet(seasonStr);
-  if (set === null || set.size === 0) return 'in';
-  if (!set.has(month0)) return 'out';
-  return (seasonStr || '').toLowerCase().includes(seasonForMonth0(month0)) ? 'peak' : 'in';
+  let base;
+  if (set === null || set.size === 0) base = 'in';
+  else if (!set.has(month0)) base = 'out';
+  else base = s.includes(seasonForMonth0(month0)) ? 'peak' : 'in';
+  // A "(Med)" season is only in season in the Mediterranean band.
+  if (base !== 'out' && band && band !== 'mediterranean' && /\(med/.test(s)) return 'out';
+  return base;
 }
 
 const json = (data, status = 200, headers = {}) =>
@@ -99,6 +101,7 @@ async function handleRecipe(request, env, ctx) {
   const country = /^[A-Z]{2}$/.test(body.country || '') ? body.country : cfCountry;
   const month1 = Number.isInteger(body.month) && body.month >= 1 && body.month <= 12 ? body.month : new Date().getMonth() + 1;
   const month0 = month1 - 1;
+  const band = bandOf(country); // seasonality is band-aware ("(Med)" seasons)
 
   const prefs = {
     diet: DIETS.has(body?.prefs?.diet) ? body.prefs.diet : 'none',
@@ -144,12 +147,12 @@ async function handleRecipe(request, env, ctx) {
 
   const basketItems = basket.map((id) => {
     const p = BY_ID.get(id);
-    return { id, name_en: p.name_en, season: p.season, seasonality: seasonalityOf(p.season, month0) };
+    return { id, name_en: p.name_en, season: p.season, seasonality: seasonalityOf(p.season, month0, band) };
   });
 
   // Candidates for "grab one more": in season now, not in the basket, peak first.
   const inSeasonIds = PRODUCE
-    .map((p) => ({ id: p.id, s: seasonalityOf(p.season, month0) }))
+    .map((p) => ({ id: p.id, s: seasonalityOf(p.season, month0, band) }))
     .filter((x) => x.s !== 'out' && !basket.includes(x.id))
     .sort((a, b) => (a.s === 'peak' ? 0 : 1) - (b.s === 'peak' ? 0 : 1))
     .slice(0, 40)
@@ -166,10 +169,10 @@ async function handleRecipe(request, env, ctx) {
     const userMessage = buildUserMessage({
       basketItems,
       country,
-      countryName: COUNTRY_NAMES[country] || country,
+      countryName: countryName(country),
       month1,
       season: seasonForMonth0(month0),
-      band: bandOf(country),
+      band,
       prefs,
       inSeasonIds,
       avoid,

@@ -5,7 +5,7 @@
    classes from the design system. */
 import React from 'react';
 import {
-  PRODUCE, byId, MONTH, ASSET,
+  PRODUCE, byId, decorate, MONTH, ASSET,
   langOf, bandOf, countryLabel, COUNTRIES,
   seasonBannerSrc, matchesQuery, stripDia,
 } from './produce.js';
@@ -193,10 +193,11 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQu
   // Search overrides categories: while a term is active the tabs snap to All
   // and the whole catalogue is searched (across every language, via matchesQuery).
   const activeCat = searching ? 'All' : cat;
+  const band = bandOf(country); // vivid/faded per the market's climate band
   const list = PRODUCE
     .filter((p) => searching || activeCat === 'All' || p.tab === activeCat || (activeCat === 'Herbs' && p.tab === 'Herb'))
     .filter((p) => matchesQuery(p, q))
-    .slice()
+    .map((p) => decorate(p, band))
     .sort((a, b) => SEASON_RANK[a.seasonality] - SEASON_RANK[b.seasonality] || a.name.localeCompare(b.name));
   // Clearing the filter returns to All and the full seasonal palette.
   const clearSearch = () => { setQuery(''); setCat('All'); };
@@ -339,7 +340,8 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQu
 
 /* ================= Basket ================= */
 function ListScreen({ basket, checked, lang, country, onAdd, onRemove, onToggle, onOpen, onCook }) {
-  const items = PRODUCE.filter((p) => basket[p.id] > 0);
+  const band = bandOf(country);
+  const items = PRODUCE.filter((p) => basket[p.id] > 0).map((p) => decorate(p, band));
   const doneCount = items.filter((p) => checked[p.id]).length;
   const outItems = items.filter((p) => p.seasonality === 'out');
 
@@ -432,25 +434,29 @@ function resolveSuggestion(term) {
   return PRODUCE.find((p) => stripDia(p.name).includes(t) || Object.values(p.name_local).some((n) => stripDia(n).includes(t))) || null;
 }
 
-function RecipeDetailScreen({ view, lang, onOpen, onSearchProduce, onClose, onGoHome, onTryAnother }) {
+function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, onTryAnother }) {
   const { entry, status, error, live } = view;
-  const banner = seasonBannerSrc(entry ? entry.country : 'PT', entry ? entry.month0 : MONTH);
+  // Names, banner, and seasonality follow the market the recipe was cooked in.
+  const rc = entry ? entry.country : 'PT';
+  const lang = langOf(rc);
+  const band = bandOf(rc);
+  const banner = seasonBannerSrc(rc, entry ? entry.month0 : MONTH);
   const r = entry && entry.recipe;
 
   const label = (text, accent) => (
     <div style={{ fontSize: 12, ...MONO, color: accent ? 'var(--color-text-accent)' : 'var(--color-text-tertiary)', margin: '0 0 10px', display: 'flex', alignItems: 'center', gap: 6 }}>{text}</div>
   );
 
-  const stars = r ? r.stars.map(byId).filter(Boolean) : [];
+  const stars = r ? r.stars.map((id) => decorate(byId(id), band)).filter(Boolean) : [];
   const fresh = r ? r.ingredients.filter((i) => !i.pantry) : [];
   const pantry = r ? r.ingredients.filter((i) => i.pantry) : [];
   const grabTerm = r && r.grabOneMore ? String(r.grabOneMore).trim() : '';
-  const oneMore = grabTerm ? resolveSuggestion(grabTerm) : null;
+  const oneMore = grabTerm ? decorate(resolveSuggestion(grabTerm), band) : null;
 
   // Match a fresh-ingredient line back to a produce print where possible.
   const freshProduce = (item) => {
     const t = stripDia(item);
-    return stars.find((p) => t.includes(stripDia(p.name))) || PRODUCE.find((p) => t.includes(stripDia(p.name)));
+    return decorate(stars.find((p) => t.includes(stripDia(p.name))) || PRODUCE.find((p) => t.includes(stripDia(p.name))), band);
   };
 
   return (
@@ -658,11 +664,12 @@ function RecipesListScreen({ history, onOpenEntry, onGoHome }) {
 
 /* ================= Product detail overlay ================= */
 function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen }) {
-  const p = byId(id);
+  const band = bandOf(country);
+  const p = decorate(byId(id), band);
   if (!p) return null;
   const qty = basket[p.id] || 0;
   const out = p.seasonality === 'out';
-  const swap = out ? PRODUCE.find((x) => x.seasonality !== 'out' && x.tab === p.tab && x.hasPrint && x.id !== p.id) : null;
+  const swap = out ? PRODUCE.map((x) => decorate(x, band)).find((x) => x.seasonality !== 'out' && x.tab === p.tab && x.hasPrint && x.id !== p.id) : null;
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 20, display: 'flex', flexDirection: 'column', overflow: 'auto', overscrollBehavior: 'contain' }}>
       <div style={{ position: 'relative', background: 'var(--color-background-body)', paddingTop: 12, borderBottom: '1px solid #d9cfbe' }}>
@@ -976,7 +983,7 @@ export default function GreenDaysApp() {
             {tab === 'recipes' && <RecipesListScreen history={history} onOpenEntry={openEntry} onGoHome={() => setTab('home')} />}
           </div>
           {recipeView && (
-            <RecipeDetailScreen view={recipeView} lang={lang} onOpen={setDetail} onSearchProduce={searchProduce} onClose={closeRecipe}
+            <RecipeDetailScreen view={recipeView} onOpen={setDetail} onSearchProduce={searchProduce} onClose={closeRecipe}
               onGoHome={() => { closeRecipe(); setTab('home'); }} onTryAnother={tryAnother} />
           )}
           {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={add} onClose={() => setDetail(null)} onOpen={setDetail} />}

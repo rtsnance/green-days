@@ -1,0 +1,72 @@
+{
+  "PT": {
+    "country": "Portugal",
+    "lang": "pt",
+    "band": "mediterranean"
+  },
+  "ES": {
+    "country": "Spain",
+    "lang": "es",
+    "band": "mediterranean"
+  },
+  "FR": {
+    "country": "France",
+    "lang": "fr",
+    "band": "temperate"
+  },
+  "IT": {
+    "country": "Italy",
+    "lang": "it",
+    "band": "mediterranean"
+  },
+  "GR": {
+    "country": "Greece",
+    "lang": "el",
+    "band": "mediterranean"
+  },
+  "DE": {
+    "country": "Germany",
+    "lang": "de",
+    "band": "temperate"
+  },
+  "AT": {
+    "country": "Austria",
+    "lang": "de",
+    "band": "temperate"
+  },
+  "CH": {
+    "country": "Switzerland",
+    "lang": "de",
+    "band": "temperate"
+  },
+  "NL": {
+    "country": "Netherlands",
+    "lang": "nl",
+    "band": "temperate"
+  },
+  "BE": {
+    "country": "Belgium",
+    "lang": "nl",
+    "band": "temperate"
+  },
+  "DK": {
+    "country": "Denmark",
+    "lang": "da",
+    "band": "temperate"
+  },
+  "GB": {
+    "country": "United Kingdom",
+    "lang": "en",
+    "band": "temperate"
+  },
+  "IE": {
+    "country": "Ireland",
+    "lang": "en",
+    "band": "temperate"
+  },
+  "SE": {
+    "country": "Sweden",
+    "lang": "sv",
+    "band": "temperate"
+  }
+}

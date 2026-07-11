@@ -16,7 +16,9 @@
       "it": "Pomodoro",
       "nl": "Tomaat",
       "da": "Tomat",
-      "es": "Tomate"
+      "es": "Tomate",
+      "el": "Ντομάτα",
+      "sv": "Tomat"
     },
     "selection": "Choose by smell, not looks. A ripe one is fragrant at the stem and gives slightly when cradled; heavy for its size means juicy."
   },
@@ -37,7 +39,9 @@
       "it": "Pomodorino",
       "nl": "Kerstomaat",
       "da": "Cherrytomat",
-      "es": "Tomate cherry"
+      "es": "Tomate cherry",
+      "el": "Ντοματίνι",
+      "sv": "Körsbärstomat"
     },
     "selection": "Look for taut, split-free skins and deep even colour. Give the punnet a sniff, it should smell sweet."
   },
@@ -58,7 +62,9 @@
       "it": "Pomodoro cuore di bue",
       "nl": "Vleestomaat",
       "da": "Bøftomat",
-      "es": "Tomate corazón de buey"
+      "es": "Tomate corazón de buey",
+      "el": "Ντομάτα καρδιά βοδιού",
+      "sv": "Bifftomat"
     },
     "selection": "Heavy and faintly soft, with a strong scent at the stem. The shoulders should be fully coloured, not pale."
   },
@@ -79,7 +85,9 @@
       "it": "Pomodoro San Marzano",
       "nl": "Romatomaat",
       "da": "Blommetomat",
-      "es": "Tomate pera"
+      "es": "Tomate pera",
+      "el": "Ντομάτα Σαν Μαρτσάνο",
+      "sv": "Plommontomat"
     },
     "selection": "Firm, richly red, with a sweet stem smell. A little give is fine if it is bound for sauce."
   },
@@ -100,7 +108,9 @@
       "it": "Pomodoro verde",
       "nl": "Groene tomaat",
       "da": "Grøn tomat",
-      "es": "Tomate verde"
+      "es": "Tomate verde",
+      "el": "Πράσινη ντομάτα",
+      "sv": "Grön tomat"
     },
     "selection": "Firm and glossy is the point. Choose unblemished ones with taut skin for frying or chutney."
   },
@@ -121,7 +131,9 @@
       "it": "Melanzana",
       "nl": "Aubergine",
       "da": "Aubergine",
-      "es": "Berenjena"
+      "es": "Berenjena",
+      "el": "Μελιτζάνα",
+      "sv": "Aubergine"
     },
     "selection": "Light for its size with tight, shiny skin. Press gently, it should spring back; a lasting dent means old and bitter."
   },
@@ -142,7 +154,9 @@
       "it": "Zucchina",
       "nl": "Courgette",
       "da": "Squash",
-      "es": "Calabacín"
+      "es": "Calabacín",
+      "el": "Κολοκυθάκι",
+      "sv": "Zucchini"
     },
     "selection": "Small and firm beats big. Taut glossy skin and a dense heft; oversized ones turn seedy and watery."
   },
@@ -163,7 +177,9 @@
       "it": "Zucchina grande",
       "nl": "Mergpompoen",
       "da": "Marvgræskar",
-      "es": "Calabacín grande"
+      "es": "Calabacín grande",
+      "el": "Μεγάλο κολοκυθάκι",
+      "sv": "Märgpumpa"
     },
     "selection": "Firm with unblemished skin. The smaller marrows are sweeter and less watery."
   },
@@ -184,7 +200,9 @@
       "it": "Cetriolo",
       "nl": "Komkommer",
       "da": "Agurk",
-      "es": "Pepino"
+      "es": "Pepino",
+      "el": "Αγγούρι",
+      "sv": "Gurka"
     },
     "selection": "Firm end to end with no soft or wrinkled spots. Slimmer ones tend to have fewer seeds."
   },
@@ -205,7 +223,9 @@
       "it": "Peperone",
       "nl": "Paprika",
       "da": "Peberfrugt",
-      "es": "Pimiento"
+      "es": "Pimiento",
+      "el": "Πιπεριά",
+      "sv": "Paprika"
     },
     "selection": "Heavy, glossy and firm with taut skin and a fresh green stem. Wrinkles or soft patches mean it is past it."
   },
@@ -226,7 +246,9 @@
       "it": "Peperoncino",
       "nl": "Chilipeper",
       "da": "Chili",
-      "es": "Guindilla"
+      "es": "Guindilla",
+      "el": "Καυτερή πιπεριά",
+      "sv": "Chili"
     },
     "selection": "Firm, glossy and taut. Wrinkled skin means age, though it still cooks fine if you want it milder."
   },
@@ -247,7 +269,9 @@
       "it": "Peperone di Padrón",
       "nl": "Padrón-pepertje",
       "da": "Padrón-peber",
-      "es": "Pimiento de Padrón"
+      "es": "Pimiento de Padrón",
+      "el": "Πιπεριές Παδρόν",
+      "sv": "Padrónpaprika"
     },
     "selection": "Small, firm and bright green with smooth skin. The little ones are mild, the plump ones can surprise you."
   },
@@ -268,7 +292,9 @@
       "it": "Tomatillo",
       "nl": "Tomatillo",
       "da": "Tomatillo",
-      "es": "Tomatillo"
+      "es": "Tomatillo",
+      "el": "Τοματίγιο",
+      "sv": "Tomatillo"
     },
     "selection": "Choose ones that fill their papery husk and feel firm; the husk should be fresh and pale, not dry and brown."
   },
@@ -289,7 +315,9 @@
       "it": "Cipolla",
       "nl": "Ui",
       "da": "Løg",
-      "es": "Cebolla"
+      "es": "Cebolla",
+      "el": "Κρεμμύδι",
+      "sv": "Gul lök"
     },
     "selection": "Firm all over with dry, papery skin, no green shoots or soft necks. It should feel heavy and smell only faintly."
   },
@@ -310,7 +338,9 @@
       "it": "Cipolla rossa",
       "nl": "Rode ui",
       "da": "Rødløg",
-      "es": "Cebolla roja"
+      "es": "Cebolla roja",
+      "el": "Κόκκινο κρεμμύδι",
+      "sv": "Rödlök"
     },
     "selection": "Firm and heavy with tight, dry skin. Avoid softness at the top or a strong smell through the skin."
   },
@@ -331,7 +361,9 @@
       "it": "Scalogno",
       "nl": "Sjalot",
       "da": "Skalotteløg",
-      "es": "Chalota"
+      "es": "Chalota",
+      "el": "Ασκαλώνιο",
+      "sv": "Schalottenlök"
     },
     "selection": "Firm and dry with intact skin, no sprouting from the tip. Heavy for its size is best."
   },
@@ -352,7 +384,9 @@
       "it": "Cipollotto",
       "nl": "Lente-ui",
       "da": "Forårsløg",
-      "es": "Cebolleta"
+      "es": "Cebolleta",
+      "el": "Φρέσκο κρεμμυδάκι",
+      "sv": "Salladslök"
     },
     "selection": "Crisp white bulbs and perky, bright green tops. Skip any that are slimy or yellowing at the leaf."
   },
@@ -373,7 +407,9 @@
       "it": "Porro",
       "nl": "Prei",
       "da": "Porre",
-      "es": "Puerro"
+      "es": "Puerro",
+      "el": "Πράσο",
+      "sv": "Purjolök"
     },
     "selection": "Firm white shanks and fresh green tops. Slimmer leeks are more tender; avoid split or yellowing leaves."
   },
@@ -394,7 +430,9 @@
       "it": "Aglio",
       "nl": "Knoflook",
       "da": "Hvidløg",
-      "es": "Ajo"
+      "es": "Ajo",
+      "el": "Σκόρδο",
+      "sv": "Vitlök"
     },
     "selection": "Plump, firm heads with tight papery skin. Squeeze gently, it should feel solid with no soft or sprouting cloves."
   },
@@ -415,7 +453,9 @@
       "it": "Aglio elefante",
       "nl": "Olifantsknoflook",
       "da": "Kæmpehvidløg",
-      "es": "Ajo elefante"
+      "es": "Ajo elefante",
+      "el": "Σκόρδο ελέφαντα",
+      "sv": "Jättevitlök"
     },
     "selection": "Large firm bulbs with tight skin and no give when pressed. Milder than regular garlic, so pick the biggest sound one."
   },
@@ -436,7 +476,9 @@
       "it": "Aglio orsino",
       "nl": "Daslook",
       "da": "Ramsløg",
-      "es": "Ajo de oso"
+      "es": "Ajo de oso",
+      "el": "Άγριο σκόρδο",
+      "sv": "Ramslök"
     },
     "selection": "Bright, perky leaves with a strong garlicky smell when rubbed. Skip anything wilted or yellowing."
   },
@@ -457,7 +499,9 @@
       "it": "Carota",
       "nl": "Wortel",
       "da": "Gulerod",
-      "es": "Zanahoria"
+      "es": "Zanahoria",
+      "el": "Καρότο",
+      "sv": "Morot"
     },
     "selection": "Firm and smooth with bright colour. If the tops are on they should be fresh and green, not limp."
   },
@@ -478,7 +522,9 @@
       "it": "Carote colorate",
       "nl": "Bonte wortels",
       "da": "Farvede gulerødder",
-      "es": "Zanahorias de colores"
+      "es": "Zanahorias de colores",
+      "el": "Πολύχρωμα καρότα",
+      "sv": "Färgade morötter"
     },
     "selection": "Firm with vivid colour and smooth skin. Fresh feathery tops mean a recent pull."
   },
@@ -499,7 +545,9 @@
       "it": "Barbabietola",
       "nl": "Rode biet",
       "da": "Rødbede",
-      "es": "Remolacha"
+      "es": "Remolacha",
+      "el": "Παντζάρι",
+      "sv": "Rödbeta"
     },
     "selection": "Firm, smooth and heavy for its size. Small to medium are sweeter; fresh green tops mean recently harvested."
   },
@@ -520,7 +568,9 @@
       "it": "Barbabietola gialla",
       "nl": "Gele biet",
       "da": "Gul bede",
-      "es": "Remolacha dorada"
+      "es": "Remolacha dorada",
+      "el": "Χρυσό παντζάρι",
+      "sv": "Gul beta"
     },
     "selection": "Firm and smooth with unbroken skin. Smaller roots are sweeter and less woody."
   },
@@ -541,7 +591,9 @@
       "it": "Ravanello",
       "nl": "Radijs",
       "da": "Radise",
-      "es": "Rábano"
+      "es": "Rábano",
+      "el": "Ραπανάκι",
+      "sv": "Rädisa"
     },
     "selection": "Firm with taut skin and bright colour. Perky leaves mean fresh; soft, spongy roots are old."
   },
@@ -562,7 +614,9 @@
       "it": "Ravanello lungo",
       "nl": "Franse radijs",
       "da": "Aflang radise",
-      "es": "Rábano francés"
+      "es": "Rábano francés",
+      "el": "Επιμήκη ραπανάκι",
+      "sv": "Fransk rädisa"
     },
     "selection": "Firm and crisp with smooth skin and lively tops. A gentle squeeze should meet no give."
   },
@@ -583,7 +637,9 @@
       "it": "Ravanello bianco",
       "nl": "Rettich",
       "da": "Daikon",
-      "es": "Daikon"
+      "es": "Daikon",
+      "el": "Ντάικον",
+      "sv": "Daikon"
     },
     "selection": "Firm and heavy with smooth, taut skin and no soft spots. It should feel dense, not hollow."
   },
@@ -604,7 +660,9 @@
       "it": "Rapa",
       "nl": "Meiraap",
       "da": "Majroe",
-      "es": "Nabo"
+      "es": "Nabo",
+      "el": "Γογγύλι",
+      "sv": "Rova"
     },
     "selection": "Small, firm and heavy with smooth skin. Larger turnips turn woody and sharp."
   },
@@ -625,7 +683,9 @@
       "it": "Rutabaga",
       "nl": "Koolraap",
       "da": "Kålroe",
-      "es": "Rutabaga"
+      "es": "Rutabaga",
+      "el": "Γογγύλι σουηδικό",
+      "sv": "Kålrot"
     },
     "selection": "Heavy and firm with smooth skin, no soft patches. Smaller ones are sweeter and less fibrous."
   },
@@ -646,7 +706,9 @@
       "it": "Pastinaca",
       "nl": "Pastinaak",
       "da": "Pastinak",
-      "es": "Chirivía"
+      "es": "Chirivía",
+      "el": "Παστινάκι",
+      "sv": "Palsternacka"
     },
     "selection": "Firm and smooth, small to medium. Very large parsnips have a woody core worth avoiding."
   },
@@ -667,7 +729,9 @@
       "it": "Sedano rapa",
       "nl": "Knolselderij",
       "da": "Knoldselleri",
-      "es": "Apionabo"
+      "es": "Apionabo",
+      "el": "Σελινόριζα",
+      "sv": "Rotselleri"
     },
     "selection": "Heavy and firm with as few knobbles as possible. A light, hollow one will be pithy inside."
   },
@@ -688,7 +752,9 @@
       "it": "Patata",
       "nl": "Aardappel",
       "da": "Kartoffel",
-      "es": "Patata"
+      "es": "Patata",
+      "el": "Πατάτα",
+      "sv": "Potatis"
     },
     "selection": "Firm with taut skin, no green tinge or sprouting eyes. Green means bitter, so pass it by."
   },
@@ -709,7 +775,9 @@
       "it": "Patata novella",
       "nl": "Krieltje",
       "da": "Nye kartofler",
-      "es": "Patata nueva"
+      "es": "Patata nueva",
+      "el": "Πατάτα νέα",
+      "sv": "Färskpotatis"
     },
     "selection": "Firm with thin, flaky skin that rubs off easily; that thin skin is the sign of a true new potato."
   },
@@ -730,7 +798,9 @@
       "it": "Patata dolce",
       "nl": "Zoete aardappel",
       "da": "Sød kartoffel",
-      "es": "Boniato"
+      "es": "Boniato",
+      "el": "Γλυκοπατάτα",
+      "sv": "Sötpotatis"
     },
     "selection": "Firm and smooth with no soft spots, cracks, or sprouting. Even-shaped ones cook more evenly."
   },
@@ -751,7 +821,9 @@
       "it": "Topinambur",
       "nl": "Aardpeer",
       "da": "Jordskok",
-      "es": "Tupinambo"
+      "es": "Tupinambo",
+      "el": "Τοπιναμπούρ",
+      "sv": "Jordärtskocka"
     },
     "selection": "Firm and knobbly with no soft or wrinkled patches. Smoother tubers are simply easier to peel."
   },
@@ -772,7 +844,9 @@
       "it": "Cavolo rapa",
       "nl": "Koolrabi",
       "da": "Knudekål",
-      "es": "Colinabo"
+      "es": "Colinabo",
+      "el": "Γογγυλοκράμβη",
+      "sv": "Kålrabbi"
     },
     "selection": "Firm bulbs smaller than a tennis ball, with fresh leaves. Big ones go woody."
   },
@@ -793,7 +867,9 @@
       "it": "Rafano",
       "nl": "Mierikswortel",
       "da": "Peberrod",
-      "es": "Rábano picante"
+      "es": "Rábano picante",
+      "el": "Χρένο",
+      "sv": "Pepparrot"
     },
     "selection": "Firm, heavy roots with no soft or mouldy spots. It should smell sharp only once cut."
   },
@@ -814,7 +890,9 @@
       "it": "Cavolo cappuccio",
       "nl": "Groene kool",
       "da": "Hvidkål",
-      "es": "Repollo"
+      "es": "Repollo",
+      "el": "Λάχανο",
+      "sv": "Vitkål"
     },
     "selection": "Heavy and tight-headed for its size, with crisp outer leaves. Loose or yellowing leaves mean age."
   },
@@ -835,7 +913,9 @@
       "it": "Verza",
       "nl": "Savooiekool",
       "da": "Savojkål",
-      "es": "Col de Milán"
+      "es": "Col de Milán",
+      "el": "Λάχανο σαβόι",
+      "sv": "Savojkål"
     },
     "selection": "Crisp, deeply crinkled leaves and a head that feels heavy. Avoid limp or browning outer leaves."
   },
@@ -856,7 +936,9 @@
       "it": "Cavolo appuntito",
       "nl": "Spitskool",
       "da": "Spidskål",
-      "es": "Col puntiaguda"
+      "es": "Col puntiaguda",
+      "el": "Μυτερό λάχανο",
+      "sv": "Spetskål"
     },
     "selection": "Firm and heavy for its size with fresh, tight leaves. A pale, loose head is older."
   },
@@ -877,7 +959,9 @@
       "it": "Cavolo primaverile",
       "nl": "Voorjaarskool",
       "da": "Forårskål",
-      "es": "Coles tiernas"
+      "es": "Coles tiernas",
+      "el": "Ανοιξιάτικο λάχανο",
+      "sv": "Vårkål"
     },
     "selection": "Bright, perky leaves with no yellowing or slime. The fresher they look, the sweeter they cook."
   },
@@ -898,7 +982,9 @@
       "it": "Cavolo rosso",
       "nl": "Rode kool",
       "da": "Rødkål",
-      "es": "Lombarda"
+      "es": "Lombarda",
+      "el": "Κόκκινο λάχανο",
+      "sv": "Rödkål"
     },
     "selection": "Dense and heavy with tight, glossy leaves and no splits. It should feel solid when squeezed."
   },
@@ -919,7 +1005,9 @@
       "it": "Cavolfiore",
       "nl": "Bloemkool",
       "da": "Blomkål",
-      "es": "Coliflor"
+      "es": "Coliflor",
+      "el": "Κουνουπίδι",
+      "sv": "Blomkål"
     },
     "selection": "Tight, creamy-white curds with no grey speckling, wrapped in fresh green leaves."
   },
@@ -940,7 +1028,9 @@
       "it": "Cavolo romanesco",
       "nl": "Romanesco",
       "da": "Romanesco",
-      "es": "Romanesco"
+      "es": "Romanesco",
+      "el": "Ρομανέσκο",
+      "sv": "Romanesco"
     },
     "selection": "Bright lime spirals, tight and unbroken, with fresh leaves. Skip any browning tips."
   },
@@ -961,7 +1051,9 @@
       "it": "Broccolo",
       "nl": "Broccoli",
       "da": "Broccoli",
-      "es": "Brócoli"
+      "es": "Brócoli",
+      "el": "Μπρόκολο",
+      "sv": "Broccoli"
     },
     "selection": "Tight, dark blue-green heads with firm stalks. Yellowing florets or open buds mean it is going over."
   },
@@ -982,7 +1074,9 @@
       "it": "Broccolo viola",
       "nl": "Paarse broccoli",
       "da": "Lilla broccoli",
-      "es": "Brócoli morado"
+      "es": "Brócoli morado",
+      "el": "Μωβ μπρόκολο",
+      "sv": "Lila broccoli"
     },
     "selection": "Perky purple spears with tight buds and no yellow flowering. Snappable stalks are freshest."
   },
@@ -1003,7 +1097,9 @@
       "it": "Broccolo a stelo",
       "nl": "Bimi",
       "da": "Aspargesbroccoli",
-      "es": "Bimi"
+      "es": "Bimi",
+      "el": "Μπρόκολο μπίμι",
+      "sv": "Broccolini"
     },
     "selection": "Firm, crisp stems and tight green heads. Limp stems or open buds mean age."
   },
@@ -1024,7 +1120,9 @@
       "it": "Cavoletti di Bruxelles",
       "nl": "Spruitjes",
       "da": "Rosenkål",
-      "es": "Coles de Bruselas"
+      "es": "Coles de Bruselas",
+      "el": "Λαχανάκια Βρυξελλών",
+      "sv": "Brysselkål"
     },
     "selection": "Tight, firm, bright green sprouts, on the stalk if you can. Loose or yellowing leaves mean old."
   },
@@ -1045,7 +1143,9 @@
       "it": "Cavolo riccio",
       "nl": "Boerenkool",
       "da": "Grønkål",
-      "es": "Kale"
+      "es": "Kale",
+      "el": "Λαχανίδα",
+      "sv": "Grönkål"
     },
     "selection": "Deeply coloured, perky leaves with firm stems. Yellowing or wilting means past its best."
   },
@@ -1066,7 +1166,9 @@
       "it": "Cavolo nero",
       "nl": "Palmkool",
       "da": "Sortkål",
-      "es": "Col negra"
+      "es": "Col negra",
+      "el": "Μαύρο λάχανο",
+      "sv": "Svartkål"
     },
     "selection": "Dark, firm, blistered leaves that stand up. Limp or yellow-edged leaves are old."
   },
@@ -1087,7 +1189,9 @@
       "it": "Pak choi",
       "nl": "Paksoi",
       "da": "Pak choi",
-      "es": "Pak choi"
+      "es": "Pak choi",
+      "el": "Πακ τσόι",
+      "sv": "Pak choi"
     },
     "selection": "Crisp white stems and glossy green leaves, no slime or yellowing at the base."
   },
@@ -1108,7 +1212,9 @@
       "it": "Bietola",
       "nl": "Snijbiet",
       "da": "Bladbede",
-      "es": "Acelga"
+      "es": "Acelga",
+      "el": "Σέσκουλο",
+      "sv": "Mangold"
     },
     "selection": "Crisp, upright stems and glossy, unblemished leaves. Wilted leaves or slimy stalks mean old."
   },
@@ -1129,7 +1235,9 @@
       "it": "Spinaci",
       "nl": "Spinazie",
       "da": "Spinat",
-      "es": "Espinaca"
+      "es": "Espinaca",
+      "el": "Σπανάκι",
+      "sv": "Spenat"
     },
     "selection": "Bright, springy leaves with no dark slimy patches. It should smell fresh and green."
   },
@@ -1150,7 +1258,9 @@
       "it": "Rucola",
       "nl": "Rucola",
       "da": "Rucola",
-      "es": "Rúcula"
+      "es": "Rúcula",
+      "el": "Ρόκα",
+      "sv": "Ruccola"
     },
     "selection": "Perky, deep green leaves with no yellowing or sliminess. Smaller leaves are milder."
   },
@@ -1171,7 +1281,9 @@
       "it": "Lattuga",
       "nl": "Kropsla",
       "da": "Hovedsalat",
-      "es": "Lechuga"
+      "es": "Lechuga",
+      "el": "Μαρούλι",
+      "sv": "Huvudsallat"
     },
     "selection": "A head that feels heavy for its size, with soft, unbruised leaves and no brown edges."
   },
@@ -1192,7 +1304,9 @@
       "it": "Lattuga romana",
       "nl": "Romeinse sla",
       "da": "Romainesalat",
-      "es": "Lechuga romana"
+      "es": "Lechuga romana",
+      "el": "Μαρούλι ρομέν",
+      "sv": "Romansallat"
     },
     "selection": "Crisp, tightly packed leaves and firm ribs. Wilting outer leaves or brown edges mean age."
   },
@@ -1213,7 +1327,9 @@
       "it": "Lattughina",
       "nl": "Little gem",
       "da": "Little gem",
-      "es": "Cogollo"
+      "es": "Cogollo",
+      "el": "Μαρούλι μίνι",
+      "sv": "Minisallat"
     },
     "selection": "Small, tight, heavy heads with crisp pale hearts. Avoid browning at the base."
   },
@@ -1234,7 +1350,9 @@
       "it": "Indivia riccia",
       "nl": "Frisée",
       "da": "Frisésalat",
-      "es": "Escarola"
+      "es": "Escarola",
+      "el": "Αντίδι",
+      "sv": "Frisésallat"
     },
     "selection": "Crisp, springy leaves with pale hearts. Limp or browning frizz means old stock."
   },
@@ -1255,7 +1373,9 @@
       "it": "Radicchio",
       "nl": "Radicchio",
       "da": "Radicchio",
-      "es": "Radicchio"
+      "es": "Radicchio",
+      "el": "Ραντίκιο",
+      "sv": "Radicchio"
     },
     "selection": "Firm, heavy heads with tight, glossy crimson leaves and a crisp white core."
   },
@@ -1276,7 +1396,9 @@
       "it": "Crescione",
       "nl": "Waterkers",
       "da": "Brøndkarse",
-      "es": "Berro"
+      "es": "Berro",
+      "el": "Νεροκάρδαμο",
+      "sv": "Vattenkrasse"
     },
     "selection": "Deep green, perky leaves and firm stems with a peppery smell. Yellowing bunches are old."
   },
@@ -1297,7 +1419,9 @@
       "it": "Valerianella",
       "nl": "Veldsla",
       "da": "Vårsalat",
-      "es": "Canónigos"
+      "es": "Canónigos",
+      "el": "Βαλεριάνα",
+      "sv": "Vintersallat"
     },
     "selection": "Small, dark, springy rosettes with no yellowing or slime. Delicate, so buy fresh and use fast."
   },
@@ -1318,7 +1442,9 @@
       "it": "Finocchio",
       "nl": "Venkel",
       "da": "Fennikel",
-      "es": "Hinojo"
+      "es": "Hinojo",
+      "el": "Μάραθο",
+      "sv": "Fänkål"
     },
     "selection": "White, tight bulbs with crisp feathery fronds and no browning. Rounder bulbs are more tender."
   },
@@ -1339,7 +1465,9 @@
       "it": "Sedano",
       "nl": "Bleekselderij",
       "da": "Bladselleri",
-      "es": "Apio"
+      "es": "Apio",
+      "el": "Σέλινο",
+      "sv": "Blekselleri"
     },
     "selection": "Firm, crisp stalks that snap cleanly, with fresh green tops. Limp, bendy stalks mean age."
   },
@@ -1360,7 +1488,9 @@
       "it": "Asparago",
       "nl": "Asperge",
       "da": "Asparges",
-      "es": "Espárrago"
+      "es": "Espárrago",
+      "el": "Σπαράγγι",
+      "sv": "Sparris"
     },
     "selection": "Firm spears with tight, closed tips and squeaky stems. Cut ends should look moist, not dried out."
   },
@@ -1381,7 +1511,9 @@
       "it": "Rabarbaro",
       "nl": "Rabarber",
       "da": "Rabarber",
-      "es": "Ruibarbo"
+      "es": "Ruibarbo",
+      "el": "Ραβέντι",
+      "sv": "Rabarber"
     },
     "selection": "Firm, crisp, glossy stalks that snap rather than bend. Thinner stalks are less stringy."
   },
@@ -1402,7 +1534,9 @@
       "it": "Carciofo",
       "nl": "Artisjok",
       "da": "Artiskok",
-      "es": "Alcachofa"
+      "es": "Alcachofa",
+      "el": "Αγκινάρα",
+      "sv": "Kronärtskocka"
     },
     "selection": "Heavy, tight heads whose leaves squeak when squeezed. Loose, dry leaves mean old."
   },
@@ -1423,7 +1557,9 @@
       "it": "Cardo",
       "nl": "Kardoen",
       "da": "Kardon",
-      "es": "Cardo"
+      "es": "Cardo",
+      "el": "Κάρδος",
+      "sv": "Kardon"
     },
     "selection": "Firm, pale stalks with fresh cut ends and no browning. It should feel crisp, not rubbery."
   },
@@ -1444,7 +1580,9 @@
       "it": "Salicornia",
       "nl": "Zeekraal",
       "da": "Salturt",
-      "es": "Salicornia"
+      "es": "Salicornia",
+      "el": "Κρίταμο",
+      "sv": "Glasört"
     },
     "selection": "Bright green, crisp and springy with a salty-sea smell. Skip any that is soft or yellowing."
   },
@@ -1465,7 +1603,9 @@
       "it": "Zucca",
       "nl": "Pompoen",
       "da": "Græskar",
-      "es": "Calabaza"
+      "es": "Calabaza",
+      "el": "Κολοκύθα",
+      "sv": "Pumpa"
     },
     "selection": "Heavy for its size with a hard, dull rind and a firm stalk attached. A hollow sound means ripe."
   },
@@ -1486,7 +1626,9 @@
       "it": "Zucca butternut",
       "nl": "Flespompoen",
       "da": "Butternut-græskar",
-      "es": "Calabaza cacahuete"
+      "es": "Calabaza cacahuete",
+      "el": "Κολοκύθα μπάτερνατ",
+      "sv": "Butternutpumpa"
     },
     "selection": "Matte, hard skin and a heavy feel, an even beige colour. A green tinge means underripe."
   },
@@ -1507,7 +1649,9 @@
       "it": "Zucca ghianda",
       "nl": "Eikelpompoen",
       "da": "Agerngræskar",
-      "es": "Calabaza bellota"
+      "es": "Calabaza bellota",
+      "el": "Κολοκύθα βελανίδι",
+      "sv": "Ekollonpumpa"
     },
     "selection": "Hard, dull skin and heavy in the hand; a shiny skin means picked early. A patch of orange is fine."
   },
@@ -1528,7 +1672,9 @@
       "it": "Zucca crown prince",
       "nl": "Crown Prince pompoen",
       "da": "Crown Prince-græskar",
-      "es": "Calabaza crown prince"
+      "es": "Calabaza crown prince",
+      "el": "Κολοκύθα Crown Prince",
+      "sv": "Crown prince-pumpa"
     },
     "selection": "Firm and heavy with hard blue-grey skin and an intact stalk. Dense weight means good flesh."
   },
@@ -1549,7 +1695,9 @@
       "it": "Zucca spaghetti",
       "nl": "Spaghettipompoen",
       "da": "Spaghettigræskar",
-      "es": "Calabaza espagueti"
+      "es": "Calabaza espagueti",
+      "el": "Κολοκύθα σπαγγέτι",
+      "sv": "Spagettipumpa"
     },
     "selection": "Hard, pale-yellow skin with no soft spots or green. Heavy for its size is best."
   },
@@ -1570,7 +1718,9 @@
       "it": "Zucca kabocha",
       "nl": "Kabocha",
       "da": "Kabocha",
-      "es": "Calabaza kabocha"
+      "es": "Calabaza kabocha",
+      "el": "Κολοκύθα καμπότσα",
+      "sv": "Kabochapumpa"
     },
     "selection": "Hard, dull deep-green skin and a heavy, dense feel. A firm stalk is a good sign."
   },
@@ -1591,7 +1741,9 @@
       "it": "Fagiolino",
       "nl": "Sperzieboon",
       "da": "Grønne bønner",
-      "es": "Judía verde"
+      "es": "Judía verde",
+      "el": "Φασολάκια",
+      "sv": "Haricots verts"
     },
     "selection": "Slim, firm beans that snap crisply with bright colour. Bulging or limp pods mean old and tough."
   },
@@ -1612,7 +1764,9 @@
       "it": "Fagiolo di Spagna",
       "nl": "Pronkboon",
       "da": "Pralbønne",
-      "es": "Judía de España"
+      "es": "Judía de España",
+      "el": "Φασόλια Ισπανίας",
+      "sv": "Rosenbönor"
     },
     "selection": "Firm, bright pods that snap cleanly, with no seeds bulging through. Smaller ones are more tender."
   },
@@ -1633,7 +1787,9 @@
       "it": "Fava",
       "nl": "Tuinboon",
       "da": "Hestebønne",
-      "es": "Habas"
+      "es": "Habas",
+      "el": "Κουκιά",
+      "sv": "Bondbönor"
     },
     "selection": "Plump, firm, bright green pods. Smaller pods hold younger, sweeter beans; leathery pods are old."
   },
@@ -1654,7 +1810,9 @@
       "it": "Fagiolo borlotti",
       "nl": "Borlottiboon",
       "da": "Borlottibønne",
-      "es": "Alubia borlotti"
+      "es": "Alubia borlotti",
+      "el": "Φασόλια μπαρμπούνια",
+      "sv": "Borlottibönor"
     },
     "selection": "Full, firm pods streaked crimson, with beans you can feel inside. Limp pods are past their best."
   },
@@ -1675,7 +1833,9 @@
       "it": "Pisello",
       "nl": "Doperwt",
       "da": "Ært",
-      "es": "Guisantes"
+      "es": "Guisantes",
+      "el": "Αρακάς",
+      "sv": "Gröna ärter"
     },
     "selection": "Plump, firm, bright pods that feel full. A pod should squeak and snap; dull or yellow pods are old."
   },
@@ -1696,7 +1856,9 @@
       "it": "Taccola",
       "nl": "Peultje",
       "da": "Sukkerært",
-      "es": "Tirabeque"
+      "es": "Tirabeque",
+      "el": "Αρακάς λοβός",
+      "sv": "Mangetout-ärter"
     },
     "selection": "Flat, crisp, bright pods with tiny peas inside. They should snap cleanly, not bend."
   },
@@ -1717,7 +1879,9 @@
       "it": "Pisello dolce",
       "nl": "Sugarsnap",
       "da": "Sukkersnap",
-      "es": "Tirabeque dulce"
+      "es": "Tirabeque dulce",
+      "el": "Αρακάς γλυκός λοβός",
+      "sv": "Sockerärter"
     },
     "selection": "Plump, crisp, bright pods that snap. Soft or dull ones are past it."
   },
@@ -1738,7 +1902,9 @@
       "it": "Edamame",
       "nl": "Edamame",
       "da": "Edamame",
-      "es": "Edamame"
+      "es": "Edamame",
+      "el": "Ενταμάμε",
+      "sv": "Edamame"
     },
     "selection": "Bright green, firm, fuzzy pods with beans you can feel. Yellowing pods are old."
   },
@@ -1759,7 +1925,9 @@
       "it": "Mais dolce",
       "nl": "Suikermaïs",
       "da": "Sukkermajs",
-      "es": "Maíz dulce"
+      "es": "Maíz dulce",
+      "el": "Καλαμπόκι",
+      "sv": "Sockermajs"
     },
     "selection": "Fresh green husks and golden, slightly sticky silks. Peel back a little; kernels should be plump and milky."
   },
@@ -1780,7 +1948,9 @@
       "it": "Mais baby",
       "nl": "Mini-maïs",
       "da": "Babymajs",
-      "es": "Mini maíz"
+      "es": "Mini maíz",
+      "el": "Καλαμποκάκι",
+      "sv": "Babymajs"
     },
     "selection": "Firm, pale, unblemished cobs. The fresher and crisper, the sweeter."
   },
@@ -1801,7 +1971,9 @@
       "it": "Champignon castagna",
       "nl": "Kastanjechampignon",
       "da": "Brun champignon",
-      "es": "Champiñón marrón"
+      "es": "Champiñón marrón",
+      "el": "Μανιτάρι καστανό",
+      "sv": "Kastanjchampinjon"
     },
     "selection": "Firm, dry caps with a good smell and closed gills. Slimy or wrinkled means old."
   },
@@ -1822,7 +1994,9 @@
       "it": "Champignon bianco",
       "nl": "Witte champignon",
       "da": "Champignon",
-      "es": "Champiñón"
+      "es": "Champiñón",
+      "el": "Μανιτάρι λευκό",
+      "sv": "Champinjon"
     },
     "selection": "Firm, dry, closed caps with no dark or slimy spots. A clean earthy smell is a good sign."
   },
@@ -1843,7 +2017,9 @@
       "it": "Portobello",
       "nl": "Portobello",
       "da": "Portobello",
-      "es": "Portobello"
+      "es": "Portobello",
+      "el": "Πορτομπέλο",
+      "sv": "Portabello"
     },
     "selection": "Firm caps that feel dry, gills intact and not blackened. A slippery cap means old."
   },
@@ -1864,7 +2040,9 @@
       "it": "Pleurotus",
       "nl": "Oesterzwam",
       "da": "Østershat",
-      "es": "Seta de ostra"
+      "es": "Seta de ostra",
+      "el": "Μανιτάρι πλευρώτους",
+      "sv": "Ostronskivling"
     },
     "selection": "Firm, moist-looking but not slimy, with intact fan edges. Avoid yellowing or dried-out edges."
   },
@@ -1885,7 +2063,9 @@
       "it": "Finferlo",
       "nl": "Cantharel",
       "da": "Kantarel",
-      "es": "Rebozuelo"
+      "es": "Rebozuelo",
+      "el": "Κανθαρέλα",
+      "sv": "Kantarell"
     },
     "selection": "Firm, dry, bright golden with a fruity smell. Skip any slimy, dark, or shrivelled ones."
   },
@@ -1906,7 +2086,9 @@
       "it": "Porcino",
       "nl": "Eekhoorntjesbrood",
       "da": "Karljohan",
-      "es": "Boletus"
+      "es": "Boletus",
+      "el": "Βωλίτης",
+      "sv": "Karljohansvamp"
     },
     "selection": "Firm, heavy caps with a pale spongy underside and a rich smell. Soft or wormy stems mean pass."
   },
@@ -1927,7 +2109,9 @@
       "it": "Shiitake",
       "nl": "Shiitake",
       "da": "Shiitake",
-      "es": "Shiitake"
+      "es": "Shiitake",
+      "el": "Σιτάκε",
+      "sv": "Shiitake"
     },
     "selection": "Firm, dry, plump caps with curled edges. Cracked, dry, or slimy caps are past it."
   },
@@ -1948,7 +2132,9 @@
       "it": "Prezzemolo",
       "nl": "Peterselie",
       "da": "Persille",
-      "es": "Perejil"
+      "es": "Perejil",
+      "el": "Μαϊντανός",
+      "sv": "Persilja"
     },
     "selection": "Perky, deep green bunches with a fresh smell and no yellowing or wilt."
   },
@@ -1969,7 +2155,9 @@
       "it": "Coriandolo",
       "nl": "Koriander",
       "da": "Koriander",
-      "es": "Cilantro"
+      "es": "Cilantro",
+      "el": "Κόλιανδρος",
+      "sv": "Koriander"
     },
     "selection": "Bright, springy leaves with a strong citrusy smell. Yellowing or slimy bunches are old."
   },
@@ -1990,7 +2178,9 @@
       "it": "Basilico",
       "nl": "Basilicum",
       "da": "Basilikum",
-      "es": "Albahaca"
+      "es": "Albahaca",
+      "el": "Βασιλικός",
+      "sv": "Basilika"
     },
     "selection": "Bright, unblemished leaves with a strong scent. Black spots or wilting mean it is fading fast."
   },
@@ -2011,7 +2201,9 @@
       "it": "Menta",
       "nl": "Munt",
       "da": "Mynte",
-      "es": "Menta"
+      "es": "Menta",
+      "el": "Δυόσμος",
+      "sv": "Mynta"
     },
     "selection": "Vivid, perky leaves that smell strongly when rubbed. Skip darkening or limp stems."
   },
@@ -2032,7 +2224,9 @@
       "it": "Aneto",
       "nl": "Dille",
       "da": "Dild",
-      "es": "Eneldo"
+      "es": "Eneldo",
+      "el": "Άνηθος",
+      "sv": "Dill"
     },
     "selection": "Feathery, bright green fronds with a fresh smell, not wilted or yellowing."
   },
@@ -2053,7 +2247,9 @@
       "it": "Cerfoglio",
       "nl": "Kervel",
       "da": "Kørvel",
-      "es": "Perifollo"
+      "es": "Perifollo",
+      "el": "Σκαντζίκι",
+      "sv": "Körvel"
     },
     "selection": "Delicate, perky bright leaves with no wilt. Fragile, so use it soon after buying."
   },
@@ -2074,7 +2270,9 @@
       "it": "Dragoncello",
       "nl": "Dragon",
       "da": "Estragon",
-      "es": "Estragón"
+      "es": "Estragón",
+      "el": "Εστραγκόν",
+      "sv": "Dragon"
     },
     "selection": "Glossy, springy leaves with a strong aniseed smell. Blackened leaves mean old."
   },
@@ -2095,7 +2293,9 @@
       "it": "Erba cipollina",
       "nl": "Bieslook",
       "da": "Purløg",
-      "es": "Cebollino"
+      "es": "Cebollino",
+      "el": "Σχοινόπρασο",
+      "sv": "Gräslök"
     },
     "selection": "Firm, upright, bright green stems with no yellowing or slime at the tips."
   },
@@ -2116,7 +2316,9 @@
       "it": "Rosmarino",
       "nl": "Rozemarijn",
       "da": "Rosmarin",
-      "es": "Romero"
+      "es": "Romero",
+      "el": "Δεντρολίβανο",
+      "sv": "Rosmarin"
     },
     "selection": "Firm sprigs with pliable needles and a strong scent. Dry, dropping needles mean old."
   },
@@ -2137,7 +2339,9 @@
       "it": "Timo",
       "nl": "Tijm",
       "da": "Timian",
-      "es": "Tomillo"
+      "es": "Tomillo",
+      "el": "Θυμάρι",
+      "sv": "Timjan"
     },
     "selection": "Fresh, fragrant sprigs with tiny firm leaves that cling. Bare, brittle stems are past it."
   },
@@ -2158,7 +2362,9 @@
       "it": "Salvia",
       "nl": "Salie",
       "da": "Salvie",
-      "es": "Salvia"
+      "es": "Salvia",
+      "el": "Φασκόμηλο",
+      "sv": "Salvia"
     },
     "selection": "Firm, velvety, silver-green leaves with a strong smell. Wilting or dark spots mean age."
   },
@@ -2179,7 +2385,9 @@
       "it": "Origano",
       "nl": "Oregano",
       "da": "Oregano",
-      "es": "Orégano"
+      "es": "Orégano",
+      "el": "Ρίγανη",
+      "sv": "Oregano"
     },
     "selection": "Fragrant, firm sprigs with even green leaves. Skip any that look dry or yellowed."
   },
@@ -2200,7 +2408,9 @@
       "it": "Alloro",
       "nl": "Laurier",
       "da": "Laurbær",
-      "es": "Laurel"
+      "es": "Laurel",
+      "el": "Δάφνη",
+      "sv": "Lagerblad"
     },
     "selection": "Glossy, firm, deep green leaves with a strong scent when torn. Fresh beats dusty and brittle."
   },
@@ -2221,7 +2431,9 @@
       "it": "Maggiorana",
       "nl": "Marjolein",
       "da": "Merian",
-      "es": "Mejorana"
+      "es": "Mejorana",
+      "el": "Ματζουράνα",
+      "sv": "Mejram"
     },
     "selection": "Small, soft, fragrant leaves on firm stems, no wilting or yellowing."
   },
@@ -2242,7 +2454,9 @@
       "it": "Citronella",
       "nl": "Citroengras",
       "da": "Citrongræs",
-      "es": "Hierba de limón"
+      "es": "Hierba de limón",
+      "el": "Λεμονόχορτο",
+      "sv": "Citrongräs"
     },
     "selection": "Firm, heavy stalks with a fresh lemon smell and pale, tight bases. Dry, woody stalks are old."
   },
@@ -2263,7 +2477,9 @@
       "it": "Mela",
       "nl": "Appel",
       "da": "Æble",
-      "es": "Manzana"
+      "es": "Manzana",
+      "el": "Μήλο",
+      "sv": "Äpple"
     },
     "selection": "Firm and heavy with taut, unbruised skin. Flick it, a crisp sound is good; it should smell faintly sweet."
   },
@@ -2284,7 +2500,9 @@
       "it": "Mela da cuocere",
       "nl": "Moesappel",
       "da": "Madæble",
-      "es": "Manzana reineta"
+      "es": "Manzana reineta",
+      "el": "Μήλο για μαγείρεμα",
+      "sv": "Matäpple"
     },
     "selection": "Firm, heavy and unbruised with taut green skin. Size is fine here, but no soft brown spots."
   },
@@ -2305,7 +2523,9 @@
       "it": "Pera",
       "nl": "Peer",
       "da": "Pære",
-      "es": "Pera"
+      "es": "Pera",
+      "el": "Αχλάδι",
+      "sv": "Päron"
     },
     "selection": "Firm with a slight give at the neck when ripe. Buy firm and let it soften at home over a day or two."
   },
@@ -2326,7 +2546,9 @@
       "it": "Pera Conference",
       "nl": "Conference peer",
       "da": "Conference-pære",
-      "es": "Pera conferencia"
+      "es": "Pera conferencia",
+      "el": "Αχλάδι κόνφερανς",
+      "sv": "Conferencepäron"
     },
     "selection": "Firm with a little give at the stem end; the skin bronzes as it ripens. Ripen hard ones on the counter."
   },
@@ -2347,7 +2569,9 @@
       "it": "Mela cotogna",
       "nl": "Kweepeer",
       "da": "Kvæde",
-      "es": "Membrillo"
+      "es": "Membrillo",
+      "el": "Κυδώνι",
+      "sv": "Kvitten"
     },
     "selection": "Firm, heavy and fragrant, with golden fuzz. A strong perfume means ripe; hard green ones ripen at home."
   },
@@ -2368,7 +2592,9 @@
       "it": "Nespola",
       "nl": "Mispel",
       "da": "Mispel",
-      "es": "Níspero europeo"
+      "es": "Níspero europeo",
+      "el": "Μέσπιλο",
+      "sv": "Mispel"
     },
     "selection": "Firm and brown; medlars are eaten bletted, so buy firm and let them soften indoors before eating."
   },
@@ -2389,7 +2615,9 @@
       "it": "Susina",
       "nl": "Pruim",
       "da": "Blomme",
-      "es": "Ciruela"
+      "es": "Ciruela",
+      "el": "Δαμάσκηνο",
+      "sv": "Plommon"
     },
     "selection": "Plump with a slight give and a dusty bloom on the skin. Rock-hard is underripe, mushy is over."
   },
@@ -2410,7 +2638,9 @@
       "it": "Susina damaschina",
       "nl": "Kwetspruim",
       "da": "Kræge",
-      "es": "Ciruela damascena"
+      "es": "Ciruela damascena",
+      "el": "Δαμασκηνάκι",
+      "sv": "Krikon"
     },
     "selection": "Small, firm, deep blue-black with a bloom. Tart by nature, so choose firm ones for cooking."
   },
@@ -2431,7 +2661,9 @@
       "it": "Regina Claudia",
       "nl": "Reineclaude",
       "da": "Reineclaude",
-      "es": "Ciruela Claudia"
+      "es": "Ciruela Claudia",
+      "el": "Πράσινο δαμάσκηνο",
+      "sv": "Reine claude-plommon"
     },
     "selection": "Plump with a slight give and a green-gold colour. A honeyed smell means ripe and sweet."
   },
@@ -2452,7 +2684,9 @@
       "it": "Ciliegia",
       "nl": "Kers",
       "da": "Kirsebær",
-      "es": "Cereza"
+      "es": "Cereza",
+      "el": "Κεράσι",
+      "sv": "Körsbär"
     },
     "selection": "Firm, glossy, plump, with fresh green stems attached. Dull skin or dry stems mean old."
   },
@@ -2473,7 +2707,9 @@
       "it": "Pesca",
       "nl": "Perzik",
       "da": "Fersken",
-      "es": "Melocotón"
+      "es": "Melocotón",
+      "el": "Ροδάκινο",
+      "sv": "Persika"
     },
     "selection": "Press gently by the stem, it should just yield, and smell it. Loudly sweet means ripe; hard means picked early."
   },
@@ -2494,7 +2730,9 @@
       "it": "Nettarina",
       "nl": "Nectarine",
       "da": "Nektarin",
-      "es": "Nectarina"
+      "es": "Nectarina",
+      "el": "Νεκταρίνι",
+      "sv": "Nektarin"
     },
     "selection": "A slight give along the seam and a sweet smell. Firm ones ripen on the counter in a day or two."
   },
@@ -2515,7 +2753,9 @@
       "it": "Albicocca",
       "nl": "Abrikoos",
       "da": "Abrikos",
-      "es": "Albaricoque"
+      "es": "Albaricoque",
+      "el": "Βερίκοκο",
+      "sv": "Aprikos"
     },
     "selection": "Plump, fragrant and evenly orange with a slight give. Pale or hard ones were picked too soon."
   },
@@ -2536,7 +2776,9 @@
       "it": "Fico",
       "nl": "Vijg",
       "da": "Figen",
-      "es": "Higo"
+      "es": "Higo",
+      "el": "Σύκο",
+      "sv": "Fikon"
     },
     "selection": "Soft, heavy and hanging slightly, with a sweet smell and maybe a bead of syrup at the base. Firm figs never sweeten."
   },
@@ -2557,7 +2799,9 @@
       "it": "Uva bianca",
       "nl": "Witte druiven",
       "da": "Grønne druer",
-      "es": "Uvas blancas"
+      "es": "Uvas blancas",
+      "el": "Άσπρο σταφύλι",
+      "sv": "Gröna druvor"
     },
     "selection": "Plump grapes firmly attached to green, pliable stems, with a fresh bloom. Brown stems mean old."
   },
@@ -2578,7 +2822,9 @@
       "it": "Uva nera",
       "nl": "Blauwe druiven",
       "da": "Blå druer",
-      "es": "Uvas negras"
+      "es": "Uvas negras",
+      "el": "Μαύρο σταφύλι",
+      "sv": "Blå druvor"
     },
     "selection": "Deeply coloured, plump grapes that hold firm on green stems. Wrinkled or dropping grapes are old."
   },
@@ -2599,7 +2845,9 @@
       "it": "Fragola",
       "nl": "Aardbei",
       "da": "Jordbær",
-      "es": "Fresa"
+      "es": "Fresa",
+      "el": "Φράουλα",
+      "sv": "Jordgubbe"
     },
     "selection": "Fully red to the tip with fresh green caps and a strong sweet smell. White shoulders mean picked early."
   },
@@ -2620,7 +2868,9 @@
       "it": "Lampone",
       "nl": "Framboos",
       "da": "Hindbær",
-      "es": "Frambuesa"
+      "es": "Frambuesa",
+      "el": "Σμέουρο",
+      "sv": "Hallon"
     },
     "selection": "Plump, dry, evenly coloured berries with no mould in the punnet; sniff for sweetness."
   },
@@ -2641,7 +2891,9 @@
       "it": "Mora",
       "nl": "Braam",
       "da": "Brombær",
-      "es": "Mora"
+      "es": "Mora",
+      "el": "Βατόμουρο",
+      "sv": "Björnbär"
     },
     "selection": "Deep black, plump and glossy; red beads mean underripe and sour. Check the base for mould."
   },
@@ -2662,7 +2914,9 @@
       "it": "Mirtillo",
       "nl": "Bosbes",
       "da": "Blåbær",
-      "es": "Arándano"
+      "es": "Arándano",
+      "el": "Μύρτιλο",
+      "sv": "Blåbär"
     },
     "selection": "Firm, dusty-blue berries that roll freely, with a silvery bloom. Soft, leaky ones spoil the box."
   },
@@ -2683,7 +2937,9 @@
       "it": "Ribes rosso",
       "nl": "Rode bes",
       "da": "Ribs",
-      "es": "Grosella roja"
+      "es": "Grosella roja",
+      "el": "Κόκκινο φραγκοστάφυλο",
+      "sv": "Röda vinbär"
     },
     "selection": "Glossy, plump strings of bright red berries firmly on the stem, no shrivelling."
   },
@@ -2704,7 +2960,9 @@
       "it": "Ribes nero",
       "nl": "Zwarte bes",
       "da": "Solbær",
-      "es": "Grosella negra"
+      "es": "Grosella negra",
+      "el": "Μαύρο φραγκοστάφυλο",
+      "sv": "Svarta vinbär"
     },
     "selection": "Firm, glossy, deep-black berries on the strig, with no splitting or wrinkling."
   },
@@ -2725,7 +2983,9 @@
       "it": "Uva spina",
       "nl": "Kruisbes",
       "da": "Stikkelsbær",
-      "es": "Grosella espinosa"
+      "es": "Grosella espinosa",
+      "el": "Λαγοκέρασο",
+      "sv": "Krusbär"
     },
     "selection": "Firm, taut berries; hard and green for cooking, softer and blushed for eating raw."
   },
@@ -2746,7 +3006,9 @@
       "it": "Limone",
       "nl": "Citroen",
       "da": "Citron",
-      "es": "Limón"
+      "es": "Limón",
+      "el": "Λεμόνι",
+      "sv": "Citron"
     },
     "selection": "Heavy for its size with taut, glossy skin; that weight means juicy. Hard, light lemons are dry."
   },
@@ -2767,7 +3029,9 @@
       "it": "Lime",
       "nl": "Limoen",
       "da": "Lime",
-      "es": "Lima"
+      "es": "Lima",
+      "el": "Λάιμ",
+      "sv": "Lime"
     },
     "selection": "Heavy and firm with glossy, deep green skin. A little give and a fragrant skin mean juicy."
   },
@@ -2788,7 +3052,9 @@
       "it": "Arancia",
       "nl": "Sinaasappel",
       "da": "Appelsin",
-      "es": "Naranja"
+      "es": "Naranja",
+      "el": "Πορτοκάλι",
+      "sv": "Apelsin"
     },
     "selection": "Heavy for its size with firm, taut skin. Weight matters more than colour for juiciness."
   },
@@ -2809,7 +3075,9 @@
       "it": "Arancia rossa",
       "nl": "Bloedsinaasappel",
       "da": "Blodappelsin",
-      "es": "Naranja sanguina"
+      "es": "Naranja sanguina",
+      "el": "Σανγκουίνι πορτοκάλι",
+      "sv": "Blodapelsin"
     },
     "selection": "Heavy and firm; a reddish blush hints at the colour inside, but weight is the real tell."
   },
@@ -2830,7 +3098,9 @@
       "it": "Mandarino",
       "nl": "Mandarijn",
       "da": "Mandarin",
-      "es": "Mandarina"
+      "es": "Mandarina",
+      "el": "Μανταρίνι",
+      "sv": "Mandarin"
     },
     "selection": "Heavy for the size with glossy skin, slightly loose is fine. Light, puffy fruit is dry inside."
   },
@@ -2851,7 +3121,9 @@
       "it": "Pompelmo",
       "nl": "Grapefruit",
       "da": "Grapefrugt",
-      "es": "Pomelo"
+      "es": "Pomelo",
+      "el": "Γκρέιπφρουτ",
+      "sv": "Grapefrukt"
     },
     "selection": "Heavy and firm with springy, taut skin. The heavier it feels, the juicier."
   },
@@ -2872,7 +3144,9 @@
       "it": "Melone cantalupo",
       "nl": "Cantaloupmeloen",
       "da": "Cantaloupe-melon",
-      "es": "Melón cantalupo"
+      "es": "Melón cantalupo",
+      "el": "Πεπόνι καντελούπ",
+      "sv": "Cantaloupemelon"
     },
     "selection": "Sniff the blossom end for a sweet musky smell; it should feel heavy with a slight give there."
   },
@@ -2893,7 +3167,9 @@
       "it": "Anguria",
       "nl": "Watermeloen",
       "da": "Vandmelon",
-      "es": "Sandía"
+      "es": "Sandía",
+      "el": "Καρπούζι",
+      "sv": "Vattenmelon"
     },
     "selection": "Heavy for its size with a creamy-yellow ground spot; a deep hollow knock means ripe."
   },
@@ -2914,7 +3190,9 @@
       "it": "Melone bianco",
       "nl": "Honingmeloen",
       "da": "Honningmelon",
-      "es": "Melón dulce"
+      "es": "Melón dulce",
+      "el": "Πεπόνι",
+      "sv": "Honungsmelon"
     },
     "selection": "Heavy, with waxy (not shiny) skin, a faint sweet smell, and slight give at the blossom end."
   },
@@ -2935,7 +3213,9 @@
       "it": "Melagrana",
       "nl": "Granaatappel",
       "da": "Granatæble",
-      "es": "Granada"
+      "es": "Granada",
+      "el": "Ρόδι",
+      "sv": "Granatäpple"
     },
     "selection": "Heavy for its size with taut, leathery skin; the heaviest are juiciest. A little angular is fine."
   },
@@ -2956,7 +3236,9 @@
       "it": "Cachi",
       "nl": "Kaki",
       "da": "Persimon",
-      "es": "Caqui"
+      "es": "Caqui",
+      "el": "Λωτός",
+      "sv": "Persimon"
     },
     "selection": "For the soft type, buy jelly-soft and deep orange; for the crisp type, firm and unblemished."
   },
@@ -2977,7 +3259,9 @@
       "it": "Kiwi",
       "nl": "Kiwi",
       "da": "Kiwi",
-      "es": "Kiwi"
+      "es": "Kiwi",
+      "el": "Ακτινίδιο",
+      "sv": "Kiwi"
     },
     "selection": "It should give slightly to a gentle press when ripe. Buy firm and ripen at home; rock-hard is sour."
   },
@@ -2998,7 +3282,9 @@
       "it": "Avocado",
       "nl": "Avocado",
       "da": "Avocado",
-      "es": "Aguacate"
+      "es": "Aguacate",
+      "el": "Αβοκάντο",
+      "sv": "Avokado"
     },
     "selection": "Cradle, do not poke; it should yield gently all over. Firm ones ripen in a few days on the counter."
   },
@@ -3019,7 +3305,9 @@
       "it": "Ananas",
       "nl": "Ananas",
       "da": "Ananas",
-      "es": "Piña"
+      "es": "Piña",
+      "el": "Ανανάς",
+      "sv": "Ananas"
     },
     "selection": "Heavy and fragrant at the base, with fresh green leaves; a leaf should tug free with a little resistance."
   },
@@ -3040,7 +3328,9 @@
       "it": "Dattero",
       "nl": "Dadel",
       "da": "Daddel",
-      "es": "Dátil"
+      "es": "Dátil",
+      "el": "Χουρμάς",
+      "sv": "Dadel"
     },
     "selection": "Plump, glossy and slightly wrinkled, with no sugar crystallising out and no dryness. Soft means fresh."
   },
@@ -3061,7 +3351,9 @@
       "it": "Fico d'India",
       "nl": "Cactusvijg",
       "da": "Kaktusfigen",
-      "es": "Higo chumbo"
+      "es": "Higo chumbo",
+      "el": "Φραγκόσυκο",
+      "sv": "Kaktusfikon"
     },
     "selection": "Firm with a slight give and even colour; handle carefully for the tiny spines. Too soft means over."
   },
@@ -3082,7 +3374,9 @@
       "it": "Alchechengi",
       "nl": "Physalis",
       "da": "Physalis",
-      "es": "Physalis"
+      "es": "Physalis",
+      "el": "Φυσαλίδα",
+      "sv": "Physalis"
     },
     "selection": "Papery husks that are dry and intact, with a firm, golden berry inside."
   },
@@ -3103,7 +3397,9 @@
       "it": "Zenzero",
       "nl": "Gember",
       "da": "Ingefær",
-      "es": "Jengibre"
+      "es": "Jengibre",
+      "el": "Πιπερόριζα",
+      "sv": "Ingefära"
     },
     "selection": "Firm, heavy roots with smooth, taut skin. Wrinkled or soft ginger is old and fibrous."
   },
@@ -3124,7 +3420,9 @@
       "it": "Olive",
       "nl": "Olijven",
       "da": "Oliven",
-      "es": "Aceitunas"
+      "es": "Aceitunas",
+      "el": "Ελιές",
+      "sv": "Oliver"
     },
     "selection": "For loose olives, look for firm, glossy fruit in clean brine; they should smell fresh, not musty."
   }

@@ -3,7 +3,9 @@
    seasonality for the current month, the market language from the country, and
    the climate band for the recipe banner. Do not invent produce outside it. */
 import RAW from '../data/produce.json';
+import MARKETS from '../data/markets.json';
 
+export { MARKETS };
 export const ASSET = (p) => import.meta.env.BASE_URL + p;
 
 /* ---- seasons ---- */
@@ -39,12 +41,18 @@ export function seasonNameForMonth(m) {
 }
 
 // 'peak' (its named season is now) | 'in' | 'out' for the given month (0-11).
-export function seasonalityOf(seasonStr, month) {
+// band ('mediterranean' | 'temperate') is optional: a season tagged "(Med)"
+// is only in season in the Mediterranean band, so it reads out (imported,
+// faded) in temperate markets.
+export function seasonalityOf(seasonStr, month, band) {
+  const s = (seasonStr || '').toLowerCase();
   const set = seasonMonths(seasonStr);
-  if (set === null) return 'in';            // year-round
-  if (set.size === 0) return 'in';          // unknown wording → assume available
-  if (!set.has(month)) return 'out';
-  return (seasonStr || '').toLowerCase().includes(seasonNameForMonth(month)) ? 'peak' : 'in';
+  let base;
+  if (set === null || set.size === 0) base = 'in';   // year-round / unknown → available
+  else if (!set.has(month)) base = 'out';
+  else base = s.includes(seasonNameForMonth(month)) ? 'peak' : 'in';
+  if (base !== 'out' && band && band !== 'mediterranean' && /\(med/.test(s)) return 'out';
+  return base;
 }
 
 /* ---- catalogue, computed for the shopper's current month ---- */
@@ -62,33 +70,27 @@ export const PRODUCE = RAW.map((it) => ({
   status: it.illustration_status,
   notes: it.notes || '',
   selection: it.selection || '',
+  // Band-agnostic default; screens recompute per the active market's band.
   seasonality: seasonalityOf(it.season, MONTH),
 }));
 
 export const byId = (id) => PRODUCE.find((p) => p.id === id);
 
-/* ---- market country → display language and climate band ---- */
-// Which name_local key each market country reads. Countries without language
-// data in produce.json fall back to English alone.
-const LANG_BY_COUNTRY = { PT: 'pt', ES: 'es', FR: 'fr', DE: 'de', AT: 'de', CH: 'de', IT: 'it', NL: 'nl', BE: 'nl', DK: 'da' };
-export const langOf = (country) => LANG_BY_COUNTRY[(country || '').toUpperCase()] || null;
+// Recompute seasonality for a market's band and return a shallow copy the
+// components can read `.seasonality` from, so vivid/faded tracks the band.
+export const seasonalityFor = (p, band) => (p ? seasonalityOf(p.season, MONTH, band) : 'out');
+export const decorate = (p, band) => (p ? { ...p, seasonality: seasonalityFor(p, band) } : p);
 
-// Mediterranean = PT, ES, IT, GR + southern France (approximated by country);
-// temperate otherwise. Drives the recipe-banner choice.
-const MEDITERRANEAN = new Set(['PT', 'ES', 'IT', 'GR', 'FR']);
-export const bandOf = (country) => (MEDITERRANEAN.has((country || '').toUpperCase()) ? 'mediterranean' : 'temperate');
-
-// The correctable market list for the location line.
-export const COUNTRIES = [
-  ['PT', 'Portugal'], ['ES', 'Spain'], ['FR', 'France'], ['IT', 'Italy'],
-  ['GR', 'Greece'], ['DE', 'Germany'], ['AT', 'Austria'], ['CH', 'Switzerland'],
-  ['NL', 'Netherlands'], ['BE', 'Belgium'], ['DK', 'Denmark'], ['GB', 'United Kingdom'],
-  ['IE', 'Ireland'], ['SE', 'Sweden'],
-];
-export const countryLabel = (code) => {
-  const hit = COUNTRIES.find(([c]) => c === (code || '').toUpperCase());
-  return hit ? hit[1] : (code || 'Europe');
-};
+/* ---- markets: ISO country → { country, lang, band } (data/markets.json) ---- */
+const market = (country) => MARKETS[(country || '').toUpperCase()];
+// name_local key for the market's language; 'en' (UK/IE) and any missing key
+// fall back to name_en (a single line) in the name components.
+export const langOf = (country) => (market(country) || {}).lang || 'en';
+// climate band drives the recipe banner and the vivid/faded treatment.
+export const bandOf = (country) => (market(country) || {}).band || 'temperate';
+// The correctable market list for the picker (14 countries).
+export const COUNTRIES = Object.entries(MARKETS).map(([code, m]) => [code, m.country]);
+export const countryLabel = (code) => (market(code) || {}).country || code || 'Europe';
 
 // {band}-{season} banner asset, e.g. "mediterranean-summer".
 export function seasonBannerSrc(country, month) {
