@@ -5,6 +5,7 @@
 import PRODUCE from '../data/produce.json';
 import MARKETS from '../data/markets.json';
 import { SYSTEM_PROMPT, RECIPE_SCHEMA, buildUserMessage } from './prompt.js';
+import { handleMetrics } from './metrics.js';
 
 const BY_ID = new Map(PRODUCE.map((p) => [p.id, p]));
 const DIETS = new Set(['none', 'vegetarian', 'vegan']);
@@ -77,6 +78,7 @@ export default {
     if (url.pathname === '/greendays/api/context') return handleContext(request);
     if (url.pathname === '/greendays/api/recipe') return handleRecipe(request, env, ctx);
     if (url.pathname === '/greendays/api/event') return handleEvent(request, env);
+    if (url.pathname === '/greendays/metrics') return handleMetrics(request, env);
     if (url.pathname.startsWith('/greendays/api/')) return json({ error: 'not found' }, 404);
     return env.ASSETS.fetch(request);
   },

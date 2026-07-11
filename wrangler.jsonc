@@ -9,9 +9,9 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
-    // Only API calls invoke the Worker; everything else is served straight
-    // from static assets (SPA has no client-side routes beyond /greendays/).
-    "run_worker_first": ["/greendays/api/*"]
+    // API calls and the private metrics page invoke the Worker; everything else
+    // is served straight from static assets (SPA has no client-side routes).
+    "run_worker_first": ["/greendays/api/*", "/greendays/metrics"]
   },
   "routes": [
     {
