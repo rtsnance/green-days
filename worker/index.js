@@ -50,15 +50,53 @@ function seasonalityOf(seasonStr, month0, band) {
 const json = (data, status = 200, headers = {}) =>
   new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json; charset=utf-8', ...headers } });
 
+/* ---- product analytics (Workers Analytics Engine) ----
+   Aggregate-only, no user IDs, no PII, no free-text. One dataset, one shape. */
+const str = (x, max = 64) => (x == null ? '' : String(x)).slice(0, max);
+const num = (x) => { const n = Number(x); return Number.isFinite(n) ? n : 0; };
+// Client-postable events (recipe_generated is server-only and not in this set).
+const CLIENT_EVENTS = new Set([
+  'app_open', 'onboarding_step', 'market_selected', 'prefs_set', 'search', 'tab_view',
+  'product_view', 'produce_added', 'fallback_shown', 'basket_cook', 'recipe_try_another',
+  'grab_one_more_tap', 'offseason_added', 'error',
+]);
+function track(env, name, f = {}) {
+  if (!env.GD_EVENTS) return; // binding absent (e.g. vite-only dev) → no-op
+  try {
+    env.GD_EVENTS.writeDataPoint({
+      indexes: [name],
+      blobs: [name, str(f.country, 2), str(f.band, 16), str(f.detail), str(f.extra), str(f.sid)],
+      doubles: [num(f.v1), num(f.v2), num(f.v3)],
+    });
+  } catch (_) { /* never let analytics break a request */ }
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === '/greendays/api/context') return handleContext(request);
     if (url.pathname === '/greendays/api/recipe') return handleRecipe(request, env, ctx);
+    if (url.pathname === '/greendays/api/event') return handleEvent(request, env);
     if (url.pathname.startsWith('/greendays/api/')) return json({ error: 'not found' }, 404);
     return env.ASSETS.fetch(request);
   },
 };
+
+/* ---- POST /greendays/api/event ----
+   Client beacon. Allowlist the event name, add country/band from the edge, and
+   track. Only schema fields are read; a `query` field (or anything else) is
+   ignored, so search text can never be logged. Always 204. */
+async function handleEvent(request, env) {
+  if (request.method !== 'POST') return new Response(null, { status: 204 });
+  const b = await request.json().catch(() => null);
+  if (!b || !CLIENT_EVENTS.has(b.name)) return new Response(null, { status: 204 });
+  const country = (request.cf && request.cf.country) || '';
+  track(env, b.name, {
+    country, band: bandOf(country),
+    detail: b.detail, extra: b.extra, v1: b.v1, v2: b.v2, v3: b.v3, sid: b.sid,
+  });
+  return new Response(null, { status: 204 });
+}
 
 /* ---- GET /greendays/api/context ----
    Edge country → language + climate band, with the v1 static weather line. */
@@ -112,6 +150,13 @@ async function handleRecipe(request, env, ctx) {
   const avoid = Array.isArray(body.avoid)
     ? body.avoid.filter((t) => typeof t === 'string').map((t) => t.slice(0, 140)).slice(0, 8)
     : [];
+  const sid = str(body.sid); // per-visit grouping, shared with client events
+
+  // recipe_generated is the money metric — record it (and errors) with the
+  // session so activation/health queries line up with client events.
+  const rg = (model, latencyMs, ok, tokens) =>
+    track(env, 'recipe_generated', { country, band, detail: model, v1: latencyMs, v2: ok, v3: tokens, sid });
+  const trackErr = (code) => track(env, 'error', { country, band, detail: 'recipe', extra: code, sid });
 
   // Light rate limit per IP (cost control).
   if (env.RECIPE_RL) {
@@ -158,10 +203,12 @@ async function handleRecipe(request, env, ctx) {
     .slice(0, 40)
     .map((x) => x.id);
 
+  const MODEL = env.RECIPE_MODEL || 'claude-sonnet-5';
   let recipe;
   if (!env.ANTHROPIC_API_KEY) {
     if (env.MOCK_RECIPES === '1') {
       recipe = mockRecipe(basketItems, inSeasonIds, avoid);
+      rg('mock', 0, 1, 0);
     } else {
       return json({ error: 'recipe engine not configured' }, 503);
     }
@@ -178,6 +225,7 @@ async function handleRecipe(request, env, ctx) {
       avoid,
     });
 
+    const t0 = Date.now();
     const apiResponse = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -186,7 +234,7 @@ async function handleRecipe(request, env, ctx) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: env.RECIPE_MODEL || 'claude-sonnet-5',
+        model: MODEL,
         max_tokens: 4000,
         thinking: { type: 'disabled' },
         // The big fixed half of the prompt is cacheable across shoppers.
@@ -195,24 +243,34 @@ async function handleRecipe(request, env, ctx) {
         messages: [{ role: 'user', content: userMessage }],
       }),
     });
+    const latencyMs = Date.now() - t0;
 
     if (!apiResponse.ok) {
       const detail = await apiResponse.text().catch(() => '');
       console.error('anthropic error', apiResponse.status, detail.slice(0, 500));
+      rg(MODEL, latencyMs, 0, 0);
+      trackErr(String(apiResponse.status));
       const status = apiResponse.status === 429 ? 429 : 502;
       return json({ error: 'The kitchen is busy. Try again in a moment.' }, status);
     }
 
     const message = await apiResponse.json();
+    const u = message.usage || {};
+    const tokens = (u.input_tokens || 0) + (u.output_tokens || 0) + (u.cache_creation_input_tokens || 0) + (u.cache_read_input_tokens || 0);
     if (message.stop_reason === 'refusal' || message.stop_reason === 'max_tokens') {
       console.error('unusable completion', message.stop_reason);
+      rg(MODEL, latencyMs, 0, tokens);
+      trackErr(message.stop_reason);
       return json({ error: 'Could not write a recipe for this basket. Try again.' }, 502);
     }
     const text = (message.content || []).find((b) => b.type === 'text')?.text;
     try {
       recipe = normalizeRecipe(JSON.parse(text), basket);
+      rg(MODEL, latencyMs, 1, tokens);
     } catch (err) {
       console.error('bad recipe JSON', String(err), (text || '').slice(0, 300));
+      rg(MODEL, latencyMs, 0, tokens);
+      trackErr('bad_json');
       return json({ error: 'Could not write a recipe for this basket. Try again.' }, 502);
     }
   }

@@ -24,6 +24,10 @@
     // the cost fallback after A/B-ing the voice (PRE_HANDOFF_DECISIONS.md).
     "RECIPE_MODEL": "claude-sonnet-5"
   },
+  // Privacy-first product analytics: aggregate-only, no user IDs, no PII.
+  "analytics_engine_datasets": [
+    { "binding": "GD_EVENTS", "dataset": "gd_events" }
+  ],
   // Light per-IP rate limit on the recipe endpoint (cost control).
   "unsafe": {
     "bindings": [

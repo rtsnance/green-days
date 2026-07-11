@@ -9,6 +9,7 @@ import {
   langOf, bandOf, countryLabel, COUNTRIES,
   seasonBannerSrc, matchesQuery, stripDia,
 } from './produce.js';
+import { ev, evOnce, SID } from './analytics.js';
 
 const MONTH_NAME = new Date().toLocaleString('en-GB', { month: 'long' });
 const SEASON_RANK = { peak: 0, in: 1, out: 2 };
@@ -177,10 +178,11 @@ async function requestRecipe({ basket, country, prefs, avoid }) {
       month: MONTH + 1,
       prefs: { diet: prefs.diet || 'none', allergies: (prefs.allergies || []).map((a) => a.toLowerCase()) },
       avoid,
+      sid: SID, // share the visit grouping with the server recipe_generated event
     }),
   });
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || 'The kitchen is busy. Try again in a moment.');
+  if (!res.ok) { ev('error', { detail: 'recipe', extra: String(res.status) }); throw new Error(data.error || 'The kitchen is busy. Try again in a moment.'); }
   return data;
 }
 
@@ -202,7 +204,8 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQu
   // Clearing the filter returns to All and the full seasonal palette.
   const clearSearch = () => { setQuery(''); setCat('All'); };
   // Picking a category tab takes effect by clearing any active search.
-  const pickCat = (c) => { setQuery(''); setCat(c); };
+  const TAB_EV = { All: 'all', Fruit: 'fruit', Veg: 'veg', Herbs: 'herb' };
+  const pickCat = (c) => { setQuery(''); setCat(c); ev('tab_view', { detail: TAB_EV[c] }); };
   const basketCount = Object.values(basket).reduce((s, n) => s + n, 0);
   // The cook banner appears once the basket has something in it, fading in
   const [showCook, setShowCook] = React.useState(false);
@@ -211,6 +214,20 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQu
     const t = setTimeout(() => setShowCook(true), 250);
     return () => clearTimeout(t);
   }, [basketCount === 0]);
+
+  // Analytics: search outcome (debounced, no query text), and which fallback
+  // cards the shopper actually sees (once per produce id per visit).
+  React.useEffect(() => {
+    if (!q) return;
+    const t = setTimeout(() => {
+      const n = PRODUCE.filter((p) => matchesQuery(p, q)).length;
+      ev('search', { v1: n > 0 ? 1 : 0, v2: n });
+    }, 600);
+    return () => clearTimeout(t);
+  }, [q]);
+  React.useEffect(() => {
+    list.forEach((p) => { if (!p.hasPrint) evOnce('fb:' + p.id, 'fallback_shown', { detail: p.id }); });
+  }, [activeCat, q, country]);
 
   return (
     <div style={{ padding: '8px 20px 24px' }}>
@@ -577,7 +594,7 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
           {grabTerm && (
             <div>
               {label(<span><Icon d={I.pin} size={13} w={2.4} /> Grab one more at the stalls</span>, true)}
-              <button onClick={() => (oneMore ? onOpen(oneMore.id) : onSearchProduce(grabTerm))} style={{ width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', padding: 12, borderRadius: 'var(--radius-container)', background: 'linear-gradient(120deg, var(--color-accent-strong), var(--color-accent))', color: '#fff', display: 'flex', alignItems: 'center', gap: 14, boxShadow: 'var(--shadow-med)', fontFamily: 'var(--font-body)' }}>
+              <button onClick={() => { ev('grab_one_more_tap', { detail: oneMore ? oneMore.id : '' }); (oneMore ? onOpen(oneMore.id) : onSearchProduce(grabTerm)); }} style={{ width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', padding: 12, borderRadius: 'var(--radius-container)', background: 'linear-gradient(120deg, var(--color-accent-strong), var(--color-accent))', color: '#fff', display: 'flex', alignItems: 'center', gap: 14, boxShadow: 'var(--shadow-med)', fontFamily: 'var(--font-body)' }}>
                 <div style={{ background: 'rgba(255,255,255,.9)', borderRadius: 14, flexShrink: 0 }}>
                   {oneMore
                     ? <ProduceThumb p={oneMore} size={48} radius={14} />
@@ -666,6 +683,9 @@ function RecipesListScreen({ history, onOpenEntry, onGoHome }) {
 function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen }) {
   const band = bandOf(country);
   const p = decorate(byId(id), band);
+  React.useEffect(() => {
+    if (p) ev('product_view', { detail: p.id, v1: p.seasonality !== 'out' ? 1 : 0 });
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
   if (!p) return null;
   const qty = basket[p.id] || 0;
   const out = p.seasonality === 'out';
@@ -751,6 +771,7 @@ const ALLERGIES = ['Nuts', 'Dairy', 'Gluten', 'Eggs', 'Shellfish', 'Soy'];
    Shown once, gated by the persisted gd_onboarded flag. Three forward-only
    steps (welcome, market, diet & allergies); "Get started" persists prefs +
    the market and lands on Home. Replaces the first-run role of PrefsScreen. */
+const ONBOARD_STEPS = ['welcome', 'market', 'diet'];
 function OnboardScreen({ country, onSetCountry, prefs, onDone }) {
   const [step, setStep] = React.useState(0);
   // Pre-fill from existing prefs so a returning user who taps through keeps
@@ -758,6 +779,19 @@ function OnboardScreen({ country, onSetCountry, prefs, onDone }) {
   const [diet, setDiet] = React.useState((prefs && prefs.diet) || 'none');
   const [allergies, setAllergies] = React.useState((prefs && prefs.allergies) || []);
   const toggle = (a) => setAllergies((s) => s.indexOf(a) === -1 ? s.concat(a) : s.filter((x) => x !== a));
+  // Onboarding funnel: next per step, complete on finish, abandon if the page
+  // is hidden mid-flow (drop-off metric).
+  const stepRef = React.useRef(0); stepRef.current = step;
+  const doneRef = React.useRef(false);
+  React.useEffect(() => {
+    const onHide = () => { if (!doneRef.current && document.visibilityState === 'hidden') ev('onboarding_step', { detail: ONBOARD_STEPS[stepRef.current], extra: 'abandon', v1: stepRef.current }); };
+    document.addEventListener('visibilitychange', onHide);
+    return () => document.removeEventListener('visibilitychange', onHide);
+  }, []);
+  const advance = () => {
+    if (step < 2) { ev('onboarding_step', { detail: ONBOARD_STEPS[step], extra: 'next', v1: step }); setStep(step + 1); }
+    else { ev('onboarding_step', { detail: 'diet', extra: 'complete', v1: 2 }); doneRef.current = true; onDone(diet, allergies); }
+  };
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 26px 12px', overflow: 'auto' }}>
@@ -817,7 +851,7 @@ function OnboardScreen({ country, onSetCountry, prefs, onDone }) {
         )}
       </div>
       <div style={{ padding: '16px 16px calc(16px + env(safe-area-inset-bottom, 0px))', flexShrink: 0 }}>
-        <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" onClick={() => (step < 2 ? setStep(step + 1) : onDone(diet, allergies))}>
+        <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" onClick={advance}>
           <span>{step < 2 ? 'Next' : 'Get started'}</span>
         </button>
       </div>
@@ -966,6 +1000,7 @@ export default function GreenDaysApp() {
     const np = { diet: p.diet, allergies: p.allergies, seen: true };
     setPrefs(np);
     try { localStorage.setItem(PREFS_KEY, JSON.stringify(np)); } catch (e) { /* private mode */ }
+    ev('prefs_set', { detail: np.diet, extra: np.allergies.map((a) => a.toLowerCase()).join(','), v1: np.allergies.length });
     setShowPrefs(false);
   };
 
@@ -979,11 +1014,14 @@ export default function GreenDaysApp() {
     const np = { diet, allergies, seen: true };
     setPrefs(np);
     try { localStorage.setItem(PREFS_KEY, JSON.stringify(np)); } catch (e) { /* private mode */ }
-    pickCountry(country);            // lock in the confirmed/auto-detected market
+    ev('prefs_set', { detail: np.diet, extra: np.allergies.map((a) => a.toLowerCase()).join(','), v1: np.allergies.length });
+    persistCountry(country);         // lock in the confirmed/auto-detected market (no extra market_selected)
     try { localStorage.setItem(ONBOARD_KEY, '1'); } catch (e) { /* private mode */ }
     setOnboarded(true);
     setTab('home');
   };
+  // app_open once per page load; first_run = onboarding will show.
+  React.useEffect(() => { ev('app_open', { v1: onboarded ? 0 : 1 }); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Market country: edge-detected via the API, correctable from the header.
   const [country, setCountry] = React.useState(() => {
@@ -1005,13 +1043,22 @@ export default function GreenDaysApp() {
       })
       .catch(() => { /* offline or vite-only dev: keep defaults */ });
   }, []);
-  const pickCountry = (c) => {
+  const persistCountry = (c) => {
     setCountry(c);
     try { localStorage.setItem(COUNTRY_KEY, c); } catch (e) { /* private mode */ }
   };
+  // Explicit user picks fire market_selected; the onboarding lock-in does not.
+  const pickCountry = (c) => { persistCountry(c); ev('market_selected', { detail: c }); };
   const lang = langOf(country);
 
-  const add = (id, n) => setBasket((b) => ({ ...b, [id]: (b[id] || 0) + n }));
+  const add = (id, n) => {
+    setBasket((b) => ({ ...b, [id]: (b[id] || 0) + n }));
+    const p = decorate(byId(id), bandOf(country));
+    if (p) {
+      ev('produce_added', { detail: id, extra: (p.tab || '').toLowerCase(), v1: p.seasonality !== 'out' ? 1 : 0 });
+      if (p.seasonality === 'out') ev('offseason_added', { detail: id });
+    }
+  };
   const setQty = (id, n) => setBasket((b) => { const c = { ...b }; if (n <= 0) delete c[id]; else c[id] = n; return c; });
   const toggle = (id) => setChecked((c) => ({ ...c, [id]: !c[id] }));
   const count = Object.values(basket).reduce((s, n) => s + n, 0);
@@ -1021,6 +1068,7 @@ export default function GreenDaysApp() {
   const cook = async (avoid) => {
     const ids = Object.keys(basket).filter((id) => basket[id] > 0);
     if (ids.length === 0) return;
+    if (avoid.length === 0) ev('basket_cook', { detail: prefs.diet, v1: ids.length }); // fresh Cook this
     setDetail(null);
     setRecipeView((v) => ({ status: 'loading', entry: v?.entry || { country, month0: MONTH }, live: true }));
     try {
@@ -1040,7 +1088,7 @@ export default function GreenDaysApp() {
     }
   };
   const cookThis = () => { sessionAvoid.current = []; liveEntryId.current = null; cook([]); };
-  const tryAnother = () => cook(sessionAvoid.current);
+  const tryAnother = () => { ev('recipe_try_another'); cook(sessionAvoid.current); };
 
   const openEntry = (id) => {
     const entry = history.find((e) => e.id === id);
