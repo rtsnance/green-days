@@ -746,6 +746,83 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen }) {
 /* ================= One-time preferences ================= */
 const DIETS = [['none', 'No limits'], ['vegetarian', 'Vegetarian'], ['vegan', 'Vegan']];
 const ALLERGIES = ['Nuts', 'Dairy', 'Gluten', 'Eggs', 'Shellfish', 'Soy'];
+
+/* ================= First-run onboarding walkthrough =================
+   Shown once, gated by the persisted gd_onboarded flag. Three forward-only
+   steps (welcome, market, diet & allergies); "Get started" persists prefs +
+   the market and lands on Home. Replaces the first-run role of PrefsScreen. */
+function OnboardScreen({ country, onSetCountry, onDone }) {
+  const [step, setStep] = React.useState(0);
+  const [diet, setDiet] = React.useState('none');
+  const [allergies, setAllergies] = React.useState([]);
+  const toggle = (a) => setAllergies((s) => s.indexOf(a) === -1 ? s.concat(a) : s.filter((x) => x !== a));
+  return (
+    <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 26px 12px', overflow: 'auto' }}>
+        {step === 0 && (
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
+            <img src={ASSET('gd/assets/wordmark_green.svg')} alt="green days" style={{ width: '78%', maxWidth: 340, height: 'auto', display: 'block', marginLeft: -3, marginBottom: 22 }} />
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.55, color: 'var(--color-text-secondary)', margin: 0, maxWidth: 300 }}>
+              A quiet companion for the farmers market. We follow what's actually in season near you, and turn whatever's in your basket into something worth cooking.
+            </p>
+          </div>
+        )}
+        {step === 1 && (
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ fontFamily: 'var(--font-brand)', fontSize: 34, lineHeight: 1.05, color: 'var(--color-accent)', marginBottom: 8 }}>Where's your market?</div>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '0 0 26px', maxWidth: 320 }}>
+              This sets the local language on produce and what's in season right now. You can change it anytime from Home.
+            </p>
+            {/* The 14 markets from markets.json; picking one sets the app-wide
+                country that drives produce language + climate band (Fix 7). */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {COUNTRIES.map(([code]) => {
+                const on = code === country;
+                return (
+                  <button key={code} onClick={() => onSetCountry(code)} className="gd-list-item" style={{ borderRadius: 0, border: '1px solid ' + (on ? 'var(--color-accent)' : '#d9cfbe'), background: on ? 'var(--color-accent-muted, #e9f0d6)' : 'var(--color-background-body)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 16px', cursor: 'pointer' }}>
+                    <span style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 15, color: 'var(--color-text-primary)' }}>{countryLabel(code)}, {MONTH_NAME}</span>
+                    {on && <Icon d={I.check} size={18} w={2.6} style={{ color: 'var(--color-accent)', flexShrink: 0 }} />}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+        {step === 2 && (
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ fontFamily: 'var(--font-brand)', fontSize: 34, lineHeight: 1.05, color: 'var(--color-accent)', marginBottom: 8 }}>Diet &amp; allergies</div>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '0 0 26px', maxWidth: 320 }}>
+              Set these once and every recipe quietly follows. You can change them anytime from Home.
+            </p>
+            <div style={{ fontSize: 12, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 10 }}>How you eat</div>
+            <div className="gd-segmented" style={{ display: 'flex', width: '100%', marginBottom: 28 }}>
+              {DIETS.map(([v, lbl]) => (
+                <button key={v} className={'gd-segmented__item' + (v === diet ? ' gd-segmented__item--active' : '')} style={{ flex: 1, padding: '10px 4px', fontSize: 14 }} onClick={() => setDiet(v)}>{lbl}</button>
+              ))}
+            </div>
+            <div style={{ fontSize: 12, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 10 }}>Anything to avoid</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+              {ALLERGIES.map((a) => {
+                const on = allergies.indexOf(a) !== -1;
+                return (
+                  <button key={a} className={'gd-tag' + (on ? ' gd-tag--selected' : '')} style={{ height: 44, paddingInline: 18, fontSize: 15 }} onClick={() => toggle(a)}>
+                    {on && <span className="gd-tag__icon"><Icon d={I.check} size={15} w={2.8} /></span>}{a}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+      <div style={{ padding: '16px 16px calc(16px + env(safe-area-inset-bottom, 0px))', flexShrink: 0 }}>
+        <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" onClick={() => (step < 2 ? setStep(step + 1) : onDone(diet, allergies))}>
+          <span>{step < 2 ? 'Next' : 'Get started'}</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }) {
   const [diet, setDiet] = React.useState(prefs.diet || 'none');
   const [allergies, setAllergies] = React.useState(prefs.allergies || []);
@@ -807,7 +884,7 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
 }
 
 /* ================= App shell ================= */
-const BASKET_KEY = 'gd_basket', HISTORY_KEY = 'gd_recipes', PREFS_KEY = 'gd_prefs', COUNTRY_KEY = 'gd_country';
+const BASKET_KEY = 'gd_basket', HISTORY_KEY = 'gd_recipes', PREFS_KEY = 'gd_prefs', COUNTRY_KEY = 'gd_country', ONBOARD_KEY = 'gd_onboarded';
 const HRS36 = 36 * 3600 * 1000;
 
 export default function GreenDaysApp() {
@@ -880,12 +957,29 @@ export default function GreenDaysApp() {
     try { const s = JSON.parse(localStorage.getItem(PREFS_KEY)); if (s) return s; } catch (e) { /* fresh */ }
     return { diet: 'none', allergies: [], seen: false };
   });
-  const [showPrefs, setShowPrefs] = React.useState(!prefs.seen);
+  // The editable-later prefs modal never auto-opens; the onboarding walkthrough
+  // owns first-run. Only the Home settings icon opens PrefsScreen.
+  const [showPrefs, setShowPrefs] = React.useState(false);
   const savePrefs = (p) => {
     const np = { diet: p.diet, allergies: p.allergies, seen: true };
     setPrefs(np);
     try { localStorage.setItem(PREFS_KEY, JSON.stringify(np)); } catch (e) { /* private mode */ }
     setShowPrefs(false);
+  };
+
+  // First-run onboarding gate. Treat a pre-existing seen-prefs install as
+  // already onboarded so returning users never see the walkthrough again.
+  const [onboarded, setOnboarded] = React.useState(() => {
+    try { return localStorage.getItem(ONBOARD_KEY) === '1' || prefs.seen === true; } catch (e) { return false; }
+  });
+  const finishOnboarding = (diet, allergies) => {
+    const np = { diet, allergies, seen: true };
+    setPrefs(np);
+    try { localStorage.setItem(PREFS_KEY, JSON.stringify(np)); } catch (e) { /* private mode */ }
+    pickCountry(country);            // lock in the confirmed/auto-detected market
+    try { localStorage.setItem(ONBOARD_KEY, '1'); } catch (e) { /* private mode */ }
+    setOnboarded(true);
+    setTab('home');
   };
 
   // Market country: edge-detected via the API, correctable from the header.
@@ -990,20 +1084,26 @@ export default function GreenDaysApp() {
           {showPrefs && <PrefsScreen prefs={prefs} firstRun={!prefs.seen} country={country} onSetCountry={pickCountry} onSave={savePrefs} onClose={() => setShowPrefs(false)} />}
         </div>
 
-        <div className="gd-tabbar">
-          {navItems.map((n) => {
-            const active = (recipeView ? 'recipes' : tab) === n.id;
-            return (
-              <button key={n.id} className="gd-tab" onClick={() => { setTab(n.id); setDetail(null); closeRecipe(); }} style={{ color: active ? 'var(--color-accent)' : 'var(--color-text-tertiary)' }}>
-                <span style={{ position: 'relative' }}>
-                  <Icon d={n.d} size={24} w={2} filled={active} />
-                  {n.id === 'list' && count > 0 && <span className="gd-tab__count">{count}</span>}
-                </span>
-                <span style={{ fontSize: 11, fontWeight: 700 }}>{n.label}</span>
-              </button>
-            );
-          })}
-        </div>
+        {/* Tab bar is hidden until onboarding completes */}
+        {onboarded && (
+          <div className="gd-tabbar">
+            {navItems.map((n) => {
+              const active = (recipeView ? 'recipes' : tab) === n.id;
+              return (
+                <button key={n.id} className="gd-tab" onClick={() => { setTab(n.id); setDetail(null); closeRecipe(); }} style={{ color: active ? 'var(--color-accent)' : 'var(--color-text-tertiary)' }}>
+                  <span style={{ position: 'relative' }}>
+                    <Icon d={n.d} size={24} w={2} filled={active} />
+                    {n.id === 'list' && count > 0 && <span className="gd-tab__count">{count}</span>}
+                  </span>
+                  <span style={{ fontSize: 11, fontWeight: 700 }}>{n.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {/* First-run walkthrough — covers the whole phone until "Get started" */}
+        {!onboarded && <OnboardScreen country={country} onSetCountry={pickCountry} onDone={finishOnboarding} />}
       </div>
     </div>
   );
