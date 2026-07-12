@@ -44,11 +44,12 @@ export async function handleMetrics(request, env) {
   const url = new URL(request.url);
   const days = Math.min(365, Math.max(1, parseInt(url.searchParams.get('days'), 10) || 7));
   const wantJson = url.searchParams.get('format') === 'json';
+  const key = url.searchParams.get('key') || ''; // carried into pill links so switching windows keeps auth
 
   if (!env.CF_ACCOUNT_ID || !env.AE_API_TOKEN) {
     const msg = { error: 'metrics_not_configured', detail: 'Set CF_ACCOUNT_ID and AE_API_TOKEN secrets.' };
     if (wantJson) return json(msg, 200);
-    return html(renderNotConfigured(days), 200);
+    return html(renderNotConfigured(days, key), 200);
   }
 
   const I = `NOW() - INTERVAL '${days}' DAY`;
@@ -121,7 +122,7 @@ export async function handleMetrics(request, env) {
   const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, fallback, market, health, errors };
 
   if (wantJson) return json(metrics, 200);
-  return html(renderPage(metrics), 200);
+  return html(renderPage(metrics, key), 200);
 }
 
 /* ================= rendering ================= */
@@ -131,7 +132,8 @@ const html = (body, status = 200) => new Response(body, { status, headers: { 'co
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const NO_DATA = '<div class="empty">no data yet</div>';
 
-function shell(inner, days) {
+function shell(inner, days, key) {
+  const kq = key ? `&key=${encodeURIComponent(key)}` : '';
   return `<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><title>Green Days · metrics</title>
@@ -175,7 +177,7 @@ function shell(inner, days) {
   footer { margin-top:26px; color:var(--muted); font-size:12px; }
 </style></head><body><div class="wrap">
 <header><h1><span class="g">green days</span> · metrics</h1><div class="sub">last ${days} day${days === 1 ? '' : 's'}</div></header>
-<div class="windows">${[1, 7, 14, 30, 90].map((d) => `<a class="${d === days ? 'on' : ''}" href="?days=${d}">${d}d</a>`).join('')}</div>
+<div class="windows">${[1, 7, 14, 30, 90].map((d) => `<a class="${d === days ? 'on' : ''}" href="?days=${d}${kq}">${d}d</a>`).join('')}</div>
 ${inner}
 <footer>Aggregate-only, cookieless. Generated ${esc(new Date().toUTCString())}.</footer>
 </div></body></html>`;
@@ -185,7 +187,7 @@ function card(title, inner, err) {
   return `<div class="card"><h2>${esc(title)}</h2>${inner}${err ? `<div class="err">query error: ${esc(err)}</div>` : ''}</div>`;
 }
 
-function renderPage(m) {
+function renderPage(m, key) {
   const e = m.errors;
 
   const activation = card('Activation rate',
@@ -235,12 +237,12 @@ function renderPage(m) {
      </div><div class="note">${H.recipes} recipes generated</div>` : NO_DATA, e.health);
 
   const grid = `<div class="grid">${activation}${onboarding}${rps}${ta}${search}${fallback}${market}${health}</div>`;
-  return shell(grid, m.days);
+  return shell(grid, m.days, key);
 }
 
-function renderNotConfigured(days) {
+function renderNotConfigured(days, key) {
   const inner = `<div class="card"><h2>Not configured</h2>
     <div class="empty">Set the <b>CF_ACCOUNT_ID</b> and <b>AE_API_TOKEN</b> secrets, then reload.</div>
     <div class="note">wrangler secret put CF_ACCOUNT_ID · wrangler secret put AE_API_TOKEN</div></div>`;
-  return shell(inner, days);
+  return shell(inner, days, key);
 }
