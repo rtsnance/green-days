@@ -4,7 +4,7 @@
    Everything else is served from the built front-end by the assets binding. */
 import PRODUCE from '../data/produce.json';
 import MARKETS from '../data/markets.json';
-import { SYSTEM_PROMPT, RECIPE_SCHEMA, buildUserMessage } from './prompt.js';
+import { SYSTEM_PROMPT, SYSTEM_PROMPT_HAIKU, pickSystemPrompt, RECIPE_SCHEMA, buildUserMessage } from './prompt.js';
 import { handleMetrics } from './metrics.js';
 
 const BY_ID = new Map(PRODUCE.map((p) => [p.id, p]));
@@ -59,7 +59,7 @@ const num = (x) => { const n = Number(x); return Number.isFinite(n) ? n : 0; };
 const CLIENT_EVENTS = new Set([
   'app_open', 'onboarding_step', 'market_selected', 'prefs_set', 'search', 'tab_view',
   'product_view', 'produce_added', 'fallback_shown', 'basket_cook', 'recipe_try_another',
-  'grab_one_more_tap', 'offseason_added', 'error',
+  'grab_one_more_tap', 'offseason_added', 'error', 'time_to_first_content',
 ]);
 function track(env, name, f = {}) {
   if (!env.GD_EVENTS) return; // binding absent (e.g. vite-only dev) → no-op
@@ -160,8 +160,9 @@ async function handleRecipe(request, env, ctx) {
     track(env, 'recipe_generated', { country, band, detail: model, v1: latencyMs, v2: ok, v3: tokens, sid });
   const trackErr = (code) => track(env, 'error', { country, band, detail: 'recipe', extra: code, sid });
 
-  // Light rate limit per IP (cost control).
-  if (env.RECIPE_RL) {
+  // Light rate limit per IP (cost control). Skipped under the local mock
+  // engine so the eval gate can fire 40 requests without throttling.
+  if (env.RECIPE_RL && env.MOCK_RECIPES !== '1') {
     const ip = request.headers.get('cf-connecting-ip') || 'unknown';
     const { success } = await env.RECIPE_RL.limit({ key: ip });
     if (!success) return json({ error: 'A moment between recipes. Try again shortly.' }, 429);
@@ -209,7 +210,7 @@ async function handleRecipe(request, env, ctx) {
   let recipe;
   if (!env.ANTHROPIC_API_KEY) {
     if (env.MOCK_RECIPES === '1') {
-      recipe = mockRecipe(basketItems, inSeasonIds, avoid);
+      recipe = mockRecipe(basketItems, inSeasonIds, avoid, prefs);
       rg('mock', 0, 1, 0);
     } else {
       return json({ error: 'recipe engine not configured' }, 503);
@@ -226,55 +227,100 @@ async function handleRecipe(request, env, ctx) {
       inSeasonIds,
       avoid,
     });
+    const basketNames = basketItems.map((i) => i.name_en.toLowerCase());
 
-    const t0 = Date.now();
-    const apiResponse = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'x-api-key': env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: 4000,
-        thinking: { type: 'disabled' },
-        // The big fixed half of the prompt is cacheable across shoppers.
-        system: [{ type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } }],
-        output_config: { format: { type: 'json_schema', schema: RECIPE_SCHEMA } },
-        messages: [{ role: 'user', content: userMessage }],
-      }),
-    });
-    const latencyMs = Date.now() - t0;
+    // Up to two attempts: generate, then (if the deterministic guard finds a
+    // diet/allergy/banned-word violation) send one correction turn. The guard
+    // is the safety net behind the prompt — a strong prompt lowers the slip
+    // rate but cannot guarantee zero, and an allergen must never be served.
+    const messages = [{ role: 'user', content: userMessage }];
+    let totalLatency = 0;
+    let totalTokens = 0;
+    let failStatus = 502;
+    let failCode = null;
 
-    if (!apiResponse.ok) {
-      const detail = await apiResponse.text().catch(() => '');
-      console.error('anthropic error', apiResponse.status, detail.slice(0, 500));
-      rg(MODEL, latencyMs, 0, 0);
-      trackErr(String(apiResponse.status));
-      const status = apiResponse.status === 429 ? 429 : 502;
-      return json({ error: 'The kitchen is busy. Try again in a moment.' }, status);
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const t0 = Date.now();
+      const apiResponse = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'x-api-key': env.ANTHROPIC_API_KEY,
+          'anthropic-version': '2023-06-01',
+        },
+        body: JSON.stringify({
+          model: MODEL,
+          max_tokens: 4000,
+          thinking: { type: 'disabled' },
+          // The big fixed half of the prompt is cacheable across shoppers.
+          // Haiku models get the Haiku-tuned prompt; Sonnet keeps its own.
+          system: [{ type: 'text', text: pickSystemPrompt(MODEL), cache_control: { type: 'ephemeral' } }],
+          output_config: { format: { type: 'json_schema', schema: RECIPE_SCHEMA } },
+          messages,
+        }),
+      });
+      totalLatency += Date.now() - t0;
+
+      if (!apiResponse.ok) {
+        const detail = await apiResponse.text().catch(() => '');
+        console.error('anthropic error', apiResponse.status, detail.slice(0, 500));
+        failCode = String(apiResponse.status);
+        failStatus = apiResponse.status === 429 ? 429 : 502;
+        break;
+      }
+
+      const message = await apiResponse.json();
+      const u = message.usage || {};
+      totalTokens += (u.input_tokens || 0) + (u.output_tokens || 0) + (u.cache_creation_input_tokens || 0) + (u.cache_read_input_tokens || 0);
+      if (message.stop_reason === 'refusal' || message.stop_reason === 'max_tokens') {
+        console.error('unusable completion', message.stop_reason);
+        failCode = message.stop_reason;
+        break;
+      }
+      const text = (message.content || []).find((b) => b.type === 'text')?.text;
+      let candidate;
+      try {
+        candidate = normalizeRecipe(JSON.parse(text), basket);
+      } catch (err) {
+        console.error('bad recipe JSON', String(err), (text || '').slice(0, 300));
+        failCode = 'bad_json';
+        break;
+      }
+
+      recipe = candidate;
+      const problems = auditRecipe(candidate, prefs, basketNames).concat(
+        bannedWordHits(recipeText(candidate)).map((b) => `banned-word:${b}`),
+      );
+      if (problems.length === 0) break; // clean, ship it
+
+      if (attempt === 0) {
+        console.warn('recipe guard: repairing', problems.slice(0, 8));
+        messages.push({ role: 'assistant', content: text });
+        messages.push({
+          role: 'user',
+          content: `The recipe you gave broke these hard rules: ${problems.join('; ')}. Rewrite it so every one is fixed, keeping the same dish idea and the exact same JSON shape. Do not introduce any banned ingredient or banned word, and do not mention the constraints.`,
+        });
+      }
     }
 
-    const message = await apiResponse.json();
-    const u = message.usage || {};
-    const tokens = (u.input_tokens || 0) + (u.output_tokens || 0) + (u.cache_creation_input_tokens || 0) + (u.cache_read_input_tokens || 0);
-    if (message.stop_reason === 'refusal' || message.stop_reason === 'max_tokens') {
-      console.error('unusable completion', message.stop_reason);
-      rg(MODEL, latencyMs, 0, tokens);
-      trackErr(message.stop_reason);
-      return json({ error: 'Could not write a recipe for this basket. Try again.' }, 502);
+    if (recipe == null) {
+      rg(MODEL, totalLatency, 0, totalTokens);
+      trackErr(failCode || 'guard');
+      return json({ error: 'Could not write a recipe for this basket. Try again.' }, failStatus);
     }
-    const text = (message.content || []).find((b) => b.type === 'text')?.text;
-    try {
-      recipe = normalizeRecipe(JSON.parse(text), basket);
-      rg(MODEL, latencyMs, 1, tokens);
-    } catch (err) {
-      console.error('bad recipe JSON', String(err), (text || '').slice(0, 300));
-      rg(MODEL, latencyMs, 0, tokens);
-      trackErr('bad_json');
-      return json({ error: 'Could not write a recipe for this basket. Try again.' }, 502);
+
+    // Deterministic cleanup of any residual banned words (safe, cosmetic), then
+    // a final hard check on diet/allergy: if a violation survived the repair,
+    // fail safe rather than serve it.
+    recipe = sanitizeBannedWords(recipe);
+    const unsafe = auditRecipe(recipe, prefs, basketNames);
+    if (unsafe.length) {
+      console.error('recipe guard: unsafe after repair', unsafe.slice(0, 8));
+      rg(MODEL, totalLatency, 0, totalTokens);
+      trackErr('unsafe_prefs');
+      return json({ error: 'Could not write a recipe that fits your preferences. Try another basket.' }, 502);
     }
+    rg(MODEL, totalLatency, 1, totalTokens);
   }
 
   const response = json(recipe, 200, {
@@ -318,15 +364,130 @@ function normalizeRecipe(r, basket) {
   };
 }
 
+// --- Deterministic diet/allergy/voice guard -------------------------------
+// Term families mirror the offline eval lint (eval/grade.py) so the worker and
+// the eval agree on what a violation is. Word-boundary matching keeps compound
+// produce safe (butternut !== butter, eggplant !== egg); a couple of compounds
+// still need scrubbing (oyster mushroom, plant milks).
+const DAIRY = ['butter', 'buttered', 'buttery', 'cream', 'creamed', 'milk', 'cheese', 'yogurt', 'yoghurt', 'burrata', 'mozzarella', 'parmesan', 'parmigiano', 'queijo', 'feta', 'ricotta', 'mascarpone', 'ghee'];
+const EGGS = ['egg', 'eggs'];
+const GLUTEN = ['bread', 'toast', 'pasta', 'flour', 'breadcrumb', 'breadcrumbs', 'crouton', 'croutons', 'couscous', 'wheat', 'barley', 'bulgur', 'orzo', 'farro', 'pastry'];
+const NUTS = ['almond', 'almonds', 'walnut', 'walnuts', 'hazelnut', 'hazelnuts', 'pecan', 'pecans', 'cashew', 'cashews', 'pistachio', 'pistachios', 'peanut', 'peanuts', 'pine nut', 'pine nuts', 'praline'];
+const SHELLFISH = ['prawn', 'prawns', 'shrimp', 'crab', 'crabs', 'lobster', 'mussel', 'mussels', 'clam', 'clams', 'scallop', 'scallops', 'langoustine', 'crayfish', 'oyster', 'oysters'];
+const SOY = ['soy', 'soya', 'tofu', 'miso', 'tempeh', 'tamari', 'edamame'];
+const MEAT = ['beef', 'pork', 'lamb', 'chicken', 'sausage', 'sausages', 'chorizo', 'bacon', 'prosciutto', 'pancetta', 'duck', 'veal', 'turkey', 'salami', 'guanciale'];
+const FISH = ['fish', 'sardine', 'sardines', 'anchovy', 'anchovies', 'tuna', 'salmon', 'mackerel', 'cod', 'haddock', 'trout', 'seafood'];
+const ALLERGEN_TERMS = { nuts: NUTS, dairy: DAIRY, gluten: GLUTEN, eggs: EGGS, shellfish: SHELLFISH, soy: SOY };
+
+function recipeText(r) {
+  const parts = [r.title, r.time, r.note, r.offSeasonAdvice, r.grabOneMore];
+  for (const i of r.ingredients || []) parts.push(i.item);
+  for (const p of r.protein || []) parts.push(p);
+  for (const s of r.method || []) parts.push(s);
+  return parts.filter((x) => typeof x === 'string').join(' \n ');
+}
+
+function termHits(text, terms, allow = []) {
+  const found = [];
+  for (const t of terms) {
+    if (allow.includes(t)) continue;
+    const re = new RegExp(`\\b${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}s?\\b`, 'i');
+    if (re.test(text)) found.push(t);
+  }
+  return found;
+}
+
+// Returns an array of violation strings for the active diet + allergies.
+// Ingredients the shopper put in their own basket are not held against them.
+function auditRecipe(recipe, prefs, basketNames = []) {
+  const text = recipeText(recipe).toLowerCase();
+  const shellText = text.replace(/oyster mushrooms?/g, 'mushroom');
+  const dairyText = text.replace(/\b(coconut|almond|oat|soya|soy|rice|cashew|hemp)\s+(milk|cream|yogurt|yoghurt)\b/g, '$1');
+  const out = [];
+  const push = (tag, hits) => hits.filter((t) => !basketNames.some((n) => n.includes(t))).forEach((t) => out.push(`${tag}:${t}`));
+
+  if (prefs.diet === 'vegan' || prefs.diet === 'vegetarian') {
+    push('diet-meat', termHits(text, MEAT));
+    push('diet-fish', termHits(shellText, FISH.concat(SHELLFISH)));
+  }
+  if (prefs.diet === 'vegan') {
+    push('vegan-dairy', termHits(dairyText, DAIRY));
+    push('vegan-egg', termHits(text, EGGS));
+    push('vegan-honey', termHits(text, ['honey']));
+  }
+  for (const a of prefs.allergies) {
+    const terms = ALLERGEN_TERMS[a];
+    if (!terms) continue;
+    const src = a === 'shellfish' ? shellText : a === 'dairy' ? dairyText : text;
+    push(`allergy-${a}`, termHits(src, terms));
+  }
+  return out;
+}
+
+// Banned by the voice rules and safe to strip deterministically. "just" is not
+// here: it is legitimate as a degree adverb ("just tender") and only warned on.
+function bannedWordHits(text) {
+  const b = [];
+  if (text.includes('—')) b.push('em-dash');
+  if (/\bsimply\b/i.test(text)) b.push('simply');
+  if (text.includes('!')) b.push('exclamation');
+  return b;
+}
+
+function scrubText(s) {
+  if (typeof s !== 'string') return s;
+  if (!/[—!]/.test(s) && !/\bsimply\b/i.test(s)) return s; // nothing banned, leave untouched
+  const out = s
+    .replace(/\s*—\s*/g, ', ')
+    .replace(/\bsimply\s+/gi, '')
+    .replace(/,?\s*\bsimply\b/gi, '')
+    .replace(/!+/g, '.')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+  return out.charAt(0).toUpperCase() + out.slice(1);
+}
+
+function sanitizeBannedWords(r) {
+  return {
+    ...r,
+    title: scrubText(r.title),
+    time: scrubText(r.time),
+    note: scrubText(r.note),
+    offSeasonAdvice: r.offSeasonAdvice == null ? null : scrubText(r.offSeasonAdvice),
+    grabOneMore: r.grabOneMore == null ? null : r.grabOneMore, // an id, leave as-is
+    ingredients: (r.ingredients || []).map((i) => ({ ...i, item: scrubText(i.item) })),
+    protein: r.protein == null ? null : r.protein.map(scrubText),
+    method: (r.method || []).map(scrubText),
+  };
+}
+
 // Local development without an API key (MOCK_RECIPES=1 in .dev.vars).
-function mockRecipe(basketItems, inSeasonIds, avoid) {
+function mockRecipe(basketItems, inSeasonIds, avoid, prefs = { diet: 'none', allergies: [] }) {
   const lead = basketItems.find((i) => i.seasonality !== 'out') || basketItems[0];
   const out = basketItems.find((i) => i.seasonality === 'out');
+  const inSeasonStars = basketItems.filter((i) => i.seasonality !== 'out').map((i) => i.id);
+  // stars is a required field — if nothing in the basket is in season, still
+  // highlight the whole basket rather than ship an empty array.
+  const stars = inSeasonStars.length ? inSeasonStars : basketItems.map((i) => i.id);
+
+  // Honor diet/allergy silently, same contract as the real engine.
+  const allergies = new Set(prefs.allergies || []);
+  const candidates = [
+    { text: 'a soft-boiled egg', vegan: false, vegetarian: true, allergen: 'eggs' },
+    { text: 'grilled sardines', vegan: false, vegetarian: false, allergen: null },
+    { text: 'a spoon of chickpeas', vegan: true, vegetarian: true, allergen: null },
+  ];
+  const protein = candidates
+    .filter((p) => (prefs.diet === 'vegan' ? p.vegan : prefs.diet === 'vegetarian' ? p.vegetarian : true))
+    .filter((p) => !(p.allergen && allergies.has(p.allergen)))
+    .slice(0, 2)
+    .map((p) => p.text);
+
   return {
     title: `${lead.name_en}${avoid.length ? ', another way' : ', barely touched'} (mock)`,
     time: 'Quick, about 15 minutes',
     note: 'A canned recipe from the local mock engine, so the flow can be tested without a key.',
-    stars: basketItems.filter((i) => i.seasonality !== 'out').map((i) => i.id),
+    stars,
     ingredients: [
       ...basketItems.map((i) => ({ item: i.name_en.toLowerCase(), pantry: false })),
       { item: 'olive oil', pantry: true },
@@ -335,7 +496,7 @@ function mockRecipe(basketItems, inSeasonIds, avoid) {
     ],
     offSeasonAdvice: out ? `${out.name_en} is out of season here, so it will taste flatter. Roast it hard to concentrate what is there.` : null,
     grabOneMore: inSeasonIds[0] || null,
-    protein: ['a soft-boiled egg', 'grilled sardines'],
+    protein,
     method: [
       `Slice the ${lead.name_en.toLowerCase()} and season it well.`,
       'Get a pan very hot and char until blistered and just tender.',
