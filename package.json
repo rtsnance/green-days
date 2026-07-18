@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "npm run build && wrangler dev --port 8787",
     "build": "vite build",
-    "deploy": "npm run build && wrangler deploy"
+    "eval": "python3 eval/grade.py --no-judge --out eval/runs/local-$(date +%F).json",
+    "predeploy": "bash scripts/predeploy-eval.sh",
+    "deploy": "npm run predeploy && wrangler deploy"
   },
   "dependencies": {
     "react": "^18.3.1",

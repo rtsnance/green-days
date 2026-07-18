@@ -462,6 +462,19 @@ function resolveSuggestion(term) {
   return PRODUCE.find((p) => stripDia(p.name).includes(t) || Object.values(p.name_local).some((n) => stripDia(n).includes(t))) || null;
 }
 
+// Rotating cue shown in the anticipatory card while the guarded recipe is
+// written. Pure app copy, not model output — safe to show before the audit.
+const COOK_CUES = ["Finding the dish…", "Checking the stalls…", "Warming the pan…", "Weighing the season…"];
+function useRotatingCue(active, ms = 1400) {
+  const [i, setI] = React.useState(0);
+  React.useEffect(() => {
+    if (!active) return;
+    const t = setInterval(() => setI((n) => (n + 1) % COOK_CUES.length), ms);
+    return () => clearInterval(t);
+  }, [active]);
+  return COOK_CUES[i];
+}
+
 function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, onTryAnother }) {
   const { entry, status, error, live } = view;
   // Names, banner, and seasonality follow the market the recipe was cooked in.
@@ -470,12 +483,16 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
   const band = bandOf(rc);
   const banner = seasonBannerSrc(rc, entry ? entry.month0 : MONTH);
   const r = entry && entry.recipe;
+  const cue = useRotatingCue(status === 'loading');
 
   const label = (text, accent) => (
     <div style={{ fontSize: 12, ...MONO, color: accent ? 'var(--color-text-accent)' : 'var(--color-text-tertiary)', margin: '0 0 10px', display: 'flex', alignItems: 'center', gap: 6 }}>{text}</div>
   );
 
   const stars = r ? r.stars.map((id) => decorate(byId(id), band)).filter(Boolean) : [];
+  // Anticipatory stars while loading: the shopper's own basket, no model call
+  // in the path, so it's safe to paint the instant the "Cook this" tap lands.
+  const shellStars = status === 'loading' ? (view.shellIds || []).map((id) => decorate(byId(id), band)).filter(Boolean) : [];
   const fresh = r ? r.ingredients.filter((i) => !i.pantry) : [];
   const pantry = r ? r.ingredients.filter((i) => i.pantry) : [];
   const grabTerm = r && r.grabOneMore ? String(r.grabOneMore).trim() : '';
@@ -495,11 +512,73 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
         <button className="gd-btn gd-btn--icon-only" style={{ position: 'absolute', top: 14, left: 14, background: 'rgba(255,255,255,.82)', backdropFilter: 'blur(4px)' }} aria-label="Back" onClick={onClose}><span className="gd-btn__icon"><Icon d={I.back} size={20} /></span></button>
       </div>
 
+      {/* Anticipatory card (Part 1): renders the instant the "Cook this" tap
+          lands, entirely from the shopper's own basket and app copy — no
+          model call in this path, so it's safe ahead of the recipe guard.
+          Same zone shapes as the ready state below, so real content drops
+          into reserved slots with no layout shift. */}
       {status === 'loading' && (
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14, padding: 32, textAlign: 'center' }}>
-          <span className="gd-simmer" style={{ color: 'var(--color-accent)' }}><Icon d={I.chef} size={44} w={1.8} /></span>
-          <div style={{ fontFamily: 'var(--font-brand)', fontSize: 26, color: 'var(--color-accent)' }}>Writing tonight's recipe</div>
-          <div style={{ fontSize: 14, color: 'var(--color-text-secondary)', maxWidth: 260, lineHeight: 1.5 }}>One confident recipe from your basket, the season and the market.</div>
+        <div style={{ padding: '18px 20px 28px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+          {/* ZONE 1 shell — title/note/time reserved, filled by a rotating safe cue */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 10, color: 'var(--color-text-accent)', ...MONO }}>
+              <Icon d={I.sparkle} size={13} w={2.2} /> From your basket
+            </div>
+            <div className="gd-skel" style={{ height: 26, width: '78%', margin: '12px 0 8px' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 15.5, fontWeight: 700, color: 'var(--color-text-accent)' }}>
+              <span className="gd-simmer" style={{ display: 'inline-flex' }}><Icon d={I.chef} size={16} w={2.2} /></span>
+              {cue}
+            </div>
+            <div style={{ display: 'flex', gap: 18, marginTop: 16 }}>
+              <div className="gd-skel" style={{ height: 16, width: 74 }} />
+              <div className="gd-skel" style={{ height: 16, width: 74 }} />
+            </div>
+          </div>
+
+          {/* ZONE 2 — Your stars, painted instantly from the real basket */}
+          {shellStars.length > 0 && (
+            <div>
+              {label(<span><Icon d={I.leaf} size={13} w={2.4} /> Your stars · the heart of the dish</span>, true)}
+              <div className="gd-card" style={{ background: 'var(--color-background-accent-subtle)', padding: 10, display: 'flex', flexDirection: 'column', gap: 8, border: '1px solid var(--color-border-accent)' }}>
+                {shellStars.map((p) => (
+                  <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 14, background: 'var(--color-background-surface)', borderRadius: 14, padding: 10, boxShadow: 'var(--shadow-low)' }}>
+                    <ProduceThumb p={p} size={54} radius={14} />
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <ProduceName p={p} lang={lang} size={17} />
+                      <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-accent)', marginTop: 2 }}>{p.season}</div>
+                    </div>
+                    <SeasonFlag p={p} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ZONE 3 shell — ingredients not yet known */}
+          <div>
+            {label('Everything you need')}
+            <div className="gd-card" style={{ padding: 6, display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {[0, 1, 2].map((i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 10px' }}>
+                  <div className="gd-skel" style={{ width: 36, height: 36, borderRadius: 10, flexShrink: 0 }} />
+                  <div className="gd-skel" style={{ height: 14, width: (70 - i * 12) + '%' }} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ZONE 7 shell — method not yet known */}
+          <div>
+            {label('Method')}
+            <div className="gd-card" style={{ padding: 18, display: 'flex', flexDirection: 'column', gap: 18 }}>
+              {[0, 1, 2].map((i) => (
+                <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+                  <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: 999, background: 'var(--color-background-muted)', color: 'var(--color-text-tertiary)', fontWeight: 800, fontSize: 15, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{i + 1}</span>
+                  <div className="gd-skel" style={{ height: 15, width: (i === 2 ? '55%' : '90%'), marginTop: 5 }} />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 
@@ -514,7 +593,7 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
       {status === 'ready' && r && (
         <div style={{ padding: '18px 20px 28px', display: 'flex', flexDirection: 'column', gap: 20 }}>
           {/* ZONE 1 — Title + seasonal note + try another */}
-          <div>
+          <div className="gd-reveal">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 10, color: 'var(--color-text-accent)', ...MONO }}>
                 <Icon d={I.sparkle} size={13} w={2.2} /> From your basket
@@ -553,7 +632,7 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
           )}
 
           {/* ZONE 3 — Ingredients (produce dominant, pantry secondary) */}
-          <div>
+          <div className="gd-reveal" style={{ animationDelay: '70ms' }}>
             {label('Everything you need')}
             <div className="gd-card" style={{ padding: 6 }}>
               {fresh.map((ing, i) => {
@@ -587,7 +666,7 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
 
           {/* ZONE 4 — Honest advice (off-season basket item) */}
           {r.offSeasonAdvice && (
-            <div>
+            <div className="gd-reveal" style={{ animationDelay: '130ms' }}>
               {label('Honest advice')}
               <div className="gd-card" style={{ background: 'var(--color-error-muted)', padding: 14 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
@@ -603,7 +682,7 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
               opens its product detail; an unmatched one opens Home with the
               term pre-filled in search (never a bare Home fallback). */}
           {grabTerm && (
-            <div>
+            <div className="gd-reveal" style={{ animationDelay: '160ms' }}>
               {label(<span><Icon d={I.pin} size={13} w={2.4} /> Grab one more at the stalls</span>, true)}
               <button onClick={() => { ev('grab_one_more_tap', { detail: oneMore ? oneMore.id : '' }); (oneMore ? onOpen(oneMore.id) : onSearchProduce(grabTerm)); }} style={{ width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', padding: 12, borderRadius: 'var(--radius-container)', background: 'linear-gradient(120deg, var(--color-accent-strong), var(--color-accent))', color: '#fff', display: 'flex', alignItems: 'center', gap: 14, boxShadow: 'var(--shadow-med)', fontFamily: 'var(--font-body)' }}>
                 <div style={{ background: 'rgba(255,255,255,.9)', borderRadius: 14, flexShrink: 0 }}>
@@ -622,7 +701,7 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
 
           {/* ZONE 6 — Make it a meal (only when the dish has no protein) */}
           {r.protein && r.protein.length > 0 && (
-            <div>
+            <div className="gd-reveal" style={{ animationDelay: '190ms' }}>
               {label('Make it a meal')}
               <div className="gd-card" style={{ padding: 14, display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {r.protein.map((s, i) => (
@@ -636,7 +715,7 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
           )}
 
           {/* ZONE 7 — Method */}
-          <div>
+          <div className="gd-reveal" style={{ animationDelay: '220ms' }}>
             {label('Method')}
             <div className="gd-card" style={{ padding: 18, display: 'flex', flexDirection: 'column', gap: 18 }}>
               {r.method.map((s, i) => (
@@ -925,6 +1004,7 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
           <span>{firstRun ? 'Save and start shopping' : 'Save'}</span>
         </button>
         <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--color-text-tertiary)' }}>Change these anytime from Home</div>
+        <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--color-text-tertiary)' }}>© {new Date().getFullYear()} Green Days</div>
       </div>
     </div>
   );
@@ -942,6 +1022,7 @@ export default function GreenDaysApp() {
   const [recipeView, setRecipeView] = React.useState(null);
   const sessionAvoid = React.useRef([]);
   const liveEntryId = React.useRef(null); // the not-yet-committed entry "Try another" may swap
+  const cookTapAt = React.useRef(0); // performance.now() at a fresh Cook tap, for time_to_first_content
 
   // Pin the layout to the true visible viewport. iOS Safari's 100dvh can stick
   // at the toolbar-expanded value when nothing scrolls, floating the tab bar
@@ -1079,9 +1160,28 @@ export default function GreenDaysApp() {
   const cook = async (avoid) => {
     const ids = Object.keys(basket).filter((id) => basket[id] > 0);
     if (ids.length === 0) return;
-    if (avoid.length === 0) ev('basket_cook', { detail: prefs.diet, v1: ids.length }); // fresh Cook this
+    const fresh = avoid.length === 0;
+    if (fresh) { ev('basket_cook', { detail: prefs.diet, v1: ids.length }); cookTapAt.current = performance.now(); } // fresh Cook this
     setDetail(null);
-    setRecipeView((v) => ({ status: 'loading', entry: v?.entry || { country, month0: MONTH }, live: true }));
+    setRecipeView((v) => ({ status: 'loading', entry: v?.entry || { country, month0: MONTH }, live: true, shellIds: ids, freshCook: fresh }));
+    // Measurement: ms from tap to the anticipatory card's first paint (the
+    // shopper's own basket, no model call in the path). Scheduled here rather
+    // than in a useEffect keyed on recipeView, because a fast recipe (mock, or
+    // a cache hit) can flip status to 'ready' within a frame or two — a
+    // cleanup tied to that change would cancel the rAF chain before it fires.
+    // A setTimeout safety net covers backgrounded/throttled tabs where rAF
+    // never services, so the metric always reports rather than going silent.
+    if (fresh) {
+      const t0 = cookTapAt.current;
+      let fired = false;
+      const fire = () => {
+        if (fired) return;
+        fired = true;
+        ev('time_to_first_content', { v1: Math.round(performance.now() - t0) });
+      };
+      requestAnimationFrame(() => requestAnimationFrame(fire));
+      setTimeout(fire, 200);
+    }
     try {
       const recipe = await requestRecipe({ basket: ids, country, prefs, avoid });
       const entry = { id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())), at: Date.now(), country, month0: MONTH, recipe };

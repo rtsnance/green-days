@@ -1,0 +1,1094 @@
+{
+  "version": 1,
+  "note": "Golden baskets for the recipe-engine eval. off_season_items is derived from the harness seasonality model; reconcile with the app if they differ.",
+  "baskets": [
+    {
+      "id": "med-courgette-peach",
+      "intent": "Validated anchor: peak courgette + ripe peach",
+      "tags": [
+        "peak",
+        "med",
+        "quick"
+      ],
+      "request": {
+        "basket": [
+          "courgette",
+          "peach"
+        ],
+        "country": "PT",
+        "month": 7,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "med-tomato-basil",
+      "intent": "Minimalist peak: do almost nothing",
+      "tags": [
+        "peak",
+        "med",
+        "minimalist"
+      ],
+      "request": {
+        "basket": [
+          "tomato",
+          "basil"
+        ],
+        "country": "PT",
+        "month": 8,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "med-ratatouille",
+      "intent": "Classic Med trio at peak",
+      "tags": [
+        "peak",
+        "med"
+      ],
+      "request": {
+        "basket": [
+          "aubergine",
+          "bell-pepper",
+          "tomato"
+        ],
+        "country": "IT",
+        "month": 8,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "med-fig-rocket",
+      "intent": "Late-summer fig, needs restraint",
+      "tags": [
+        "peak",
+        "med"
+      ],
+      "request": {
+        "basket": [
+          "fig",
+          "rocket-arugula"
+        ],
+        "country": "PT",
+        "month": 9,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "med-padron-peppers",
+      "intent": "Single-technique tapa",
+      "tags": [
+        "peak",
+        "med",
+        "minimalist"
+      ],
+      "request": {
+        "basket": [
+          "padr-n-pepper"
+        ],
+        "country": "ES",
+        "month": 7,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "temp-leek-squash-borlotti",
+      "intent": "Anchor 2: slow autumn braise, pulse present",
+      "tags": [
+        "peak",
+        "temperate",
+        "slow",
+        "protein-in-basket"
+      ],
+      "request": {
+        "basket": [
+          "leek",
+          "butternut-squash",
+          "borlotti-beans"
+        ],
+        "country": "DE",
+        "month": 9,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "temp-asparagus-spring",
+      "intent": "Spring peak, reverent minimalist",
+      "tags": [
+        "peak",
+        "temperate",
+        "spring",
+        "minimalist"
+      ],
+      "request": {
+        "basket": [
+          "asparagus"
+        ],
+        "country": "DE",
+        "month": 5,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "temp-kale-potato",
+      "intent": "Hearty autumn temperate",
+      "tags": [
+        "peak",
+        "temperate",
+        "slow"
+      ],
+      "request": {
+        "basket": [
+          "kale",
+          "potato"
+        ],
+        "country": "NL",
+        "month": 11,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "temp-strawberry-mint",
+      "intent": "Early-summer fruit, dessert-ish",
+      "tags": [
+        "peak",
+        "temperate",
+        "fruit"
+      ],
+      "request": {
+        "basket": [
+          "strawberry",
+          "mint"
+        ],
+        "country": "DE",
+        "month": 6,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "temp-newpotato-dill",
+      "intent": "Nordic early summer",
+      "tags": [
+        "peak",
+        "temperate"
+      ],
+      "request": {
+        "basket": [
+          "new-potato",
+          "dill"
+        ],
+        "country": "SE",
+        "month": 6,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "temp-chanterelle",
+      "intent": "Foraged autumn mushroom, single star",
+      "tags": [
+        "peak",
+        "temperate"
+      ],
+      "request": {
+        "basket": [
+          "chanterelle"
+        ],
+        "country": "SE",
+        "month": 9,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "fr-shallot-parsley",
+      "intent": "French inflection (persillade)",
+      "tags": [
+        "inflection",
+        "temperate"
+      ],
+      "request": {
+        "basket": [
+          "shallot",
+          "parsley"
+        ],
+        "country": "FR",
+        "month": 9,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "gr-tomato-olives",
+      "intent": "Greek inflection expected",
+      "tags": [
+        "inflection",
+        "med"
+      ],
+      "request": {
+        "basket": [
+          "tomato",
+          "olives",
+          "cucumber"
+        ],
+        "country": "GR",
+        "month": 8,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "gb-purple-broccoli",
+      "intent": "UK single-language market, spring brassica",
+      "tags": [
+        "inflection",
+        "temperate",
+        "spring"
+      ],
+      "request": {
+        "basket": [
+          "purple-sprouting-broccoli"
+        ],
+        "country": "GB",
+        "month": 3,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "veg-chard-egg-market",
+      "intent": "Vegetarian, dish likely wants egg (allowed)",
+      "tags": [
+        "diet",
+        "vegetarian"
+      ],
+      "request": {
+        "basket": [
+          "chard",
+          "spinach"
+        ],
+        "country": "IT",
+        "month": 9,
+        "prefs": {
+          "diet": "vegetarian",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "vegan-borlotti-chard",
+      "intent": "Vegan, pulse already in basket (protein rule)",
+      "tags": [
+        "diet",
+        "vegan",
+        "protein-in-basket"
+      ],
+      "request": {
+        "basket": [
+          "borlotti-beans",
+          "chard"
+        ],
+        "country": "DE",
+        "month": 9,
+        "prefs": {
+          "diet": "vegan",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "vegan-pumpkin-sage",
+      "intent": "Vegan, must not suggest butter/dairy",
+      "tags": [
+        "diet",
+        "vegan"
+      ],
+      "request": {
+        "basket": [
+          "pumpkin",
+          "sage"
+        ],
+        "country": "DE",
+        "month": 10,
+        "prefs": {
+          "diet": "vegan",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "veg-cauliflower",
+      "intent": "Vegetarian single star, whole-veg",
+      "tags": [
+        "diet",
+        "vegetarian"
+      ],
+      "request": {
+        "basket": [
+          "cauliflower"
+        ],
+        "country": "FR",
+        "month": 2,
+        "prefs": {
+          "diet": "vegetarian",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "gluten-tomato",
+      "intent": "Dairy/gluten trap: tomatoes usually on TOAST; gluten allergy",
+      "tags": [
+        "allergy",
+        "gluten"
+      ],
+      "request": {
+        "basket": [
+          "tomato",
+          "basil"
+        ],
+        "country": "PT",
+        "month": 8,
+        "prefs": {
+          "diet": "none",
+          "allergies": [
+            "Gluten"
+          ]
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "dairy-pumpkin",
+      "intent": "Dairy allergy vs butter/cream instinct",
+      "tags": [
+        "allergy",
+        "dairy"
+      ],
+      "request": {
+        "basket": [
+          "pumpkin",
+          "onion"
+        ],
+        "country": "DE",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": [
+            "Dairy"
+          ]
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "egg-courgette",
+      "intent": "Egg allergy (fritter/frittata instinct)",
+      "tags": [
+        "allergy",
+        "eggs"
+      ],
+      "request": {
+        "basket": [
+          "courgette",
+          "spring-onion"
+        ],
+        "country": "IT",
+        "month": 7,
+        "prefs": {
+          "diet": "none",
+          "allergies": [
+            "Eggs"
+          ]
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "nuts-green-beans",
+      "intent": "Nut allergy vs almond/pesto instinct",
+      "tags": [
+        "allergy",
+        "nuts"
+      ],
+      "request": {
+        "basket": [
+          "green-french-beans",
+          "garlic"
+        ],
+        "country": "FR",
+        "month": 7,
+        "prefs": {
+          "diet": "none",
+          "allergies": [
+            "Nuts"
+          ]
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "shellfish-noop",
+      "intent": "Shellfish allergy should be a no-op for produce",
+      "tags": [
+        "allergy",
+        "shellfish",
+        "noop"
+      ],
+      "request": {
+        "basket": [
+          "fennel",
+          "orange"
+        ],
+        "country": "IT",
+        "month": 1,
+        "prefs": {
+          "diet": "none",
+          "allergies": [
+            "Shellfish"
+          ]
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "multi-allergy",
+      "intent": "Vegan + gluten + nuts stacked",
+      "tags": [
+        "diet",
+        "vegan",
+        "allergy",
+        "gluten",
+        "nuts"
+      ],
+      "request": {
+        "basket": [
+          "potato",
+          "leek",
+          "kale"
+        ],
+        "country": "NL",
+        "month": 11,
+        "prefs": {
+          "diet": "vegan",
+          "allergies": [
+            "Gluten",
+            "Nuts"
+          ]
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "offseason-all-winter",
+      "intent": "All-off-season summer produce in December",
+      "tags": [
+        "off-season",
+        "honesty"
+      ],
+      "request": {
+        "basket": [
+          "strawberry",
+          "tomato",
+          "courgette"
+        ],
+        "country": "DE",
+        "month": 12,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [
+          "strawberry",
+          "tomato",
+          "courgette"
+        ],
+        "must_flag_off_season": true
+      }
+    },
+    {
+      "id": "offseason-one-star",
+      "intent": "In-season basket + one off-season item",
+      "tags": [
+        "off-season",
+        "honesty"
+      ],
+      "request": {
+        "basket": [
+          "kale",
+          "asparagus"
+        ],
+        "country": "DE",
+        "month": 11,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [
+          "asparagus"
+        ],
+        "must_flag_off_season": true
+      }
+    },
+    {
+      "id": "offseason-imported-avocado",
+      "intent": "Imported/Med off-season item in high summer",
+      "tags": [
+        "off-season",
+        "honesty",
+        "med"
+      ],
+      "request": {
+        "basket": [
+          "avocado",
+          "tomato"
+        ],
+        "country": "PT",
+        "month": 7,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [
+          "avocado"
+        ],
+        "must_flag_off_season": true
+      }
+    },
+    {
+      "id": "offseason-rhubarb-autumn",
+      "intent": "Spring rhubarb bought in autumn",
+      "tags": [
+        "off-season",
+        "honesty"
+      ],
+      "request": {
+        "basket": [
+          "rhubarb"
+        ],
+        "country": "GB",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [
+          "rhubarb"
+        ],
+        "must_flag_off_season": true
+      }
+    },
+    {
+      "id": "edge-single-herb",
+      "intent": "Only a herb: can it still cook?",
+      "tags": [
+        "edge",
+        "single",
+        "herb"
+      ],
+      "request": {
+        "basket": [
+          "basil"
+        ],
+        "country": "PT",
+        "month": 7,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "edge-herbs-only",
+      "intent": "Herb bundle, no vegetable",
+      "tags": [
+        "edge",
+        "herb"
+      ],
+      "request": {
+        "basket": [
+          "rosemary",
+          "thyme",
+          "sage"
+        ],
+        "country": "IT",
+        "month": 1,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "edge-single-item",
+      "intent": "One vegetable, nothing else",
+      "tags": [
+        "edge",
+        "single"
+      ],
+      "request": {
+        "basket": [
+          "cauliflower"
+        ],
+        "country": "DE",
+        "month": 11,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "edge-big-basket",
+      "intent": "Ten items, must not become a mess",
+      "tags": [
+        "edge",
+        "large"
+      ],
+      "request": {
+        "basket": [
+          "tomato",
+          "courgette",
+          "aubergine",
+          "bell-pepper",
+          "onion",
+          "garlic",
+          "basil",
+          "cucumber",
+          "chilli-pepper",
+          "fennel"
+        ],
+        "country": "IT",
+        "month": 8,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "edge-mushroom-medley",
+      "intent": "Year-round mushrooms, umami",
+      "tags": [
+        "edge"
+      ],
+      "request": {
+        "basket": [
+          "chestnut-mushroom",
+          "portobello",
+          "shiitake"
+        ],
+        "country": "NL",
+        "month": 2,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "edge-citrus-winter",
+      "intent": "Med winter citrus spread",
+      "tags": [
+        "edge",
+        "med",
+        "winter"
+      ],
+      "request": {
+        "basket": [
+          "lemon",
+          "orange",
+          "blood-orange"
+        ],
+        "country": "ES",
+        "month": 1,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "edge-root-medley",
+      "intent": "Deep-winter roots, slow cooking",
+      "tags": [
+        "edge",
+        "temperate",
+        "winter"
+      ],
+      "request": {
+        "basket": [
+          "celeriac",
+          "parsnip",
+          "carrot"
+        ],
+        "country": "DE",
+        "month": 1,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "protein-broadbeans",
+      "intent": "Pulse present -> omit make-it-a-meal",
+      "tags": [
+        "protein-in-basket"
+      ],
+      "request": {
+        "basket": [
+          "broad-beans-fava",
+          "mint"
+        ],
+        "country": "PT",
+        "month": 5,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "protein-none",
+      "intent": "No protein -> should suggest 1-2, local/seasonal",
+      "tags": [
+        "make-a-meal"
+      ],
+      "request": {
+        "basket": [
+          "chard",
+          "onion"
+        ],
+        "country": "PT",
+        "month": 9,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "market-strict-asian",
+      "intent": "Lemongrass+pak choi could tempt specialty; stay market-strict",
+      "tags": [
+        "market-strict"
+      ],
+      "request": {
+        "basket": [
+          "lemongrass",
+          "pak-choi",
+          "chilli-pepper"
+        ],
+        "country": "GB",
+        "month": 7,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "market-strict-samphire",
+      "intent": "Samphire is coastal/seasonal; keep it grounded",
+      "tags": [
+        "market-strict",
+        "med"
+      ],
+      "request": {
+        "basket": [
+          "samphire",
+          "new-potato"
+        ],
+        "country": "GB",
+        "month": 6,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "variety-tomato-A",
+      "intent": "Common summer duo (pair with variety-tomato-B by hand)",
+      "tags": [
+        "variety"
+      ],
+      "request": {
+        "basket": [
+          "tomato",
+          "cucumber",
+          "red-onion"
+        ],
+        "country": "GR",
+        "month": 8,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    }
+  ]
+}

@@ -127,6 +127,34 @@ html, body { margin: 0; height: 100%; }
 }
 .gd-simmer { animation: gd-simmer 1.6s var(--ease-standard) infinite; }
 
+/* Anticipatory recipe card — warm shimmer for the not-yet-known fields
+   (title, ingredients, method) while the guarded recipe is written. The
+   basket "stars" render immediately alongside these, since they're the
+   shopper's own data rather than model output. */
+@keyframes gd-shimmer-sweep {
+  0% { background-position: -120% 0; }
+  100% { background-position: 220% 0; }
+}
+.gd-skel {
+  background: linear-gradient(100deg, var(--color-skeleton, #e5e5ea) 25%, var(--color-accent-muted, #eef3e4) 50%, var(--color-skeleton, #e5e5ea) 75%);
+  background-size: 250% 100%;
+  animation: gd-shimmer-sweep 1.7s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+/* Progressive reveal (Part 2, Option B): once the guarded recipe lands, each
+   zone eases in with a short stagger rather than popping in all at once. */
+@keyframes gd-reveal-in {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: none; }
+}
+.gd-reveal { animation: gd-reveal-in .5s var(--ease-standard) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gd-skel { animation: none; }
+  .gd-reveal { animation: none; }
+}
+
 /* Invisible native <select> laid over the location line — the "correctable"
    market country, one thumb-tap opens the platform picker. */
 .gd-locpick {

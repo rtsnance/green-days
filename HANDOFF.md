@@ -123,7 +123,7 @@ Private, gated by `METRICS_TOKEN` (via `?key=` or HTTP Basic; 401 otherwise). Re
 
 ## Deploy checklist / gotchas
 
-- Deploy = `npm run deploy`. It builds then `wrangler deploy`. **No git remote**, so "push" has nowhere to go — deploy is what makes changes live.
+- Deploy = `npm run deploy`. It now runs `npm run predeploy` first (boots a local `wrangler dev`, runs the 40-basket eval gate via `eval/grade.py --no-judge`, aborts the deploy on any hard-gate failure) and then `wrangler deploy`. See `eval/HANDOFF.md` for the eval harness, the two gate modes (fast mock vs. full judge baseline), and open prompt-quality issues found in the 2026-07-12 judge baseline (vegan/nut-allergy leaks, a banned word) that still need fixing in `worker/prompt.js`.
 - After deploy, browsers cache the built JS/CSS by content hash; hard-refresh if verifying UI. Favicon/OG are cached hard by clients and platforms.
 - Adding a **new binding** (e.g. Analytics Engine) requires that feature enabled on the account first, else `wrangler deploy` errors before uploading (safe — nothing partial).
 - Data changes: replace `data/produce.json` from the source-of-truth copy in the handoff folder; **re-verify no duplicate ids and every `mapped` slug has all three image files** before deploying (there was a duplicate-`grapes` bug once).
