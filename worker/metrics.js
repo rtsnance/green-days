@@ -61,6 +61,7 @@ export async function handleMetrics(request, env) {
     search: `SELECT double1 AS has_results, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='search' AND timestamp > ${I} GROUP BY has_results`,
     fallback: `SELECT blob4 AS produce, SUM(_sample_interval) AS shows FROM ${DATASET} WHERE blob1='fallback_shown' AND timestamp > ${I} GROUP BY produce ORDER BY shows DESC LIMIT 15`,
     market: `SELECT blob2 AS country, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY country ORDER BY sessions DESC`,
+    fieldGuide: `SELECT blob4 AS produce, SUM(_sample_interval) AS adds FROM ${DATASET} WHERE blob1='field_guide_add' AND timestamp > ${I} GROUP BY produce ORDER BY adds DESC`,
     health: `SELECT quantileWeighted(0.5)(double1, _sample_interval) AS p50_ms, quantileWeighted(0.95)(double1, _sample_interval) AS p95_ms, SUM(double2 * _sample_interval) / SUM(_sample_interval) AS ok_rate, SUM(double3 * _sample_interval) / SUM(_sample_interval) AS avg_tokens, SUM(_sample_interval) AS recipes FROM ${DATASET} WHERE blob1='recipe_generated' AND timestamp > ${I}`,
     // double2 on app_open = returning (1) vs first-ever-visit (0), set client-side
     // from the non-cookie gd_last_visit flag (see src/GreenDaysApp.jsx).
@@ -114,6 +115,9 @@ export async function handleMetrics(request, env) {
   const fallback = (rows.fallback || []).map((r) => ({ produce: r.produce || '(unknown)', shows: num(r.shows) }));
   const market = (rows.market || []).map((r) => ({ country: r.country || '', name: countryName(r.country), sessions: num(r.sessions) }));
 
+  const fieldGuideByProduce = (rows.fieldGuide || []).map((r) => ({ produce: r.produce || '(unknown)', adds: num(r.adds) }));
+  const fieldGuide = { total: fieldGuideByProduce.reduce((s, r) => s + r.adds, 0), by_produce: fieldGuideByProduce };
+
   const h = (rows.health && rows.health[0]) || {};
   const health = {
     p50_ms: rows.health && rows.health.length ? num(h.p50_ms) : null,
@@ -133,7 +137,7 @@ export async function handleMetrics(request, env) {
     median_days_since_return: rows.recency && rows.recency.length && rc.median_days != null ? num(rc.median_days) : null,
   };
 
-  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, fallback, market, health, retention, errors };
+  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, fallback, market, field_guide: fieldGuide, health, retention, errors };
 
   if (wantJson) return json(metrics, 200);
   return html(renderPage(metrics, key), 200);
@@ -246,6 +250,13 @@ function renderPage(m, key) {
     m.market.map((r) => `<div class="row"><span class="k">${esc(r.name)}${r.country ? ` <span style="color:var(--muted);font-weight:600">${esc(r.country)}</span>` : ''}</span><span class="bar"><i style="width:${(r.sessions / maxMk * 100).toFixed(0)}%"></i></span><span class="v">${r.sessions}</span></div>`).join('')
     : NO_DATA, e.market);
 
+  const maxFg = Math.max(1, ...m.field_guide.by_produce.map((f) => f.adds));
+  const fieldGuideCard = card('Field guide → basket', m.field_guide.total ?
+    `<div class="big small">${m.field_guide.total}</div>
+     <div class="note">adds via the ?src=field_guide deep link, tagged per produce below</div>
+     ${m.field_guide.by_produce.map((f) => `<div class="row"><span class="k">${esc(f.produce)}</span><span class="bar"><i style="width:${(f.adds / maxFg * 100).toFixed(0)}%"></i></span><span class="v">${f.adds}</span></div>`).join('')}`
+    : NO_DATA, e.fieldGuide);
+
   const H = m.health;
   const health = card('Recipe engine health', H.recipes ?
     `<div class="hstat">
@@ -255,7 +266,7 @@ function renderPage(m, key) {
        <div><div class="n">${H.avg_tokens == null ? '—' : Math.round(H.avg_tokens)}</div><div class="l">avg tokens</div></div>
      </div><div class="note">${H.recipes} recipes generated</div>` : NO_DATA, e.health);
 
-  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${fallback}${market}${health}</div>`;
+  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${fallback}${market}${fieldGuideCard}${health}</div>`;
   return shell(grid, m.days, key);
 }
 
