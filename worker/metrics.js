@@ -1,4 +1,4 @@
-/* Green Days — private metrics page at /greendays/metrics.
+/* Green Days — private metrics page at /metrics.
    Access-gated (METRICS_TOKEN via ?key= or HTTP Basic). Queries the Analytics
    Engine SQL API and renders the KPIs from KPIs_and_Dashboard.md. Cross-event
    ratios are computed here from grouped rows (no reliance on IF() in SQL). */
@@ -62,6 +62,10 @@ export async function handleMetrics(request, env) {
     fallback: `SELECT blob4 AS produce, SUM(_sample_interval) AS shows FROM ${DATASET} WHERE blob1='fallback_shown' AND timestamp > ${I} GROUP BY produce ORDER BY shows DESC LIMIT 15`,
     market: `SELECT blob2 AS country, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY country ORDER BY sessions DESC`,
     health: `SELECT quantileWeighted(0.5)(double1, _sample_interval) AS p50_ms, quantileWeighted(0.95)(double1, _sample_interval) AS p95_ms, SUM(double2 * _sample_interval) / SUM(_sample_interval) AS ok_rate, SUM(double3 * _sample_interval) / SUM(_sample_interval) AS avg_tokens, SUM(_sample_interval) AS recipes FROM ${DATASET} WHERE blob1='recipe_generated' AND timestamp > ${I}`,
+    // double2 on app_open = returning (1) vs first-ever-visit (0), set client-side
+    // from the non-cookie gd_last_visit flag (see src/GreenDaysApp.jsx).
+    retention: `SELECT double2 AS returning, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY returning`,
+    recency: `SELECT quantileWeighted(0.5)(double3, _sample_interval) AS median_days FROM ${DATASET} WHERE blob1='app_open' AND double2=1 AND timestamp > ${I}`,
   };
 
   // Run all queries; a single failing query degrades only its own card.
@@ -119,7 +123,17 @@ export async function handleMetrics(request, env) {
     recipes: num(h.recipes),
   };
 
-  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, fallback, market, health, errors };
+  const ret = byEvent(rows.retention, 'returning', 'n');
+  const returningSessions = ret['1'] || 0, newSessions = ret['0'] || 0;
+  const rc = (rows.recency && rows.recency[0]) || {};
+  const retention = {
+    returning_sessions: returningSessions,
+    new_sessions: newSessions,
+    rate: (returningSessions + newSessions) ? returningSessions / (returningSessions + newSessions) : null,
+    median_days_since_return: rows.recency && rows.recency.length && rc.median_days != null ? num(rc.median_days) : null,
+  };
+
+  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, fallback, market, health, retention, errors };
 
   if (wantJson) return json(metrics, 200);
   return html(renderPage(metrics, key), 200);
@@ -195,6 +209,11 @@ function renderPage(m, key) {
       `<div class="big">${pct(m.activation.rate)}</div>
        <div class="note">${m.activation.recipe_sessions} of ${m.activation.app_open_sessions} visits generated a recipe</div>`, e.activation);
 
+  const R = m.retention;
+  const retention = card('Return-visit rate', (R.returning_sessions + R.new_sessions) ?
+    `<div class="big small">${pct(R.rate)}</div>
+     <div class="note">${R.returning_sessions} returning of ${R.returning_sessions + R.new_sessions} sessions${R.median_days_since_return != null ? ` · median ${R.median_days_since_return}d since last visit` : ''}</div>` : NO_DATA, e.retention);
+
   const anyOnb = m.onboarding.steps.some((s) => s.next || s.complete || s.abandon);
   const onboarding = card('Onboarding drop-off', anyOnb ?
     `<div class="steps">${m.onboarding.steps.map((s) => `
@@ -236,7 +255,7 @@ function renderPage(m, key) {
        <div><div class="n">${H.avg_tokens == null ? '—' : Math.round(H.avg_tokens)}</div><div class="l">avg tokens</div></div>
      </div><div class="note">${H.recipes} recipes generated</div>` : NO_DATA, e.health);
 
-  const grid = `<div class="grid">${activation}${onboarding}${rps}${ta}${search}${fallback}${market}${health}</div>`;
+  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${fallback}${market}${health}</div>`;
   return shell(grid, m.days, key);
 }
 

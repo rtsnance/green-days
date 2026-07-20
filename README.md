@@ -4,9 +4,10 @@ A farmers-market mobile web app. The season sets a vivid palette of in-season
 produce, you tap your basket, and a recipe engine hands back one confident,
 produce-first recipe. Europe-first, one-handed, glanceable.
 
-Live at **lab.ryantnance.com/greendays** — its own Cloudflare Worker (static
-assets + API) on the `lab.ryantnance.com/greendays*` route, coexisting with the
-Lab worker.
+Live at **greendays.day** — its own Cloudflare Worker (static assets + API),
+bound to greendays.day as a Custom Domain. The old `lab.ryantnance.com/greendays*`
+route is kept only so the Worker can 301-redirect existing links there to
+greendays.day.
 
 ## Layout
 
@@ -18,8 +19,8 @@ Lab worker.
 - `public/assets/seasons/` — the eight recipe banners, `{band}-{season}@2x/@3x`.
 - `src/` — the React app (ported from the Claude Design prototype) and the
   `gd/` design system (tokens + components.css).
-- `worker/` — the Worker: `GET /greendays/api/context` (edge country → language
-  + climate band + static weather line) and `POST /greendays/api/recipe`
+- `worker/` — the Worker: `GET /api/context` (edge country → language
+  + climate band + static weather line) and `POST /api/recipe`
   (the Anthropic-powered recipe engine; system prompt in `worker/prompt.js`,
   built from Recipe_Principles.md with the three anchor recipes as examples).
 
@@ -29,7 +30,7 @@ Lab worker.
 npm install
 cp .dev.vars.example .dev.vars   # MOCK_RECIPES=1 → canned recipes, no key
 npm run dev                       # builds + wrangler dev on :8787
-open http://localhost:8787/greendays/
+open http://localhost:8787/
 ```
 
 Set `ANTHROPIC_API_KEY` in `.dev.vars` (and remove `MOCK_RECIPES`) to exercise
@@ -43,18 +44,23 @@ npx wrangler secret put ANTHROPIC_API_KEY   # once
 npm run deploy
 ```
 
-The route (`lab.ryantnance.com/greendays*`, zone `ryantnance.com`) is declared
-in `wrangler.jsonc`; Worker routes take precedence over the Lab worker for that
-path only.
+The routes are declared in `wrangler.jsonc`: `greendays.day` as a Custom Domain
+(Cloudflare provisions the DNS record + TLS cert automatically on deploy — the
+zone had no DNS records before this migration), plus the retired
+`lab.ryantnance.com/greendays*`, zone `ryantnance.com`, kept for the redirect.
 
 **Analytics:** Cloudflare Web Analytics (cookieless, no consent banner, no
-GA4). Easiest: dashboard → Analytics & Logs → Web Analytics → add
-`lab.ryantnance.com` with automatic setup. Manual alternative: paste the site
-token into the commented beacon snippet in `index.html`.
+GA4), via zone-level Real User Monitoring — enabled 2026-07-19 in the
+dashboard (Speed → Real user monitoring → Enable Globally) for the
+`greendays.day` zone. No script tag or token in the code: Cloudflare's edge
+auto-injects the beacon into every HTML response for the zone. (The old
+`<script data-cf-beacon>` tag tied to the retired `lab.ryantnance.com` site
+token was removed from `index.html` for this reason — keeping it would have
+double-counted/mis-attributed traffic.)
 
 ## Recipe engine
 
-`POST /greendays/api/recipe` with
+`POST /api/recipe` with
 `{ basket: [produce ids], country, month, prefs: { diet, allergies }, avoid: [titles] }`
 returns strict JSON (`title, time, note, stars, ingredients, offSeasonAdvice,
 grabOneMore, protein, method`). Model: `claude-sonnet-5` (the `RECIPE_MODEL`

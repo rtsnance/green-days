@@ -38,7 +38,7 @@ python3 grade.py --from-file anchors_as_recipes.json --no-judge --out runs/ancho
 
 ## Env
 
-- `GREENDAYS_RECIPE_URL` — default `https://lab.ryantnance.com/greendays/api/recipe`
+- `GREENDAYS_RECIPE_URL` — default `https://greendays.day/api/recipe`
 - `ANTHROPIC_API_KEY` — required unless `--no-judge`. The harness reads it from the environment; it is never stored.
 - `JUDGE_MODEL` — default `claude-opus-4-8` (offline, so favor the stronger judge).
 

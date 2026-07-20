@@ -47,8 +47,8 @@ For general Green Days context (repo layout, deploy, data model), see
    # .dev.vars: ANTHROPIC_API_KEY=<real key>, MOCK_RECIPES unset/removed
    npm run build
    npx wrangler dev --port 8787 --local --persist-to "$(mktemp -d)" &
-   # wait for http://localhost:8787/greendays to answer, then:
-   GREENDAYS_RECIPE_URL="http://localhost:8787/greendays/api/recipe" \
+   # wait for http://localhost:8787/ to answer, then:
+   GREENDAYS_RECIPE_URL="http://localhost:8787/api/recipe" \
      ANTHROPIC_API_KEY=<real key> \
      python3 eval/grade.py --out eval/runs/judge-baseline-DATE.json --sleep 1
    # kill the wrangler dev process + rm -rf the persist dir when done
@@ -159,7 +159,7 @@ Open follow-ups (minor):
   change — this caused a confusing "fix didn't work" moment before the
   cause was found. Always use a throwaway persist dir for eval runs.
 - `grade.py`'s default `RECIPE_URL` is the **production** endpoint
-  (`https://lab.ryantnance.com/greendays/api/recipe`). Always set
+  (`https://greendays.day/api/recipe`). Always set
   `GREENDAYS_RECIPE_URL` to point at local `wrangler dev` unless you
   deliberately want to hit prod.
 - zsh (interactive) does not treat trailing `# comment` on a command line

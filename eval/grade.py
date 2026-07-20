@@ -25,7 +25,7 @@ Exit code is non-zero if any hard gate fails, or (with --baseline) if a
 regression is detected. Wire that into CI or a pre-deploy check.
 
 Env
-  GREENDAYS_RECIPE_URL  default https://lab.ryantnance.com/greendays/api/recipe
+  GREENDAYS_RECIPE_URL  default https://greendays.day/api/recipe
   ANTHROPIC_API_KEY     required unless --no-judge
   JUDGE_MODEL           default claude-opus-4-8
 
@@ -39,7 +39,7 @@ import argparse, json, os, re, sys, time, urllib.request, urllib.error
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ASSETS = os.path.normpath(os.path.join(HERE, "..", "data"))
-RECIPE_URL = os.environ.get("GREENDAYS_RECIPE_URL", "https://lab.ryantnance.com/greendays/api/recipe")
+RECIPE_URL = os.environ.get("GREENDAYS_RECIPE_URL", "https://greendays.day/api/recipe")
 JUDGE_MODEL = os.environ.get("JUDGE_MODEL", "claude-opus-4-8")
 
 # ---------------------------------------------------------------- data loading

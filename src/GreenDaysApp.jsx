@@ -1,15 +1,15 @@
 /* Green Days — the app. Ported from the Claude Design prototype
    (GreenDaysApp.jsx) and wired to production: produce.json as the single data
-   source, the live recipe engine at /greendays/api/recipe, edge country via
-   /greendays/api/context, and localStorage persistence. Uses gd-* component
+   source, the live recipe engine at /api/recipe, edge country via
+   /api/context, and localStorage persistence. Uses gd-* component
    classes from the design system. */
 import React from 'react';
 import {
   PRODUCE, byId, decorate, MONTH, ASSET,
   langOf, bandOf, countryLabel, COUNTRIES,
-  seasonBannerSrc, matchesQuery, stripDia,
+  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf,
 } from './produce.js';
-import { ev, evOnce, SID } from './analytics.js';
+import { ev, evOnce, SID, SOURCE } from './analytics.js';
 
 const MONTH_NAME = new Date().toLocaleString('en-GB', { month: 'long' });
 const SEASON_RANK = { peak: 0, in: 1, out: 2 };
@@ -481,6 +481,7 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
   const rc = entry ? entry.country : 'PT';
   const lang = langOf(rc);
   const band = bandOf(rc);
+  const affiliate = affiliatePartnerOf(rc);
   const banner = seasonBannerSrc(rc, entry ? entry.month0 : MONTH);
   const r = entry && entry.recipe;
   const cue = useRotatingCue(status === 'loading');
@@ -726,6 +727,28 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
               ))}
             </div>
           </div>
+
+          {/* ZONE 8 — Get these delivered (affiliate, external, deliberately quiet —
+              this sends someone out of the app, unlike every zone above it) */}
+          {affiliate && (
+            <div className="gd-reveal" style={{ animationDelay: '250ms' }}>
+              {label('Get these delivered')}
+              <a
+                href={affiliate.url}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                onClick={() => ev('affiliate_cta_tap', { detail: affiliate.partner_id })}
+                className="gd-card"
+                style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 14, textDecoration: 'none', color: 'var(--color-text-primary)' }}
+              >
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontWeight: 800, fontSize: 15 }}>{affiliate.name} ships {grabTerm || 'seasonal boxes'} to your area</div>
+                  <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginTop: 2 }}>Affiliate link — may earn Green Days a small commission</div>
+                </span>
+                <Icon d={I.arrow} size={18} style={{ transform: 'rotate(-45deg)', color: 'var(--color-text-tertiary)', flexShrink: 0 }} />
+              </a>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -770,7 +793,7 @@ function RecipesListScreen({ history, onOpenEntry, onGoHome }) {
 }
 
 /* ================= Product detail overlay ================= */
-function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen }) {
+function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, fieldGuideSlugs }) {
   const band = bandOf(country);
   const p = decorate(byId(id), band);
   React.useEffect(() => {
@@ -844,6 +867,10 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen }) {
             <div key={k}><div style={{ fontWeight: 800, fontSize: 15 }}>{v}</div><div style={{ fontSize: 12, color: 'var(--color-text-tertiary)' }}>{k}</div></div>
           ))}
         </div>
+
+        {fieldGuideSlugs && fieldGuideSlugs.has(p.id) && (
+          <a href={`/produce/${p.id}/`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', fontSize: 13.5, fontWeight: 700, color: 'var(--color-text-tertiary)', textDecoration: 'none' }}>Field notes →</a>
+        )}
       </div>
 
       <div style={{ marginTop: 'auto', position: 'sticky', bottom: 0, background: 'var(--color-background-surface)', borderTop: '1px solid var(--color-border)', padding: 16, display: 'flex', alignItems: 'center', gap: 14 }}>
@@ -1011,7 +1038,7 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
 }
 
 /* ================= App shell ================= */
-const BASKET_KEY = 'gd_basket', HISTORY_KEY = 'gd_recipes', PREFS_KEY = 'gd_prefs', COUNTRY_KEY = 'gd_country', ONBOARD_KEY = 'gd_onboarded';
+const BASKET_KEY = 'gd_basket', HISTORY_KEY = 'gd_recipes', PREFS_KEY = 'gd_prefs', COUNTRY_KEY = 'gd_country', ONBOARD_KEY = 'gd_onboarded', LAST_VISIT_KEY = 'gd_last_visit';
 const HRS36 = 36 * 3600 * 1000;
 
 export default function GreenDaysApp() {
@@ -1054,6 +1081,19 @@ export default function GreenDaysApp() {
     return { items: {}, startedAt: null };
   });
   const basket = basketState.items;
+  // Deep link from a field-guide page (/produce/<slug>/?add=<slug>): drop the
+  // item straight into the basket and jump to it, then scrub the param so
+  // reloads/shares don't keep re-adding it.
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('add');
+    if (!id || !byId(id)) return;
+    add(id, 1);
+    setTab('list');
+    params.delete('add');
+    const qs = params.toString();
+    window.history.replaceState(null, '', window.location.pathname + (qs ? `?${qs}` : ''));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const setBasket = (updater) => setBasketState((st) => {
     const items = typeof updater === 'function' ? updater(st.items) : updater;
     const had = Object.keys(st.items).length > 0, has = Object.keys(items).length > 0;
@@ -1112,8 +1152,24 @@ export default function GreenDaysApp() {
     setOnboarded(true);
     setTab('home');
   };
-  // app_open once per page load; first_run = onboarding will show.
-  React.useEffect(() => { ev('app_open', { v1: onboarded ? 0 : 1 }); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // app_open once per page load; first_run = onboarding will show. Also tags
+  // repeat visitation: gd_last_visit (a date-only string, no PII, not shared
+  // cross-site, never sent to the server — same non-cookie pattern as
+  // gd_onboarded) lets us mark this session returning (v2) and how many days
+  // since the last one (v3), then rolls forward to today.
+  React.useEffect(() => {
+    let returning = 0, daysSince;
+    try {
+      const last = localStorage.getItem(LAST_VISIT_KEY);
+      const today = new Date().toISOString().slice(0, 10);
+      if (last) {
+        returning = 1;
+        daysSince = Math.max(0, Math.round((Date.parse(today) - Date.parse(last)) / 86400000));
+      }
+      localStorage.setItem(LAST_VISIT_KEY, today);
+    } catch (e) { /* private mode: no persistence, always counts as new */ }
+    ev('app_open', { v1: onboarded ? 0 : 1, v2: returning, v3: daysSince, detail: SOURCE });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Market country: edge-detected via the API, correctable from the header.
   const [country, setCountry] = React.useState(() => {
@@ -1134,6 +1190,17 @@ export default function GreenDaysApp() {
         if (!countryPicked && ctx.country && COUNTRIES.some(([c]) => c === ctx.country)) setCountry(ctx.country);
       })
       .catch(() => { /* offline or vite-only dev: keep defaults */ });
+  }, []);
+
+  // Which produce ids have a field-guide page — published at build time to
+  // dist/produce/manifest.json (scripts/build-field-guide.mjs), fetched once
+  // here rather than static-importing content/ into the app bundle.
+  const [fieldGuideSlugs, setFieldGuideSlugs] = React.useState(() => new Set());
+  React.useEffect(() => {
+    fetch(ASSET('produce/manifest.json'))
+      .then((r) => (r.ok ? r.json() : []))
+      .then((slugs) => setFieldGuideSlugs(new Set(slugs)))
+      .catch(() => { /* offline or vite-only dev: no field-guide links */ });
   }, []);
   const persistCountry = (c) => {
     setCountry(c);
@@ -1242,7 +1309,7 @@ export default function GreenDaysApp() {
             <RecipeDetailScreen view={recipeView} onOpen={setDetail} onSearchProduce={searchProduce} onClose={closeRecipe}
               onGoHome={() => { closeRecipe(); setTab('home'); }} onTryAnother={tryAnother} />
           )}
-          {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={add} onClose={() => setDetail(null)} onOpen={setDetail} />}
+          {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={add} onClose={() => setDetail(null)} onOpen={setDetail} fieldGuideSlugs={fieldGuideSlugs} />}
           {showPrefs && <PrefsScreen prefs={prefs} firstRun={!prefs.seen} country={country} onSetCountry={pickCountry} onSave={savePrefs} onClose={() => setShowPrefs(false)} />}
         </div>
 

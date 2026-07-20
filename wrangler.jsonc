@@ -9,12 +9,23 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
-    // API calls and the private metrics page invoke the Worker; everything else
-    // is served straight from static assets (SPA has no client-side routes).
-    "run_worker_first": ["/greendays/api/*", "/greendays/metrics"]
+    // The Worker must see every request first: it 301-redirects the retired
+    // lab.ryantnance.com/greendays* host to greendays.day and handles the API
+    // routes; everything else on greendays.day falls through to static assets.
+    "run_worker_first": true
   },
   "routes": [
     {
+      // Custom Domain (whole-hostname, no path pattern): Cloudflare creates the
+      // DNS record + certificate for greendays.day automatically on deploy —
+      // the zone currently has zero DNS records, so this (not a wildcard
+      // zone route) is required for the domain to resolve at all.
+      "pattern": "greendays.day",
+      "custom_domain": true
+    },
+    {
+      // Retired path — kept only so the Worker can 301 old links/bookmarks
+      // to greendays.day instead of 404ing.
       "pattern": "lab.ryantnance.com/greendays*",
       "zone_name": "ryantnance.com"
     }

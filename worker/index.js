@@ -1,6 +1,8 @@
 /* Green Days Worker — static assets plus the small API.
-   Routes: GET  /greendays/api/context  → market country, band, season, weather line
-           POST /greendays/api/recipe   → the recipe engine (Anthropic API)
+   Serves greendays.day at the root; 301-redirects the retired
+   lab.ryantnance.com/greendays* host to greendays.day.
+   Routes: GET  /api/context  → market country, band, season, weather line
+           POST /api/recipe   → the recipe engine (Anthropic API)
    Everything else is served from the built front-end by the assets binding. */
 import PRODUCE from '../data/produce.json';
 import MARKETS from '../data/markets.json';
@@ -60,6 +62,7 @@ const CLIENT_EVENTS = new Set([
   'app_open', 'onboarding_step', 'market_selected', 'prefs_set', 'search', 'tab_view',
   'product_view', 'produce_added', 'fallback_shown', 'basket_cook', 'recipe_try_another',
   'grab_one_more_tap', 'offseason_added', 'error', 'time_to_first_content',
+  'affiliate_cta_tap',
 ]);
 function track(env, name, f = {}) {
   if (!env.GD_EVENTS) return; // binding absent (e.g. vite-only dev) → no-op
@@ -75,16 +78,25 @@ function track(env, name, f = {}) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    if (url.pathname === '/greendays/api/context') return handleContext(request);
-    if (url.pathname === '/greendays/api/recipe') return handleRecipe(request, env, ctx);
-    if (url.pathname === '/greendays/api/event') return handleEvent(request, env);
-    if (url.pathname === '/greendays/metrics') return handleMetrics(request, env);
-    if (url.pathname.startsWith('/greendays/api/')) return json({ error: 'not found' }, 404);
+
+    // Old lab.ryantnance.com/greendays* links now live at the greendays.day
+    // root — permanently redirect, preserving the rest of the path/query so
+    // deep links (e.g. .../greendays/metrics?key=…) keep working.
+    if (url.hostname === 'lab.ryantnance.com') {
+      const newPath = url.pathname.replace(/^\/greendays/, '') || '/';
+      return Response.redirect(`https://greendays.day${newPath}${url.search}`, 301);
+    }
+
+    if (url.pathname === '/api/context') return handleContext(request);
+    if (url.pathname === '/api/recipe') return handleRecipe(request, env, ctx);
+    if (url.pathname === '/api/event') return handleEvent(request, env);
+    if (url.pathname === '/metrics') return handleMetrics(request, env);
+    if (url.pathname.startsWith('/api/')) return json({ error: 'not found' }, 404);
     return env.ASSETS.fetch(request);
   },
 };
 
-/* ---- POST /greendays/api/event ----
+/* ---- POST /api/event ----
    Client beacon. Allowlist the event name, add country/band from the edge, and
    track. Only schema fields are read; a `query` field (or anything else) is
    ignored, so search text can never be logged. Always 204. */
@@ -100,7 +112,7 @@ async function handleEvent(request, env) {
   return new Response(null, { status: 204 });
 }
 
-/* ---- GET /greendays/api/context ----
+/* ---- GET /api/context ----
    Edge country → language + climate band, with the v1 static weather line. */
 function handleContext(request) {
   const country = (request.cf && request.cf.country) || 'PT';
@@ -118,7 +130,7 @@ function handleContext(request) {
   );
 }
 
-/* ---- POST /greendays/api/recipe ---- */
+/* ---- POST /api/recipe ---- */
 async function handleRecipe(request, env, ctx) {
   if (request.method !== 'POST') return json({ error: 'POST only' }, 405);
 

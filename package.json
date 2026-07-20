@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npm run build && wrangler dev --port 8787",
-    "build": "vite build",
+    "build": "vite build && node scripts/build-field-guide.mjs",
     "eval": "python3 eval/grade.py --no-judge --out eval/runs/local-$(date +%F).json",
     "predeploy": "bash scripts/predeploy-eval.sh",
     "deploy": "npm run predeploy && wrangler deploy"
@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
+    "sharp": "^0.34.5",
     "vite": "^6.0.0",
     "wrangler": "^4.0.0"
   }

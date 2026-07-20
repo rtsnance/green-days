@@ -16,10 +16,10 @@ trap 'kill $DEV_PID 2>/dev/null || true; rm -rf "$PERSIST_DIR"' EXIT
 
 # wait for it to answer
 for i in $(seq 1 30); do
-  curl -sf http://localhost:8787/greendays >/dev/null && break
+  curl -sf http://localhost:8787/ >/dev/null && break
   sleep 1
 done
 
 # run the deterministic gate against the local worker
-GREENDAYS_RECIPE_URL="http://localhost:8787/greendays/api/recipe" \
+GREENDAYS_RECIPE_URL="http://localhost:8787/api/recipe" \
   python3 eval/grade.py --no-judge --out "eval/runs/predeploy-$(date +%F-%H%M).json"

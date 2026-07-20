@@ -4,6 +4,7 @@
    the climate band for the recipe banner. Do not invent produce outside it. */
 import RAW from '../data/produce.json';
 import MARKETS from '../data/markets.json';
+import AFFILIATES from '../data/affiliates.json';
 
 export { MARKETS };
 export const ASSET = (p) => import.meta.env.BASE_URL + p;
@@ -91,6 +92,9 @@ export const bandOf = (country) => (market(country) || {}).band || 'temperate';
 // The correctable market list for the picker (14 countries).
 export const COUNTRIES = Object.entries(MARKETS).map(([code, m]) => [code, m.country]);
 export const countryLabel = (code) => (market(code) || {}).country || code || 'Europe';
+
+/* ---- affiliate delivery partners: ISO country → partner, or null if uncovered ---- */
+export const affiliatePartnerOf = (country) => AFFILIATES[(country || '').toUpperCase()] || null;
 
 // {band}-{season} banner asset, e.g. "mediterranean-summer".
 export function seasonBannerSrc(country, month) {

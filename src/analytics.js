@@ -1,6 +1,6 @@
 /* Green Days — client analytics beacon.
    Privacy-first: no cookies, no persistent id, no PII, no query text. Events go
-   to the Worker's /greendays/api/event, which adds country/band from the edge.
+   to the Worker's /api/event, which adds country/band from the edge.
    SID groups events within one page load only; it lives in memory and is never
    stored, so it is not a persistent identifier (keeps us consent-banner-free). */
 
@@ -8,7 +8,25 @@ export const SID = (typeof crypto !== 'undefined' && crypto.randomUUID)
   ? crypto.randomUUID()
   : Math.random().toString(36).slice(2) + Date.now().toString(36);
 
-const ENDPOINT = import.meta.env.BASE_URL + 'api/event'; // /greendays/api/event
+// One-time, session-scoped traffic-source hint, read at load and never
+// persisted (no localStorage — same non-cookie posture as SID above).
+// A utm_source query param wins (explicit campaign intent); otherwise an
+// external document.referrer's hostname; otherwise null (direct/unknown),
+// in which case app_open sends no detail at all, same as today.
+export const SOURCE = (() => {
+  try {
+    const utm = new URLSearchParams(window.location.search).get('utm_source');
+    if (utm) return 'utm:' + utm.slice(0, 60);
+    const ref = document.referrer;
+    if (ref) {
+      const host = new URL(ref).hostname;
+      if (host && host !== window.location.hostname) return 'ref:' + host.slice(0, 60);
+    }
+  } catch (_) { /* malformed referrer/URL, ignore */ }
+  return null;
+})();
+
+const ENDPOINT = import.meta.env.BASE_URL + 'api/event'; // /api/event
 
 // Send one event. Only schema fields are ever included — never a query string.
 export function ev(name, data = {}) {

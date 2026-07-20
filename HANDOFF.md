@@ -1,7 +1,15 @@
 # Green Days — session handoff
 
 Pick-up notes for continuing work on the Green Days app in a fresh session.
-Last updated 2026-07-12.
+Last updated 2026-07-19.
+
+**2026-07-19 — domain migration to greendays.day.** The app moved off the
+`lab.ryantnance.com/greendays` sub-path onto its own domain, greendays.day,
+served at the root. Code changes (vite base path, wrangler routes, worker
+routing/redirect, doc links) are done; see "Cloudflare config" below and the
+Deploy checklist for the manual dashboard steps (zone must be active, Web
+Analytics site swap) still needed before/after the first deploy on the new
+domain.
 
 Green Days is a farmers-market mobile web app: the season sets a vivid palette of
 in-season produce, you tap a basket, and a recipe engine returns one produce-first
@@ -12,9 +20,9 @@ recipe. Europe-first, one-handed, glanceable. **Live in production.**
 ## TL;DR
 
 - **Repo:** `~/Design/greendays` (git, **no remote** — deploy ships to prod, there's nothing to push).
-- **Live app:** https://lab.ryantnance.com/greendays/
+- **Live app:** https://greendays.day/ (migrated 2026-07-19 from lab.ryantnance.com/greendays; that URL now 301-redirects to greendays.day).
 - **Deploy:** `cd ~/Design/greendays && npm run deploy` (runs `vite build` then `wrangler deploy`). Wrangler is authed as rtsnance@gmail.com.
-- **Stack:** Vite + React front-end (base path `/greendays/`) + a single Cloudflare Worker that serves the built static assets AND the small API, on the route `lab.ryantnance.com/greendays*`. Coexists with the existing Lab worker.
+- **Stack:** Vite + React front-end (base path `/`, root of its own domain) + a single Cloudflare Worker that serves the built static assets AND the small API, on the route `greendays.day/*`. Also still bound to the retired `lab.ryantnance.com/greendays*` route purely to issue the redirect.
 - **Data source of truth:** `data/produce.json` (149 items) and `data/markets.json` (14 countries). Both are imported by the front-end *and* the Worker — one source, no drift, no separate `produceData.js`.
 - **Node:** installed user-space at `~/.local/opt/node-v22.17.0`, symlinked into `~/.local/bin` (`node`/`npm`/`npx`). This machine had no JS runtime before.
 
@@ -28,8 +36,8 @@ There's also an auto-loaded memory file at
 ```sh
 cd ~/Design/greendays
 npm install          # if node_modules is missing
-npm run dev          # build + `wrangler dev` on http://localhost:8787  (serves /greendays/…)
-npm run build        # front-end only → dist/greendays
+npm run dev          # build + `wrangler dev` on http://localhost:8787  (serves /…)
+npm run build        # front-end only → dist/
 npm run deploy       # build + deploy to production
 ```
 
@@ -49,7 +57,7 @@ src/GreenDaysApp.jsx   the whole app (Home, Basket, Recipe, Recipes list, Detail
                        Onboarding, Preferences, shell/tab bar)
 src/produce.js         data layer: seasonality (band-aware), langOf/bandOf/COUNTRIES
                        from markets.json, decorate(p, band), search matcher
-src/analytics.js       client beacon: ev()/evOnce()/SID → POST /greendays/api/event
+src/analytics.js       client beacon: ev()/evOnce()/SID → POST /api/event
 src/app.css            phone-shell CSS (incl. --app-height iOS viewport fix)
 src/gd/…               design-system tokens + components.css (Astryx "gd-*" classes)
 public/assets/produce/ produce prints ({slug}@2x/@3x/-off@2x) — 141 png
@@ -70,8 +78,8 @@ Original handoff docs (design specs, decisions, KPIs) live at
 
 ## Cloudflare config (`wrangler.jsonc`)
 
-- **Worker name:** `greendays`; **route:** `lab.ryantnance.com/greendays*` (zone `ryantnance.com`). Worker-route precedence leaves the rest of Lab untouched.
-- **Assets:** `directory: ./dist`, `binding: ASSETS`, `not_found_handling: single-page-application`. `run_worker_first: ["/greendays/api/*", "/greendays/metrics"]` — only those hit the Worker first; everything else is served straight from static assets.
+- **Worker name:** `greendays`; **routes:** `greendays.day/*` (zone `greendays.day`, primary) and the retired `lab.ryantnance.com/greendays*` (zone `ryantnance.com`, kept only so the Worker fires a 301 to greendays.day for old links).
+- **Assets:** `directory: ./dist`, `binding: ASSETS`, `not_found_handling: single-page-application`. `run_worker_first: true` — every request hits the Worker first (needed for the hostname-based redirect check); everything on greendays.day that isn't `/api/*` or `/metrics` falls through to `env.ASSETS.fetch()`.
 - **Bindings:** `GD_EVENTS` (Analytics Engine dataset **`Green_Days_Early_Days`**), `RECIPE_RL` (per-IP rate limit, 8/min), var `RECIPE_MODEL="claude-sonnet-5"`.
 - **Secrets** (set via `wrangler secret put …`, never in code):
   - `ANTHROPIC_API_KEY` — recipe engine
@@ -109,13 +117,13 @@ Two layers, both privacy-first (cookieless, no consent banner, no PII, no query 
 1. **Cloudflare Web Analytics** — traffic + web vitals. Beacon token wired into `index.html` (`data-cf-beacon`). Dashboard: Cloudflare → Analytics → Web Analytics.
 2. **Workers Analytics Engine** — product events, dataset **`Green_Days_Early_Days`**.
    - Client: `src/analytics.js` `ev()`/`evOnce()`, `SID` = per-page-load `crypto.randomUUID` (in memory only). Fires the catalog (app_open, onboarding_step, market_selected, prefs_set, search [outcome only], tab_view, product_view, produce_added, offseason_added, fallback_shown, basket_cook, recipe_try_another, grab_one_more_tap, error).
-   - Server: `worker/index.js` `track()` + `POST /greendays/api/event` (allowlisted, adds country/band from `request.cf.country`) + `recipe_generated` (latency/ok/tokens) from the recipe endpoint.
+   - Server: `worker/index.js` `track()` + `POST /api/event` (allowlisted, adds country/band from `request.cf.country`) + `recipe_generated` (latency/ok/tokens) from the recipe endpoint.
 
-### Metrics dashboard — `/greendays/metrics`
+### Metrics dashboard — `/metrics`
 
 Private, gated by `METRICS_TOKEN` (via `?key=` or HTTP Basic; 401 otherwise). Renders the 8 KPIs from `KPIs_and_Dashboard.md` (activation, onboarding drop-off, recipes/session, try-another, search no-results, top fallback produce, market distribution, engine health). `?days=N` sets the window; `?format=json` returns raw numbers.
 
-- **Access:** https://lab.ryantnance.com/greendays/metrics?key=pBnvjiJlcQ04jgOyVHxhX0GDpgAUri1Y
+- **Access:** https://greendays.day/metrics?key=pBnvjiJlcQ04jgOyVHxhX0GDpgAUri1Y
   (this is the current `METRICS_TOKEN` — rotate with `wrangler secret put METRICS_TOKEN`; **keep this file off any public remote**).
 - Uses dataset name `Green_Days_Early_Days` and `quantileWeighted` (the AE-supported percentile fn).
 
@@ -123,6 +131,8 @@ Private, gated by `METRICS_TOKEN` (via `?key=` or HTTP Basic; 401 otherwise). Re
 
 ## Deploy checklist / gotchas
 
+- **First deploy after the greendays.day migration:** confirmed 2026-07-19 via dashboard — the `greendays.day` zone is Active in the same Cloudflare account (`ca865799b50c1c223eb6c0408df5bebe`) as ryantnance.com, but it has **zero DNS records**. The `greendays.day` route in `wrangler.jsonc` is therefore declared as a Custom Domain (`"custom_domain": true`, no path wildcard) rather than a plain zone route — Cloudflare provisions the DNS record and TLS cert for it automatically on `wrangler deploy`, no manual DNS setup needed.
+- **Analytics, also done 2026-07-19:** enabled zone-level Real User Monitoring for `greendays.day` (dashboard → Speed → Real user monitoring → Enable Globally) — this is the modern replacement for the old manual `<script data-cf-beacon>` approach and needs no code/token. Removed the old script tag (it carried the retired `lab.ryantnance.com` site token — cc59b655ae044331bd01de84de778839 — and would have double-counted/mis-attributed traffic if left in). No further action needed here.
 - Deploy = `npm run deploy`. It now runs `npm run predeploy` first (boots a local `wrangler dev`, runs the 40-basket eval gate via `eval/grade.py --no-judge`, aborts the deploy on any hard-gate failure) and then `wrangler deploy`. See `eval/HANDOFF.md` for the eval harness, the two gate modes (fast mock vs. full judge baseline), and open prompt-quality issues found in the 2026-07-12 judge baseline (vegan/nut-allergy leaks, a banned word) that still need fixing in `worker/prompt.js`.
 - After deploy, browsers cache the built JS/CSS by content hash; hard-refresh if verifying UI. Favicon/OG are cached hard by clients and platforms.
 - Adding a **new binding** (e.g. Analytics Engine) requires that feature enabled on the account first, else `wrangler deploy` errors before uploading (safe — nothing partial).

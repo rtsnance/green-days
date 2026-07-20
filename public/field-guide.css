@@ -1,0 +1,151 @@
+/* Green Days — field guide / almanac pages (dist/produce/*, dist/season/).
+   Standalone stylesheet: these pages are static HTML served outside the
+   compiled app bundle, so this hand-copies the handful of design tokens
+   (background, ink, accent, body font) from src/gd/tokens/ rather than
+   trying to share the hashed app CSS. Keep in sync by eye if the app's
+   palette in src/gd/tokens/colors.css moves. */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --fg-bg: #fcf8ee;
+  --fg-ink: #1a2023;
+  --fg-ink-soft: #4d606b;
+  --fg-accent: #42917c;
+  --fg-border: #e5e5ea;
+  --fg-font: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fg-bg);
+  color: var(--fg-ink);
+  font-family: var(--fg-font);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fg-page {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.fg-back {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--fg-accent);
+  text-decoration: none;
+  margin-bottom: 32px;
+}
+.fg-back:hover { text-decoration: underline; }
+
+.fg-eyebrow {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-ink-soft);
+}
+
+.fg-entry h1 {
+  margin: 0 0 20px;
+  font-size: 32px;
+  line-height: 1.12;
+  font-weight: 800;
+}
+
+.fg-illustration {
+  display: block;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 16px;
+}
+
+.fg-body {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--fg-ink);
+}
+.fg-body em { font-style: italic; }
+
+.fg-cta {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--fg-accent);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+}
+.fg-cta:hover { opacity: 0.92; }
+
+.fg-noted {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--fg-ink-soft);
+}
+
+.fg-season-header h1 {
+  margin: 0 0 24px;
+  font-size: 32px;
+  line-height: 1.12;
+  font-weight: 800;
+}
+
+.fg-season-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fg-season-item a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 8px;
+  text-decoration: none;
+  color: var(--fg-ink);
+  border-bottom: 1px solid var(--fg-border);
+}
+
+.fg-season-item img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.fg-season-item strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.fg-season-item em {
+  display: block;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--fg-ink-soft);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg-bg: #14181a;
+    --fg-ink: #f2f8f5;
+    --fg-ink-soft: #a9b6bc;
+    --fg-accent: #6fc4a4;
+    --fg-border: #2a3336;
+  }
+  .fg-cta { color: #0e1a16; }
+}
