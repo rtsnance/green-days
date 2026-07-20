@@ -59,7 +59,6 @@ export async function handleMetrics(request, env) {
     recipes: `SELECT SUM(_sample_interval) AS recipes, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='recipe_generated' AND timestamp > ${I}`,
     tryAnother: `SELECT blob1 AS event, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1 IN ('recipe_generated','recipe_try_another') AND timestamp > ${I} GROUP BY event`,
     search: `SELECT double1 AS has_results, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='search' AND timestamp > ${I} GROUP BY has_results`,
-    fallback: `SELECT blob4 AS produce, SUM(_sample_interval) AS shows FROM ${DATASET} WHERE blob1='fallback_shown' AND timestamp > ${I} GROUP BY produce ORDER BY shows DESC LIMIT 15`,
     market: `SELECT blob2 AS country, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY country ORDER BY sessions DESC`,
     fieldGuide: `SELECT blob4 AS produce, SUM(_sample_interval) AS adds FROM ${DATASET} WHERE blob1='field_guide_add' AND timestamp > ${I} GROUP BY produce ORDER BY adds DESC`,
     health: `SELECT quantileWeighted(0.5)(double1, _sample_interval) AS p50_ms, quantileWeighted(0.95)(double1, _sample_interval) AS p95_ms, SUM(double2 * _sample_interval) / SUM(_sample_interval) AS ok_rate, SUM(double3 * _sample_interval) / SUM(_sample_interval) AS avg_tokens, SUM(_sample_interval) AS recipes FROM ${DATASET} WHERE blob1='recipe_generated' AND timestamp > ${I}`,
@@ -112,7 +111,6 @@ export async function handleMetrics(request, env) {
   (rows.search || []).forEach((r) => { (num(r.has_results) === 1 ? (hit += num(r.n)) : (miss += num(r.n))); });
   const search = { has_results: hit, no_results: miss, miss_rate: (hit + miss) ? miss / (hit + miss) : null };
 
-  const fallback = (rows.fallback || []).map((r) => ({ produce: r.produce || '(unknown)', shows: num(r.shows) }));
   const market = (rows.market || []).map((r) => ({ country: r.country || '', name: countryName(r.country), sessions: num(r.sessions) }));
 
   const fieldGuideByProduce = (rows.fieldGuide || []).map((r) => ({ produce: r.produce || '(unknown)', adds: num(r.adds) }));
@@ -137,7 +135,7 @@ export async function handleMetrics(request, env) {
     median_days_since_return: rows.recency && rows.recency.length && rc.median_days != null ? num(rc.median_days) : null,
   };
 
-  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, fallback, market, field_guide: fieldGuide, health, retention, errors };
+  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, market, field_guide: fieldGuide, health, retention, errors };
 
   if (wantJson) return json(metrics, 200);
   return html(renderPage(metrics, key), 200);
@@ -240,11 +238,6 @@ function renderPage(m, key) {
       `<div class="big small">${pct(m.search.miss_rate)}</div>
        <div class="note">${m.search.no_results} misses ÷ ${m.search.has_results + m.search.no_results} searches</div>`, e.search);
 
-  const maxFb = Math.max(1, ...m.fallback.map((f) => f.shows));
-  const fallback = card('Top fallback produce', m.fallback.length ?
-    m.fallback.map((f) => `<div class="row"><span class="k">${esc(f.produce)}</span><span class="bar"><i style="width:${(f.shows / maxFb * 100).toFixed(0)}%"></i></span><span class="v">${f.shows}</span></div>`).join('')
-    : NO_DATA, e.fallback);
-
   const maxMk = Math.max(1, ...m.market.map((r) => r.sessions));
   const market = card('Market distribution', m.market.length ?
     m.market.map((r) => `<div class="row"><span class="k">${esc(r.name)}${r.country ? ` <span style="color:var(--muted);font-weight:600">${esc(r.country)}</span>` : ''}</span><span class="bar"><i style="width:${(r.sessions / maxMk * 100).toFixed(0)}%"></i></span><span class="v">${r.sessions}</span></div>`).join('')
@@ -266,7 +259,7 @@ function renderPage(m, key) {
        <div><div class="n">${H.avg_tokens == null ? '—' : Math.round(H.avg_tokens)}</div><div class="l">avg tokens</div></div>
      </div><div class="note">${H.recipes} recipes generated</div>` : NO_DATA, e.health);
 
-  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${fallback}${market}${fieldGuideCard}${health}</div>`;
+  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${market}${fieldGuideCard}${health}</div>`;
   return shell(grid, m.days, key);
 }
 
