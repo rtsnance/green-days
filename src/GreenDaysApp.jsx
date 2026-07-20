@@ -1081,16 +1081,21 @@ export default function GreenDaysApp() {
     return { items: {}, startedAt: null };
   });
   const basket = basketState.items;
-  // Deep link from a field-guide page (/produce/<slug>/?add=<slug>): drop the
-  // item straight into the basket and jump to it, then scrub the param so
-  // reloads/shares don't keep re-adding it.
+  // Deep link from a field-guide page (/produce/<slug>/?add=<slug>&src=field_guide):
+  // drop the item straight into the basket and jump to it, then scrub the
+  // params so reloads/shares don't keep re-adding it. `src=field_guide` is an
+  // explicit tag, not inferred from document.referrer — that referrer is
+  // same-origin for this hop and would never register in analytics.js's
+  // SOURCE detection, which only looks at cross-origin referrers/utm_source.
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('add');
     if (!id || !byId(id)) return;
     add(id, 1);
     setTab('list');
+    if (params.get('src') === 'field_guide') ev('field_guide_add', { detail: id });
     params.delete('add');
+    params.delete('src');
     const qs = params.toString();
     window.history.replaceState(null, '', window.location.pathname + (qs ? `?${qs}` : ''));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

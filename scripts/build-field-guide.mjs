@@ -177,7 +177,7 @@ async function entryPage(entry) {
         <p class="fg-eyebrow">Field guide &middot; ${escapeHtml(produce.season)}</p>
         <h1>${escapeHtml(produce.name_en)}</h1>
         <p class="fg-body">${renderBody(entry.body)}</p>
-        <a class="fg-cta" href="/?add=${encodeURIComponent(produce.id)}">Add to basket</a>
+        <a class="fg-cta" href="/?add=${encodeURIComponent(produce.id)}&src=field_guide">Add to basket</a>
         <p class="fg-noted">Noted ${escapeHtml(entry.first_noted)}</p>
       </article>
     </main>`;

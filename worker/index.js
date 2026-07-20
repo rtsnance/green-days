@@ -62,7 +62,7 @@ const CLIENT_EVENTS = new Set([
   'app_open', 'onboarding_step', 'market_selected', 'prefs_set', 'search', 'tab_view',
   'product_view', 'produce_added', 'fallback_shown', 'basket_cook', 'recipe_try_another',
   'grab_one_more_tap', 'offseason_added', 'error', 'time_to_first_content',
-  'affiliate_cta_tap',
+  'affiliate_cta_tap', 'field_guide_add',
 ]);
 function track(env, name, f = {}) {
   if (!env.GD_EVENTS) return; // binding absent (e.g. vite-only dev) → no-op
