@@ -84,7 +84,7 @@ Original handoff docs (design specs, decisions, KPIs) live at
 - **Secrets** (set via `wrangler secret put …`, never in code):
   - `ANTHROPIC_API_KEY` — recipe engine
   - `AE_API_TOKEN` — account-scoped API token, Account Analytics · Read (for the metrics SQL API)
-  - `CF_ACCOUNT_ID` — `ca865799b50c1c223eb6c0408df5bebe`
+  - `CF_ACCOUNT_ID` — see Cloudflare dashboard (redacted here, repo is public)
   - `METRICS_TOKEN` — gate for the metrics page
 
 ---
@@ -123,16 +123,15 @@ Two layers, both privacy-first (cookieless, no consent banner, no PII, no query 
 
 Private, gated by `METRICS_TOKEN` (via `?key=` or HTTP Basic; 401 otherwise). Renders the 8 KPIs from `KPIs_and_Dashboard.md` (activation, onboarding drop-off, recipes/session, try-another, search no-results, top fallback produce, market distribution, engine health). `?days=N` sets the window; `?format=json` returns raw numbers.
 
-- **Access:** https://greendays.day/metrics?key=pBnvjiJlcQ04jgOyVHxhX0GDpgAUri1Y
-  (this is the current `METRICS_TOKEN` — rotate with `wrangler secret put METRICS_TOKEN`; **keep this file off any public remote**).
+- **Access:** `https://greendays.day/metrics?key=<METRICS_TOKEN>` — see Cloudflare secrets (redacted here, repo is public as of 2026-07-20; if the value that was previously written here is still live, rotate it with `wrangler secret put METRICS_TOKEN`).
 - Uses dataset name `Green_Days_Early_Days` and `quantileWeighted` (the AE-supported percentile fn).
 
 ---
 
 ## Deploy checklist / gotchas
 
-- **First deploy after the greendays.day migration:** confirmed 2026-07-19 via dashboard — the `greendays.day` zone is Active in the same Cloudflare account (`ca865799b50c1c223eb6c0408df5bebe`) as ryantnance.com, but it has **zero DNS records**. The `greendays.day` route in `wrangler.jsonc` is therefore declared as a Custom Domain (`"custom_domain": true`, no path wildcard) rather than a plain zone route — Cloudflare provisions the DNS record and TLS cert for it automatically on `wrangler deploy`, no manual DNS setup needed.
-- **Analytics, also done 2026-07-19:** enabled zone-level Real User Monitoring for `greendays.day` (dashboard → Speed → Real user monitoring → Enable Globally) — this is the modern replacement for the old manual `<script data-cf-beacon>` approach and needs no code/token. Removed the old script tag (it carried the retired `lab.ryantnance.com` site token — cc59b655ae044331bd01de84de778839 — and would have double-counted/mis-attributed traffic if left in). No further action needed here.
+- **First deploy after the greendays.day migration:** confirmed 2026-07-19 via dashboard — the `greendays.day` zone is Active in the same Cloudflare account as ryantnance.com, but it has **zero DNS records**. The `greendays.day` route in `wrangler.jsonc` is therefore declared as a Custom Domain (`"custom_domain": true`, no path wildcard) rather than a plain zone route — Cloudflare provisions the DNS record and TLS cert for it automatically on `wrangler deploy`, no manual DNS setup needed.
+- **Analytics, also done 2026-07-19:** enabled zone-level Real User Monitoring for `greendays.day` (dashboard → Speed → Real user monitoring → Enable Globally) — this is the modern replacement for the old manual `<script data-cf-beacon>` approach and needs no code/token. Removed the old script tag (it carried the retired `lab.ryantnance.com` site token — redacted here, repo is public — and would have double-counted/mis-attributed traffic if left in). No further action needed here.
 - Deploy = `npm run deploy`. It now runs `npm run predeploy` first (boots a local `wrangler dev`, runs the 40-basket eval gate via `eval/grade.py --no-judge`, aborts the deploy on any hard-gate failure) and then `wrangler deploy`. See `eval/HANDOFF.md` for the eval harness, the two gate modes (fast mock vs. full judge baseline), and open prompt-quality issues found in the 2026-07-12 judge baseline (vegan/nut-allergy leaks, a banned word) that still need fixing in `worker/prompt.js`.
 - After deploy, browsers cache the built JS/CSS by content hash; hard-refresh if verifying UI. Favicon/OG are cached hard by clients and platforms.
 - Adding a **new binding** (e.g. Analytics Engine) requires that feature enabled on the account first, else `wrangler deploy` errors before uploading (safe — nothing partial).
