@@ -10,6 +10,7 @@ import {
   seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf,
 } from './produce.js';
 import { ev, evOnce, SID, SOURCE } from './analytics.js';
+import { renderFieldNoteCard } from './fieldNote.js';
 
 const MONTH_NAME = new Date().toLocaleString('en-GB', { month: 'long' });
 const SEASON_RANK = { peak: 0, in: 1, out: 2 };
@@ -475,7 +476,7 @@ function useRotatingCue(active, ms = 1400) {
   return COOK_CUES[i];
 }
 
-function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, onTryAnother }) {
+function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, onGoHome, onTryAnother }) {
   const { entry, status, error, live } = view;
   // Names, banner, and seasonality follow the market the recipe was cooked in.
   const rc = entry ? entry.country : 'PT';
@@ -611,6 +612,33 @@ function RecipeDetailScreen({ view, onOpen, onSearchProduce, onClose, onGoHome, 
               {r.time && <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 14, fontWeight: 700, color: 'var(--color-text-primary)' }}><Icon d={I.clock} size={17} style={{ color: 'var(--color-text-secondary)' }} /> {r.time}</span>}
               <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 14, fontWeight: 700, color: 'var(--color-text-primary)' }}><Icon d={I.users} size={17} style={{ color: 'var(--color-text-secondary)' }} /> Serves 2</span>
             </div>
+          </div>
+
+          <div className="gd-reveal" style={{ animationDelay: '40ms' }}>
+            <button
+              className="gd-btn gd-btn--primary"
+              onClick={async () => {
+                ev('field_note_share_tap');
+                const blob = await renderFieldNoteCard({
+                  country: rc,
+                  dateISO: new Date(entry.at).toISOString(),
+                  stars,
+                  title: r.title,
+                  noteNumber: history.length + 1,
+                });
+                const file = new File([blob], 'field-note.png', { type: 'image/png' });
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                  navigator.share({ files: [file], url: 'https://greendays.day/?src=field_notes' }).catch(() => {});
+                } else {
+                  const a = document.createElement('a');
+                  a.href = URL.createObjectURL(blob);
+                  a.download = 'field-note.png';
+                  a.click();
+                }
+              }}
+            >
+              Share your field note
+            </button>
           </div>
 
           {/* ZONE 2 — Your stars (fresh, dominant) */}
@@ -1311,7 +1339,7 @@ export default function GreenDaysApp() {
             {tab === 'recipes' && <RecipesListScreen history={history} onOpenEntry={openEntry} onGoHome={() => setTab('home')} />}
           </div>
           {recipeView && (
-            <RecipeDetailScreen view={recipeView} onOpen={setDetail} onSearchProduce={searchProduce} onClose={closeRecipe}
+            <RecipeDetailScreen view={recipeView} history={history} onOpen={setDetail} onSearchProduce={searchProduce} onClose={closeRecipe}
               onGoHome={() => { closeRecipe(); setTab('home'); }} onTryAnother={tryAnother} />
           )}
           {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={add} onClose={() => setDetail(null)} onOpen={setDetail} fieldGuideSlugs={fieldGuideSlugs} />}
