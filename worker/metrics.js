@@ -62,6 +62,10 @@ export async function handleMetrics(request, env) {
     market: `SELECT blob2 AS country, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY country ORDER BY sessions DESC`,
     fieldGuide: `SELECT blob4 AS produce, SUM(_sample_interval) AS adds FROM ${DATASET} WHERE blob1='field_guide_add' AND timestamp > ${I} GROUP BY produce ORDER BY adds DESC`,
     fieldNote: `SELECT blob4 AS produce, SUM(_sample_interval) AS shares FROM ${DATASET} WHERE blob1='field_note_share_tap' AND timestamp > ${I} GROUP BY produce ORDER BY shares DESC`,
+    notifyIntent: `SELECT blob4 AS produce, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='notify_intent' AND timestamp > ${I} GROUP BY produce ORDER BY n DESC`,
+    notifyPerm: `SELECT blob4 AS result, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='notify_permission' AND timestamp > ${I} GROUP BY result ORDER BY n DESC`,
+    displayMode: `SELECT blob5 AS mode, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY mode`,
+    pwaInstall: `SELECT SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='pwa_install' AND timestamp > ${I}`,
     health: `SELECT quantileWeighted(0.5)(double1, _sample_interval) AS p50_ms, quantileWeighted(0.95)(double1, _sample_interval) AS p95_ms, SUM(double2 * _sample_interval) / SUM(_sample_interval) AS ok_rate, SUM(double3 * _sample_interval) / SUM(_sample_interval) AS avg_tokens, SUM(_sample_interval) AS recipes FROM ${DATASET} WHERE blob1='recipe_generated' AND timestamp > ${I}`,
     // double2 on app_open = returning (1) vs first-ever-visit (0), set client-side
     // from the non-cookie gd_last_visit flag (see src/GreenDaysApp.jsx).
@@ -122,6 +126,32 @@ export async function handleMetrics(request, env) {
   const fieldNoteByProduce = (rows.fieldNote || []).map((r) => ({ produce: r.produce || '(unknown)', shares: num(r.shares) }));
   const fieldNote = { total: fieldNoteByProduce.reduce((s, r) => s + r.shares, 0), by_produce: fieldNoteByProduce };
 
+  // "Tell me when it's back": intent (platform-independent) and the permission
+  // result are deliberately two measurements — high intent with a low grant
+  // rate is a readable outcome, not a failure. See HANDOFF §5.
+  const notifyByProduce = (rows.notifyIntent || []).map((r) => ({ produce: r.produce || '(unknown)', n: num(r.n) }));
+  const notifyPermRows  = (rows.notifyPerm || []).map((r) => ({ result: r.result || '(unknown)', n: num(r.n) }));
+  const notifyIntentTotal = notifyByProduce.reduce((s, r) => s + r.n, 0);
+  const granted = (notifyPermRows.find((r) => r.result === 'granted') || {}).n || 0;
+  const permTotal = notifyPermRows.reduce((s, r) => s + r.n, 0);
+  const notify = {
+    intent_total: notifyIntentTotal,
+    by_produce: notifyByProduce,
+    permission: notifyPermRows,
+    grant_rate: permTotal ? granted / permTotal : null,
+  };
+
+  let standalone = 0, browser = 0;
+  (rows.displayMode || []).forEach((r) => {
+    if (r.mode === 'standalone') standalone += num(r.sessions); else browser += num(r.sessions);
+  });
+  const install = {
+    standalone_sessions: standalone,
+    browser_sessions: browser,
+    standalone_rate: (standalone + browser) ? standalone / (standalone + browser) : null,
+    android_installs: num(((rows.pwaInstall || [])[0] || {}).n),
+  };
+
   const h = (rows.health && rows.health[0]) || {};
   const health = {
     p50_ms: rows.health && rows.health.length ? num(h.p50_ms) : null,
@@ -141,7 +171,7 @@ export async function handleMetrics(request, env) {
     median_days_since_return: rows.recency && rows.recency.length && rc.median_days != null ? num(rc.median_days) : null,
   };
 
-  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, market, field_guide: fieldGuide, field_note: fieldNote, health, retention, errors };
+  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, market, field_guide: fieldGuide, field_note: fieldNote, install, notify, health, retention, errors };
 
   if (wantJson) return json(metrics, 200);
   return html(renderPage(metrics, key), 200);
@@ -263,6 +293,21 @@ function renderPage(m, key) {
      ${m.field_note.by_produce.map((f) => `<div class="row"><span class="k">${esc(f.produce)}</span><span class="bar"><i style="width:${(f.shares / maxFn * 100).toFixed(0)}%"></i></span><span class="v">${f.shares}</span></div>`).join('')}`
     : NO_DATA, e.fieldNote);
 
+  const I2 = m.install;
+  const installCard = card('Install / standalone', (I2.standalone_sessions + I2.browser_sessions) ?
+    `<div class="big">${I2.standalone_rate == null ? '—' : (I2.standalone_rate * 100).toFixed(1)}<span class="unit">%</span></div>
+     <div class="note">${I2.standalone_sessions} of ${I2.standalone_sessions + I2.browser_sessions} sessions ran as an installed app · ${I2.android_installs} Android install events (iOS fires none)</div>`
+    : NO_DATA, e.displayMode || e.pwaInstall);
+
+  const maxNi = Math.max(1, ...m.notify.by_produce.map((f) => f.n));
+  const notifyCard = card('Tell me when it\'s back', m.notify.intent_total ?
+    `<div class="big small">${m.notify.intent_total}</div>
+     <div class="note">taps on out-of-season produce · ${m.notify.grant_rate == null ? 'no permission results yet' : (m.notify.grant_rate * 100).toFixed(0) + '% granted'}</div>
+     ${m.notify.permission.map((r) => `<div class="row"><span class="k">${esc(r.result)}</span><span class="v">${r.n}</span></div>`).join('')}
+     <div class="note">declared demand, ranked — this is the authoring queue</div>
+     ${m.notify.by_produce.map((f) => `<div class="row"><span class="k">${esc(f.produce)}</span><span class="bar"><i style="width:${(f.n / maxNi * 100).toFixed(0)}%"></i></span><span class="v">${f.n}</span></div>`).join('')}`
+    : NO_DATA, e.notifyIntent || e.notifyPerm);
+
   const H = m.health;
   const health = card('Recipe engine health', H.recipes ?
     `<div class="hstat">
@@ -272,7 +317,7 @@ function renderPage(m, key) {
        <div><div class="n">${H.avg_tokens == null ? '—' : Math.round(H.avg_tokens)}</div><div class="l">avg tokens</div></div>
      </div><div class="note">${H.recipes} recipes generated</div>` : NO_DATA, e.health);
 
-  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${market}${fieldGuideCard}${fieldNoteCard}${health}</div>`;
+  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${market}${fieldGuideCard}${fieldNoteCard}${installCard}${notifyCard}${health}</div>`;
   return shell(grid, m.days, key);
 }
 

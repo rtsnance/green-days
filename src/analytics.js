@@ -26,6 +26,17 @@ export const SOURCE = (() => {
   return null;
 })();
 
+// Is this session running as an installed home-screen app, or in a browser tab?
+// Read once at load. Sent as app_open's `extra` so install adoption can be
+// measured as a share of all sessions, without a second beacon.
+export const DISPLAY_MODE = (() => {
+  try {
+    if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) return 'standalone';
+    if (window.navigator.standalone === true) return 'standalone'; // iOS Safari
+    return 'browser';
+  } catch (_) { return 'browser'; }
+})();
+
 const ENDPOINT = import.meta.env.BASE_URL + 'api/event'; // /api/event
 
 // Send one event. Only schema fields are ever included — never a query string.

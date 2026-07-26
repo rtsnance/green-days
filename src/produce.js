@@ -59,6 +59,31 @@ export function seasonalityOf(seasonStr, month, band) {
 /* ---- catalogue, computed for the shopper's current month ---- */
 export const MONTH = new Date().getMonth(); // 0-indexed
 
+export const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'];
+
+// For an out-of-season item: the next month index its season begins, walking
+// forward from `from`. Returns null when there is no meaningful "next" —
+// year-round/unparseable seasons, or a "(Med)" item viewed from a temperate
+// market, where seasonalityOf() reports 'out' all year and a month label would
+// be a lie.
+export function nextSeasonMonth(seasonStr, from = MONTH, band) {
+  const s = (seasonStr || '').toLowerCase();
+  if (band && band !== 'mediterranean' && /\(med/.test(s)) return null;
+  const set = seasonMonths(seasonStr);
+  if (set === null || set.size === 0) return null;
+  for (let i = 1; i <= 12; i++) {
+    const m = (from + i) % 12;
+    if (set.has(m)) return m;
+  }
+  return null;
+}
+
+export const nextSeasonLabel = (seasonStr, from = MONTH, band) => {
+  const m = nextSeasonMonth(seasonStr, from, band);
+  return m == null ? null : MONTH_NAMES[m];
+};
+
 export const PRODUCE = RAW.map((it) => ({
   id: it.id,
   name: it.name_en,

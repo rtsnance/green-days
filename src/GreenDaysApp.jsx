@@ -7,9 +7,9 @@ import React from 'react';
 import {
   PRODUCE, byId, decorate, MONTH, ASSET,
   langOf, bandOf, countryLabel, COUNTRIES,
-  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf,
+  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel,
 } from './produce.js';
-import { ev, evOnce, SID, SOURCE } from './analytics.js';
+import { ev, evOnce, SID, SOURCE, DISPLAY_MODE } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
 
 const MONTH_NAME = new Date().toLocaleString('en-GB', { month: 'long' });
@@ -820,6 +820,112 @@ function RecipesListScreen({ history, onOpenEntry, onGoHome }) {
   );
 }
 
+/* ================= "Tell me when it's back" =================
+   The permission ask, fired at peak intent — the moment someone has just been
+   told they can't have the thing. The button itself is the soft pre-prompt: the
+   real browser dialog only ever fires for someone who already tapped yes, so the
+   one-shot permission prompt is never spent on an uninterested user.
+   iOS cannot prompt at all until the site is installed to the Home Screen (no
+   install API exists), so iPhone gets the instruction instead. That is a bigger
+   ask, delivered at the only moment anyone would tolerate it. */
+const isIOS = () => {
+  try {
+    return /iphone|ipad|ipod/i.test(navigator.userAgent)
+      || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); // iPadOS
+  } catch (_) { return false; }
+};
+const isStandalone = () => {
+  try {
+    return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+      || window.navigator.standalone === true;
+  } catch (_) { return false; }
+};
+function rememberNotify(id) {
+  try {
+    const cur = JSON.parse(localStorage.getItem(NOTIFY_KEY) || '[]');
+    if (cur.indexOf(id) === -1) { cur.push(id); localStorage.setItem(NOTIFY_KEY, JSON.stringify(cur)); }
+  } catch (_) { /* private mode — the intent event still fired, which is the measurement */ }
+}
+
+function NotifyWhenBack({ p, lang, band }) {
+  const label = nextSeasonLabel(p.season, MONTH, band);
+  const [state, setState] = React.useState(() => {
+    try { return JSON.parse(localStorage.getItem(NOTIFY_KEY) || '[]').indexOf(p.id) > -1 ? 'saved' : 'idle'; }
+    catch (_) { return 'idle'; }
+  });
+  if (!label) return null; // no honest month to promise → no button
+  const name = (lang && p.name_local[lang]) || p.name;
+
+  const confirm = () => {
+    try {
+      const body = `Noted — we'll tell you when ${name} is back. Around ${label}.`;
+      if (navigator.serviceWorker && navigator.serviceWorker.ready) {
+        navigator.serviceWorker.ready
+          .then((r) => r.showNotification('green days', { body, icon: '/assets/icon-192.png', tag: 'gd-notify-' + p.id }))
+          .catch(() => { try { new Notification('green days', { body }); } catch (_) {} });
+      } else {
+        new Notification('green days', { body });
+      }
+    } catch (_) { /* confirmation is a nicety, never a failure path */ }
+  };
+
+  const onTap = () => {
+    ev('notify_intent', { detail: p.id, extra: label });
+    if (isIOS() && !isStandalone()) {
+      ev('notify_permission', { detail: 'needs_install' });
+      setState('needs-install');
+      return;
+    }
+    if (typeof Notification === 'undefined') {
+      ev('notify_permission', { detail: 'unsupported' });
+      setState('blocked');
+      return;
+    }
+    let done = false;
+    const handle = (result) => {
+      if (done) return; done = true;
+      ev('notify_permission', { detail: result });
+      if (result === 'granted') { rememberNotify(p.id); confirm(); setState('saved'); }
+      else setState('blocked');
+    };
+    try {
+      const r = Notification.requestPermission(handle); // older callback form
+      if (r && typeof r.then === 'function') r.then(handle).catch(() => handle('error'));
+    } catch (_) { handle('error'); }
+  };
+
+  if (state === 'saved') return (
+    <div style={{ marginTop: 12, fontSize: 13.5, fontWeight: 700, color: 'var(--color-text-accent)' }}>
+      Noted. We'll tell you around {label}.
+    </div>
+  );
+  if (state === 'needs-install') return (
+    <div style={{ marginTop: 12, fontSize: 13.5, lineHeight: 1.55, color: 'var(--color-text-secondary)' }}>
+      To be told when it's back, keep green days on your Home Screen — tap
+      <b> Share</b>, then <b>Add to Home Screen</b>. Open it from there and ask again.
+    </div>
+  );
+  if (state === 'blocked') return (
+    <div style={{ marginTop: 12, fontSize: 13.5, lineHeight: 1.55, color: 'var(--color-text-secondary)' }}>
+      Notifications are off for this site. Your browser settings can turn them back on.
+    </div>
+  );
+  return (
+    <button
+      onClick={onTap}
+      style={{ marginTop: 12, width: '100%', border: '1px solid var(--color-border)', cursor: 'pointer',
+               padding: '11px 12px', borderRadius: 'var(--radius-element)',
+               background: 'var(--color-background-surface)', fontFamily: 'var(--font-body)',
+               fontWeight: 800, fontSize: 14.5, color: 'var(--color-text-primary)',
+               boxShadow: 'var(--shadow-low)' }}>
+      Tell me when it's back
+      <span style={{ display: 'block', fontWeight: 600, fontSize: 12.5, color: 'var(--color-text-tertiary)', marginTop: 2 }}>
+        usually around {label}
+      </span>
+    </button>
+  );
+}
+
 /* ================= Product detail overlay ================= */
 function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, fieldGuideSlugs }) {
   const band = bandOf(country);
@@ -868,6 +974,7 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, field
               <span style={{ fontWeight: 800, fontSize: 15, color: 'var(--color-paprika)' }}>Better in {p.season}</span>
             </div>
             <div style={{ marginBottom: swap ? 14 : 0 }}><PaprikaTip text={outAdvice(p, country)} /></div>
+            <NotifyWhenBack p={p} lang={lang} band={band} />
             {swap && (
               <button onClick={() => onOpen(swap.id)} style={{ width: '100%', border: 'none', cursor: 'pointer', padding: 10, borderRadius: 'var(--radius-element)', background: 'var(--color-background-surface)', display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left', fontFamily: 'var(--font-body)', boxShadow: 'var(--shadow-low)' }}>
                 <div style={{ flexShrink: 0 }}><ProduceThumb p={swap} size={40} radius={12} /></div>
@@ -1066,7 +1173,7 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
 }
 
 /* ================= App shell ================= */
-const BASKET_KEY = 'gd_basket', HISTORY_KEY = 'gd_recipes', PREFS_KEY = 'gd_prefs', COUNTRY_KEY = 'gd_country', ONBOARD_KEY = 'gd_onboarded', LAST_VISIT_KEY = 'gd_last_visit';
+const BASKET_KEY = 'gd_basket', HISTORY_KEY = 'gd_recipes', PREFS_KEY = 'gd_prefs', COUNTRY_KEY = 'gd_country', ONBOARD_KEY = 'gd_onboarded', LAST_VISIT_KEY = 'gd_last_visit', NOTIFY_KEY = 'gd_notify';
 const HRS36 = 36 * 3600 * 1000;
 
 export default function GreenDaysApp() {
@@ -1201,8 +1308,17 @@ export default function GreenDaysApp() {
       }
       localStorage.setItem(LAST_VISIT_KEY, today);
     } catch (e) { /* private mode: no persistence, always counts as new */ }
-    ev('app_open', { v1: onboarded ? 0 : 1, v2: returning, v3: daysSince, detail: SOURCE });
+    ev('app_open', { v1: onboarded ? 0 : 1, v2: returning, v3: daysSince, detail: SOURCE, extra: DISPLAY_MODE });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Android/Chrome fires `appinstalled` on a real install. iOS fires nothing —
+  // there is no install API on iOS, so iOS installs are only ever visible
+  // later, via app_open's standalone display mode.
+  React.useEffect(() => {
+    const onInstalled = () => ev('pwa_install', { detail: 'appinstalled' });
+    window.addEventListener('appinstalled', onInstalled);
+    return () => window.removeEventListener('appinstalled', onInstalled);
+  }, []);
 
   // Market country: edge-detected via the API, correctable from the header.
   const [country, setCountry] = React.useState(() => {
