@@ -35,13 +35,14 @@ body {
 
 .fg-back {
   display: inline-block;
-  font-weight: 800;
-  font-size: 15px;
-  color: var(--fg-accent);
-  text-decoration: none;
   margin-bottom: 32px;
 }
-.fg-back:hover { text-decoration: underline; }
+.fg-back img {
+  display: block;
+  width: 132px;
+  height: auto;
+}
+.fg-back:hover { opacity: 0.75; }
 
 .fg-eyebrow {
   margin: 0 0 6px;
@@ -148,4 +149,7 @@ body {
     --fg-border: #2a3336;
   }
   .fg-cta { color: #0e1a16; }
+  /* The wordmark ships one fixed green (#529d7f). Lift it to roughly the
+     dark-mode accent so it doesn't sit dimmer than everything around it. */
+  .fg-back img { filter: brightness(1.2); }
 }

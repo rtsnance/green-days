@@ -105,6 +105,14 @@ const entries = files.map((f) => parseEntry(path.join(CONTENT_DIR, f))).map((ent
 entries.sort((a, b) => (a.first_noted < b.first_noted ? 1 : a.first_noted > b.first_noted ? -1 : 0));
 
 // ---- templates ----
+// Wordmark home link, shared by the entry pages and the almanac. public/
+// logo-green.svg is the identity asset with its viewBox trimmed to the
+// artwork's bounds, so the intrinsic ratio (592×172) is the drawn ratio and
+// the header spacing below it is CSS, not baked-in whitespace.
+const BACK_LINK = `      <a class="fg-back" href="/" aria-label="green days — home">
+        <img src="/logo-green.svg" alt="green days" width="132" height="38" />
+      </a>`;
+
 // `images`: ordered list of { url, width, height, alt } — repeated og:image
 // property groups, first one is the default most crawlers show.
 // `twitterImage`: the single image twitter:image points at (landscape reads
@@ -171,7 +179,7 @@ async function entryPage(entry) {
     : images[0];
 
   const bodyHtml = `    <main class="fg-page">
-      <a class="fg-back" href="/">green days</a>
+${BACK_LINK}
       <article class="fg-entry">
         <img class="fg-illustration" src="/assets/produce/${produce.illustration}@2x.png" alt="${escapeHtml(produce.name_en)}" width="240" height="240" />
         <p class="fg-eyebrow">Field guide &middot; ${escapeHtml(produce.season)}</p>
@@ -207,7 +215,7 @@ function seasonIndexPage(inSeason) {
         </li>`;
   }).join('\n');
   const bodyHtml = `    <main class="fg-page">
-      <a class="fg-back" href="/">green days</a>
+${BACK_LINK}
       <header class="fg-season-header">
         <p class="fg-eyebrow">Almanac</p>
         <h1>What's in season</h1>
