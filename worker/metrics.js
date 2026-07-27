@@ -3,8 +3,13 @@
    Engine SQL API and renders the KPIs from KPIs_and_Dashboard.md. Cross-event
    ratios are computed here from grouped rows (no reliance on IF() in SQL). */
 import MARKETS from '../data/markets.json';
+import AFFILIATES from '../data/affiliates.json';
 
 const DATASET = 'Green_Days_Early_Days';
+// Countries where a CTA actually renders — the denominator for tap rate tracks
+// data/affiliates.json, so adding a partner needs no change here. Codes are
+// re-filtered to A-Z since they are interpolated into SQL.
+const COVERED = Object.keys(AFFILIATES).filter((c) => /^[A-Z]{2}$/.test(c));
 const num = (x) => { const n = Number(x); return Number.isFinite(n) ? n : 0; };
 const pct = (x) => (x == null || !Number.isFinite(x) ? '—' : (x * 100).toFixed(1) + '%');
 const countryName = (c) => (MARKETS[c] && MARKETS[c].country) || (c || 'Unknown');
@@ -71,12 +76,23 @@ export async function handleMetrics(request, env) {
     // from the non-cookie gd_last_visit flag (see src/GreenDaysApp.jsx).
     retention: `SELECT double2 AS returning, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY returning`,
     recency: `SELECT quantileWeighted(0.5)(double3, _sample_interval) AS median_days FROM ${DATASET} WHERE blob1='app_open' AND double2=1 AND timestamp > ${I}`,
+    // blob4 on affiliate_cta_tap = partner_id (see src/GreenDaysApp.jsx Zone 8).
+    affiliate: `SELECT blob4 AS partner, blob2 AS country, SUM(_sample_interval) AS taps FROM ${DATASET} WHERE blob1='affiliate_cta_tap' AND timestamp > ${I} GROUP BY partner, country ORDER BY taps DESC`,
+    // Denominator: recipes generated in covered markets only. A tap rate against
+    // all recipes would be meaningless while most markets render no CTA at all.
+    affiliateBase: COVERED.length
+      ? `SELECT SUM(_sample_interval) AS recipes FROM ${DATASET} WHERE blob1='recipe_generated' AND blob2 IN (${COVERED.map((c) => `'${c}'`).join(',')}) AND timestamp > ${I}`
+      : null,
+    // blob4 on app_open = SOURCE from src/analytics.js ('utm:x' / 'ref:host'),
+    // empty when the visit was direct or the referrer was same-origin.
+    source: `SELECT blob4 AS source, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY source ORDER BY sessions DESC`,
   };
 
   // Run all queries; a single failing query degrades only its own card.
   const errors = {};
   const rows = {};
   await Promise.all(Object.entries(Q).map(async ([k, q]) => {
+    if (!q) { rows[k] = []; return; } // query disabled for this config (e.g. no covered markets)
     try { rows[k] = await aeSql(env, q); } catch (e) { errors[k] = String(e.message || e); rows[k] = []; }
   }));
 
@@ -171,7 +187,29 @@ export async function handleMetrics(request, env) {
     median_days_since_return: rows.recency && rows.recency.length && rc.median_days != null ? num(rc.median_days) : null,
   };
 
-  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, market, field_guide: fieldGuide, field_note: fieldNote, install, notify, health, retention, errors };
+  // Affiliate CTA: taps by partner, over recipes generated in covered markets.
+  // The rate is directional, not a true CTR — a recipe reopened from history
+  // shows the CTA again without generating a second recipe.
+  const affiliateByPartner = (rows.affiliate || []).map((r) => ({
+    partner: r.partner || '(unknown)', country: r.country || '', taps: num(r.taps),
+  }));
+  const affiliateTaps = affiliateByPartner.reduce((s, r) => s + r.taps, 0);
+  const affiliateBase = num(((rows.affiliateBase || [])[0] || {}).recipes);
+  const affiliate = {
+    covered_markets: COVERED,
+    taps: affiliateTaps,
+    by_partner: affiliateByPartner,
+    recipes_in_covered_markets: affiliateBase,
+    tap_rate: affiliateBase ? affiliateTaps / affiliateBase : null,
+  };
+
+  // Traffic source: blob4 on app_open. Empty means direct or same-origin.
+  const sourceRows = (rows.source || []).map((r) => ({ source: r.source || '(direct)', sessions: num(r.sessions) }));
+  const sourceTotal = sourceRows.reduce((s, r) => s + r.sessions, 0);
+  const known = sourceRows.filter((r) => r.source !== '(direct)').reduce((s, r) => s + r.sessions, 0);
+  const source = { total_sessions: sourceTotal, attributed_sessions: known, by_source: sourceRows };
+
+  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, market, field_guide: fieldGuide, field_note: fieldNote, install, notify, health, retention, affiliate, source, errors };
 
   if (wantJson) return json(metrics, 200);
   return html(renderPage(metrics, key), 200);
@@ -317,7 +355,24 @@ function renderPage(m, key) {
        <div><div class="n">${H.avg_tokens == null ? '—' : Math.round(H.avg_tokens)}</div><div class="l">avg tokens</div></div>
      </div><div class="note">${H.recipes} recipes generated</div>` : NO_DATA, e.health);
 
-  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${market}${fieldGuideCard}${fieldNoteCard}${installCard}${notifyCard}${health}</div>`;
+  const A = m.affiliate;
+  const maxAf = Math.max(1, ...A.by_partner.map((r) => r.taps));
+  const affiliateCard = card('Affiliate CTA taps', A.taps ?
+    `<div class="big small">${A.taps}</div>
+     <div class="note">${A.tap_rate == null ? 'no recipes in covered markets yet' : `${(A.tap_rate * 100).toFixed(1)}% of ${A.recipes_in_covered_markets} recipes cooked in ${A.covered_markets.join(', ')}`} · directional, not a true CTR</div>
+     ${A.by_partner.map((r) => `<div class="row"><span class="k">${esc(r.partner)}${r.country ? ` <span style="color:var(--muted);font-weight:600">${esc(r.country)}</span>` : ''}</span><span class="bar"><i style="width:${(r.taps / maxAf * 100).toFixed(0)}%"></i></span><span class="v">${r.taps}</span></div>`).join('')}`
+    : `${NO_DATA}<div class="note">CTA renders in ${A.covered_markets.length ? esc(A.covered_markets.join(', ')) : 'no markets — data/affiliates.json is empty'}</div>`,
+    e.affiliate || e.affiliateBase);
+
+  const S = m.source;
+  const maxSrc = Math.max(1, ...S.by_source.map((r) => r.sessions));
+  const sourceCard = card('Traffic source', S.total_sessions ?
+    `<div class="big small">${S.attributed_sessions}</div>
+     <div class="note">of ${S.total_sessions} sessions arrived with a utm_source or external referrer</div>
+     ${S.by_source.map((r) => `<div class="row"><span class="k">${esc(r.source)}</span><span class="bar"><i style="width:${(r.sessions / maxSrc * 100).toFixed(0)}%"></i></span><span class="v">${r.sessions}</span></div>`).join('')}`
+    : NO_DATA, e.source);
+
+  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${market}${fieldGuideCard}${fieldNoteCard}${installCard}${notifyCard}${affiliateCard}${sourceCard}${health}</div>`;
   return shell(grid, m.days, key);
 }
 
