@@ -118,8 +118,15 @@ export const bandOf = (country) => (market(country) || {}).band || 'temperate';
 export const COUNTRIES = Object.entries(MARKETS).map(([code, m]) => [code, m.country]);
 export const countryLabel = (code) => (market(code) || {}).country || code || 'Europe';
 
-/* ---- affiliate delivery partners: ISO country → partner, or null if uncovered ---- */
-export const affiliatePartnerOf = (country) => AFFILIATES[(country || '').toUpperCase()] || null;
+/* ---- affiliate delivery partners: ISO country → partner, or null if uncovered ----
+   Countries absent from data/affiliates.json get no CTA — that is the gating.
+   The https:// check is a second belt: a partner whose `url` is still a
+   placeholder (outreach not landed yet) is treated as uncovered rather than
+   rendered as a dead link, so a half-filled data file can never ship one. */
+export const affiliatePartnerOf = (country) => {
+  const a = AFFILIATES[(country || '').toUpperCase()];
+  return a && typeof a.url === 'string' && a.url.startsWith('https://') ? a : null;
+};
 
 // {band}-{season} banner asset, e.g. "mediterranean-summer".
 export function seasonBannerSrc(country, month) {

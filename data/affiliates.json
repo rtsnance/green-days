@@ -1,8 +1,3 @@
 {
-  "GB": { "partner_id": "abel_cole", "name": "Abel & Cole", "url": "PLACEHOLDER — replace with the approved Awin affiliate link for Abel & Cole" },
-  "PT": { "partner_id": "crowdfarming", "name": "CrowdFarming", "url": "PLACEHOLDER — replace with the approved Tradedoubler affiliate link for CrowdFarming" },
-  "ES": { "partner_id": "crowdfarming", "name": "CrowdFarming", "url": "PLACEHOLDER — replace with the approved Tradedoubler affiliate link for CrowdFarming" },
-  "FR": { "partner_id": "crowdfarming", "name": "CrowdFarming", "url": "PLACEHOLDER — replace with the approved Tradedoubler affiliate link for CrowdFarming" },
-  "DE": { "partner_id": "crowdfarming", "name": "CrowdFarming", "url": "PLACEHOLDER — replace with the approved Tradedoubler affiliate link for CrowdFarming" },
-  "IT": { "partner_id": "crowdfarming", "name": "CrowdFarming", "url": "PLACEHOLDER — replace with the approved Tradedoubler affiliate link for CrowdFarming" }
+  "GB": { "partner_id": "abel_cole", "name": "Abel & Cole", "url": "https://www.awin1.com/cread.php?awinmid=6388&awinaffid=2994583&ued=https%3A%2F%2Fwww.abelandcole.co.uk%2F" }
 }
