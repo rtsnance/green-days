@@ -8,6 +8,7 @@ import PRODUCE from '../data/produce.json';
 import MARKETS from '../data/markets.json';
 import { SYSTEM_PROMPT, SYSTEM_PROMPT_HAIKU, pickSystemPrompt, RECIPE_SCHEMA, buildUserMessage } from './prompt.js';
 import { handleMetrics } from './metrics.js';
+import { withSecurityHeaders } from './headers.js';
 
 const BY_ID = new Map(PRODUCE.map((p) => [p.id, p]));
 const DIETS = new Set(['none', 'vegetarian', 'vegan']);
@@ -78,24 +79,33 @@ function track(env, name, f = {}) {
 
 export default {
   async fetch(request, env, ctx) {
-    const url = new URL(request.url);
-
-    // Old lab.ryantnance.com/greendays* links now live at the greendays.day
-    // root — permanently redirect, preserving the rest of the path/query so
-    // deep links (e.g. .../greendays/metrics?key=…) keep working.
-    if (url.hostname === 'lab.ryantnance.com') {
-      const newPath = url.pathname.replace(/^\/greendays/, '') || '/';
-      return Response.redirect(`https://greendays.day${newPath}${url.search}`, 301);
-    }
-
-    if (url.pathname === '/api/context') return handleContext(request);
-    if (url.pathname === '/api/recipe') return handleRecipe(request, env, ctx);
-    if (url.pathname === '/api/event') return handleEvent(request, env);
-    if (url.pathname === '/metrics') return handleMetrics(request, env);
-    if (url.pathname.startsWith('/api/')) return json({ error: 'not found' }, 404);
-    return env.ASSETS.fetch(request);
+    return withSecurityHeaders(await route(request, env, ctx));
   },
 };
+
+async function route(request, env, ctx) {
+  const url = new URL(request.url);
+
+  // Old lab.ryantnance.com/greendays* links now live at the greendays.day
+  // root — permanently redirect, preserving the rest of the path/query so
+  // deep links keep working. `key` is stripped: /metrics is HTTP Basic only
+  // now, and a token in a query string should never be forwarded to another
+  // hostname (it would show up in that host's logs and in the Referer).
+  if (url.hostname === 'lab.ryantnance.com') {
+    const newPath = url.pathname.replace(/^\/greendays/, '') || '/';
+    const params = new URLSearchParams(url.search);
+    params.delete('key');
+    const qs = params.toString();
+    return Response.redirect(`https://greendays.day${newPath}${qs ? `?${qs}` : ''}`, 301);
+  }
+
+  if (url.pathname === '/api/context') return handleContext(request);
+  if (url.pathname === '/api/recipe') return handleRecipe(request, env, ctx);
+  if (url.pathname === '/api/event') return handleEvent(request, env);
+  if (url.pathname === '/metrics') return handleMetrics(request, env);
+  if (url.pathname.startsWith('/api/')) return json({ error: 'not found' }, 404);
+  return env.ASSETS.fetch(request);
+}
 
 /* ---- POST /api/event ----
    Client beacon. Allowlist the event name, add country/band from the edge, and

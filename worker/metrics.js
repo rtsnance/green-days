@@ -1,5 +1,5 @@
 /* Green Days — private metrics page at /metrics.
-   Access-gated (METRICS_TOKEN via ?key= or HTTP Basic). Queries the Analytics
+   Access-gated (METRICS_TOKEN via HTTP Basic). Queries the Analytics
    Engine SQL API and renders the KPIs from KPIs_and_Dashboard.md. Cross-event
    ratios are computed here from grouped rows (no reliance on IF() in SQL). */
 import MARKETS from '../data/markets.json';
@@ -25,20 +25,35 @@ async function aeSql(env, query) {
   return Array.isArray(j.data) ? j.data : [];
 }
 
-// --- auth: ?key= or HTTP Basic must equal METRICS_TOKEN; 401 otherwise ---
+// Constant-time string compare, so a wrong token leaks nothing through timing.
+// Lengths are compared first (they are not secret); equal-length inputs are
+// diffed byte by byte with no early exit.
+function safeEqual(a, b) {
+  const A = new TextEncoder().encode(a);
+  const B = new TextEncoder().encode(b);
+  if (A.length !== B.length) return false;
+  let diff = 0;
+  for (let i = 0; i < A.length; i++) diff |= A[i] ^ B[i];
+  return diff === 0;
+}
+
+// --- auth: HTTP Basic must carry METRICS_TOKEN; 401 otherwise ---
+// Basic only, deliberately: a `?key=` in the URL would land in Cloudflare access
+// logs, browser history, and any outbound Referer header. The browser replays
+// Basic credentials on every same-origin request, so the window links below
+// stay authenticated without carrying the secret in a query string.
 function authorized(request, env) {
   const token = env.METRICS_TOKEN;
   if (!token) return false; // never open when the secret is unset
-  const url = new URL(request.url);
-  if (url.searchParams.get('key') === token) return true;
   const h = request.headers.get('Authorization') || '';
-  if (h.startsWith('Basic ')) {
-    try {
-      const [user, pass] = atob(h.slice(6)).split(':');
-      if (user === token || pass === token) return true;
-    } catch (_) { /* malformed header */ }
+  if (!h.startsWith('Basic ')) return false;
+  try {
+    const [user, pass] = atob(h.slice(6)).split(':');
+    // Either field may hold the token — browsers prompt for both.
+    return safeEqual(user || '', token) || safeEqual(pass || '', token);
+  } catch (_) {
+    return false; // malformed header
   }
-  return false;
 }
 
 export async function handleMetrics(request, env) {
@@ -49,12 +64,11 @@ export async function handleMetrics(request, env) {
   const url = new URL(request.url);
   const days = Math.min(365, Math.max(1, parseInt(url.searchParams.get('days'), 10) || 7));
   const wantJson = url.searchParams.get('format') === 'json';
-  const key = url.searchParams.get('key') || ''; // carried into pill links so switching windows keeps auth
 
   if (!env.CF_ACCOUNT_ID || !env.AE_API_TOKEN) {
     const msg = { error: 'metrics_not_configured', detail: 'Set CF_ACCOUNT_ID and AE_API_TOKEN secrets.' };
     if (wantJson) return json(msg, 200);
-    return html(renderNotConfigured(days, key), 200);
+    return html(renderNotConfigured(days), 200);
   }
 
   const I = `NOW() - INTERVAL '${days}' DAY`;
@@ -212,7 +226,7 @@ export async function handleMetrics(request, env) {
   const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, market, field_guide: fieldGuide, field_note: fieldNote, install, notify, health, retention, affiliate, source, errors };
 
   if (wantJson) return json(metrics, 200);
-  return html(renderPage(metrics, key), 200);
+  return html(renderPage(metrics), 200);
 }
 
 /* ================= rendering ================= */
@@ -222,8 +236,7 @@ const html = (body, status = 200) => new Response(body, { status, headers: { 'co
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const NO_DATA = '<div class="empty">no data yet</div>';
 
-function shell(inner, days, key) {
-  const kq = key ? `&key=${encodeURIComponent(key)}` : '';
+function shell(inner, days) {
   return `<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><title>Green Days · metrics</title>
@@ -267,7 +280,7 @@ function shell(inner, days, key) {
   footer { margin-top:26px; color:var(--muted); font-size:12px; }
 </style></head><body><div class="wrap">
 <header><h1><span class="g">green days</span> · metrics</h1><div class="sub">last ${days} day${days === 1 ? '' : 's'}</div></header>
-<div class="windows">${[1, 7, 14, 30, 90].map((d) => `<a class="${d === days ? 'on' : ''}" href="?days=${d}${kq}">${d}d</a>`).join('')}</div>
+<div class="windows">${[1, 7, 14, 30, 90].map((d) => `<a class="${d === days ? 'on' : ''}" href="?days=${d}">${d}d</a>`).join('')}</div>
 ${inner}
 <footer>Aggregate-only, cookieless. Generated ${esc(new Date().toUTCString())}.</footer>
 </div></body></html>`;
@@ -277,7 +290,7 @@ function card(title, inner, err) {
   return `<div class="card"><h2>${esc(title)}</h2>${inner}${err ? `<div class="err">query error: ${esc(err)}</div>` : ''}</div>`;
 }
 
-function renderPage(m, key) {
+function renderPage(m) {
   const e = m.errors;
 
   const activation = card('Activation rate',
@@ -373,12 +386,12 @@ function renderPage(m, key) {
     : NO_DATA, e.source);
 
   const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${market}${fieldGuideCard}${fieldNoteCard}${installCard}${notifyCard}${affiliateCard}${sourceCard}${health}</div>`;
-  return shell(grid, m.days, key);
+  return shell(grid, m.days);
 }
 
-function renderNotConfigured(days, key) {
+function renderNotConfigured(days) {
   const inner = `<div class="card"><h2>Not configured</h2>
     <div class="empty">Set the <b>CF_ACCOUNT_ID</b> and <b>AE_API_TOKEN</b> secrets, then reload.</div>
     <div class="note">wrangler secret put CF_ACCOUNT_ID · wrangler secret put AE_API_TOKEN</div></div>`;
-  return shell(inner, days, key);
+  return shell(inner, days);
 }
