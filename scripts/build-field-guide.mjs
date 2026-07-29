@@ -22,6 +22,20 @@ const PIN_SIZE = { width: 683, height: 1024 };
 const CARD_SIZE = { width: 1024, height: 538 };
 const RAW_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp'];
 
+// Pinterest's Auto-publish (Settings → Bulk create Pins → Connect RSS Feed)
+// polls dist/produce/feed.xml within 24h and turns each <item> into a Pin on
+// one chosen board. It reads <title>, <description>, <link>, and the image
+// from <enclosure>/<media:content>. It has NO field for alt text and none for
+// the AI-Modified flag — which is why the feed points at a SECRET staging
+// board, so pins get labelled by hand before going public. RSS 2.0 only;
+// Atom is not supported.
+//
+// FEED_SINCE is the duplicate guard. Everything first noted on or before this
+// date was pinned by hand, and Pinterest will happily pin it again — so only
+// entries whose first_noted is strictly AFTER this date enter the feed. Move
+// it forward only once you have manually pinned past that point.
+const FEED_SINCE = '2026-07-28';
+
 function findRawSource(id) {
   for (const ext of RAW_EXTENSIONS) {
     const p = path.join(RAW_DIR, id + ext);
@@ -67,6 +81,11 @@ function parseEntry(file) {
   for (const key of ['id', 'first_noted', 'in_season']) {
     if (!(key in fm)) throw new Error(`${file}: missing required frontmatter key "${key}"`);
   }
+  // Optional: `pin_title` and `pin_description` carry the Pinterest copy into
+  // feed.xml. They exist because og:title ("Pomegranate — green days field
+  // guide") is far weaker for Pinterest search than a keyword-first line like
+  // "How to Pick and Open a Pomegranate — European Market Field Guide".
+  // Values may contain colons — only the first colon splits key from value.
   return { ...fm, body: body.trim(), file };
 }
 
@@ -235,6 +254,65 @@ ${items}
   });
 }
 
+// ---- RSS feed (Pinterest auto-publish) ----
+// RFC 822 date, which RSS 2.0 requires. first_noted is a plain YYYY-MM-DD, so
+// anchor it at midday UTC — that way no timezone shifts it onto the day before.
+function rfc822(dateStr) {
+  const d = new Date(`${dateStr}T12:00:00Z`);
+  if (Number.isNaN(d.getTime())) throw new Error(`bad first_noted "${dateStr}" — expected YYYY-MM-DD`);
+  return d.toUTCString();
+}
+
+// The vertical Pinterest crop when there's a raw source, otherwise the app's
+// square illustration. `length` is a byte count RSS wants on <enclosure>; the
+// crops are written before this runs, so statting them is safe.
+function feedImage(entry) {
+  const { produce } = entry;
+  const pin = path.join(DIST_DIR, 'produce', entry.id, 'og-pin.png');
+  if (fs.existsSync(pin)) {
+    return { url: `${SITE_URL}/produce/${produce.id}/og-pin.png`, length: fs.statSync(pin).size };
+  }
+  const fallback = path.join(DIST_DIR, 'assets/produce', `${produce.illustration}@2x.png`);
+  return {
+    url: `${SITE_URL}/assets/produce/${produce.illustration}@2x.png`,
+    length: fs.existsSync(fallback) ? fs.statSync(fallback).size : 0,
+  };
+}
+
+function rssFeed(feedEntries) {
+  const items = feedEntries.map((entry) => {
+    const { produce } = entry;
+    const link = `${SITE_URL}/produce/${produce.id}/`;
+    const title = entry.pin_title || `${produce.name_en} — green days field guide`;
+    // Pinterest shows a long description, so don't clip to the 155-char
+    // og:description length — give it the whole note where there's no
+    // hand-written pin_description.
+    const description = entry.pin_description || excerpt(entry.body, 480);
+    const img = feedImage(entry);
+    return `    <item>
+      <title>${escapeHtml(title)}</title>
+      <link>${link}</link>
+      <guid isPermaLink="true">${link}</guid>
+      <pubDate>${rfc822(entry.first_noted)}</pubDate>
+      <description>${escapeHtml(description)}</description>
+      <enclosure url="${img.url}" type="image/png" length="${img.length}" />
+      <media:content url="${img.url}" medium="image" type="image/png" />
+    </item>`;
+  }).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>green days — seasonal produce field guide</title>
+    <link>${SITE_URL}/season/</link>
+    <description>Field notes on what turns up at European markets — local names, what to look for, and the simplest thing to do with it.</description>
+    <language>en</language>
+    <atom:link href="${SITE_URL}/produce/feed.xml" rel="self" type="application/rss+xml" />
+${items}
+  </channel>
+</rss>
+`;
+}
+
 // ---- write ----
 fs.mkdirSync(DIST_DIR, { recursive: true });
 let cropped = 0;
@@ -257,8 +335,27 @@ const produceDir = path.join(DIST_DIR, 'produce');
 fs.mkdirSync(produceDir, { recursive: true });
 fs.writeFileSync(path.join(produceDir, 'manifest.json'), JSON.stringify(entries.map((e) => e.id)));
 
+// Oldest first: Pinterest publishes the oldest item in the feed first, so
+// emitting in that order keeps the queue's behaviour legible when reading the
+// raw XML.
+const feedEntries = entries
+  .filter((e) => e.first_noted > FEED_SINCE)
+  .sort((a, b) => (a.first_noted < b.first_noted ? -1 : a.first_noted > b.first_noted ? 1 : 0));
+fs.writeFileSync(path.join(produceDir, 'feed.xml'), rssFeed(feedEntries));
+
 const fallback = entries.length - cropped;
 console.log(
   `field guide: wrote ${entries.length} entr${entries.length === 1 ? 'y' : 'ies'} + /season/ (${inSeason.length} in season)` +
   ` — ${cropped} with OG crops from produce_raw/, ${fallback} on the @2x.png fallback`
 );
+console.log(
+  `feed.xml: ${feedEntries.length} item${feedEntries.length === 1 ? '' : 's'} (first_noted after ${FEED_SINCE})` +
+  (feedEntries.length ? ` — ${feedEntries.map((e) => e.id).join(', ')}` : ' — nothing new to auto-publish')
+);
+const noPinCopy = feedEntries.filter((e) => !e.pin_title);
+if (noPinCopy.length) {
+  console.warn(
+    `  ⚠ no pin_title on ${noPinCopy.map((e) => e.id).join(', ')} — these will pin with the weak ` +
+    `"<name> — green days field guide" title. Add pin_title/pin_description to the entry frontmatter.`
+  );
+}
