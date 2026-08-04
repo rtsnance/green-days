@@ -94,6 +94,22 @@ body {
   color: var(--fg-ink-soft);
 }
 
+.fg-line {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--fg-border);
+  font-size: 13px;
+  color: var(--fg-ink-soft);
+}
+.fg-line a {
+  /* reading-strength green (--color-text-green in src/gd/tokens/colors.css):
+     the raw accent #42917c is display-only at this size (3.55:1 on cream). */
+  color: #35735b;
+  font-weight: 700;
+  text-decoration: none;
+}
+.fg-line a:hover { text-decoration: underline; }
+
 .fg-season-header h1 {
   margin: 0 0 24px;
   font-size: 32px;
@@ -152,4 +168,5 @@ body {
   /* The wordmark ships one fixed green (#529d7f). Lift it to roughly the
      dark-mode accent so it doesn't sit dimmer than everything around it. */
   .fg-back img { filter: brightness(1.2); }
+  .fg-line a { color: var(--fg-accent); }
 }

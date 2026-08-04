@@ -132,6 +132,13 @@ const BACK_LINK = `      <a class="fg-back" href="/" aria-label="green days — 
         <img src="/logo-green.svg" alt="green days" width="132" height="38" />
       </a>`;
 
+// Quiet footer link to The Greengage Line (the Substack). The field-guide
+// pages are the Pinterest-discovered surface, so every permanent page feeds
+// the list. Plain outbound link — nothing tracked on our side; utm_source
+// only tells Substack's own dashboard where a subscriber came from.
+const LINE_LINK = `      <p class="fg-line">The Greengage Line: dispatches from the market year, on every turning day.
+        <a href="https://thegreengageline.substack.com/?utm_source=greendays.day" rel="noopener">Subscribe</a></p>`;
+
 // `images`: ordered list of { url, width, height, alt } — repeated og:image
 // property groups, first one is the default most crawlers show.
 // `twitterImage`: the single image twitter:image points at (landscape reads
@@ -207,6 +214,7 @@ ${BACK_LINK}
         <a class="fg-cta" href="/?add=${encodeURIComponent(produce.id)}&src=field_guide">Add to basket</a>
         <p class="fg-noted">Noted ${escapeHtml(entry.first_noted)}</p>
       </article>
+${LINE_LINK}
     </main>`;
   return pageShell({
     title: `${produce.name_en} — green days field guide`,
@@ -242,6 +250,7 @@ ${BACK_LINK}
       <ul class="fg-season-list">
 ${items}
       </ul>
+${LINE_LINK}
     </main>`;
   const ogImage = { url: `${SITE_URL}/assets/og.png`, alt: 'green days — a linocut still-life of market produce' };
   return pageShell({
