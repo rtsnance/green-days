@@ -1,0 +1,60 @@
+# greendays.day
+#
+# Two jobs: point crawlers at the sitemap, and reserve TDM rights.
+#
+# Until 2026-08-06 there was no first-party robots.txt, so Cloudflare served its
+# managed default — content signals but no sitemap reference, and no sitemap to
+# reference anyway. Every field-guide page was undiscoverable: nothing on the
+# open web linked to it and nothing told a crawler it existed. Adding this file
+# REPLACED Cloudflare's managed version rather than merging with it, which is
+# why the Content-Signal line below had to be restored by hand.
+#
+# CONTENT SIGNALS — as a condition of accessing this website, you agree to abide
+# by the following content signals:
+#
+#   (a) If a content-signal = yes, you may collect content for the corresponding
+#       use.
+#   (b) If a content-signal = no, you may not collect content for the
+#       corresponding use.
+#   (c) If the website operator does not include a content signal for a
+#       corresponding use, the website operator neither grants nor restricts
+#       permission via content signal with respect to the corresponding use.
+#
+# The content signals and their meanings are:
+#
+#   search:   building a search index and providing search results (e.g.
+#             returning hyperlinks and short excerpts from your website's
+#             contents). Search does not include providing AI-generated search
+#             summaries.
+#   ai-input: inputting content into one or more AI models (e.g. retrieval
+#             augmented generation, grounding, or other real-time taking of
+#             content for generative AI search answers).
+#   ai-train: training or fine-tuning AI models.
+#
+# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF
+# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT
+# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.
+#
+# The policy below restores exactly what Cloudflare was serving: search=yes,
+# ai-train=no, and ai-input deliberately OMITTED. Omission is a real third
+# option here, not a gap — under (c) it neither grants nor restricts. It is left
+# open on purpose: the field guide exists to be found by someone asking "what is
+# this thing at the market called", and that question increasingly gets answered
+# by an AI surface. Reserving training rights while staying reachable in answers
+# is the deliberate split.
+#
+# No crawler is known to honour Content-Signal today — Google has said publicly
+# it has no effect. It is kept for the Article 4 reservation, which does not
+# depend on anyone honouring it, and because unsupported robots.txt directives
+# are ignored rather than penalised.
+#
+# /metrics is deliberately NOT listed here. It already returns
+# `x-robots-tag: noindex` plus a noindex meta (worker/metrics.js), which is the
+# stronger control, and a Disallow line would advertise the path to anyone who
+# reads this file.
+
+User-agent: *
+Content-Signal: search=yes, ai-train=no
+Allow: /
+
+Sitemap: https://greendays.day/sitemap.xml

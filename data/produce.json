@@ -20,7 +20,24 @@
       "el": "Ντομάτα",
       "sv": "Tomat"
     },
-    "selection": "Choose by smell, not looks. A ripe one is fragrant at the stem and gives slightly when cradled; heavy for its size means juicy."
+    "selection": "Choose by smell, not looks. A ripe one is fragrant at the stem and gives slightly when cradled; heavy for its size means juicy.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "05-16",
+          "to": "09-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "06-01",
+          "to": "10-15"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "cherry-tomato",
@@ -43,7 +60,24 @@
       "el": "Ντοματίνι",
       "sv": "Körsbärstomat"
     },
-    "selection": "Look for taut, split-free skins and deep even colour. Give the punnet a sniff, it should smell sweet."
+    "selection": "Look for taut, split-free skins and deep even colour. Give the punnet a sniff, it should smell sweet.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "05-16",
+          "to": "09-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "06-01",
+          "to": "10-15"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "beefsteak-tomato",
@@ -66,7 +100,24 @@
       "el": "Ντομάτα καρδιά βοδιού",
       "sv": "Bifftomat"
     },
-    "selection": "Heavy and faintly soft, with a strong scent at the stem. The shoulders should be fully coloured, not pale."
+    "selection": "Heavy and faintly soft, with a strong scent at the stem. The shoulders should be fully coloured, not pale.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "05-16",
+          "to": "09-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "06-01",
+          "to": "10-15"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "plum-san-marzano-tomato",
@@ -89,7 +140,24 @@
       "el": "Ντομάτα Σαν Μαρτσάνο",
       "sv": "Plommontomat"
     },
-    "selection": "Firm, richly red, with a sweet stem smell. A little give is fine if it is bound for sauce."
+    "selection": "Firm, richly red, with a sweet stem smell. A little give is fine if it is bound for sauce.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "05-16",
+          "to": "09-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "06-01",
+          "to": "10-15"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "green-tomato",
@@ -112,7 +180,24 @@
       "el": "Πράσινη ντομάτα",
       "sv": "Grön tomat"
     },
-    "selection": "Firm and glossy is the point. Choose unblemished ones with taut skin for frying or chutney."
+    "selection": "Firm and glossy is the point. Choose unblemished ones with taut skin for frying or chutney.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "aubergine",
@@ -411,7 +496,24 @@
       "el": "Πράσο",
       "sv": "Purjolök"
     },
-    "selection": "Firm white shanks and fresh green tops. Slimmer leeks are more tender; avoid split or yellowing leaves."
+    "selection": "Firm white shanks and fresh green tops. Slimmer leeks are more tender; avoid split or yellowing leaves.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "03-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-16",
+          "to": "03-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "tail extended past the label's 28 Feb because turning day III (St David, 1 Mar) names leeks; the label was truncating a crop that stands through March"
   },
   {
     "id": "garlic",
@@ -480,7 +582,24 @@
       "el": "Άγριο σκόρδο",
       "sv": "Ramslök"
     },
-    "selection": "Bright, perky leaves with a strong garlicky smell when rubbed. Skip anything wilted or yellowing."
+    "selection": "Bright, perky leaves with a strong garlicky smell when rubbed. Skip anything wilted or yellowing.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "02-16",
+          "to": "05-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "03-01",
+          "to": "05-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "carrot",
@@ -641,7 +760,24 @@
       "el": "Ντάικον",
       "sv": "Daikon"
     },
-    "selection": "Firm and heavy with smooth, taut skin and no soft spots. It should feel dense, not hollow."
+    "selection": "Firm and heavy with smooth, taut skin and no soft spots. It should feel dense, not hollow.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "turnip",
@@ -664,7 +800,24 @@
       "el": "Γογγύλι",
       "sv": "Rova"
     },
-    "selection": "Small, firm and heavy with smooth skin. Larger turnips turn woody and sharp."
+    "selection": "Small, firm and heavy with smooth skin. Larger turnips turn woody and sharp.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "swede",
@@ -779,7 +932,24 @@
       "el": "Πατάτα νέα",
       "sv": "Färskpotatis"
     },
-    "selection": "Firm with thin, flaky skin that rubs off easily; that thin skin is the sign of a true new potato."
+    "selection": "Firm with thin, flaky skin that rubs off easily; that thin skin is the sign of a true new potato.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "04-01",
+          "to": "08-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "04-16",
+          "to": "08-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Late spring–summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "sweet-potato",
@@ -825,7 +995,24 @@
       "el": "Τοπιναμπούρ",
       "sv": "Jordärtskocka"
     },
-    "selection": "Firm and knobbly with no soft or wrinkled patches. Smoother tubers are simply easier to peel."
+    "selection": "Firm and knobbly with no soft or wrinkled patches. Smoother tubers are simply easier to peel.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "kohlrabi",
@@ -1078,7 +1265,24 @@
       "el": "Μωβ μπρόκολο",
       "sv": "Lila broccoli"
     },
-    "selection": "Perky purple spears with tight buds and no yellow flowering. Snappable stalks are freshest."
+    "selection": "Perky purple spears with tight buds and no yellow flowering. Snappable stalks are freshest.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "01-16",
+          "to": "05-31"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "01-16",
+          "to": "05-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Late winter–spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "tenderstem-broccoli",
@@ -1354,7 +1558,24 @@
       "el": "Αντίδι",
       "sv": "Frisésallat"
     },
-    "selection": "Crisp, springy leaves with pale hearts. Limp or browning frizz means old stock."
+    "selection": "Crisp, springy leaves with pale hearts. Limp or browning frizz means old stock.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "radicchio",
@@ -1492,7 +1713,24 @@
       "el": "Σπαράγγι",
       "sv": "Sparris"
     },
-    "selection": "Firm spears with tight, closed tips and squeaky stems. Cut ends should look moist, not dried out."
+    "selection": "Firm spears with tight, closed tips and squeaky stems. Cut ends should look moist, not dried out.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "02-16",
+          "to": "05-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "03-01",
+          "to": "05-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "rhubarb",
@@ -1515,7 +1753,24 @@
       "el": "Ραβέντι",
       "sv": "Rabarber"
     },
-    "selection": "Firm, crisp, glossy stalks that snap rather than bend. Thinner stalks are less stringy."
+    "selection": "Firm, crisp, glossy stalks that snap rather than bend. Thinner stalks are less stringy.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "02-16",
+          "to": "05-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "03-01",
+          "to": "05-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "globe-artichoke",
@@ -1584,7 +1839,24 @@
       "el": "Κρίταμο",
       "sv": "Glasört"
     },
-    "selection": "Bright green, crisp and springy with a salty-sea smell. Skip any that is soft or yellowing."
+    "selection": "Bright green, crisp and springy with a salty-sea smell. Skip any that is soft or yellowing.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "05-16",
+          "to": "08-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "06-01",
+          "to": "08-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "pumpkin",
@@ -1607,7 +1879,24 @@
       "el": "Κολοκύθα",
       "sv": "Pumpa"
     },
-    "selection": "Heavy for its size with a hard, dull rind and a firm stalk attached. A hollow sound means ripe."
+    "selection": "Heavy for its size with a hard, dull rind and a firm stalk attached. A hollow sound means ripe.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "butternut-squash",
@@ -1630,7 +1919,24 @@
       "el": "Κολοκύθα μπάτερνατ",
       "sv": "Butternutpumpa"
     },
-    "selection": "Matte, hard skin and a heavy feel, an even beige colour. A green tinge means underripe."
+    "selection": "Matte, hard skin and a heavy feel, an even beige colour. A green tinge means underripe.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "acorn-squash",
@@ -1653,7 +1959,24 @@
       "el": "Κολοκύθα βελανίδι",
       "sv": "Ekollonpumpa"
     },
-    "selection": "Hard, dull skin and heavy in the hand; a shiny skin means picked early. A patch of orange is fine."
+    "selection": "Hard, dull skin and heavy in the hand; a shiny skin means picked early. A patch of orange is fine.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "crown-prince-squash",
@@ -1676,7 +1999,24 @@
       "el": "Κολοκύθα Crown Prince",
       "sv": "Crown prince-pumpa"
     },
-    "selection": "Firm and heavy with hard blue-grey skin and an intact stalk. Dense weight means good flesh."
+    "selection": "Firm and heavy with hard blue-grey skin and an intact stalk. Dense weight means good flesh.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "spaghetti-squash",
@@ -1699,7 +2039,24 @@
       "el": "Κολοκύθα σπαγγέτι",
       "sv": "Spagettipumpa"
     },
-    "selection": "Hard, pale-yellow skin with no soft spots or green. Heavy for its size is best."
+    "selection": "Hard, pale-yellow skin with no soft spots or green. Heavy for its size is best.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "kabocha",
@@ -1722,7 +2079,24 @@
       "el": "Κολοκύθα καμπότσα",
       "sv": "Kabochapumpa"
     },
-    "selection": "Hard, dull deep-green skin and a heavy, dense feel. A firm stalk is a good sign."
+    "selection": "Hard, dull deep-green skin and a heavy, dense feel. A firm stalk is a good sign.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "green-french-beans",
@@ -1791,7 +2165,24 @@
       "el": "Κουκιά",
       "sv": "Bondbönor"
     },
-    "selection": "Plump, firm, bright green pods. Smaller pods hold younger, sweeter beans; leathery pods are old."
+    "selection": "Plump, firm, bright green pods. Smaller pods hold younger, sweeter beans; leathery pods are old.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "04-01",
+          "to": "08-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "04-16",
+          "to": "08-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Late spring–summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "borlotti-beans",
@@ -1837,7 +2228,24 @@
       "el": "Αρακάς",
       "sv": "Gröna ärter"
     },
-    "selection": "Plump, firm, bright pods that feel full. A pod should squeak and snap; dull or yellow pods are old."
+    "selection": "Plump, firm, bright pods that feel full. A pod should squeak and snap; dull or yellow pods are old.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "04-01",
+          "to": "08-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "04-16",
+          "to": "08-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Late spring–summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "mangetout",
@@ -2458,7 +2866,24 @@
       "el": "Λεμονόχορτο",
       "sv": "Citrongräs"
     },
-    "selection": "Firm, heavy stalks with a fresh lemon smell and pale, tight bases. Dry, woody stalks are old."
+    "selection": "Firm, heavy stalks with a fresh lemon smell and pale, tight bases. Dry, woody stalks are old.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "06-01",
+          "to": "08-31"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "06-01",
+          "to": "08-31"
+        }
+      ]
+    },
+    "availability": "imported",
+    "provenance": "inferred",
+    "source": "derived from the \"Summer (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "apple",
@@ -2596,7 +3021,24 @@
       "el": "Μέσπιλο",
       "sv": "Mispel"
     },
-    "selection": "Firm and brown; medlars are eaten bletted, so buy firm and let them soften indoors before eating."
+    "selection": "Firm and brown; medlars are eaten bletted, so buy firm and let them soften indoors before eating.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "10-16",
+          "to": "11-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "10-16",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Late autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "plum",
@@ -2619,7 +3061,24 @@
       "el": "Δαμάσκηνο",
       "sv": "Plommon"
     },
-    "selection": "Plump with a slight give and a dusty bloom on the skin. Rock-hard is underripe, mushy is over."
+    "selection": "Plump with a slight give and a dusty bloom on the skin. Rock-hard is underripe, mushy is over.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "07-01",
+          "to": "11-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "07-16",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Late summer–autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "damson",
@@ -2642,14 +3101,31 @@
       "el": "Δαμασκηνάκι",
       "sv": "Krikon"
     },
-    "selection": "Small, firm, deep blue-black with a bloom. Tart by nature, so choose firm ones for cooking."
+    "selection": "Small, firm, deep blue-black with a bloom. Tart by nature, so choose firm ones for cooking.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "07-01",
+          "to": "08-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "07-16",
+          "to": "08-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Late summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "greengage",
     "name_en": "Greengage",
     "category": "Stone fruit",
     "tab": "Fruit",
-    "season": "Summer",
+    "season": "Late summer",
     "illustration": "greengage",
     "illustration_status": "mapped",
     "planned_archetype": null,
@@ -2665,7 +3141,24 @@
       "el": "Πράσινο δαμάσκηνο",
       "sv": "Reine claude-plommon"
     },
-    "selection": "Plump with a slight give and a green-gold colour. A honeyed smell means ripe and sweet."
+    "selection": "Plump with a slight give and a green-gold colour. A honeyed smell means ripe and sweet.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "07-16",
+          "to": "09-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "08-01",
+          "to": "09-15"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "hand-set from the dispatch-one greengage research (real season roughly August); NOT derived from the \"Summer\" label, which was wrong"
   },
   {
     "id": "cherry",
@@ -2688,7 +3181,24 @@
       "el": "Κεράσι",
       "sv": "Körsbär"
     },
-    "selection": "Firm, glossy, plump, with fresh green stems attached. Dull skin or dry stems mean old."
+    "selection": "Firm, glossy, plump, with fresh green stems attached. Dull skin or dry stems mean old.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "05-16",
+          "to": "06-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "06-01",
+          "to": "07-15"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Early summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "peach",
@@ -2757,7 +3267,24 @@
       "el": "Βερίκοκο",
       "sv": "Aprikos"
     },
-    "selection": "Plump, fragrant and evenly orange with a slight give. Pale or hard ones were picked too soon."
+    "selection": "Plump, fragrant and evenly orange with a slight give. Pale or hard ones were picked too soon.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "05-16",
+          "to": "08-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "06-01",
+          "to": "08-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "fig",
@@ -2780,7 +3307,24 @@
       "el": "Σύκο",
       "sv": "Fikon"
     },
-    "selection": "Soft, heavy and hanging slightly, with a sweet smell and maybe a bead of syrup at the base. Firm figs never sweeten."
+    "selection": "Soft, heavy and hanging slightly, with a sweet smell and maybe a bead of syrup at the base. Firm figs never sweeten.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "07-01",
+          "to": "11-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "07-16",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Late summer–autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "grapes",
@@ -2803,7 +3347,24 @@
       "el": "Άσπρο σταφύλι",
       "sv": "Gröna druvor"
     },
-    "selection": "Plump grapes firmly attached to green, pliable stems, with a fresh bloom. Brown stems mean old."
+    "selection": "Plump grapes firmly attached to green, pliable stems, with a fresh bloom. Brown stems mean old.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "grapes-black",
@@ -2826,7 +3387,24 @@
       "el": "Μαύρο σταφύλι",
       "sv": "Blå druvor"
     },
-    "selection": "Deeply coloured, plump grapes that hold firm on green stems. Wrinkled or dropping grapes are old."
+    "selection": "Deeply coloured, plump grapes that hold firm on green stems. Wrinkled or dropping grapes are old.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "strawberry",
@@ -2895,7 +3473,24 @@
       "el": "Βατόμουρο",
       "sv": "Björnbär"
     },
-    "selection": "Deep black, plump and glossy; red beads mean underripe and sour. Check the base for mould."
+    "selection": "Deep black, plump and glossy; red beads mean underripe and sour. Check the base for mould.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "07-16",
+          "to": "09-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "08-01",
+          "to": "10-10"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "tail set by the Old Michaelmas folk date (10 Oct, \"the devil spits on the blackberries\"), which contradicted the derived range; head carried from the \"Late summer-autumn\" label"
   },
   {
     "id": "blueberry",
@@ -2987,7 +3582,24 @@
       "el": "Λαγοκέρασο",
       "sv": "Krusbär"
     },
-    "selection": "Firm, taut berries; hard and green for cooking, softer and blushed for eating raw."
+    "selection": "Firm, taut berries; hard and green for cooking, softer and blushed for eating raw.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "05-16",
+          "to": "06-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "06-01",
+          "to": "07-15"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Early summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "lemon",
@@ -3010,7 +3622,19 @@
       "el": "Λεμόνι",
       "sv": "Citron"
     },
-    "selection": "Heavy for its size with taut, glossy skin; that weight means juicy. Hard, light lemons are dry."
+    "selection": "Heavy for its size with taut, glossy skin; that weight means juicy. Hard, light lemons are dry.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "12-01",
+          "to": "02-28"
+        }
+      ],
+      "temperate": []
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "lime",
@@ -3056,7 +3680,19 @@
       "el": "Πορτοκάλι",
       "sv": "Apelsin"
     },
-    "selection": "Heavy for its size with firm, taut skin. Weight matters more than colour for juiciness."
+    "selection": "Heavy for its size with firm, taut skin. Weight matters more than colour for juiciness.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "11-16",
+          "to": "03-15"
+        }
+      ],
+      "temperate": []
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "start pulled to mid-November on the authority of Republican Orange day (14 Nov), named by turning day XX; end carried from the \"Winter (Med)\" label"
   },
   {
     "id": "blood-orange",
@@ -3079,7 +3715,19 @@
       "el": "Σανγκουίνι πορτοκάλι",
       "sv": "Blodapelsin"
     },
-    "selection": "Heavy and firm; a reddish blush hints at the colour inside, but weight is the real tell."
+    "selection": "Heavy and firm; a reddish blush hints at the colour inside, but weight is the real tell.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "12-01",
+          "to": "02-28"
+        }
+      ],
+      "temperate": []
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "mandarin-clementine",
@@ -3102,7 +3750,19 @@
       "el": "Μανταρίνι",
       "sv": "Mandarin"
     },
-    "selection": "Heavy for the size with glossy skin, slightly loose is fine. Light, puffy fruit is dry inside."
+    "selection": "Heavy for the size with glossy skin, slightly loose is fine. Light, puffy fruit is dry inside.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "12-01",
+          "to": "02-28"
+        }
+      ],
+      "temperate": []
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "grapefruit",
@@ -3125,7 +3785,19 @@
       "el": "Γκρέιπφρουτ",
       "sv": "Grapefrukt"
     },
-    "selection": "Heavy and firm with springy, taut skin. The heavier it feels, the juicier."
+    "selection": "Heavy and firm with springy, taut skin. The heavier it feels, the juicier.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "12-01",
+          "to": "02-28"
+        }
+      ],
+      "temperate": []
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "cantaloupe-melon",
@@ -3148,7 +3820,24 @@
       "el": "Πεπόνι καντελούπ",
       "sv": "Cantaloupemelon"
     },
-    "selection": "Sniff the blossom end for a sweet musky smell; it should feel heavy with a slight give there."
+    "selection": "Sniff the blossom end for a sweet musky smell; it should feel heavy with a slight give there.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "05-16",
+          "to": "08-15"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "06-01",
+          "to": "08-31"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "watermelon",
@@ -3217,7 +3906,19 @@
       "el": "Ρόδι",
       "sv": "Granatäpple"
     },
-    "selection": "Heavy for its size with taut, leathery skin; the heaviest are juiciest. A little angular is fine."
+    "selection": "Heavy for its size with taut, leathery skin; the heaviest are juiciest. A little angular is fine.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ],
+      "temperate": []
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "persimmon-kaki",
@@ -3240,7 +3941,19 @@
       "el": "Λωτός",
       "sv": "Persimon"
     },
-    "selection": "For the soft type, buy jelly-soft and deep orange; for the crisp type, firm and unblemished."
+    "selection": "For the soft type, buy jelly-soft and deep orange; for the crisp type, firm and unblemished.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "02-28"
+        }
+      ],
+      "temperate": []
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn–winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "kiwi",
@@ -3309,7 +4022,24 @@
       "el": "Ανανάς",
       "sv": "Ananas"
     },
-    "selection": "Heavy and fragrant at the base, with fresh green leaves; a leaf should tug free with a little resistance."
+    "selection": "Heavy and fragrant at the base, with fresh green leaves; a leaf should tug free with a little resistance.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "01-01",
+          "to": "12-31"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "01-01",
+          "to": "12-31"
+        }
+      ]
+    },
+    "availability": "imported",
+    "provenance": "inferred",
+    "source": "derived from the \"Year-round (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "date",
@@ -3332,7 +4062,24 @@
       "el": "Χουρμάς",
       "sv": "Dadel"
     },
-    "selection": "Plump, glossy and slightly wrinkled, with no sugar crystallising out and no dryness. Soft means fresh."
+    "selection": "Plump, glossy and slightly wrinkled, with no sugar crystallising out and no dryness. Soft means fresh.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "imported",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "prickly-pear",
@@ -3355,7 +4102,19 @@
       "el": "Φραγκόσυκο",
       "sv": "Kaktusfikon"
     },
-    "selection": "Firm with a slight give and even colour; handle carefully for the tiny spines. Too soft means over."
+    "selection": "Firm with a slight give and even colour; handle carefully for the tiny spines. Too soft means over.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ],
+      "temperate": []
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "physalis",
@@ -3378,7 +4137,24 @@
       "el": "Φυσαλίδα",
       "sv": "Physalis"
     },
-    "selection": "Papery husks that are dry and intact, with a firm, golden berry inside."
+    "selection": "Papery husks that are dry and intact, with a firm, golden berry inside.",
+    "season_ranges": {
+      "mediterranean": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ],
+      "temperate": [
+        {
+          "from": "09-01",
+          "to": "11-30"
+        }
+      ]
+    },
+    "availability": "local",
+    "provenance": "inferred",
+    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
   },
   {
     "id": "ginger",

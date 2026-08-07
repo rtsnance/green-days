@@ -68,6 +68,15 @@ body {
   margin-bottom: 16px;
 }
 
+/* Entries that have their own print in produce_raw/ show the whole sheet —
+   deckle edge, grey ground and all — so they need more room than a cutout
+   icon does. Entries still on an archetype keep the 120px treatment. */
+.fg-illustration--print {
+  width: 260px;
+  height: 260px;
+  margin-bottom: 20px;
+}
+
 .fg-body {
   font-size: 17px;
   line-height: 1.6;
@@ -109,6 +118,25 @@ body {
   text-decoration: none;
 }
 .fg-line a:hover { text-decoration: underline; }
+
+/* Entry → almanac link. Sits above .fg-line so the Subscribe rule stays the
+   last thing on the page; same reading-strength green as .fg-line a. */
+.fg-nav {
+  margin-top: 28px;
+  font-size: 13px;
+}
+.fg-nav a {
+  color: #35735b;
+  font-weight: 700;
+  text-decoration: none;
+}
+.fg-nav a:hover { text-decoration: underline; }
+
+/* Second heading on /season/ — the out-of-season list. Extra top space so it
+   reads as a new section rather than a continuation of the list above it. */
+.fg-season-header--rest {
+  margin-top: 40px;
+}
 
 .fg-season-header h1 {
   margin: 0 0 24px;
@@ -156,6 +184,123 @@ body {
   color: var(--fg-ink-soft);
 }
 
+/* ---- the market year (dist/market-year/<slug>/) ----
+   The 24 turning-day pages share this stylesheet with the field guide: same
+   ground, same ink, same wordmark, and they link into each other constantly,
+   so they should not read as a different site. Only what the field guide has
+   no equivalent for is defined here.
+
+   The epithet is set in Nunito rather than Annie Use Your Telescope. Annie is
+   the Line's display face and it is on the plates in the walk itself — but
+   pulling a fourth webfont onto a text page for one line of 20px type is not
+   worth the request, and Annie reads poorly at body sizes. The colour carries
+   it instead: --fg-paprika is Text Paprika #b23c1a, the reading-strength token
+   from the brand sheet (5.57:1 on cream). Spicy Paprika #e4572e fails AA here
+   and is display-only. */
+:root {
+  --fg-paprika: #b23c1a;
+}
+
+.my-alt {
+  margin: -14px 0 0;
+  font-size: 15px;
+  color: var(--fg-ink-soft);
+}
+
+.my-epithet {
+  margin: 10px 0 20px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--fg-paprika);
+}
+
+/* Opens / holds / season. A definition list because that is what it is, laid
+   out as two columns so the labels stay a quiet left rail. */
+.my-facts {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 6px 12px;
+  margin: 0 0 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--fg-border);
+  border-bottom: 1px solid var(--fg-border);
+  font-size: 15px;
+}
+.my-facts dt {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-ink-soft);
+  align-self: baseline;
+}
+.my-facts dd { margin: 0; font-weight: 700; }
+
+.my-h2 {
+  margin: 40px 0 8px;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.my-note {
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--fg-ink-soft);
+}
+
+.my-eyebrow-sm {
+  margin: 20px 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-ink-soft);
+}
+
+/* The stall list runs to 40+ items on the autumn turns, so it wraps as chips
+   rather than a column that would push everything below it off the screen. */
+.my-stall {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.my-stall-item {
+  padding: 5px 10px;
+  border: 1px solid var(--fg-border);
+  border-radius: 999px;
+  font-size: 14px;
+}
+.my-stall-item a {
+  color: #35735b;
+  font-weight: 700;
+  text-decoration: none;
+}
+.my-stall-item a:hover { text-decoration: underline; }
+
+/* Band marks. Without them a temperate reader is told avocados are on the stall
+   at Candlemas, and a Lisbon reader is told the blackberries are still going at
+   Old Michaelmas. Paprika for the south, the reading-strength green for the
+   north — the same pair the app already uses for warm and cool. */
+.my-med {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-paprika);
+}
+.my-north { color: #35735b; }
+
+.my-prevnext {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --fg-bg: #14181a;
@@ -163,10 +308,17 @@ body {
     --fg-ink-soft: #a9b6bc;
     --fg-accent: #6fc4a4;
     --fg-border: #2a3336;
+    /* Text Paprika is a cream-ground token — 3.4:1 on this background. This is
+       the dusk plate's epithet ink from public/market-year/theme.js, which is
+       the same decision already made for the walk at night. */
+    --fg-paprika: #ea8a63;
   }
   .fg-cta { color: #0e1a16; }
+  .my-stall-item a { color: var(--fg-accent); }
+  .my-north { color: var(--fg-accent); }
   /* The wordmark ships one fixed green (#529d7f). Lift it to roughly the
      dark-mode accent so it doesn't sit dimmer than everything around it. */
   .fg-back img { filter: brightness(1.2); }
   .fg-line a { color: var(--fg-accent); }
+  .fg-nav a { color: var(--fg-accent); }
 }

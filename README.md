@@ -19,6 +19,17 @@ greendays.day.
 - `public/assets/seasons/` — the eight recipe banners, `{band}-{season}@2x/@3x`.
 - `src/` — the React app (ported from the Claude Design prototype) and the
   `gd/` design system (tokens + components.css).
+- `data/turning-days.json` — canon for the 24 turning days of the market year.
+  Everything under `/market-year/` is generated from it; see
+  [MARKET-YEAR.md](MARKET-YEAR.md). Its *computed* fields are frozen output of
+  the legacy season parser — where that meets the `season_ranges` work in
+  `src/season.js` is written up in [SEASON-SEAM.md](SEASON-SEAM.md).
+- `public/market-year/` — the walk: engine, theme, bootstrap and plate
+  silhouettes. Copied into `dist/` verbatim; the pages around it are generated.
+- `scripts/` — the static-page generators, run after `vite build`:
+  `build-field-guide.mjs` (`/produce/<id>/`, `/season/`),
+  `build-market-year.mjs` (`/market-year/` and its 24 day pages), and
+  `build-sitemap.mjs`, which merges their URL fragments into `sitemap.xml` last.
 - `worker/` — the Worker: `GET /api/context` (edge country → language
   + climate band + static weather line) and `POST /api/recipe`
   (the Anthropic-powered recipe engine; system prompt in `worker/prompt.js`,

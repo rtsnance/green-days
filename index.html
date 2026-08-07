@@ -38,6 +38,29 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- The one crawlable link out of the app shell.
+
+         Until 2026-08-06 this document contained no <a> at all, so Googlebot
+         crawled the homepage, found nothing to follow, and stopped: `site:`
+         returned one indexed URL out of twenty-three. The field guide's own
+         "read more" links are rendered by React and are not in the served
+         markup, so they cannot be the discovery path.
+
+         It lives in <noscript> on purpose. #root is min-height:100%, so a
+         visible footer would sit below the app and read as a layout bug in
+         standalone/PWA mode — and this genuinely serves the no-JS visitor,
+         who is exactly the reader the static field guide was built for.
+         sitemap.xml is the primary discovery route; this is the fallback that
+         does not depend on a sitemap fetch succeeding. -->
+    <noscript>
+      <nav>
+        <p>green days needs JavaScript to build a recipe. The field guide does not:</p>
+        <ul>
+          <li><a href="/season/">What&rsquo;s in season now</a> — the almanac, and the index to every field-guide entry</li>
+          <li><a href="/market-year/">The market year</a> — the twenty-four turning days, each with its date and what is on the stall</li>
+        </ul>
+      </nav>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
