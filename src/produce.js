@@ -5,59 +5,30 @@
 import RAW from '../data/produce.json';
 import MARKETS from '../data/markets.json';
 import AFFILIATES from '../data/affiliates.json';
+import {
+  SEASON_MONTHS, SEASON_CYCLE, seasonNameForMonth, seasonalityOf, legacySeasonMonths,
+} from './season.js';
 
 export { MARKETS };
 export const ASSET = (p) => import.meta.env.BASE_URL + p;
 
-/* ---- seasons ---- */
-export const SEASON_MONTHS = { spring: [2, 3, 4], summer: [5, 6, 7], autumn: [8, 9, 10], winter: [11, 0, 1] };
-export const SEASON_CYCLE = ['spring', 'summer', 'autumn', 'winter'];
+/* ---- seasons ----
+   The parser used to live here in duplicate (a third copy sat in worker/index.js).
+   It is now src/season.js, the single implementation, and these are re-exports so
+   nothing that imports them from produce.js breaks. `seasonMonths` keeps its old
+   name: it is the legacy prose-label parser, which nextSeasonMonth() below still
+   rides on. seasonalityOf is the shared one — note the signature is now
+   (item, "MM-DD", band), not (seasonString, monthIndex, band). */
+export { SEASON_MONTHS, SEASON_CYCLE, seasonNameForMonth, seasonalityOf };
+export { legacySeasonMonths as seasonMonths };
 
-// Parse a rough season string ("Autumn–winter", "Year-round", "Winter (Med)")
-// → Set of month indices it covers, or null for year-round.
-export function seasonMonths(str) {
-  str = (str || '').toLowerCase();
-  if (str.includes('year-round')) return null;
-  const found = SEASON_CYCLE
-    .map((s) => ({ s, i: str.indexOf(s) }))
-    .filter((o) => o.i >= 0)
-    .sort((a, b) => a.i - b.i)
-    .map((o) => o.s);
-  if (found.length === 0) return new Set();
-  let names = found;
-  if (found.length > 1 && (str.includes('–') || str.includes('-'))) {
-    // written as a range: walk the cycle from the first to the last (wrapping)
-    names = [];
-    let i = SEASON_CYCLE.indexOf(found[0]);
-    const end = SEASON_CYCLE.indexOf(found[found.length - 1]);
-    while (true) { names.push(SEASON_CYCLE[i]); if (i === end) break; i = (i + 1) % 4; }
-  }
-  const set = new Set();
-  names.forEach((n) => SEASON_MONTHS[n].forEach((m) => set.add(m)));
-  return set;
-}
-
-export function seasonNameForMonth(m) {
-  return SEASON_CYCLE.find((s) => SEASON_MONTHS[s].includes(m)) || 'summer';
-}
-
-// 'peak' (its named season is now) | 'in' | 'out' for the given month (0-11).
-// band ('mediterranean' | 'temperate') is optional: a season tagged "(Med)"
-// is only in season in the Mediterranean band, so it reads out (imported,
-// faded) in temperate markets.
-export function seasonalityOf(seasonStr, month, band) {
-  const s = (seasonStr || '').toLowerCase();
-  const set = seasonMonths(seasonStr);
-  let base;
-  if (set === null || set.size === 0) base = 'in';   // year-round / unknown → available
-  else if (!set.has(month)) base = 'out';
-  else base = s.includes(seasonNameForMonth(month)) ? 'peak' : 'in';
-  if (base !== 'out' && band && band !== 'mediterranean' && /\(med/.test(s)) return 'out';
-  return base;
-}
-
-/* ---- catalogue, computed for the shopper's current month ---- */
-export const MONTH = new Date().getMonth(); // 0-indexed
+/* ---- catalogue, computed for the shopper's current day ---- */
+const NOW = new Date();
+// Quarters survive as a VISUAL device only: seasonBannerSrc() picks one of the
+// 16 banner assets by month, and seasonNameForMonth() needs a month to do it.
+export const MONTH = NOW.getMonth(); // 0-indexed
+// "MM-DD" — what the range model actually reads. Seasonality is a day question.
+export const TODAY = String(NOW.getMonth() + 1).padStart(2, '0') + '-' + String(NOW.getDate()).padStart(2, '0');
 
 export const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
@@ -67,10 +38,13 @@ export const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'Jun
 // year-round/unparseable seasons, or a "(Med)" item viewed from a temperate
 // market, where seasonalityOf() reports 'out' all year and a month label would
 // be a lie.
+// Still on the legacy prose path this pass, deliberately: it reads the season
+// string and it still works. Making it range-aware is a follow-up, and one
+// deploy should carry one change.
 export function nextSeasonMonth(seasonStr, from = MONTH, band) {
   const s = (seasonStr || '').toLowerCase();
   if (band && band !== 'mediterranean' && /\(med/.test(s)) return null;
-  const set = seasonMonths(seasonStr);
+  const set = legacySeasonMonths(seasonStr);
   if (set === null || set.size === 0) return null;
   for (let i = 1; i <= 12; i++) {
     const m = (from + i) % 12;
@@ -96,15 +70,21 @@ export const PRODUCE = RAW.map((it) => ({
   status: it.illustration_status,
   notes: it.notes || '',
   selection: it.selection || '',
-  // Band-agnostic default; screens recompute per the active market's band.
-  seasonality: seasonalityOf(it.season, MONTH),
+  // These two are what seasonalityOf() reads. They MUST be carried through: the
+  // map rebuilds each item from a fixed field list, and without them every item
+  // silently falls back to the prose parser and the range model does nothing.
+  season_ranges: it.season_ranges,
+  availability: it.availability,
+  // Placeholder for the default band; screens recompute per the active market
+  // via decorate(). 'temperate' matches bandOf()'s own fallback.
+  seasonality: seasonalityOf(it, TODAY, 'temperate'),
 }));
 
 export const byId = (id) => PRODUCE.find((p) => p.id === id);
 
 // Recompute seasonality for a market's band and return a shallow copy the
 // components can read `.seasonality` from, so vivid/faded tracks the band.
-export const seasonalityFor = (p, band) => (p ? seasonalityOf(p.season, MONTH, band) : 'out');
+export const seasonalityFor = (p, band) => (p ? seasonalityOf(p, TODAY, band) : 'out');
 export const decorate = (p, band) => (p ? { ...p, seasonality: seasonalityFor(p, band) } : p);
 
 /* ---- markets: ISO country → { country, lang, band } (data/markets.json) ---- */

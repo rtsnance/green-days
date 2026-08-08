@@ -9,47 +9,22 @@ import MARKETS from '../data/markets.json';
 import { SYSTEM_PROMPT, SYSTEM_PROMPT_HAIKU, pickSystemPrompt, RECIPE_SCHEMA, buildUserMessage } from './prompt.js';
 import { handleMetrics } from './metrics.js';
 import { withSecurityHeaders } from './headers.js';
+// The one seasonality implementation, shared with the front end. Reaching
+// outside worker/ is already how ../data/*.json gets here, and season.js is
+// plain ESM with no import.meta, so wrangler bundles it. Do NOT import
+// ../src/produce.js: that one uses import.meta.env and breaks the build.
+import { seasonalityOf, SEASON_MONTHS } from '../src/season.js';
 
 const BY_ID = new Map(PRODUCE.map((p) => [p.id, p]));
 const DIETS = new Set(['none', 'vegetarian', 'vegan']);
 const ALLERGIES = new Set(['nuts', 'dairy', 'gluten', 'eggs', 'shellfish', 'soy']);
-const SEASON_MONTHS = { spring: [2, 3, 4], summer: [5, 6, 7], autumn: [8, 9, 10], winter: [11, 0, 1] };
 
 // Country → { country, lang, band } from markets.json (same source as the app).
 const bandOf = (c) => (MARKETS[c] || {}).band || 'temperate';
 const countryName = (c) => (MARKETS[c] || {}).country || c;
+// Quarters, still a labelling device: the season word in /api/context and in
+// the recipe prompt. Not a seasonality model any more.
 const seasonForMonth0 = (m) => Object.keys(SEASON_MONTHS).find((s) => SEASON_MONTHS[s].includes(m)) || 'summer';
-
-// Mirror of the front-end's rough-season parser so both sides agree on
-// what is in season (src/produce.js).
-function seasonMonthSet(str) {
-  str = (str || '').toLowerCase();
-  if (str.includes('year-round')) return null;
-  const cycle = ['spring', 'summer', 'autumn', 'winter'];
-  const found = cycle.map((s) => ({ s, i: str.indexOf(s) })).filter((o) => o.i >= 0).sort((a, b) => a.i - b.i).map((o) => o.s);
-  if (found.length === 0) return new Set();
-  let names = found;
-  if (found.length > 1 && (str.includes('–') || str.includes('-'))) {
-    names = [];
-    let i = cycle.indexOf(found[0]);
-    const end = cycle.indexOf(found[found.length - 1]);
-    while (true) { names.push(cycle[i]); if (i === end) break; i = (i + 1) % 4; }
-  }
-  const set = new Set();
-  names.forEach((n) => SEASON_MONTHS[n].forEach((m) => set.add(m)));
-  return set;
-}
-function seasonalityOf(seasonStr, month0, band) {
-  const s = (seasonStr || '').toLowerCase();
-  const set = seasonMonthSet(seasonStr);
-  let base;
-  if (set === null || set.size === 0) base = 'in';
-  else if (!set.has(month0)) base = 'out';
-  else base = s.includes(seasonForMonth0(month0)) ? 'peak' : 'in';
-  // A "(Med)" season is only in season in the Mediterranean band.
-  if (base !== 'out' && band && band !== 'mediterranean' && /\(med/.test(s)) return 'out';
-  return base;
-}
 
 const json = (data, status = 200, headers = {}) =>
   new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json; charset=utf-8', ...headers } });
@@ -162,8 +137,17 @@ async function handleRecipe(request, env, ctx) {
 
   const cfCountry = (request.cf && request.cf.country) || 'PT';
   const country = /^[A-Z]{2}$/.test(body.country || '') ? body.country : cfCountry;
-  const month1 = Number.isInteger(body.month) && body.month >= 1 && body.month <= 12 ? body.month : new Date().getMonth() + 1;
+  // Seasonality is a day question now, not a month one, but the endpoint still
+  // accepts an optional body.month (1-12) and callers rely on that. Judgment
+  // call: when a month is supplied that is all we know, so read it on the 15th —
+  // the midpoint is the least wrong single day to stand for a whole month. With
+  // no body.month we have the real date, so use the real date.
+  const hasMonth = Number.isInteger(body.month) && body.month >= 1 && body.month <= 12;
+  const now = new Date();
+  const month1 = hasMonth ? body.month : now.getMonth() + 1;
   const month0 = month1 - 1;
+  const mm = String(month1).padStart(2, '0');
+  const onDate = hasMonth ? `${mm}-15` : `${mm}-${String(now.getDate()).padStart(2, '0')}`;
   const band = bandOf(country); // seasonality is band-aware ("(Med)" seasons)
 
   const prefs = {
@@ -199,11 +183,14 @@ async function handleRecipe(request, env, ctx) {
     const keyMaterial = JSON.stringify({
       basket: [...basket].sort(),
       country,
-      month: month1,
+      // Keyed on the day, not the month: seasonality can now change between two
+      // dates inside one month. v bumped so nothing cached under the old
+      // month-granular, parser-derived seasonality is served after the switch.
+      date: onDate,
       diet: prefs.diet,
       allergies: [...prefs.allergies].sort(),
       model: env.RECIPE_MODEL || 'claude-sonnet-5',
-      v: 1,
+      v: 2,
     });
     const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(keyMaterial));
     const hash = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
@@ -218,12 +205,12 @@ async function handleRecipe(request, env, ctx) {
 
   const basketItems = basket.map((id) => {
     const p = BY_ID.get(id);
-    return { id, name_en: p.name_en, season: p.season, seasonality: seasonalityOf(p.season, month0, band) };
+    return { id, name_en: p.name_en, season: p.season, seasonality: seasonalityOf(p, onDate, band) };
   });
 
   // Candidates for "grab one more": in season now, not in the basket, peak first.
   const inSeasonIds = PRODUCE
-    .map((p) => ({ id: p.id, s: seasonalityOf(p.season, month0, band) }))
+    .map((p) => ({ id: p.id, s: seasonalityOf(p, onDate, band) }))
     .filter((x) => x.s !== 'out' && !basket.includes(x.id))
     .sort((a, b) => (a.s === 'peak' ? 0 : 1) - (b.s === 'peak' ? 0 : 1))
     .slice(0, 40)
