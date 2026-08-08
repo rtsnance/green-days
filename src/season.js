@@ -89,6 +89,28 @@ export function peakRanges(ranges) {
     .map((r) => [doy(r.peak_from), doy(r.peak_to)]);
 }
 
+// Whole days until the window the item is in RIGHT NOW closes, counting the
+// closing day itself as 0. null when the item has no ranges for this band, or
+// has them and is not inside one today — "no answer", not "leaving today", so
+// callers must sort it last rather than first. Wrap-safe, same as inRanges.
+//
+// This is a sort key and a threshold, not a measurement. Most ranges are
+// derived from a prose label and snap to the 1st, 15th or month end, so the
+// number is only ever accurate to about a fortnight. Never show it.
+export function daysLeftIn(item, mmdd, band) {
+  const ranges = item.season_ranges?.[band];
+  if (!ranges || !ranges.length) return null;
+  const x = doy(mmdd);
+  let soonest = null;
+  for (const r of ranges) {
+    const a = doy(r.from), b = doy(r.to);
+    if (!within(a, b, x)) continue;
+    const left = b >= x ? b - x : b + YEAR - x;
+    if (soonest === null || left < soonest) soonest = left;
+  }
+  return soonest;
+}
+
 export function rangeSeasonalityOf(item, mmdd, band) {
   const ranges = item.season_ranges?.[band];
   if (!ranges) return null;

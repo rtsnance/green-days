@@ -1,5 +1,5 @@
 /* node scripts/season.test.mjs — wrap and peak arithmetic. No deps, no runner. */
-import { inRanges, peakRanges, doy } from '../src/season.js';
+import { inRanges, peakRanges, doy, daysLeftIn } from '../src/season.js';
 const within = (a,b,x) => (a<=b ? x>=a&&x<=b : x>=a||x<=b);
 const inPeak = (r,t) => peakRanges(r).some(([a,b]) => within(a,b,doy(t)));
 let fail = 0;
@@ -38,6 +38,33 @@ t('two 06-20 out', inRanges(two,'06-20'), false);
 const year = [{from:'01-01', to:'12-31'}];
 t('year 02-29ish in', inRanges(year,'02-28'), true);
 t('year 12-31 in',    inRanges(year,'12-31'), true);
+
+/* ---- daysLeftIn: the home-list sort key ---- */
+const banded = (ranges) => ({ season_ranges: { temperate: ranges } });
+const dl = (ranges, mmdd) => daysLeftIn(banded(ranges), mmdd, 'temperate');
+
+// 08-16 to 09-15 is 30 days, counting the closing day as 0.
+t('days mid-window',   dl(plain,'08-16'), 30);
+t('days last day',     dl(plain,'09-15'), 0);
+t('days first day',    dl(plain,'08-01'), 45);
+t('days before window', dl(plain,'07-31'), null);
+t('days after window',  dl(plain,'09-16'), null);
+
+// Wrapping window: 12-20 -> 02-15 is 11 days of December + 31 + 15.
+t('days wrap in-year',  dl(wrap,'12-20'), 57);
+t('days wrap new-year', dl(wrap,'01-10'), 36);
+t('days wrap last day', dl(wrap,'02-15'), 0);
+t('days wrap outside',  dl(wrap,'06-01'), null);
+
+// Two windows: answer for the one it is in now, not the nearer edge overall.
+t('days two first',  dl(two,'03-20'), 26);
+t('days two second', dl(two,'09-20'), 25);
+t('days two between', dl(two,'06-20'), null);
+
+// No ranges at all, and an empty band (no local season) — both "no answer".
+t('days unranged item', daysLeftIn({ season: 'Summer' }, '08-16', 'temperate'), null);
+t('days other band',    daysLeftIn(banded(plain), '08-16', 'mediterranean'), null);
+t('days empty band',    daysLeftIn({ season_ranges: { temperate: [] } }, '08-16', 'temperate'), null);
 
 console.log(fail ? `\n${fail} FAILED` : '\nall pass');
 process.exit(fail ? 1 : 0);

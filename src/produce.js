@@ -6,7 +6,7 @@ import RAW from '../data/produce.json';
 import MARKETS from '../data/markets.json';
 import AFFILIATES from '../data/affiliates.json';
 import {
-  SEASON_MONTHS, SEASON_CYCLE, seasonNameForMonth, seasonalityOf, legacySeasonMonths,
+  SEASON_MONTHS, SEASON_CYCLE, seasonNameForMonth, seasonalityOf, legacySeasonMonths, daysLeftIn,
 } from './season.js';
 
 export { MARKETS };
@@ -85,7 +85,15 @@ export const byId = (id) => PRODUCE.find((p) => p.id === id);
 // Recompute seasonality for a market's band and return a shallow copy the
 // components can read `.seasonality` from, so vivid/faded tracks the band.
 export const seasonalityFor = (p, band) => (p ? seasonalityOf(p, TODAY, band) : 'out');
-export const decorate = (p, band) => (p ? { ...p, seasonality: seasonalityFor(p, band) } : p);
+// Days until this item's current window closes, or null for "no answer" —
+// unranged, or ranged and out of season today. Both bands' answers differ, so
+// it belongs here beside seasonality rather than on the base PRODUCE record.
+// It orders the home list and gates the Going soon chip. It is never displayed:
+// most ranges snap to the 1st or 15th, so the number is a sort key, not a
+// measurement (see daysLeftIn in season.js).
+export const daysLeftFor = (p, band) => (p ? daysLeftIn(p, TODAY, band) : null);
+export const decorate = (p, band) =>
+  (p ? { ...p, seasonality: seasonalityFor(p, band), daysLeft: daysLeftFor(p, band) } : p);
 
 /* ---- markets: ISO country → { country, lang, band } (data/markets.json) ---- */
 const market = (country) => MARKETS[(country || '').toUpperCase()];

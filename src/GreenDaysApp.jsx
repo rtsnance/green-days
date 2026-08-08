@@ -14,6 +14,23 @@ import { renderFieldNoteCard } from './fieldNote.js';
 
 const MONTH_NAME = new Date().toLocaleString('en-GB', { month: 'long' });
 const SEASON_RANK = { peak: 0, in: 1, out: 2 };
+// Now that peak is a declared claim it fires on almost no days, so the rank
+// alone ties nearly the whole catalogue at 'in' and the name comparator decides
+// the first screen. What is leaving soonest is the more useful order: it is the
+// part of the answer that expires. Applies within a rank group, so out-of-season
+// items (always null here) stay at the bottom on their existing name order.
+// null means "no answer", not "leaving today" — it sorts last, never first.
+const byDaysLeft = (a, b) => {
+  if (a.daysLeft === b.daysLeft) return 0;
+  if (a.daysLeft == null) return 1;
+  if (b.daysLeft == null) return -1;
+  return a.daysLeft - b.daysLeft;
+};
+// A window closing inside three weeks is worth a trip this weekend. The chip
+// says so; it never says how many days, because most ranges snap to the 1st or
+// 15th and the number would claim a precision the data does not have.
+const GOING_SOON_DAYS = 21;
+const isGoingSoon = (p) => p.daysLeft != null && p.daysLeft <= GOING_SOON_DAYS;
 const MONO = { fontFamily: 'var(--font-mono)', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' };
 const VITALITY = {
   peak: 'At its peak — as good as it gets right now.',
@@ -155,6 +172,28 @@ function SeasonFlag({ p }) {
   );
 }
 
+/* ---- the single chip on a grid card. One slot, so the order below IS the
+   priority: peak beats going soon beats out of season. Peak firing on almost no
+   days is what frees the slot for the thing that is about to leave.
+   The chip never carries the day count — see GOING_SOON_DAYS. ---- */
+const CHIP = {
+  position: 'absolute', top: 8, left: 8, fontFamily: 'var(--font-mono)', fontWeight: 700,
+  fontSize: 9.5, letterSpacing: '0.06em', borderRadius: 999, padding: '3px 8px', pointerEvents: 'none',
+};
+
+function CornerChip({ p }) {
+  if (p.seasonality === 'peak') {
+    return <span style={{ ...CHIP, color: 'var(--color-on-accent)', background: 'var(--color-accent)' }}>PEAK SEASON</span>;
+  }
+  if (isGoingSoon(p)) {
+    return <span style={{ ...CHIP, color: 'var(--color-on-warning)', background: 'var(--color-warning)' }}>GOING SOON</span>;
+  }
+  if (p.seasonality === 'out') {
+    return <span style={{ ...CHIP, color: 'var(--color-text-tertiary)', background: 'var(--color-background-surface)' }}>OUT OF SEASON</span>;
+  }
+  return null;
+}
+
 /* ---- shared ---- */
 function ProduceThumb({ p, size = '100%', radius = 0 }) {
   return (
@@ -212,7 +251,9 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQu
     .filter((p) => searching || activeCat === 'All' || p.tab === activeCat || (activeCat === 'Herbs' && p.tab === 'Herb'))
     .filter((p) => matchesQuery(p, q))
     .map((p) => decorate(p, band))
-    .sort((a, b) => SEASON_RANK[a.seasonality] - SEASON_RANK[b.seasonality] || a.name.localeCompare(b.name));
+    .sort((a, b) => SEASON_RANK[a.seasonality] - SEASON_RANK[b.seasonality]
+      || byDaysLeft(a, b)
+      || a.name.localeCompare(b.name));
   // Clearing the filter returns to All and the full seasonal palette.
   const clearSearch = () => { setQuery(''); setCat('All'); };
   // Picking a category tab takes effect by clearing any active search.
@@ -337,12 +378,7 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQu
               {/* Print fills the card width; its own cream margin is the padding. Height trimmed so the name block always fits. */}
               <div style={{ position: 'relative', width: '100%', aspectRatio: '1 / 0.92', ...thumbStyle(p) }}>
                 <ProduceImg p={p} style={inkStyle(p)} />
-                {p.seasonality === 'peak' && (
-                  <span style={{ position: 'absolute', top: 8, left: 8, fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 9.5, letterSpacing: '0.06em', color: '#fff', background: 'var(--color-accent)', borderRadius: 999, padding: '3px 8px', pointerEvents: 'none' }}>PEAK SEASON</span>
-                )}
-                {p.seasonality === 'out' && (
-                  <span style={{ position: 'absolute', top: 8, left: 8, fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 9.5, letterSpacing: '0.06em', color: 'var(--color-text-tertiary)', background: 'var(--color-background-surface)', borderRadius: 999, padding: '3px 8px', pointerEvents: 'none' }}>OUT OF SEASON</span>
-                )}
+                <CornerChip p={p} />
               </div>
               {/* Bilingual name strip; room at right for the Add button */}
               <div style={{ padding: '10px 52px 12px 12px' }}>
