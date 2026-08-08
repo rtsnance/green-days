@@ -122,10 +122,10 @@ const OVERRIDES = {
     // NOTE: the other four citrus (lemon, blood-orange, mandarin-clementine,
     // grapefruit) sit on the same "Winter (Med)" label and are NOT examined.
     // blood-orange really is later. Do not blanket-copy this.
-    mediterranean: [{ from: '11-16', to: '03-15' }],
+    mediterranean: [{ from: '11-08', to: '03-15' }],
     temperate:     [],
     availability: 'local',
-    source: 'start pulled to mid-November on the authority of Republican Orange day (14 Nov), named by turning day XX; end carried from the "Winter (Med)" label',
+    source: 'start pulled back so Republican Orange day (14 Nov, named by turning day XX) falls INSIDE the window rather than two days before it; end carried from the "Winter (Med)" label',
   },
 
   leek: {
@@ -163,6 +163,43 @@ const OVERRIDES = {
   },
 };
 
+
+/* DECLARED PEAKS.
+   Peak is no longer derived (see src/season.js). An item is at peak only where
+   somebody said so, and here that somebody is the Republican calendar, which
+   named a day of the year after a fruit or vegetable. That is a dated claim
+   about when a thing is worth eating, made by people who had to buy food, and
+   it is exactly the kind of independent source the derived labels lack.
+
+   Convention: the named day, plus and minus seven days. One half-month tick,
+   centred on the declaration. Anything narrower would be inventing precision
+   the source does not carry.
+
+   Every entry cites its day. Add nothing here without one. */
+const DECLARED_PEAKS = {
+  rhubarb:            { day: '04-30', src: 'Republican Rhubarbe day, 30 Apr (turning day VI)' },
+  cherry:             { day: '06-24', src: 'turning day X names it: "São João fires / the cherries", cherries at peak' },
+  'cantaloupe-melon': { day: '07-21', src: 'Republican Melon day, 21 Jul (turning day XI)' },
+  apricot:            { day: '07-31', src: 'Republican Abricot day, 31 Jul (turning day XII)' },
+  plum:               { day: '08-18', src: 'Republican Prune day, 18 Aug (turning day XIII)' },
+  greengage:          { day: '08-24', src: 'St Bartholomew, 24 Aug (turning day XIV), and the dispatch-one greengage research' },
+  grapes:             { day: '09-22', src: 'Republican Raisin day, 22 Sep, and the vindima (turning day XV)' },
+  'grapes-black':     { day: '09-22', src: 'Republican Raisin day, 22 Sep, and the vindima (turning day XV)' },
+  pumpkin:            { day: '10-04', src: 'Republican Potiron day, 4 Oct (turning day XVII)' },
+  'endive-fris-e':    { day: '11-04', src: 'Republican Endive day, 4 Nov (turning day XIX)' },
+  orange:             { day: '11-14', src: 'Republican Orange day, 14 Nov (turning day XX)' },
+};
+
+// Clip the declared peak to the range it sits in; drop it if they do not overlap.
+function applyPeak(ranges, day) {
+  const lo = fromDoy(doy(day) - 7), hi = fromDoy(doy(day) + 7);
+  return ranges.map((r) => {
+    const a = doy(r.from), b = doy(r.to), inR = (x) => (a <= b ? x >= a && x <= b : x >= a || x <= b);
+    if (!inR(doy(lo)) && !inR(doy(hi)) && !inR(doy(day))) return r;
+    return { ...r, peak_from: inR(doy(lo)) ? lo : r.from, peak_to: inR(doy(hi)) ? hi : r.to };
+  });
+}
+
 const P = JSON.parse(fs.readFileSync('data/produce.json','utf8'));
 let n = 0;
 for (const it of P) {
@@ -190,6 +227,12 @@ for (const it of P) {
   it.season_ranges = ov
     ? { mediterranean: ov.mediterranean, temperate: ov.temperate }
     : { mediterranean, temperate };
+  const dp = DECLARED_PEAKS[it.id];
+  if (dp) {
+    it.season_ranges.mediterranean = applyPeak(it.season_ranges.mediterranean, dp.day);
+    it.season_ranges.temperate     = applyPeak(it.season_ranges.temperate, dp.day);
+    it.peak_source = dp.src;
+  }
   it.availability  = ov?.availability ?? (imported ? 'imported' : stored ? 'stored' : 'local');
   it.provenance    = 'inferred';
   it.source        = ov?.source

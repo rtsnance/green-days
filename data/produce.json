@@ -1563,19 +1563,24 @@
       "mediterranean": [
         {
           "from": "09-01",
-          "to": "02-28"
+          "to": "02-28",
+          "peak_from": "10-28",
+          "peak_to": "11-11"
         }
       ],
       "temperate": [
         {
           "from": "09-01",
-          "to": "02-28"
+          "to": "02-28",
+          "peak_from": "10-28",
+          "peak_to": "11-11"
         }
       ]
     },
     "availability": "local",
     "provenance": "inferred",
-    "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+    "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
+    "peak_source": "Republican Endive day, 4 Nov (turning day XIX)"
   },
   {
     "id": "radicchio",
@@ -1758,19 +1763,24 @@
       "mediterranean": [
         {
           "from": "02-16",
-          "to": "05-15"
+          "to": "05-15",
+          "peak_from": "04-23",
+          "peak_to": "05-07"
         }
       ],
       "temperate": [
         {
           "from": "03-01",
-          "to": "05-31"
+          "to": "05-31",
+          "peak_from": "04-23",
+          "peak_to": "05-07"
         }
       ]
     },
     "availability": "local",
     "provenance": "inferred",
-    "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+    "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
+    "peak_source": "Republican Rhubarbe day, 30 Apr (turning day VI)"
   },
   {
     "id": "globe-artichoke",
@@ -1884,19 +1894,24 @@
       "mediterranean": [
         {
           "from": "09-01",
-          "to": "11-30"
+          "to": "11-30",
+          "peak_from": "09-27",
+          "peak_to": "10-11"
         }
       ],
       "temperate": [
         {
           "from": "09-01",
-          "to": "11-30"
+          "to": "11-30",
+          "peak_from": "09-27",
+          "peak_to": "10-11"
         }
       ]
     },
     "availability": "local",
     "provenance": "inferred",
-    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
+    "peak_source": "Republican Potiron day, 4 Oct (turning day XVII)"
   },
   {
     "id": "butternut-squash",
@@ -3066,19 +3081,24 @@
       "mediterranean": [
         {
           "from": "07-01",
-          "to": "11-15"
+          "to": "11-15",
+          "peak_from": "08-11",
+          "peak_to": "08-25"
         }
       ],
       "temperate": [
         {
           "from": "07-16",
-          "to": "11-30"
+          "to": "11-30",
+          "peak_from": "08-11",
+          "peak_to": "08-25"
         }
       ]
     },
     "availability": "local",
     "provenance": "inferred",
-    "source": "derived from the \"Late summer–autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+    "source": "derived from the \"Late summer–autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
+    "peak_source": "Republican Prune day, 18 Aug (turning day XIII)"
   },
   {
     "id": "damson",
@@ -3146,19 +3166,24 @@
       "mediterranean": [
         {
           "from": "07-16",
-          "to": "09-15"
+          "to": "09-15",
+          "peak_from": "08-17",
+          "peak_to": "08-31"
         }
       ],
       "temperate": [
         {
           "from": "08-01",
-          "to": "09-15"
+          "to": "09-15",
+          "peak_from": "08-17",
+          "peak_to": "08-31"
         }
       ]
     },
     "availability": "local",
     "provenance": "inferred",
-    "source": "hand-set from the dispatch-one greengage research (real season roughly August); NOT derived from the \"Summer\" label, which was wrong"
+    "source": "hand-set from the dispatch-one greengage research (real season roughly August); NOT derived from the \"Summer\" label, which was wrong",
+    "peak_source": "St Bartholomew, 24 Aug (turning day XIV), and the dispatch-one greengage research"
   },
   {
     "id": "cherry",
@@ -3186,19 +3211,24 @@
       "mediterranean": [
         {
           "from": "05-16",
-          "to": "06-30"
+          "to": "06-30",
+          "peak_from": "06-17",
+          "peak_to": "06-30"
         }
       ],
       "temperate": [
         {
           "from": "06-01",
-          "to": "07-15"
+          "to": "07-15",
+          "peak_from": "06-17",
+          "peak_to": "07-01"
         }
       ]
     },
     "availability": "local",
     "provenance": "inferred",
-    "source": "derived from the \"Early summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+    "source": "derived from the \"Early summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
+    "peak_source": "turning day X names it: \"São João fires / the cherries\", cherries at peak"
   },
   {
     "id": "peach",
@@ -3272,19 +3302,24 @@
       "mediterranean": [
         {
           "from": "05-16",
-          "to": "08-15"
+          "to": "08-15",
+          "peak_from": "07-24",
+          "peak_to": "08-07"
         }
       ],
       "temperate": [
         {
           "from": "06-01",
-          "to": "08-31"
+          "to": "08-31",
+          "peak_from": "07-24",
+          "peak_to": "08-07"
         }
       ]
     },
     "availability": "local",
     "provenance": "inferred",
-    "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+    "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
+    "peak_source": "Republican Abricot day, 31 Jul (turning day XII)"
   },
   {
     "id": "fig",
@@ -3352,19 +3387,24 @@
       "mediterranean": [
         {
           "from": "09-01",
-          "to": "11-30"
+          "to": "11-30",
+          "peak_from": "09-15",
+          "peak_to": "09-29"
         }
       ],
       "temperate": [
         {
           "from": "09-01",
-          "to": "11-30"
+          "to": "11-30",
+          "peak_from": "09-15",
+          "peak_to": "09-29"
         }
       ]
     },
     "availability": "local",
     "provenance": "inferred",
-    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
+    "peak_source": "Republican Raisin day, 22 Sep, and the vindima (turning day XV)"
   },
   {
     "id": "grapes-black",
@@ -3392,19 +3432,24 @@
       "mediterranean": [
         {
           "from": "09-01",
-          "to": "11-30"
+          "to": "11-30",
+          "peak_from": "09-15",
+          "peak_to": "09-29"
         }
       ],
       "temperate": [
         {
           "from": "09-01",
-          "to": "11-30"
+          "to": "11-30",
+          "peak_from": "09-15",
+          "peak_to": "09-29"
         }
       ]
     },
     "availability": "local",
     "provenance": "inferred",
-    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
+    "peak_source": "Republican Raisin day, 22 Sep, and the vindima (turning day XV)"
   },
   {
     "id": "strawberry",
@@ -3684,15 +3729,18 @@
     "season_ranges": {
       "mediterranean": [
         {
-          "from": "11-16",
-          "to": "03-15"
+          "from": "11-08",
+          "to": "03-15",
+          "peak_from": "11-08",
+          "peak_to": "11-21"
         }
       ],
       "temperate": []
     },
     "availability": "local",
     "provenance": "inferred",
-    "source": "start pulled to mid-November on the authority of Republican Orange day (14 Nov), named by turning day XX; end carried from the \"Winter (Med)\" label"
+    "source": "start pulled back so Republican Orange day (14 Nov, named by turning day XX) falls INSIDE the window rather than two days before it; end carried from the \"Winter (Med)\" label",
+    "peak_source": "Republican Orange day, 14 Nov (turning day XX)"
   },
   {
     "id": "blood-orange",
@@ -3825,19 +3873,24 @@
       "mediterranean": [
         {
           "from": "05-16",
-          "to": "08-15"
+          "to": "08-15",
+          "peak_from": "07-14",
+          "peak_to": "07-28"
         }
       ],
       "temperate": [
         {
           "from": "06-01",
-          "to": "08-31"
+          "to": "08-31",
+          "peak_from": "07-14",
+          "peak_to": "07-28"
         }
       ]
     },
     "availability": "local",
     "provenance": "inferred",
-    "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+    "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
+    "peak_source": "Republican Melon day, 21 Jul (turning day XI)"
   },
   {
     "id": "watermelon",

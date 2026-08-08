@@ -39,7 +39,11 @@ export function legacySeasonalityOf(seasonStr, month, band) {
   let base;
   if (set === null || set.size === 0) base = 'in';
   else if (!set.has(month)) base = 'out';
-  else base = s.includes(seasonNameForMonth(month)) ? 'peak' : 'in';
+  // NOT 'peak'. The legacy parser cannot know a peak: it only knows the label
+  // mentions this quarter. If it were still allowed to say 'peak', the At-peak
+  // list would consist entirely of the items that have NOT been migrated, which
+  // is exactly backwards. Peak is reserved for declared ranges.
+  else base = 'in';
   if (base !== 'out' && band && band !== 'mediterranean' && /\(med/.test(s)) return 'out';
   return base;
 }
@@ -66,22 +70,25 @@ export function inRanges(ranges, mmdd) {
   return ranges.some((r) => within(doy(r.from), doy(r.to), x));
 }
 
-// Default peak is the middle third of each window, unless the item declares
-// peak_from / peak_to. Wrap-safe: length is measured forward from the start.
+// PEAK IS DECLARED, NOT DERIVED.
+//
+// It used to be the middle third of the window. Measured across the 24 turning
+// days that flag was worn by 50-88% of the stall, around 75% most of the year,
+// which is not a distinction. The cause is structural: at any date most things
+// in season are somewhere in their middle, so "at peak" resolved to "not at the
+// very start or end", i.e. nearly everything. Capping the width barely moved it.
+//
+// So an item is at peak only when someone established that it is: an explicit
+// peak_from / peak_to on the range. "At peak" now means a claim was made and
+// sourced, the same bar as everything else in this data. The list starts nearly
+// empty and fills as entries get written. Three named fruits beat fifty
+// computed ones.
 export function peakRanges(ranges) {
-  return ranges.map((r) => {
-    if (r.peak_from && r.peak_to) return [doy(r.peak_from), doy(r.peak_to)];
-    const a = doy(r.from), b = doy(r.to);
-    const len = (b >= a ? b - a : b + YEAR - a) + 1;
-    const s = a + Math.floor(len / 3);
-    const e = a + Math.ceil((2 * len) / 3) - 1;
-    return [((s - 1) % YEAR) + 1, ((e - 1) % YEAR) + 1];
-  });
+  return ranges
+    .filter((r) => r.peak_from && r.peak_to)
+    .map((r) => [doy(r.peak_from), doy(r.peak_to)]);
 }
 
-// 'peak' | 'in' | 'out', or null when the item has no ranges for this band and
-// the caller should fall back to legacySeasonalityOf. THIS null IS THE THING
-// that lets the migration ship one item at a time.
 export function rangeSeasonalityOf(item, mmdd, band) {
   const ranges = item.season_ranges?.[band];
   if (!ranges) return null;
