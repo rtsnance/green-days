@@ -325,7 +325,7 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQu
               <Icon d={I.sparkle} size={13} w={2.2} /> What's good right now
             </div>
             <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: 19, marginTop: 4, color: 'var(--color-text-primary)' }}>Start with what's in season</div>
-            <div style={{ fontSize: 13.5, lineHeight: 1.45, color: 'var(--color-text-secondary)', marginTop: 4 }}>Tap the peak-season picks below. Add a few and we'll write tonight's recipe.</div>
+            <div style={{ fontSize: 13.5, lineHeight: 1.45, color: 'var(--color-text-secondary)', marginTop: 4 }}>Tap three or four. We'll write tonight's recipe.</div>
           </div>
         </div>
       )}
