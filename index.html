@@ -8,6 +8,12 @@
     <meta name="p:domain_verify" content="b88174c00c061ee351a5de71ab0c5d34"/>
     <title>green days</title>
 
+    <!-- Self-referential canonical. The shell is only ever served at "/" (no SPA
+         fallback — unknown paths return a real 404), so this is safe to hardcode.
+         Every generated field-guide and market-year page emits its own canonical
+         in scripts/build-field-guide.mjs; this file was the one gap. -->
+    <link rel="canonical" href="https://greendays.day/" />
+
     <!-- Open Graph / social unfurl (absolute URLs required) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="green days" />
