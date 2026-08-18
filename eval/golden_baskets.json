@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Golden baskets for the recipe-engine eval. off_season_items is derived from the harness seasonality model; reconcile with the app if they differ.",
+  "note": "Golden baskets for the recipe-engine eval. off_season_items is derived from the harness seasonality model; reconcile with the app if they differ. main_course_note is documentation for the human reviewer, not a gate.",
   "baskets": [
     {
       "id": "med-courgette-peach",
@@ -1088,6 +1088,158 @@
         "band": "mediterranean",
         "off_season_items": [],
         "must_flag_off_season": false
+      }
+    },
+    {
+      "id": "main-pear-single",
+      "intent": "Single item: must STAY produce-led. Ryan's own pear/pork example, which the basket-size rule deliberately overrules",
+      "tags": [
+        "main-course",
+        "single",
+        "edge",
+        "med"
+      ],
+      "request": {
+        "basket": [
+          "pear"
+        ],
+        "country": "PT",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false,
+        "main_course_note": "One item, so no counter buy and no protein cooked in. The protein field should carry a pairing instead."
+      }
+    },
+    {
+      "id": "main-orange-onion-chilli",
+      "intent": "Three items that cannot be a meal on their own: should build a main with a protein cooked in (the squid case)",
+      "tags": [
+        "main-course",
+        "med",
+        "protein-cooked-in"
+      ],
+      "request": {
+        "basket": [
+          "orange",
+          "onion",
+          "chilli-pepper"
+        ],
+        "country": "PT",
+        "month": 11,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false,
+        "main_course_note": "Expect a counter register in ingredients, the protein worked into the method, protein field null, and the produce leading the title."
+      }
+    },
+    {
+      "id": "main-quince-shallot-slow",
+      "intent": "Two items, the slow end: fruit plus allium, the meat counter is fair game (basket kept clear of the prompt's worked examples)",
+      "tags": [
+        "main-course",
+        "med",
+        "slow",
+        "protein-cooked-in"
+      ],
+      "request": {
+        "basket": [
+          "quince",
+          "shallot"
+        ],
+        "country": "PT",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false,
+        "main_course_note": "Two items is permission, not obligation. Basket deliberately does NOT match any worked example in worker/prompt.js: the first version used pear + red onion, which is Example 5's exact basket, so the engine could pass by copying rather than reasoning. Keep golden baskets disjoint from the prompt's examples."
+      }
+    },
+    {
+      "id": "main-vegan-two",
+      "intent": "Vegan main course: the likeliest regression. Must be a real main, not a vegetable dish with chickpeas beside it",
+      "tags": [
+        "main-course",
+        "diet",
+        "vegan",
+        "temperate"
+      ],
+      "request": {
+        "basket": [
+          "pumpkin",
+          "cavolo-nero"
+        ],
+        "country": "DE",
+        "month": 11,
+        "prefs": {
+          "diet": "vegan",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "temperate",
+        "off_season_items": [],
+        "must_flag_off_season": false,
+        "main_course_note": "No animal protein anywhere. Judge on heft and technique: a braise on a proper soffritto, hard-roasted pulses, a whole vegetable roasted to collapsing."
+      }
+    },
+    {
+      "id": "main-big-basket-check",
+      "intent": "Ten items in high summer: a main is now permitted, but it must not become a mess",
+      "tags": [
+        "main-course",
+        "edge",
+        "large",
+        "med"
+      ],
+      "request": {
+        "basket": [
+          "tomato",
+          "courgette",
+          "aubergine",
+          "bell-pepper",
+          "onion",
+          "garlic",
+          "basil",
+          "cucumber",
+          "chilli-pepper",
+          "fennel"
+        ],
+        "country": "IT",
+        "month": 8,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false,
+        "main_course_note": "Peak produce, so restraint is still a legitimate answer. This basket exists to catch the opposite failure: a protein bolted onto ten vegetables. HARNESS/APP DISAGREEMENT: the app's seasonalityOf() calls fennel OUT in August, so the engine is told it is off-season and should flag it; grade.py's text parser calls it IN and will therefore fire a false 'note present but all items look in-season' warning. Pre-existing, and it hits edge-big-basket too. See the seasonality caveat in RUBRIC.md: trust the app."
       }
     }
   ]

@@ -1,7 +1,6 @@
 ---
 id: fig
 first_noted: 2026-08-03
-in_season: true
 pin_title: Fig (Figo, Figue, Fico): Why the Tree Crops Twice
 pin_description: A fig tree gives two harvests, and the one on the stall now is the second. The figo lampo — the figue-fleur in French — ripens in June on last year's wood; the main crop ripens in late summer on this year's. One Portuguese trap worth knowing: a figo-da-índia is not a fig at all but a prickly pear, off a cactus. Buy soft, heavy and slightly split, because a firm fig has stopped sweetening and never starts again. From the green days seasonal produce field guide.
 ---

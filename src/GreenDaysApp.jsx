@@ -531,8 +531,14 @@ function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, o
   // Anticipatory stars while loading: the shopper's own basket, no model call
   // in the path, so it's safe to paint the instant the "Cook this" tap lands.
   const shellStars = status === 'loading' ? (view.shellIds || []).map((id) => decorate(byId(id), band)).filter(Boolean) : [];
-  const fresh = r ? r.ingredients.filter((i) => !i.pantry) : [];
-  const pantry = r ? r.ingredients.filter((i) => i.pantry) : [];
+  // Three ingredient registers: basket produce (dominant), counter buys such as
+  // a protein from the butcher or fishmonger (a real buy, but not the star), and
+  // assumed pantry (tertiary chips). Older recipes carry only the pantry
+  // boolean, so fall back to it when register is absent.
+  const registerOf = (i) => i.register || (i.pantry ? 'pantry' : 'basket');
+  const fresh = r ? r.ingredients.filter((i) => registerOf(i) === 'basket') : [];
+  const counter = r ? r.ingredients.filter((i) => registerOf(i) === 'counter') : [];
+  const pantry = r ? r.ingredients.filter((i) => registerOf(i) === 'pantry') : [];
   const grabTerm = r && r.grabOneMore ? String(r.grabOneMore).trim() : '';
   const oneMore = grabTerm ? decorate(resolveSuggestion(grabTerm), band) : null;
 
@@ -716,6 +722,19 @@ function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, o
                   </div>
                 );
               })}
+              {counter.length > 0 && (
+                <div style={{ borderTop: '1px solid var(--color-border)', margin: '6px 8px 0', padding: '10px 0 4px' }}>
+                  <div style={{ fontSize: 10, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 8 }}>Also buy</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    {counter.map((s, i) => (
+                      <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'center', fontSize: 14, fontWeight: 600, color: 'var(--color-text-secondary)' }}>
+                        <span style={{ color: 'var(--color-accent)', flexShrink: 0 }}><Icon d={I.chef} size={15} w={2.2} /></span>
+                        <span>{s.item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
               {pantry.length > 0 && (
                 <div style={{ borderTop: '1px solid var(--color-border)', margin: '6px 8px 0', padding: '10px 0 4px' }}>
                   <div style={{ fontSize: 10, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 8 }}>Assumed from your pantry</div>

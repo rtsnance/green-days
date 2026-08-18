@@ -366,7 +366,14 @@ function normalizeRecipe(r, basket) {
     stars: stars.length ? stars : basket.slice(0, 3),
     ingredients: (Array.isArray(r.ingredients) ? r.ingredients : [])
       .filter((i) => i && typeof i.item === 'string')
-      .map((i) => ({ item: i.item, pantry: !!i.pantry })),
+      .map((i) => ({
+        item: i.item,
+        pantry: !!i.pantry,
+        // Keep the third register, falling back to the boolean when the model
+        // omits it or invents a value. Without this the counter buys are
+        // silently flattened back into produce and the app cannot separate them.
+        register: ['basket', 'pantry', 'counter'].includes(i.register) ? i.register : (i.pantry ? 'pantry' : 'basket'),
+      })),
     offSeasonAdvice: typeof r.offSeasonAdvice === 'string' && r.offSeasonAdvice.trim() ? r.offSeasonAdvice : null,
     grabOneMore: grab,
     protein: Array.isArray(r.protein) && r.protein.length ? r.protein.filter((p) => typeof p === 'string').slice(0, 2) : null,
@@ -499,10 +506,10 @@ function mockRecipe(basketItems, inSeasonIds, avoid, prefs = { diet: 'none', all
     note: 'A canned recipe from the local mock engine, so the flow can be tested without a key.',
     stars,
     ingredients: [
-      ...basketItems.map((i) => ({ item: i.name_en.toLowerCase(), pantry: false })),
-      { item: 'olive oil', pantry: true },
-      { item: '1 clove garlic', pantry: true },
-      { item: 'flaky salt', pantry: true },
+      ...basketItems.map((i) => ({ item: i.name_en.toLowerCase(), pantry: false, register: 'basket' })),
+      { item: 'olive oil', pantry: true, register: 'pantry' },
+      { item: '1 clove garlic', pantry: true, register: 'pantry' },
+      { item: 'flaky salt', pantry: true, register: 'pantry' },
     ],
     offSeasonAdvice: out ? `${out.name_en} is out of season here, so it will taste flatter. Roast it hard to concentrate what is there.` : null,
     grabOneMore: inSeasonIds[0] || null,

@@ -1,7 +1,6 @@
 ---
 id: plum
 first_noted: 2026-07-29
-in_season: true
 pin_title: Plum or Prune? The False Friend That Catches Out English Speakers
 pin_description: Ameixa in Portugal, ciruela in Spain, susina in Italy, Pflaume in Germany — and prune in France, which is the one that catches English speakers out, because a French prune is the fresh fruit and the dried one is a pruneau. Buy by feel rather than colour: the dusty bloom on the skin is the fruit's own wax and a sign it has not been over-handled. From the green days seasonal produce field guide.
 ---

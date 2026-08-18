@@ -8,12 +8,33 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import { seasonalityOf } from '../src/season.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CONTENT_DIR = path.join(ROOT, 'content/produce');
 const RAW_DIR = path.join(ROOT, 'produce_raw');
 const DIST_DIR = path.join(ROOT, 'dist');
 const SITE_URL = 'https://greendays.day';
+
+// ---- what /season/ counts as "in season" ----
+//
+// Phase 3 of the computed-seasons migration. /season/ used to split on a
+// hand-set `in_season:` boolean in each entry's frontmatter, which is a
+// snapshot of the day the entry was written and rots silently from there —
+// measured 2026-08-18, 16 of 23 rows would have been wrong by 16 September.
+// It now asks src/season.js the same question the app asks, so the page is
+// correct on every build with no file edits.
+//
+// /season/ is ONE static page with no market context, so it has to pick a
+// band. Mediterranean, because every entry is written from Iberian markets
+// and its prose says so. A temperate reader gets a page that runs a couple of
+// weeks early, which is the right way round for a guide whose promise is
+// "noted as it turns up".
+const SEASON_BAND = 'mediterranean';
+
+// MM-DD. Overridable so the season split can be checked at any date without
+// waiting for the calendar: GD_BUILD_DATE=09-20 node scripts/build-field-guide.mjs
+const BUILD_MMDD = process.env.GD_BUILD_DATE || new Date().toISOString().slice(5, 10);
 
 // Pinterest wants a vertical ~2:3 image; general OG unfurls (Slack, iMessage,
 // Twitter) want landscape ~1.91:1. Both crops come from the same 1024×1024
@@ -101,9 +122,14 @@ function parseEntry(file) {
     else if (value === 'false') value = false;
     fm[key] = value;
   }
-  for (const key of ['id', 'first_noted', 'in_season']) {
+  for (const key of ['id', 'first_noted']) {
     if (!(key in fm)) throw new Error(`${file}: missing required frontmatter key "${key}"`);
   }
+  // `in_season` used to be required here and used to decide the /season/ split.
+  // It is now LEGACY and advisory only — the split is computed below from
+  // data/produce.json. Entries no longer carry the key; if one reappears and
+  // disagrees with the computed answer, the build says so rather than silently
+  // preferring either.
   // Optional: `pin_title` and `pin_description` carry the Pinterest copy into
   // feed.xml. They exist because og:title ("Pomegranate — green days field
   // guide") is far weaker for Pinterest search than a keyword-first line like
@@ -412,8 +438,15 @@ for (const entry of entries) {
   fs.writeFileSync(path.join(dir, 'index.html'), html);
 }
 
-const inSeason = entries.filter((e) => e.in_season === true);
-const offSeason = entries.filter((e) => e.in_season !== true);
+// Computed, not declared. seasonalityOf falls back to the legacy prose-label
+// parser for the catalogue items that have no season_ranges yet, so this is
+// never worse than the old behaviour and improves as ranges are added.
+// 'peak' counts as in season — a declared peak is always on the stall.
+for (const e of entries) e.seasonality = seasonalityOf(e.produce, BUILD_MMDD, SEASON_BAND);
+const inSeason = entries.filter((e) => e.seasonality !== 'out');
+const offSeason = entries.filter((e) => e.seasonality === 'out');
+
+const drifted = entries.filter((e) => 'in_season' in e && e.in_season !== (e.seasonality !== 'out'));
 const seasonDir = path.join(DIST_DIR, 'season');
 fs.mkdirSync(seasonDir, { recursive: true });
 fs.writeFileSync(path.join(seasonDir, 'index.html'), seasonIndexPage(inSeason, offSeason));
@@ -447,6 +480,17 @@ console.log(
   `(${inSeason.length} in season, ${offSeason.length} listed out of season)` +
   ` — ${cropped} with OG crops from produce_raw/, ${fallback} on the @2x.png fallback`
 );
+console.log(
+  `  /season/ computed for ${BUILD_MMDD} in the ${SEASON_BAND} band` +
+  ` — ${entries.filter((e) => e.seasonality === 'peak').length} at peak`
+);
+if (drifted.length) {
+  console.warn(
+    `  ⚠ stale in_season frontmatter on ${drifted.length} entr${drifted.length === 1 ? 'y' : 'ies'}` +
+    ` (advisory only, the computed answer is what shipped): ` +
+    drifted.map((e) => `${e.id} says ${e.in_season}, computed ${e.seasonality}`).join('; ')
+  );
+}
 console.log(`sitemap fragment: ${entries.length + 1} urls (/season/, ${entries.length} entries)`);
 if (FEED_PAUSED) {
   console.warn(

@@ -133,6 +133,16 @@ EGG = ALLERGEN["Eggs"]
 NONVEGAN_EXTRA = DAIRY + EGG + ["honey"]
 PROTEIN_PRODUCE = {"borlotti-beans","broad-beans-fava","edamame","garden-peas"}
 
+# Flavourings a title likes to promise. Checked against the ingredients + method
+# so a recipe cannot advertise something it never uses (the real case: a pear
+# recipe titled "roasted slow with bay and honey" that contained no honey).
+# Deliberately a curated list, not every noun: general title-vs-ingredient
+# matching is too noisy to be worth reading.
+TITLE_FLAVOURS = ["honey","wine","vermouth","cider","saffron","anchovy","anchovies","miso","cream",
+                  "chorizo","bacon","pancetta","butter","yogurt","yoghurt","harissa","tahini","mustard",
+                  "caper","capers","olive","olives","almond","almonds","walnut","walnuts","hazelnut",
+                  "cinnamon","vanilla","ginger","feta","ricotta","burrata","parmesan","cumin","fennel seed"]
+
 def _text_fields(recipe):
     """All human-readable recipe text as one lowercased blob, plus the parts."""
     parts = []
@@ -242,6 +252,46 @@ def lint(recipe, req, produce):
     if has_protein_produce and str(recipe.get("protein") or "").strip():
         warn.append("PROTEIN: basket already has a pulse; 'make it a meal' protein should usually be omitted")
 
+    # G6 main-course rule. Basket size decides (1 item stays produce-led, 2+ may
+    # build a main with a counter-bought protein cooked into the method), so all
+    # of this is derivable from the request. Warn-only: whether a given 2+ basket
+    # SHOULD have become a main is a taste call the judge and a human make.
+    ing = recipe.get("ingredients") or []
+    ing = [i for i in ing if isinstance(i, dict)]
+    has_counter = any(i.get("register") == "counter" for i in ing)
+    no_register = [i.get("item") for i in ing if not i.get("register")]
+    if no_register:
+        warn.append(f"REGISTER: ingredient(s) missing the register field: {no_register[:4]}")
+    bad_register = [i.get("register") for i in ing if i.get("register") not in (None, "basket", "pantry", "counter")]
+    if bad_register:
+        warn.append(f"REGISTER: unknown register value(s): {sorted(set(bad_register))}")
+    if len(basket_ids) == 1 and has_counter:
+        warn.append("MAIN: single-item basket should stay produce-led, but a counter buy was cooked in")
+    if has_counter and str(recipe.get("protein") or "").strip():
+        warn.append("MAIN: a protein is cooked into the dish, so the 'make it a meal' protein field should be null")
+    if len(basket_ids) >= 2 and not has_counter and not has_protein_produce:
+        warn.append("MAIN: multi-item basket stayed produce-led (allowed; check the mix across the whole run)")
+
+    # G7 title honesty. A flavouring promised in the title must actually be
+    # bought and used; a shopper reads the title at the stall and buys from it.
+    title_l = str(recipe.get("title") or "").lower()
+    used = " ".join([str(i.get("item","")) for i in ing] + [str(x) for x in (recipe.get("method") or [])]).lower()
+    for t in TITLE_FLAVOURS:
+        pat = rf"(?<![a-z]){re.escape(t)}(?![a-z])"
+        if re.search(pat, title_l) and not re.search(pat, used):
+            warn.append(f"TITLE: '{t}' is named in the title but appears in neither the ingredients nor the method")
+
+    # G8 grab-one-more overlap. The nudge should send them to a different stall,
+    # not to the near-twin of something already in the basket (red onion when
+    # they have onion).
+    grab = str(recipe.get("grabOneMore") or "").strip().lower()
+    if grab:
+        gt = set(grab.replace("-", " ").split())
+        for bid in basket_ids:
+            if gt & set(str(bid).replace("-", " ").split()):
+                warn.append(f"GRAB: '{grab}' overlaps basket item '{bid}'; the nudge should be a genuinely different thing")
+                break
+
     return {"hard_fail": hard, "warn": warn, "off_season_items": off}
 
 # ------------------------------------------------------------------ judge pass
@@ -250,16 +300,19 @@ JUDGE_SYSTEM = """You are a strict but fair recipe editor for "Green Days", grad
 PRINCIPLES (condensed):
 - The cook: a confident home cook. Simple, with real technique when it earns its place (refogado, braise, pan sauce, sear). Never fussy or cheffy. Lean minimalist when produce is at absolute peak; curious/improvisational for variety.
 - Voice: warm and spare. Poetry ONLY in the one-line seasonal note and the "grab one more" nudge; method stays plain and sensory. Never: em dashes, "simply"/"just" as filler, exclamation marks, backstory, purple food-writing.
-- Produce is the star. Market-strict: only things a shopper could grab at the same European market/supermarket that day. Assumed pantry: olive oil, salt, pepper, garlic, onion, vinegar, lemon, butter, eggs, flour, pasta/rice, stock, common dried herbs/spices.
+- Produce names the dish and leads the title. A protein may be the centre of the plate but never the subject: "Pear Compote, with Pork and Onion", never "Pork with Pear Compote". Market-strict: only things a shopper could grab at the same European market/supermarket that day. Assumed pantry: olive oil, salt, pepper, garlic, onion, vinegar, lemon, butter, eggs, flour, pasta/rice, stock, common dried herbs/spices.
+- Main courses. A one-item basket stays produce-led and minimal. A basket of two or more MAY build a full main with a protein bought at the counter (the whole counter is open, good cuts included) and cooked into the method with real technique, marked register "counter" in the ingredients. Lean that way when the produce cannot be a meal on its own (pear, quince, orange, chilli, fennel, onion), and stay produce-led when the produce is at peak and restraint is the better dish. Vegan and vegetarian mains must have real heft, never a vegetable dish with a spoonful of pulses beside it.
+- Three ingredient registers: "basket" (the shopper's produce, dominant), "counter" (anything else they must buy, a protein above all but also tinned pulses or cheese), "pantry" (assumed staples, lightest).
+- Honesty rules: everything named in the title is in the ingredients and the method; basket items are never hedged with "if you have it"; an item left out quietly beats an item tacked on as a token side; grabOneMore is genuinely different from what is already in the basket; the time cue matches what the method actually takes.
 - Mediterranean-European home cooking as default voice, with a LIGHT inflection from the market's country. Rooted, not costumed.
 - Servings 2, quantities scale obviously. Signal quick vs leisurely up front.
-- "Grab one more": one in-season item to complete the dish. "Make it a meal": 1-2 proteins ONLY when the dish has none, diet-aware; omit if a protein is present. Honest off-season note only when an off-season item is in the basket. Honor diet/allergy silently.
+- "Grab one more": one in-season item to complete the dish. "Make it a meal": 1-2 proteins ONLY when no protein is cooked into the dish, diet-aware; null whenever the method already cooks one. Honest off-season note only when an off-season item is in the basket. Honor diet/allergy silently.
 
 Score each dimension 1-5 (5 best):
 - voice: warm, spare, correct register; poetry confined to note + grab-one-more
 - technique: confident-home-cook level; technique earns its place; not fussy, not lazy; peak/variety dial right
 - seasonality: stars are the in-season picks; market-strict; location inflection light and correct; off-season handled honestly
-- structure: clear numbered method, scales to 2, fresh-vs-pantry register, useful grab-one-more, protein rule respected
+- structure: clear numbered method, scales to 2, the three ingredient registers used correctly, useful grab-one-more, protein rule respected, main-vs-produce-led call fits the basket size
 - appetite: would a real cook want to make and eat this
 Also give overall (1-5) and list hard_flags (array of short strings) for any principle-violation you see (allergen/diet breach, banned words, dishonest seasonality, non-market ingredient). rationale: one sentence.
 

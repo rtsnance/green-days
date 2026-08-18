@@ -17,6 +17,10 @@ A recipe fails the run if any of these trip. These are the silent-but-serious fa
 - **"just"** is flagged with context but not failed, because it is legitimate as a degree adverb ("char until just tender", "stock to just cover") — both appear in the anchor recipes. A human skims these to confirm none is filler ("just toss it together").
 - **Time/effort cue** missing (no "about 20 minutes" / "a slow hour" signal).
 - **Protein rule**: the basket already contains a pulse but a "make it a meal" protein was still suggested (principles say omit it when the dish has its own protein).
+- **Register**: an ingredient is missing `register`, or carries a value outside `basket` / `pantry` / `counter`.
+- **Title honesty**: a flavouring named in the title (honey, wine, saffron, anchovy...) appears in neither the ingredients nor the method. Curated list, not general noun matching.
+- **Grab overlap**: `grabOneMore` shares a word with something already in the basket (red onion when they have onion).
+- **Main-course rule**: a one-item basket cooked in a counter buy (it should stay produce-led), a protein is cooked in but the `protein` field was still filled, or a two-plus basket stayed produce-led. The last one is legitimate on its own and only means something across a whole run: if every multi-item basket comes back a side dish, the rule is not landing.
 
 ## Soft dimensions — LLM judge, 1–5
 
@@ -25,6 +29,8 @@ Scored by an Opus judge that receives the principles, the basket with per-item s
 - **Voice** — warm and spare; poetry confined to the seasonal note and the grab-one-more nudge; method stays plain and sensory, never purple.
 - **Technique** — confident home cook; real technique when it earns its place (refogado, braise, pan sauce, sear); never fussy or cheffy; the minimalist-vs-improvisational dial set right for peak vs variety.
 - **Seasonality** — the in-season basket items are the stars; market-strict (nothing a European market wouldn't have that day); location inflection light and correct, rooted not costumed.
+- **Main-course judgement** — did the basket-size rule land the right way? One item should stay produce-led and minimal. Two or more may build a full main with a protein from the counter cooked into the method with real technique, and should when the produce cannot be a meal on its own (pear, quince, orange, chilli, fennel, onion). Two things fail here: a fruit-and-aromatic basket that comes back as a side dish, and a peak-produce basket that gets a protein bolted onto it for no reason. Vegan and vegetarian mains are held to the same bar as any other main.
+- **Who stars** — the produce names the dish and leads the title even when a protein is the centre of the plate ("Pear Compote, with Pork and Onion", not the reverse), and the seasonal note stays about the produce.
 - **Structure** — clean numbered method that scales to two; fresh produce dominant with pantry in a lighter register; grab-one-more points to a genuinely in-season item; protein rule respected.
 - **Appetite** — would a real cook want to make this and want to eat it.
 
@@ -33,6 +39,12 @@ Plus an **overall** 1–5 and a one-line rationale. The judge also returns `hard
 ## How the two layers divide the work
 
 The deterministic gates own everything objective and unforgivable — they are cheap, run without an API key, and are the actual ship/no-ship signal. The judge owns the subjective quality that no regex can feel, and its job is trend detection, not gatekeeping. Neither replaces the periodic human taste panel, which is the only thing that can tell you a dish is genuinely appetizing or that the Portuguese lean rings true.
+
+## Main courses and the three registers
+
+The engine is not a side-dish engine. `ingredients[].register` splits into three: `basket` (the shopper's produce, rendered dominant), `counter` (a fresh non-produce buy, above all a protein from the butcher or fishmonger, rendered as "Also buy, at the counter"), and `pantry` (assumed staples, rendered as chips). The `pantry` boolean is kept alongside it for older clients: a counter buy is `pantry: false`, so a client that has not been updated still shows it as something to go and buy.
+
+The trigger is deterministic and computed in `buildUserMessage` from basket size, not left to model judgement, because model judgement drifts toward always-main. One item stays produce-led. Two or more is permission, not obligation.
 
 ## Seasonality model caveat
 
