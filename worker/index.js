@@ -63,9 +63,10 @@ async function route(request, env, ctx) {
 
   // Old lab.ryantnance.com/greendays* links now live at the greendays.day
   // root — permanently redirect, preserving the rest of the path/query so
-  // deep links keep working. `key` is stripped: /metrics is HTTP Basic only
-  // now, and a token in a query string should never be forwarded to another
-  // hostname (it would show up in that host's logs and in the Referer).
+  // deep links keep working. `key` is stripped: /metrics is HTTP Basic (plus
+  // the session cookie it mints) now, and a token in a query string should
+  // never be forwarded to another hostname (it would show up in that host's
+  // logs and in the Referer).
   if (url.hostname === 'lab.ryantnance.com') {
     const newPath = url.pathname.replace(/^\/greendays/, '') || '/';
     const params = new URLSearchParams(url.search);

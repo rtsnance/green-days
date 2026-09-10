@@ -1,0 +1,454 @@
+[
+  {
+    "num": 1,
+    "numeral": "I",
+    "opens": "02-02",
+    "days": 12,
+    "name": "Candlemas",
+    "whole": 67,
+    "rising": [],
+    "falling": [],
+    "transitions": 0
+  },
+  {
+    "num": 2,
+    "numeral": "II",
+    "opens": "02-14",
+    "days": 15,
+    "name": "St Valentine",
+    "whole": 67,
+    "rising": [
+      "Alho-dos-ursos",
+      "Ruibarbo"
+    ],
+    "falling": [],
+    "transitions": 2
+  },
+  {
+    "num": 3,
+    "numeral": "III",
+    "opens": "03-01",
+    "days": 24,
+    "name": "St David",
+    "whole": 61,
+    "rising": [],
+    "falling": [],
+    "transitions": 0
+  },
+  {
+    "num": 4,
+    "numeral": "IV",
+    "opens": "03-25",
+    "days": 20,
+    "name": "Lady Day",
+    "whole": 60,
+    "rising": [
+      "Nêspera"
+    ],
+    "falling": [
+      "Kiwi"
+    ],
+    "transitions": 2
+  },
+  {
+    "num": 5,
+    "numeral": "V",
+    "opens": "04-14",
+    "days": 9,
+    "name": "Cuckoo Day",
+    "whole": 61,
+    "rising": [],
+    "falling": [],
+    "transitions": 0
+  },
+  {
+    "num": 6,
+    "numeral": "VI",
+    "opens": "04-23",
+    "days": 8,
+    "name": "St George / Sant Jordi",
+    "whole": 61,
+    "rising": [],
+    "falling": [],
+    "transitions": 0
+  },
+  {
+    "num": 7,
+    "numeral": "VII",
+    "opens": "05-01",
+    "days": 14,
+    "name": "May Day",
+    "whole": 58,
+    "rising": [],
+    "falling": [],
+    "transitions": 0
+  },
+  {
+    "num": 8,
+    "numeral": "VIII",
+    "opens": "05-15",
+    "days": 24,
+    "name": "Cold Sophia",
+    "whole": 47,
+    "rising": [
+      "Beringela",
+      "Courgette",
+      "Courgette grande",
+      "Pimento",
+      "Malagueta",
+      "Pimento de Padrón",
+      "Tomatillo",
+      "Alho",
+      "Alho-elefante",
+      "Couve-rábano",
+      "Aipo",
+      "Salicórnia",
+      "Feijão-verde",
+      "Feijão-de-trepar",
+      "Feijão-borlotti",
+      "Edamame",
+      "Milho-baby",
+      "Manjericão",
+      "Aneto",
+      "Estragão",
+      "Orégãos",
+      "Manjerona",
+      "Erva-príncipe",
+      "Ameixa",
+      "Abrunho",
+      "Pêssego",
+      "Nectarina",
+      "Amora",
+      "Mirtilo",
+      "Groselha vermelha",
+      "Groselha preta",
+      "Groselha-espim",
+      "Meloa",
+      "Melancia",
+      "Melão"
+    ],
+    "falling": [
+      "Alho-dos-ursos",
+      "Couve-flor",
+      "Couve romanesco",
+      "Brócolos",
+      "Brócolos roxos",
+      "Brócolos-de-haste",
+      "Espinafre",
+      "Ruibarbo",
+      "Cerefólio",
+      "Maçã",
+      "Maçã para cozer"
+    ],
+    "transitions": 46
+  },
+  {
+    "num": 9,
+    "numeral": "IX",
+    "opens": "06-08",
+    "days": 16,
+    "name": "St Médard",
+    "whole": 82,
+    "rising": [],
+    "falling": [],
+    "transitions": 0
+  },
+  {
+    "num": 10,
+    "numeral": "X",
+    "opens": "06-24",
+    "days": 21,
+    "name": "Midsummer / São João",
+    "whole": 72,
+    "rising": [
+      "Alcachofra"
+    ],
+    "falling": [
+      "Rabanete",
+      "Rabanete comprido",
+      "Espargos",
+      "Ervilhas",
+      "Ervilha-torta",
+      "Ervilha-doce",
+      "Cereja",
+      "Morango",
+      "Groselha-espim",
+      "Nêspera"
+    ],
+    "transitions": 11
+  },
+  {
+    "num": 11,
+    "numeral": "XI",
+    "opens": "07-15",
+    "days": 10,
+    "name": "St Swithin",
+    "whole": 73,
+    "rising": [
+      "Rainha-cláudia"
+    ],
+    "falling": [],
+    "transitions": 1
+  },
+  {
+    "num": 12,
+    "numeral": "XII",
+    "opens": "07-25",
+    "days": 7,
+    "name": "Santiago",
+    "whole": 74,
+    "rising": [],
+    "falling": [],
+    "transitions": 0
+  },
+  {
+    "num": 13,
+    "numeral": "XIII",
+    "opens": "08-01",
+    "days": 23,
+    "name": "Lammas",
+    "whole": 80,
+    "rising": [],
+    "falling": [
+      "Salicórnia"
+    ],
+    "transitions": 1
+  },
+  {
+    "num": 14,
+    "numeral": "XIV",
+    "opens": "08-24",
+    "days": 15,
+    "name": "St Bartholomew",
+    "whole": 57,
+    "rising": [
+      "Tomate verde",
+      "Chalota",
+      "Daikon",
+      "Rutabaga",
+      "Pastinaca",
+      "Aipo-rábano",
+      "Batata-doce",
+      "Tupinambo",
+      "Rábano-picante",
+      "Couves-de-bruxelas",
+      "Chicória-frisada",
+      "Radicchio",
+      "Alface-de-cordeiro",
+      "Funcho",
+      "Cardo",
+      "Abóbora",
+      "Abóbora-manteiga",
+      "Abóbora-bolota",
+      "Abóbora crown prince",
+      "Abóbora-espaguete",
+      "Abóbora kabocha",
+      "Milho-doce",
+      "Cantarelo",
+      "Boleto",
+      "Marmelo",
+      "Romã",
+      "Tâmara",
+      "Figo-da-índia",
+      "Physalis"
+    ],
+    "falling": [
+      "Tomatillo",
+      "Cebola nova",
+      "Alho-elefante",
+      "Batata nova",
+      "Alcachofra",
+      "Feijão-borlotti",
+      "Edamame",
+      "Milho-baby",
+      "Manjericão",
+      "Aneto",
+      "Estragão",
+      "Cebolinho",
+      "Orégãos",
+      "Manjerona",
+      "Erva-príncipe",
+      "Pêssego",
+      "Nectarina",
+      "Amora",
+      "Mirtilo",
+      "Groselha vermelha",
+      "Groselha preta",
+      "Melancia",
+      "Melão"
+    ],
+    "transitions": 52
+  },
+  {
+    "num": 15,
+    "numeral": "XV",
+    "opens": "09-08",
+    "days": 21,
+    "name": "Marymas",
+    "whole": 85,
+    "rising": [],
+    "falling": [
+      "Rainha-cláudia"
+    ],
+    "transitions": 1
+  },
+  {
+    "num": 16,
+    "numeral": "XVI",
+    "opens": "09-29",
+    "days": 11,
+    "name": "Michaelmas",
+    "whole": 73,
+    "rising": [
+      "Alho-francês",
+      "Couve-flor",
+      "Couve romanesco",
+      "Brócolos",
+      "Brócolos roxos",
+      "Brócolos-de-haste",
+      "Espinafre",
+      "Tangerina",
+      "Dióspiro",
+      "Kiwi",
+      "Castanha"
+    ],
+    "falling": [
+      "Tomate",
+      "Tomate-cereja",
+      "Tomate coração-de-boi",
+      "Tomate-chucha",
+      "Courgette",
+      "Courgette grande",
+      "Feijão-verde",
+      "Feijão-de-trepar",
+      "Ameixa",
+      "Abrunho",
+      "Figo",
+      "Meloa"
+    ],
+    "transitions": 23
+  },
+  {
+    "num": 17,
+    "numeral": "XVII",
+    "opens": "10-10",
+    "days": 8,
+    "name": "Old Michaelmas",
+    "whole": 84,
+    "rising": [
+      "Nêspera-europeia"
+    ],
+    "falling": [],
+    "transitions": 1
+  },
+  {
+    "num": 18,
+    "numeral": "XVIII",
+    "opens": "10-18",
+    "days": 14,
+    "name": "St Luke",
+    "whole": 85,
+    "rising": [],
+    "falling": [],
+    "transitions": 0
+  },
+  {
+    "num": 19,
+    "numeral": "XIX",
+    "opens": "11-01",
+    "days": 10,
+    "name": "All Hallows",
+    "whole": 84,
+    "rising": [],
+    "falling": [],
+    "transitions": 0
+  },
+  {
+    "num": 20,
+    "numeral": "XX",
+    "opens": "11-11",
+    "days": 25,
+    "name": "Martinmas / São Martinho",
+    "whole": 66,
+    "rising": [
+      "Lima",
+      "Laranja sanguínea",
+      "Toranja"
+    ],
+    "falling": [
+      "Tomate verde",
+      "Batata-doce",
+      "Couve-rábano",
+      "Rábano-picante",
+      "Rúcula",
+      "Aipo",
+      "Cantarelo",
+      "Boleto",
+      "Salsa",
+      "Coentros",
+      "Hortelã",
+      "Pera",
+      "Pera conference",
+      "Nêspera-europeia",
+      "Romã",
+      "Tâmara",
+      "Figo-da-índia",
+      "Physalis"
+    ],
+    "transitions": 21
+  },
+  {
+    "num": 21,
+    "numeral": "XXI",
+    "opens": "12-06",
+    "days": 19,
+    "name": "St Nicholas",
+    "whole": 69,
+    "rising": [],
+    "falling": [],
+    "transitions": 0
+  },
+  {
+    "num": 22,
+    "numeral": "XXII",
+    "opens": "12-25",
+    "days": 12,
+    "name": "Christmas",
+    "whole": 66,
+    "rising": [
+      "Acelga"
+    ],
+    "falling": [
+      "Alho",
+      "Dióspiro",
+      "Castanha"
+    ],
+    "transitions": 4
+  },
+  {
+    "num": 23,
+    "numeral": "XXIII",
+    "opens": "01-06",
+    "days": 16,
+    "name": "Epiphany",
+    "whole": 67,
+    "rising": [],
+    "falling": [],
+    "transitions": 0
+  },
+  {
+    "num": 24,
+    "numeral": "XXIV",
+    "opens": "01-22",
+    "days": 11,
+    "name": "St Vincent",
+    "whole": 66,
+    "rising": [
+      "Espargos"
+    ],
+    "falling": [
+      "Azeitonas"
+    ],
+    "transitions": 2
+  }
+]

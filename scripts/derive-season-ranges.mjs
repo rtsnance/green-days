@@ -56,7 +56,7 @@ const LORE_NAMED = [
   'purple-sprouting-broccoli',                               // XXIII mid-Jan, PSB alone
 ];
 
-const TARGETS = [...new Set([...FIELD_GUIDE, ...LORE_NAMED])];
+const TARGETS = [...new Set([...FIELD_GUIDE, ...LORE_NAMED])]
 
 const START = { spring: '03-01', summer: '06-01', autumn: '09-01', winter: '12-01' };
 const CYCLE = ['spring','summer','autumn','winter'];
@@ -111,6 +111,185 @@ const shift = (w, days) => (isYear(w) ? w
    JSON, so re-running this script does not silently undo them.
 
    Each override must say where it came from. */
+/* PT_SOURCED — Portuguese seasonality taken from PUBLISHED NATIONAL SOURCES,
+   not derived from our own prose labels.
+
+   The TARGETS comment above says everything outside the lore set can only be
+   checked against the label it came from, which is circular. That was true
+   until these three calendars were captured on 2026-09-01. They are written
+   for a different reason, by Portuguese bodies, and they break the circle for
+   the mediterranean band.
+
+   Precedence, applied in derive(): a hand OVERRIDE beats this table, because
+   an override encodes a dated folk claim (St David's leeks, Old Michaelmas
+   blackberries) that a production calendar cannot know. This table beats the
+   label derivation. Temperate ranges are NOT touched here — these sources
+   speak only for Portugal.
+
+   Sources:
+     APN  Alianca contra a Fome/APN, Calendarios de Producao Nacional, 2021 (national production)
+     DECO DECO PROteste, Fruta e legumes da epoca, updated 2024-09-24
+     CNT  Continente feed, Fruta e legumes da epoca, updated 2024-01-25 (retail; imports stripped by hand)
+
+   Full transcription with per-item attribution: _pt-calendar/pt-sources.json */
+
+const PT_SOURCE_NAMES = {
+  APN:  'Alianca contra a Fome e a Ma-nutricao / APN, "Calendarios de Producao Nacional", 2021',
+  DECO: 'DECO PROteste, "Fruta e legumes da epoca: calendario anual", updated 2024-09-24',
+  AZT:  'calendarios.info, "A apanha da azeitona em Portugal", quoting the harvest as "entre novembro e janeiro"; GREEN TABLE olives are picked earlier and that earlier window is NOT verified',
+  CNT:  'Continente feed, "Fruta e legumes da epoca", updated 2024-01-25 (retail listing, imports removed by hand)',
+};
+
+/* PT_WINS_MED — the three overrides whose reasoning is NORTHERN.
+   Ruled on 2026-09-01 while building the Fruta Feia calendar.
+
+   The general rule is that a hand OVERRIDE beats PT_SOURCED, because an
+   override carries a dated claim a production calendar cannot know. These
+   three are the exception, and the reason is that their dated claims are not
+   Portuguese ones:
+
+     leek       extended to 15 Mar so leeks stand on ST DAVID'S DAY. Wales.
+     blackberry tail set by OLD MICHAELMAS, "the devil spits on the
+                blackberries". England.
+     orange     start pulled to 8 Nov to catch REPUBLICAN ORANGE DAY. France.
+
+   Each is a good argument about the temperate band and a bad one about the
+   Algarve. So for the MEDITERRANEAN band only, the published Portuguese
+   figure wins; the temperate range keeps the folk date untouched.
+
+   greengage is deliberately NOT in this list. DECO's window is for 'ameixa'
+   generally, not the gage, and the stall lost the rainha-clau^dia on
+   18 Aug 2026, which beats both. */
+const PT_WINS_MED = ['leek', 'blackberry', 'orange'];
+
+
+/* SOURCE_SPLITS — the only honest way to get off the month grain.
+
+   Spec_Computed_Seasons chose half-months on purpose: "Snap every boundary to
+   the 1st or the 16th. Twenty-four buckets a year." The 2026-09-01 Portuguese
+   import put 381 of 398 boundaries on the 1st and 17 on the 16th, which is a
+   12-bucket model being read by a 24-day grid. Every "what enters at turning N"
+   answer then depends on whether N's window happens to straddle the 1st.
+
+   Mid-month precision cannot be invented: the sources speak in whole months.
+   But where APN and DECO, both national-facing, differ by EXACTLY ONE MONTH at
+   one edge, the disagreement is itself evidence. Both are right within their
+   own grain and the boundary lies between their claims. Placing it on the 16th
+   (start) or the 15th (end) asserts less than either source does alone.
+
+   A two-month or wider gap is NOT split: that is real disagreement about the
+   crop, not grain, and it stays on the national-production figure. Continente
+   is excluded entirely here, being retail, where storage and imports move the
+   edges for reasons that have nothing to do with when the thing grows. */
+const SOURCE_SPLITS_WHY = 'APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner';
+
+const SOURCE_SPLITS = {
+  'apple': { from: '08-16', key: 'maca' },
+  'apricot': { to: '08-15', key: 'damasco/alperce' },
+  'blueberry': { from: '05-16', to: '08-15', key: 'mirtilo' },
+  'cooking-apple': { from: '08-16', key: 'maca' },
+  'fig': { from: '07-16', key: 'figo' },
+  'grapes': { to: '11-15', key: 'uva' },
+  'grapes-black': { to: '11-15', key: 'uva' },
+  'honeydew-melon': { to: '09-15', key: 'melao' },
+  'mandarin-clementine': { to: '03-15', key: 'tangerina' },
+  'nectarine': { to: '09-15', key: 'pessego' },
+  'peach': { to: '09-15', key: 'pessego' },
+  'watermelon': { to: '09-15', key: 'melancia' },
+};
+
+const PT_SOURCED = {
+  'chestnut': { from: '10-01', to: '12-31', src: 'DECO', pt: 'Castanha', key: 'castanha' },
+  'loquat-nespera': { from: '04-01', to: '06-30', src: 'DECO', pt: 'Nespera', key: 'nespera' },
+  'olives': { from: '11-01', to: '01-31', src: 'AZT', pt: 'Azeitonas', key: 'azeitona' },
+  'acorn-squash': { from: '09-01', to: '02-28', src: 'APN', pt: 'Abóbora-bolota', key: 'abobora' },
+  'apple': { from: '08-01', to: '05-31', src: 'APN', pt: 'Maçã', key: 'maca' },
+  'apricot': { from: '05-01', to: '07-31', src: 'APN', pt: 'Alperce', key: 'damasco/alperce' },
+  'asparagus': { from: '02-01', to: '06-30', src: 'CNT', pt: 'Espargos', key: 'espargos' },
+  'aubergine': { from: '06-01', to: '10-31', src: 'APN', pt: 'Beringela', key: 'beringela' },
+  'avocado': { from: '01-01', to: '12-31', src: 'DECO', pt: 'Abacate', key: 'abacate' },
+  'beefsteak-tomato': { from: '05-01', to: '09-30', src: 'APN', pt: 'Tomate coração-de-boi', key: 'tomate' },
+  'beetroot': { from: '08-01', to: '04-30', src: 'APN', pt: 'Beterraba', key: 'beterraba' },
+  'bell-pepper': { from: '06-01', to: '10-31', src: 'APN', pt: 'Pimento', key: 'pimento' },
+  'blackberry': { from: '06-01', to: '08-31', src: 'DECO', pt: 'Amora', key: 'amora' },
+  'blueberry': { from: '06-01', to: '08-31', src: 'APN', pt: 'Mirtilo', key: 'mirtilo' },
+  'breakfast-radish': { from: '05-01', to: '06-30', src: 'CNT', pt: 'Rabanete comprido', key: 'rabanete' },
+  'broad-beans-fava': { from: '03-01', to: '10-31', src: 'CNT', pt: 'Favas', key: 'favas' },
+  'broccoli-calabrese': { from: '10-01', to: '05-31', src: 'APN', pt: 'Brócolos', key: 'brocolo' },
+  'butternut-squash': { from: '09-01', to: '02-28', src: 'APN', pt: 'Abóbora-manteiga', key: 'abobora' },
+  'cantaloupe-melon': { from: '06-01', to: '09-30', src: 'DECO', pt: 'Meloa', key: 'meloa' },
+  'carrot': { from: '01-01', to: '12-31', src: 'APN', pt: 'Cenoura', key: 'cenoura' },
+  'cauliflower': { from: '10-01', to: '05-31', src: 'APN', pt: 'Couve-flor', key: 'couve-flor' },
+  'cavolo-nero': { from: '11-01', to: '04-30', src: 'CNT', pt: 'Couve-negra', key: 'couve' },
+  'chard': { from: '01-01', to: '04-30', src: 'CNT', pt: 'Acelga', key: 'acelga' },
+  'cherry': { from: '05-01', to: '06-30', src: 'APN', pt: 'Cereja', key: 'cereja' },
+  'cherry-tomato': { from: '05-01', to: '09-30', src: 'APN', pt: 'Tomate-cereja', key: 'tomate' },
+  'chilli-pepper': { from: '06-01', to: '10-31', src: 'APN', pt: 'Malagueta', key: 'pimento' },
+  'conference-pear': { from: '08-01', to: '11-30', src: 'APN', pt: 'Pera conference', key: 'pera' },
+  'cooking-apple': { from: '08-01', to: '05-31', src: 'APN', pt: 'Maçã para cozer', key: 'maca' },
+  'courgette': { from: '06-01', to: '09-30', src: 'APN', pt: 'Courgette', key: 'curgete' },
+  'crown-prince-squash': { from: '09-01', to: '02-28', src: 'APN', pt: 'Abóbora crown prince', key: 'abobora' },
+  'cucumber': { from: '03-01', to: '10-31', src: 'CNT', pt: 'Pepino', key: 'pepino' },
+  'damson': { from: '06-01', to: '09-30', src: 'DECO', pt: 'Abrunho', key: 'ameixa' },
+  'fig': { from: '08-01', to: '09-30', src: 'APN', pt: 'Figo', key: 'figo' },
+  'garden-peas': { from: '03-01', to: '06-30', src: 'APN', pt: 'Ervilhas', key: 'ervilha' },
+  'garlic': { from: '06-01', to: '12-31', src: 'APN', pt: 'Alho', key: 'alho' },
+  'globe-artichoke': { from: '07-01', to: '08-31', src: 'CNT', pt: 'Alcachofra', key: 'alcachofra' },
+  'golden-beetroot': { from: '08-01', to: '04-30', src: 'APN', pt: 'Beterraba dourada', key: 'beterraba' },
+  'grapes': { from: '08-01', to: '10-31', src: 'APN', pt: 'Uvas brancas', key: 'uva' },
+  'grapes-black': { from: '08-01', to: '10-31', src: 'APN', pt: 'Uvas pretas', key: 'uva' },
+  'green-cabbage': { from: '11-01', to: '04-30', src: 'CNT', pt: 'Repolho', key: 'couve' },
+  'green-french-beans': { from: '06-01', to: '09-30', src: 'APN', pt: 'Feijão-verde', key: 'feijao-verde' },
+  'greengage': { from: '06-01', to: '09-30', src: 'DECO', pt: 'Rainha-cláudia', key: 'ameixa' },
+  'heritage-carrots': { from: '01-01', to: '12-31', src: 'APN', pt: 'Cenouras coloridas', key: 'cenoura' },
+  'honeydew-melon': { from: '06-01', to: '08-31', src: 'APN', pt: 'Melão', key: 'melao' },
+  'kabocha': { from: '09-01', to: '02-28', src: 'APN', pt: 'Abóbora kabocha', key: 'abobora' },
+  'kale': { from: '11-01', to: '04-30', src: 'CNT', pt: 'Couve-frisada', key: 'couve' },
+  'kiwi': { from: '10-01', to: '03-31', src: 'APN', pt: 'Kiwi', key: 'kiwi' },
+  'leek': { from: '10-01', to: '04-30', src: 'APN', pt: 'Alho-francês', key: 'alho-frances' },
+  'lemon': { from: '01-01', to: '12-31', src: 'APN', pt: 'Limão', key: 'limao' },
+  'lettuce': { from: '01-01', to: '12-31', src: 'APN', pt: 'Alface', key: 'alface' },
+  'little-gem': { from: '01-01', to: '12-31', src: 'APN', pt: 'Alface mini-romana', key: 'alface' },
+  'mandarin-clementine': { from: '10-01', to: '02-28', src: 'APN', pt: 'Tangerina', key: 'tangerina' },
+  'mangetout': { from: '03-01', to: '06-30', src: 'APN', pt: 'Ervilha-torta', key: 'ervilha' },
+  'marrow': { from: '06-01', to: '09-30', src: 'APN', pt: 'Courgette grande', key: 'curgete' },
+  'nectarine': { from: '06-01', to: '08-31', src: 'APN', pt: 'Nectarina', key: 'pessego' },
+  'new-potato': { from: '05-01', to: '08-31', src: 'CNT', pt: 'Batata nova', key: 'batata-nova' },
+  'onion': { from: '01-01', to: '12-31', src: 'APN', pt: 'Cebola', key: 'cebola' },
+  'orange': { from: '11-01', to: '04-30', src: 'APN', pt: 'Laranja', key: 'laranja' },
+  'padr-n-pepper': { from: '06-01', to: '10-31', src: 'APN', pt: 'Pimento de Padrón', key: 'pimento' },
+  'peach': { from: '06-01', to: '08-31', src: 'APN', pt: 'Pêssego', key: 'pessego' },
+  'pear': { from: '08-01', to: '11-30', src: 'APN', pt: 'Pera', key: 'pera' },
+  'persimmon-kaki': { from: '10-01', to: '12-31', src: 'DECO', pt: 'Dióspiro', key: 'diospiro' },
+  'plum': { from: '06-01', to: '09-30', src: 'DECO', pt: 'Ameixa', key: 'ameixa' },
+  'plum-san-marzano-tomato': { from: '05-01', to: '09-30', src: 'APN', pt: 'Tomate-chucha', key: 'tomate' },
+  'pointed-hispi-cabbage': { from: '11-01', to: '04-30', src: 'CNT', pt: 'Couve-coração', key: 'couve' },
+  'pomegranate': { from: '09-01', to: '11-30', src: 'APN', pt: 'Romã', key: 'roma' },
+  'potato': { from: '01-01', to: '12-31', src: 'APN', pt: 'Batata', key: 'batata' },
+  'pumpkin': { from: '09-01', to: '02-28', src: 'APN', pt: 'Abóbora', key: 'abobora' },
+  'purple-sprouting-broccoli': { from: '10-01', to: '05-31', src: 'APN', pt: 'Brócolos roxos', key: 'brocolo' },
+  'quince': { from: '09-01', to: '10-31', src: 'CNT', pt: 'Marmelo', key: 'marmelo' },
+  'radish': { from: '05-01', to: '06-30', src: 'CNT', pt: 'Rabanete', key: 'rabanete' },
+  'raspberry': { from: '05-01', to: '07-31', src: 'APN', pt: 'Framboesa', key: 'framboesa' },
+  'red-cabbage': { from: '11-01', to: '04-30', src: 'CNT', pt: 'Couve-roxa', key: 'couve' },
+  'red-onion': { from: '01-01', to: '12-31', src: 'APN', pt: 'Cebola roxa', key: 'cebola' },
+  'romaine-cos': { from: '01-01', to: '12-31', src: 'APN', pt: 'Alface-romana', key: 'alface' },
+  'romanesco': { from: '10-01', to: '05-31', src: 'APN', pt: 'Couve romanesco', key: 'couve-flor' },
+  'runner-beans': { from: '06-01', to: '09-30', src: 'APN', pt: 'Feijão-de-trepar', key: 'feijao-verde' },
+  'savoy-cabbage': { from: '11-01', to: '04-30', src: 'CNT', pt: 'Couve-lombarda', key: 'couve' },
+  'spaghetti-squash': { from: '09-01', to: '02-28', src: 'APN', pt: 'Abóbora-espaguete', key: 'abobora' },
+  'spinach': { from: '10-01', to: '05-31', src: 'APN', pt: 'Espinafre', key: 'espinafre' },
+  'spring-greens': { from: '11-01', to: '04-30', src: 'CNT', pt: 'Couve-galega', key: 'couve' },
+  'strawberry': { from: '03-01', to: '06-30', src: 'APN', pt: 'Morango', key: 'morango' },
+  'sugar-snap-peas': { from: '03-01', to: '06-30', src: 'APN', pt: 'Ervilha-doce', key: 'ervilha' },
+  'sweetcorn': { from: '09-01', to: '10-31', src: 'CNT', pt: 'Milho-doce', key: 'milho' },
+  'tenderstem-broccoli': { from: '10-01', to: '05-31', src: 'APN', pt: 'Brócolos-de-haste', key: 'brocolo' },
+  'tomato': { from: '05-01', to: '09-30', src: 'APN', pt: 'Tomate', key: 'tomate' },
+  'turnip': { from: '11-01', to: '04-30', src: 'CNT', pt: 'Nabo', key: 'nabo' },
+  'watercress': { from: '03-01', to: '10-31', src: 'CNT', pt: 'Agrião', key: 'agriao' },
+  'watermelon': { from: '06-01', to: '08-31', src: 'APN', pt: 'Melancia', key: 'melancia' },
+};
+
 const OVERRIDES = {
   orange: {
     // "Winter (Med)" derives to 01 Dec - 15 Feb, which puts oranges out of
@@ -200,10 +379,14 @@ function applyPeak(ranges, day) {
   });
 }
 
+// PT_SOURCED breaks the circularity for the mediterranean band, so those ids
+// are now derivable too. Union, not replacement: the lore set still rules.
+const TARGETS_ALL = [...new Set([...TARGETS, ...Object.keys(PT_SOURCED)])];
+
 const P = JSON.parse(fs.readFileSync('data/produce.json','utf8'));
 let n = 0;
 for (const it of P) {
-  if (!TARGETS.includes(it.id)) continue;
+  if (!TARGETS_ALL.includes(it.id)) continue;
   const s = (it.season||'').toLowerCase();
   const w = windowFor(it.season);
   if (!w) { console.log(`SKIP ${it.id}: cannot parse "${it.season}"`); continue; }
@@ -224,9 +407,24 @@ for (const it of P) {
   const mediterranean = [movable ? shift(w, -TICK) : snapW(w)];
 
   const ov = OVERRIDES[it.id];
-  it.season_ranges = ov
-    ? { mediterranean: ov.mediterranean, temperate: ov.temperate }
-    : { mediterranean, temperate };
+  const ptx = PT_SOURCED[it.id];
+  /* Precedence for the MEDITERRANEAN band only:
+       hand OVERRIDE  >  PT_SOURCED  >  label derivation
+     An override carries a dated folk claim a production calendar cannot know.
+     PT_SOURCED carries a published Portuguese figure, which beats a range we
+     reverse-engineered from our own English prose label. Temperate is never
+     touched by PT_SOURCED: these sources speak for Portugal only. */
+  const ptWins = ptx && PT_WINS_MED.includes(it.id);
+  /* A split edge refines a PT_SOURCED boundary onto the half-month grid. It
+     never overrides a hand OVERRIDE, and it never invents an edge the sources
+     did not already bracket. */
+  const sp = SOURCE_SPLITS[it.id];
+  const ptRange = ptx ? { from: sp?.from ?? ptx.from, to: sp?.to ?? ptx.to } : null;
+  const medFinal = ptWins ? [ptRange]
+                  : ov ? ov.mediterranean
+                  : ptRange ? [ptRange]
+                  : mediterranean;
+  it.season_ranges = { mediterranean: medFinal, temperate: ov ? ov.temperate : temperate };
   const dp = DECLARED_PEAKS[it.id];
   if (dp) {
     it.season_ranges.mediterranean = applyPeak(it.season_ranges.mediterranean, dp.day);
@@ -234,12 +432,17 @@ for (const it of P) {
     it.peak_source = dp.src;
   }
   it.availability  = ov?.availability ?? (imported ? 'imported' : stored ? 'stored' : 'local');
-  it.provenance    = 'inferred';
-  it.source        = ov?.source
-    ?? `derived from the "${it.season}" label by scripts/derive-season-ranges.mjs; not checked against a stall`;
+  /* provenance was hardcoded 'inferred' for everything, including hand
+     overrides argued from a dated source. It is the field the Fruta Feia
+     calendar's honesty rests on, so it now tells the truth per item. */
+  it.provenance    = ptWins ? 'sourced' : ov ? 'argued' : ptx ? 'sourced' : 'inferred';
+  it.resolution    = ov ? 'half-month' : sp ? 'half-month' : ptx ? 'month' : 'quarter';
+  it.source        = (ptWins ? null : ov?.source)
+    ?? (ptx ? `Portuguese national seasonality, ${PT_SOURCE_NAMES[ptx.src]}; matched on "${ptx.pt}" (${ptx.key})${sp ? `. EDGE SPLIT: ${SOURCE_SPLITS_WHY}` : ''}`
+            : `derived from the "${it.season}" label by scripts/derive-season-ranges.mjs; not checked against a stall`);
 
   const fmt = (r) => r.length ? `${r[0].from}..${r[0].to}` : '(none)';
-  console.log(`${it.id.padEnd(20)} ${String(it.season).padEnd(24)} med ${fmt(it.season_ranges.mediterranean).padEnd(14)} temp ${fmt(it.season_ranges.temperate).padEnd(14)} [${it.availability}]${ov ? '  <-- HAND OVERRIDE' : ''}`);
+  console.log(`${it.id.padEnd(20)} ${String(it.season).padEnd(24)} med ${fmt(it.season_ranges.mediterranean).padEnd(14)} temp ${fmt(it.season_ranges.temperate).padEnd(14)} [${it.availability}]${ptWins ? '  <-- PT SOURCE BEATS OVERRIDE (med only)' : ov ? '  <-- HAND OVERRIDE' : ptx ? '  <-- PT SOURCED' : ''}`);
   n++;
 }
 console.log(`\n${n} items derived.`);

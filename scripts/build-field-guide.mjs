@@ -76,7 +76,35 @@ const FEED_SINCE = '2026-07-28';
 // mark those six as already hand-pinned and silently drop them from the queue
 // for good. This keeps them waiting. Flip to false once Pinterest confirms the
 // domain is unblocked — nothing else needs changing.
-const FEED_PAUSED = true;
+//
+// 2026-08-31: cleared. The domain block lifted on 08-17 and the empty feed sat
+// live and harmless for 13 days. Scheduling is now FEED_HOLD's job, below —
+// FEED_PAUSED goes back to being an emergency stop, not a calendar.
+const FEED_PAUSED = false;
+
+// Batch release control, added 2026-08-31. Ids listed here are held OUT of
+// feed.xml regardless of FEED_SINCE. Release a batch by deleting its ids and
+// deploying. Unlike moving FEED_SINCE forward this is never lossy: a held entry
+// still counts as queued in the build log and is one line away from publishing.
+//
+// Order is by SEASON, not by age — damson and cantaloupe-melon are the two
+// oldest queued entries and both finished on 08-15.
+//
+// ✅ Batch 1, released 2026-08-31: plum, blackberry, grapes-black, grapes.
+const FEED_HOLD = new Set([
+  // Held indefinitely.
+  'damson',           // out of season until Jul 2027; also the plum enclosure twin
+  'greengage',        // already auto-published to staging TWICE — dedupe failed once already
+  'cantaloupe-melon', // out of season until May 2027
+  // Batch 2 (~15 Sep) — the set-6 pin-title split test, must release together.
+  'olives',
+  'horseradish',
+  'swede',
+  'kiwi',
+  // Batch 3 (~29 Sep).
+  'fig',
+  'quince',           // ⚠️ hold until produce_raw/quince.png exists — its illustration is `pear`
+]);
 
 function findRawSource(id) {
   for (const ext of RAW_EXTENSIONS) {
@@ -471,7 +499,10 @@ const queuedEntries = entries
 // Still writes feed.xml when paused, just with no <item>s — an empty channel is
 // valid RSS and Pinterest simply finds nothing to publish. Removing the file
 // instead would leave the last deployed copy live at the edge.
-const feedEntries = FEED_PAUSED ? [] : queuedEntries;
+// queuedEntries stays UNFILTERED so the log below keeps reporting the true
+// backlog — a held entry must never quietly disappear from the count.
+const releasable = queuedEntries.filter((e) => !FEED_HOLD.has(e.id));
+const feedEntries = FEED_PAUSED ? [] : releasable;
 fs.writeFileSync(path.join(produceDir, 'feed.xml'), rssFeed(feedEntries));
 
 const fallback = entries.length - cropped;
@@ -503,6 +534,17 @@ if (FEED_PAUSED) {
     `feed.xml: ${feedEntries.length} item${feedEntries.length === 1 ? '' : 's'} (first_noted after ${FEED_SINCE})` +
     (feedEntries.length ? ` — ${feedEntries.map((e) => e.id).join(', ')}` : ' — nothing new to auto-publish')
   );
+  const held = queuedEntries.filter((e) => FEED_HOLD.has(e.id));
+  if (held.length) {
+    console.log(`  ${held.length} held by FEED_HOLD: ${held.map((e) => e.id).join(', ')}`);
+  }
+  const unknownHold = [...FEED_HOLD].filter((id) => !entries.some((e) => e.id === id));
+  if (unknownHold.length) {
+    console.warn(
+      `  ⚠ FEED_HOLD names ${unknownHold.join(', ')}, which match no entry — a typo here ` +
+      `silently PUBLISHES what you meant to hold.`
+    );
+  }
 }
 const noPinCopy = feedEntries.filter((e) => !e.pin_title);
 if (noPinCopy.length) {

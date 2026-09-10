@@ -430,7 +430,12 @@ def run():
     if args.baseline and os.path.exists(args.baseline):
         regressed = _diff(json.load(open(args.baseline)), report)
 
-    if hard_fail_n or regressed:
+    # An errored basket is not a passed basket. `hard_fail_n` is counted only
+    # over `graded`, so before 2026-08-31 a total engine failure produced
+    # graded=0, hard_fail_n=0 and exit 0 — the gate waved a broken deploy
+    # through. Under the intended mock config there should be zero errors,
+    # so any error fails the gate.
+    if hard_fail_n or regressed or agg["errored"]:
         sys.exit(1)
 
 def _print_summary(rep):

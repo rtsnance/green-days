@@ -37,29 +37,59 @@ function safeEqual(a, b) {
   return diff === 0;
 }
 
-// --- auth: HTTP Basic must carry METRICS_TOKEN; 401 otherwise ---
-// Basic only, deliberately: a `?key=` in the URL would land in Cloudflare access
-// logs, browser history, and any outbound Referer header. The browser replays
-// Basic credentials on every same-origin request, so the window links below
-// stay authenticated without carrying the secret in a query string.
-function authorized(request, env) {
-  const token = env.METRICS_TOKEN;
-  if (!token) return false; // never open when the secret is unset
-  const h = request.headers.get('Authorization') || '';
-  if (!h.startsWith('Basic ')) return false;
-  try {
-    const [user, pass] = atob(h.slice(6)).split(':');
-    // Either field may hold the token — browsers prompt for both.
-    return safeEqual(user || '', token) || safeEqual(pass || '', token);
-  } catch (_) {
-    return false; // malformed header
+// --- auth: HTTP Basic carrying METRICS_TOKEN, or the session cookie it mints ---
+// No `?key=` in the URL, deliberately: it would land in Cloudflare access
+// logs, browser history, and any outbound Referer header. Basic covers the
+// first visit; a successful Basic login also sets a year-long cookie (a hash
+// of the token, scoped to /metrics) so a plain bookmark stays signed in long
+// after the browser has forgotten the Basic credentials. Rotating
+// METRICS_TOKEN invalidates every outstanding cookie at once.
+const COOKIE_NAME = 'gd_metrics';
+
+async function sessionValue(token) {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('gd-metrics-v1:' + token));
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+function cookieFrom(request) {
+  const h = request.headers.get('Cookie') || '';
+  for (const part of h.split(';')) {
+    const eq = part.indexOf('=');
+    if (eq > 0 && part.slice(0, eq).trim() === COOKIE_NAME) return part.slice(eq + 1).trim();
   }
+  return '';
+}
+
+// Returns 'basic', 'cookie', or null. 'basic' means the key was typed fresh —
+// the caller uses that to (re)issue the session cookie.
+async function authorized(request, env) {
+  const token = env.METRICS_TOKEN;
+  if (!token) return null; // never open when the secret is unset
+  const h = request.headers.get('Authorization') || '';
+  if (h.startsWith('Basic ')) {
+    try {
+      const [user, pass] = atob(h.slice(6)).split(':');
+      // Either field may hold the token — browsers prompt for both.
+      if (safeEqual(user || '', token) || safeEqual(pass || '', token)) return 'basic';
+    } catch (_) { /* malformed header — fall through to the cookie */ }
+  }
+  const c = cookieFrom(request);
+  if (c && safeEqual(c, await sessionValue(token))) return 'cookie';
+  return null;
 }
 
 export async function handleMetrics(request, env) {
-  if (!authorized(request, env)) {
+  const auth = await authorized(request, env);
+  if (!auth) {
     return new Response('Unauthorized', { status: 401, headers: { 'WWW-Authenticate': 'Basic realm="Green Days metrics"' } });
   }
+  // A fresh Basic login mints the bookmarkable session. HttpOnly + Secure +
+  // Path=/metrics keeps it away from scripts and off the rest of the site,
+  // which stays cookieless.
+  const withSession = auth !== 'basic' ? ((r) => r) : await (async () => {
+    const cookie = `${COOKIE_NAME}=${await sessionValue(env.METRICS_TOKEN)}; Max-Age=31536000; Path=/metrics; Secure; HttpOnly; SameSite=Lax`;
+    return (r) => { r.headers.append('set-cookie', cookie); return r; };
+  })();
 
   const url = new URL(request.url);
   const days = Math.min(365, Math.max(1, parseInt(url.searchParams.get('days'), 10) || 7));
@@ -67,8 +97,8 @@ export async function handleMetrics(request, env) {
 
   if (!env.CF_ACCOUNT_ID || !env.AE_API_TOKEN) {
     const msg = { error: 'metrics_not_configured', detail: 'Set CF_ACCOUNT_ID and AE_API_TOKEN secrets.' };
-    if (wantJson) return json(msg, 200);
-    return html(renderNotConfigured(days), 200);
+    if (wantJson) return withSession(json(msg, 200));
+    return withSession(html(renderNotConfigured(days), 200));
   }
 
   const I = `NOW() - INTERVAL '${days}' DAY`;
@@ -225,8 +255,8 @@ export async function handleMetrics(request, env) {
 
   const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, market, field_guide: fieldGuide, field_note: fieldNote, install, notify, health, retention, affiliate, source, errors };
 
-  if (wantJson) return json(metrics, 200);
-  return html(renderPage(metrics), 200);
+  if (wantJson) return withSession(json(metrics, 200));
+  return withSession(html(renderPage(metrics), 200));
 }
 
 /* ================= rendering ================= */

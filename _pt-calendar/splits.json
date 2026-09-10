@@ -1,0 +1,39 @@
+{
+ "damasco/alperce": {
+  "to": "08-15",
+  "why": "APN 5-7 vs DECO 5-8: the two national sources differ by one month at this edge, so the boundary is placed between their claims rather than picking a winner"
+ },
+ "figo": {
+  "from": "07-16",
+  "why": "APN 8-9 vs DECO 7-9: the two national sources differ by one month at this edge, so the boundary is placed between their claims rather than picking a winner"
+ },
+ "maca": {
+  "from": "08-16",
+  "why": "APN 8-5 vs DECO 9-5: the two national sources differ by one month at this edge, so the boundary is placed between their claims rather than picking a winner"
+ },
+ "melancia": {
+  "to": "09-15",
+  "why": "APN 6-8 vs DECO 6-9: the two national sources differ by one month at this edge, so the boundary is placed between their claims rather than picking a winner"
+ },
+ "melao": {
+  "to": "09-15",
+  "why": "APN 6-8 vs DECO 6-9: the two national sources differ by one month at this edge, so the boundary is placed between their claims rather than picking a winner"
+ },
+ "pessego": {
+  "to": "09-15",
+  "why": "APN 6-8 vs DECO 6-9: the two national sources differ by one month at this edge, so the boundary is placed between their claims rather than picking a winner"
+ },
+ "tangerina": {
+  "to": "03-15",
+  "why": "APN 10-2 vs DECO 10-3: the two national sources differ by one month at this edge, so the boundary is placed between their claims rather than picking a winner"
+ },
+ "uva": {
+  "to": "11-15",
+  "why": "APN 8-10 vs DECO 8-11: the two national sources differ by one month at this edge, so the boundary is placed between their claims rather than picking a winner"
+ },
+ "mirtilo": {
+  "from": "05-16",
+  "to": "08-15",
+  "why": "APN 6-8 vs DECO 5-7: the two national sources differ by one month at this edge, so the boundary is placed between their claims rather than picking a winner"
+ }
+}

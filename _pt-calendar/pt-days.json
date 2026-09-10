@@ -1,0 +1,147 @@
+{
+  "_meta": {
+    "purpose": "Portuguese editorial layer for the 24 turning days. Names, epithets and lore ONLY.",
+    "rules": [
+      "pt_name is filled ONLY where Portugal genuinely keeps the day. Seventeen of the 24 are Welsh, English, German, Catalan, French or Sussex and get NO invented Portuguese name.",
+      "epithet_pt is an honest translation of working_name. It is never dressed as a proverb.",
+      "lore ships ONLY where turning-days.json marks it [v], or where it was decided on the record. Everything else sits in lore_unverified and does not render.",
+      "Law 9 governs: no lore that circulates in variants without a reachable source."
+    ]
+  },
+  "days": {
+    "1": {
+      "pt_name": "A Candelária",
+      "epithet_pt": "A luz das candeias",
+      "lore_unverified": "Quando a Candelária chora, o Inverno está fora; quando a Candelária ri, o Inverno está para vir. — circulates widely in variants, no citable collection found, DOES NOT SHIP"
+    },
+    "2": {
+      "pt_name": null,
+      "epithet_pt": "As aves emparelham / os ventos"
+    },
+    "3": {
+      "pt_name": null,
+      "epithet_pt": "Alhos-franceses e os primeiros cortes",
+      "note_pt": "Dia de São David, padroeiro do País de Gales. Não se guarda em Portugal."
+    },
+    "4": {
+      "pt_name": null,
+      "epithet_pt": "O rebento / o Ano Novo antigo"
+    },
+    "5": {
+      "pt_name": null,
+      "epithet_pt": "O cuco e as primeiras vagens",
+      "featured": [
+        "loquat-nespera"
+      ]
+    },
+    "6": {
+      "pt_name": null,
+      "epithet_pt": "Sant Jordi / o inverno do abrunheiro",
+      "note_pt": "Sant Jordi é catalão: rosas e livros. Não se guarda em Portugal."
+    },
+    "7": {
+      "pt_name": null,
+      "epithet_pt": "Os jardineiros frios (Eisheiligen)"
+    },
+    "8": {
+      "pt_name": null,
+      "epithet_pt": "Depois de Sofia, a grande plantação"
+    },
+    "9": {
+      "pt_name": null,
+      "epithet_pt": "A aposta de Médard / o frio das ovelhas"
+    },
+    "10": {
+      "pt_name": "São João",
+      "epithet_pt": "As fogueiras de São João / as cerejas",
+      "lore_pt": "Fogueiras e sardinha assada, 23 e 24 de junho.",
+      "lore_src": "Tradição registada. Fogueiras e sardinha assada, 23 e 24 de junho.",
+      "featured": [
+        "cherry"
+      ]
+    },
+    "11": {
+      "pt_name": null,
+      "epithet_pt": "As cerejas dão lugar às ameixas"
+    },
+    "12": {
+      "pt_name": "Santiago",
+      "epithet_pt": "Santiago e a canícula"
+    },
+    "13": {
+      "pt_name": null,
+      "epithet_pt": "O primeiro pão / Ferragosto"
+    },
+    "14": {
+      "pt_name": "São Bartolomeu",
+      "epithet_pt": "Bartolomeu enxuga a chuva / a fartura",
+      "lore_en": "All the tears that St Swithin can cry, / St Bartlemy's mantle wipes them dry.",
+      "lore_src": "Richard Inwards, Weather Lore, W. Tweedie, Londres, 1869. Ditado inglês, dado como tal.",
+      "lore_lang": "en"
+    },
+    "15": {
+      "pt_name": "Natividade de Nossa Senhora",
+      "epithet_pt": "O verão quebra / a vindima",
+      "lore_pt": "Setembro, ou seca as fontes ou leva as pontes.",
+      "lore_en": "September dries up wells or breaks down bridges.",
+      "lore_src": "Ditado português corrente. A forma inglesa aparece em Inwards, 1869, marcada (Portuguese).",
+      "lore_lang": "pt",
+      "featured": [
+        "grapes",
+        "grapes-black"
+      ]
+    },
+    "16": {
+      "pt_name": "São Miguel",
+      "epithet_pt": "Os gansos de São Miguel / as abóboras"
+    },
+    "17": {
+      "pt_name": null,
+      "epithet_pt": "As amoras do diabo",
+      "lore_en": "After Old Michaelmas the devil spits on the blackberries: pick no more.",
+      "lore_src": "Ditado inglês. Em Portugal a amora já saiu no fim de agosto, por isso este dia aqui não marca nada.",
+      "lore_lang": "en"
+    },
+    "18": {
+      "pt_name": null,
+      "epithet_pt": "O verãozinho de São Lucas / os últimos tomates"
+    },
+    "19": {
+      "pt_name": "Todos os Santos e Fiéis Defuntos",
+      "epithet_pt": "Os fiéis defuntos / o fumo das castanhas",
+      "featured": [
+        "chestnut"
+      ]
+    },
+    "20": {
+      "pt_name": "São Martinho",
+      "epithet_pt": "Vinho novo e castanhas (magusto)",
+      "lore_pt": "Magusto, água-pé e vinho novo. O verão de São Martinho.",
+      "lore_src": "Tradição registada. Magusto e água-pé, 11 de novembro.",
+      "lore_lang": "pt",
+      "featured": [
+        "chestnut",
+        "olives"
+      ]
+    },
+    "21": {
+      "pt_name": null,
+      "epithet_pt": "Nicolau e a viragem dos citrinos"
+    },
+    "22": {
+      "pt_name": "Natal",
+      "epithet_pt": "Os doze dias"
+    },
+    "23": {
+      "pt_name": "Dia de Reis",
+      "epithet_pt": "O bolo-rei e os dias minerais",
+      "featured": [
+        "orange"
+      ]
+    },
+    "24": {
+      "pt_name": "São Vicente",
+      "epithet_pt": "Vicente poda as vinhas"
+    }
+  }
+}

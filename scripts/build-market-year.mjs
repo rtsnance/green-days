@@ -127,13 +127,41 @@ const slugify = (name) =>
    app ships (it honoured "Late spring"; `legacySeasonalityOf` does not). So
    recomputing with the legacy parser alone would be a regression — 4 distinct
    signatures, worse than the frozen 8. It is the ranges that make this a win. */
+/* PERENNIAL, two tests, and the second one is the one that works.
+
+   The prose test is kept because it is cheap and it catches the honest labels.
+   It is NOT sufficient: it reads `season`, a hand-written English string, and
+   it misses "Year-round (peak autumn)" (carrot) and every item whose label
+   says a season while its RANGES say the whole year.
+
+   That gap opened on 2026-09-01, when the Portuguese national-production
+   calendars were imported into `season_ranges`. Those sources report
+   AVAILABILITY, not season: "cenoura, todo o ano" is true about a stall and
+   false about a season. Eleven items ended up with 365-day windows and the
+   mean Mediterranean window went to 166 days, 46% of the year. The stall
+   flooded and `peak` fell from 76% of rows to 1%, because peak is the middle
+   third of a window and almost nothing lands in the middle third of a year.
+
+   Ryan's call, same day: keep `season_ranges` literal, and let the stall rule
+   do the excluding. So the real test is computed from the data and states the
+   exact reason MARKET-YEAR.md gives for excluding perennials in the first
+   place: they "are on the stall at every turn and so distinguish none of them."
+
+   An item in season at all 24 turn midpoints distinguishes nothing. That is
+   not a threshold anyone has to defend. It is the definition, executed. */
 const PERENNIAL = /year-round|stores/i;
 const midpointOf = (d) => fromDoy(doy(d.opens) + Math.floor((d.days - 1) / 2));
+
+const ALL_MIDPOINTS = CANON.days.map(midpointOf);
+const alwaysOn = (item) => ALL_MIDPOINTS.every((t) =>
+  seasonalityOf(item, t, 'mediterranean') !== 'out' || seasonalityOf(item, t, 'temperate') !== 'out');
+const UBIQUITOUS = new Set(PRODUCE.filter(alwaysOn).map((i) => i.id));
 
 function stallAt(mmdd) {
   const out = [];
   for (const item of PRODUCE) {
     if (PERENNIAL.test(item.season || '')) continue;
+    if (UBIQUITOUS.has(item.id)) continue;   // present at all 24 turns: distinguishes nothing
     const med = seasonalityOf(item, mmdd, 'mediterranean');
     const temp = seasonalityOf(item, mmdd, 'temperate');
     if (med === 'out' && temp === 'out') continue;
