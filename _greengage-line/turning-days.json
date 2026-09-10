@@ -1,0 +1,7588 @@
+{
+ "_meta": {
+  "what": "Turning-day data skeleton for the market year's 24 canonical cards. One record per turning day. Computed fields come from data/produce.json (in-season at slot midpoint, fine-parse of season strings, mediterranean band = superset; med_only items read 'out' in temperate markets). Hand fields are editorial and carry verification flags.",
+  "generated": "2026-07-30",
+  "rules": [
+   "Governing doc: Turning_Day_Card_Template_Law.md (same folder). Law wins over this file; this file wins over guesses.",
+   "plate_candidates = the MENU at slot midpoint, not the pick. Final 9 (or fewer) chosen at production, ledger-checked.",
+   "Plate-fidelity ledger applies: berries plate reads as strawberries (never label blackberry); greengage reads as apple (namesake, always labelled); shared plates: plum=damson, courgette=marrow, tomato x4, pods x8, bell-pepper+chilli, stone-fruit x3, parsley (never label basil).",
+   "label_language decided at production per the Law: located dispatch -> vantage language + NAMED FROM line; above-the-map -> per-plate most-decoder-worthy language, tagged.",
+   "saints_strip: every form must be verified before shipping (field-guide standard). Entries here are candidates, not facts.",
+   "lore: verbatim from a named checkable collection or nothing. lore_leads are TOPICS to research, never copy to print as-is.",
+   "WINTER CAVEAT: presence stays ~32 items through winter (storage roots, brassicas, citrus). The January 'vast field' concept keys off ARRIVALS (mid-Jan: purple-sprouting broccoli alone), not presence. Use peak flags + arrivals, not raw candidate count, when judging a card's density.",
+   "slug_candidate is provisional until the per-day polyglot slug pass + app-route collision check.",
+   "vantage: null until the dispatch is written. The card is downstream of the dispatch."
+  ],
+  "status": {
+   "XIV": "SHIPPED-READY (v3 final, NAMED FROM LISBON)",
+   "XV": "fleshed, unverified",
+   "XVI": "fleshed, unverified",
+   "others": "skeleton"
+  }
+ },
+ "days": [
+  {
+   "num": 1,
+   "numeral": "I",
+   "name": "Candlemas",
+   "slug_candidate": "candlemas",
+   "great_turn": true,
+   "opens": "02-02",
+   "closes": "02-13",
+   "days": 12,
+   "working_name": "Candlemas light",
+   "in_season_at_midpoint": {
+    "items": 33,
+    "unique_plates": 22
+   },
+   "plate_candidates": [
+    {
+     "id": "avocado",
+     "plate": "avocado",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blood-orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapefruit",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemon",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lime",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "mandarin-clementine",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "purple-sprouting-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "'If Candlemas be fair and bright, winter will have another flight' — check Inwards 1869",
+    "Chandeleur crepes (FR)"
+   ],
+   "strip_note": "Candlemas/Chandeleur/A Candelária/Candelaria/Candelora/Mariä Lichtmess — verify all"
+  },
+  {
+   "num": 2,
+   "numeral": "II",
+   "name": "St Valentine",
+   "slug_candidate": "valentine",
+   "great_turn": false,
+   "opens": "02-14",
+   "closes": "02-28",
+   "days": 15,
+   "working_name": "The birds pair / the winds",
+   "in_season_at_midpoint": {
+    "items": 33,
+    "unique_plates": 22
+   },
+   "plate_candidates": [
+    {
+     "id": "avocado",
+     "plate": "avocado",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blood-orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapefruit",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemon",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lime",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "mandarin-clementine",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "purple-sprouting-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "Birds choose their mates on St Valentine's — check Inwards",
+    "Ventôse (the winds) begins Feb 19 [v]",
+    "forced rhubarb season (UK)"
+   ]
+  },
+  {
+   "num": 3,
+   "numeral": "III",
+   "name": "St David",
+   "slug_candidate": "david",
+   "great_turn": false,
+   "opens": "03-01",
+   "closes": "03-24",
+   "days": 24,
+   "working_name": "Leeks and first cuttings",
+   "in_season_at_midpoint": {
+    "items": 21,
+    "unique_plates": 12
+   },
+   "plate_candidates": [
+    {
+     "id": "asparagus",
+     "plate": "asparagus",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "breakfast-radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chervil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "purple-sprouting-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rhubarb",
+     "plate": "rhubarb",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-greens",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "wild-garlic",
+     "plate": "wild-garlic",
+     "peak": true,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "St David's leeks (Wales)",
+    "data hinge: early-Mar arrivals (herbs, asparagus, rhubarb)"
+   ]
+  },
+  {
+   "num": 4,
+   "numeral": "IV",
+   "name": "Lady Day",
+   "slug_candidate": "lady-day",
+   "great_turn": true,
+   "opens": "03-25",
+   "closes": "04-13",
+   "days": 20,
+   "working_name": "The sprouting / old New Year",
+   "in_season_at_midpoint": {
+    "items": 21,
+    "unique_plates": 12
+   },
+   "plate_candidates": [
+    {
+     "id": "asparagus",
+     "plate": "asparagus",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "breakfast-radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chervil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "purple-sprouting-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rhubarb",
+     "plate": "rhubarb",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-greens",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "wild-garlic",
+     "plate": "wild-garlic",
+     "peak": true,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "Lady Day = England's legal New Year until 1752",
+    "Germinal (sprouting) begins ~Mar 21 [v]"
+   ]
+  },
+  {
+   "num": 5,
+   "numeral": "V",
+   "name": "Cuckoo Day",
+   "slug_candidate": "cuckoo",
+   "great_turn": false,
+   "opens": "04-14",
+   "closes": "04-22",
+   "days": 9,
+   "working_name": "The cuckoo and the first pods",
+   "in_season_at_midpoint": {
+    "items": 24,
+    "unique_plates": 14
+   },
+   "plate_candidates": [
+    {
+     "id": "asparagus",
+     "plate": "asparagus",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "breakfast-radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broad-beans-fava",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chervil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garden-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "new-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "purple-sprouting-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rhubarb",
+     "plate": "rhubarb",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-greens",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "wild-garlic",
+     "plate": "wild-garlic",
+     "peak": true,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "First-cuckoo lore (Sussex Cuckoo Day ~Apr 14)",
+    "data hinge: first pods (broad beans, peas, new potato)"
+   ]
+  },
+  {
+   "num": 6,
+   "numeral": "VI",
+   "name": "St George / Sant Jordi",
+   "slug_candidate": "sant-jordi",
+   "great_turn": false,
+   "opens": "04-23",
+   "closes": "04-30",
+   "days": 8,
+   "working_name": "Sant Jordi / blackthorn winter",
+   "in_season_at_midpoint": {
+    "items": 24,
+    "unique_plates": 14
+   },
+   "plate_candidates": [
+    {
+     "id": "asparagus",
+     "plate": "asparagus",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "breakfast-radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broad-beans-fava",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chervil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garden-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "new-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "purple-sprouting-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rhubarb",
+     "plate": "rhubarb",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-greens",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "wild-garlic",
+     "plate": "wild-garlic",
+     "peak": true,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "Sant Jordi: roses & books (Catalonia)",
+    "blackthorn winter [v as term]",
+    "Rhubarbe day Apr 30 (Republican) [v]"
+   ]
+  },
+  {
+   "num": 7,
+   "numeral": "VII",
+   "name": "May Day",
+   "slug_candidate": "may-day",
+   "great_turn": true,
+   "opens": "05-01",
+   "closes": "05-14",
+   "days": 14,
+   "working_name": "The cold gardeners (Eisheiligen)",
+   "in_season_at_midpoint": {
+    "items": 24,
+    "unique_plates": 14
+   },
+   "plate_candidates": [
+    {
+     "id": "asparagus",
+     "plate": "asparagus",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "breakfast-radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broad-beans-fava",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chervil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garden-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "new-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "purple-sprouting-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rhubarb",
+     "plate": "rhubarb",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-greens",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "wild-garlic",
+     "plate": "wild-garlic",
+     "peak": true,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "Ice Saints May 11-15 [v]: Mamertus/Pancras/Servatius/Boniface; zimni ogrodnicy (PL)",
+    "nothing tender before Cold Sophia"
+   ]
+  },
+  {
+   "num": 8,
+   "numeral": "VIII",
+   "name": "Cold Sophia",
+   "slug_candidate": "sophia",
+   "great_turn": false,
+   "opens": "05-15",
+   "closes": "06-07",
+   "days": 24,
+   "working_name": "After Sophia — the great planting",
+   "in_season_at_midpoint": {
+    "items": 24,
+    "unique_plates": 14
+   },
+   "plate_candidates": [
+    {
+     "id": "asparagus",
+     "plate": "asparagus",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "breakfast-radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broad-beans-fava",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chervil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garden-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "new-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "purple-sprouting-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rhubarb",
+     "plate": "rhubarb",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-greens",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "wild-garlic",
+     "plate": "wild-garlic",
+     "peak": true,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "Cold Sophia May 15 [v] — the planting gate opens",
+    "Prairial meadows [v]",
+    "järnnätter (SE iron nights) [v]",
+    "data cliff: Jun 1 great arrival (+48)"
+   ]
+  },
+  {
+   "num": 9,
+   "numeral": "IX",
+   "name": "St Médard",
+   "slug_candidate": "medard",
+   "great_turn": false,
+   "opens": "06-08",
+   "closes": "06-23",
+   "days": 16,
+   "working_name": "Médard's wager / sheep's cold",
+   "in_season_at_midpoint": {
+    "items": 64,
+    "unique_plates": 30
+   },
+   "plate_candidates": [
+    {
+     "id": "apricot",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "baby-corn",
+     "plate": "sweetcorn",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "basil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beefsteak-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blueberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broad-beans-fava",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cantaloupe-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cherry",
+     "plate": "cherries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cherry-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "courgette",
+     "plate": "courgette",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cucumber",
+     "plate": "cucumber",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "dill",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "edamame",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "elephant-garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garden-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "gooseberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-french-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "greengage",
+     "plate": "greengage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemongrass",
+     "plate": "lemongrass",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "little-gem",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mangetout",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "marjoram",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "nectarine",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "new-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "oregano",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "padr-n-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "peach",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum-san-marzano-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "redcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "runner-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "samphire",
+     "plate": "samphire",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "strawberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sugar-snap-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tarragon",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tenderstem-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomatillo",
+     "plate": "tomatillo",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watermelon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "Médard Jun 8: French 40-days rain wager — VERIFY rhyme + source",
+    "Schafskälte ~Jun 4-20 [v MeteoSwiss]",
+    "Barnaby bright Jun 11 (old-calendar solstice)"
+   ]
+  },
+  {
+   "num": 10,
+   "numeral": "X",
+   "name": "Midsummer / São João",
+   "slug_candidate": "sao-joao",
+   "great_turn": true,
+   "opens": "06-24",
+   "closes": "07-14",
+   "days": 21,
+   "working_name": "São João fires / the cherries",
+   "in_season_at_midpoint": {
+    "items": 64,
+    "unique_plates": 30
+   },
+   "plate_candidates": [
+    {
+     "id": "apricot",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "baby-corn",
+     "plate": "sweetcorn",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "basil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beefsteak-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blueberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broad-beans-fava",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cantaloupe-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cherry",
+     "plate": "cherries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cherry-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "courgette",
+     "plate": "courgette",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cucumber",
+     "plate": "cucumber",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "dill",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "edamame",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "elephant-garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garden-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "gooseberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-french-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "greengage",
+     "plate": "greengage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemongrass",
+     "plate": "lemongrass",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "little-gem",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mangetout",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "marjoram",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "nectarine",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "new-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "oregano",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "padr-n-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "peach",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum-san-marzano-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "redcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "runner-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "samphire",
+     "plate": "samphire",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "strawberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sugar-snap-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tarragon",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tenderstem-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomatillo",
+     "plate": "tomatillo",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watermelon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "São João Jun 23-24: Porto sardines, midsummer fires",
+    "Siebenschläfer Jun 27 [v]: weather holds 7 weeks",
+    "cherries at peak"
+   ]
+  },
+  {
+   "num": 11,
+   "numeral": "XI",
+   "name": "St Swithin",
+   "slug_candidate": "swithin",
+   "great_turn": false,
+   "opens": "07-15",
+   "closes": "07-24",
+   "days": 10,
+   "working_name": "The cherries give way to the plums",
+   "in_season_at_midpoint": {
+    "items": 69,
+    "unique_plates": 31
+   },
+   "plate_candidates": [
+    {
+     "id": "apricot",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "baby-corn",
+     "plate": "sweetcorn",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "basil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beefsteak-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blueberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "borlotti-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broad-beans-fava",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cantaloupe-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cherry-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "courgette",
+     "plate": "courgette",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cucumber",
+     "plate": "cucumber",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "damson",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "dill",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "edamame",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "elephant-garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fig",
+     "plate": "fig",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garden-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-french-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "greengage",
+     "plate": "greengage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemongrass",
+     "plate": "lemongrass",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "little-gem",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mangetout",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "marjoram",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "marrow",
+     "plate": "courgette",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "nectarine",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "new-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "oregano",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "padr-n-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "peach",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum-san-marzano-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "redcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "runner-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "samphire",
+     "plate": "samphire",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "strawberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sugar-snap-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sweetcorn",
+     "plate": "sweetcorn",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tarragon",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tenderstem-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomatillo",
+     "plate": "tomatillo",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watermelon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "Swithin couplet [v, Inwards 1869 — already used on card XIV]",
+    "Thermidor begins Jul 19; Melon day Jul 21 [v]",
+    "data hinge: cherries+gooseberries out, plum family in"
+   ]
+  },
+  {
+   "num": 12,
+   "numeral": "XII",
+   "name": "Santiago",
+   "slug_candidate": "santiago",
+   "great_turn": false,
+   "opens": "07-25",
+   "closes": "07-31",
+   "days": 7,
+   "working_name": "Santiago and the dog days",
+   "in_season_at_midpoint": {
+    "items": 69,
+    "unique_plates": 31
+   },
+   "plate_candidates": [
+    {
+     "id": "apricot",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "baby-corn",
+     "plate": "sweetcorn",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "basil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beefsteak-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blueberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "borlotti-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broad-beans-fava",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cantaloupe-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cherry-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "courgette",
+     "plate": "courgette",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cucumber",
+     "plate": "cucumber",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "damson",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "dill",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "edamame",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "elephant-garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fig",
+     "plate": "fig",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garden-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-french-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "greengage",
+     "plate": "greengage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemongrass",
+     "plate": "lemongrass",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "little-gem",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mangetout",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "marjoram",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "marrow",
+     "plate": "courgette",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "nectarine",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "new-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "oregano",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "padr-n-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "peach",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum-san-marzano-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "redcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "runner-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "samphire",
+     "plate": "samphire",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "strawberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sugar-snap-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sweetcorn",
+     "plate": "sweetcorn",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tarragon",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tenderstem-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomatillo",
+     "plate": "tomatillo",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watermelon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "Santiago Jul 25 (Galicia)",
+    "Hundstage/canícula open ~Jul 23",
+    "Abricot day Jul 31 [v]"
+   ]
+  },
+  {
+   "num": 13,
+   "numeral": "XIII",
+   "name": "Lammas",
+   "slug_candidate": "lammas",
+   "great_turn": true,
+   "opens": "08-01",
+   "closes": "08-23",
+   "days": 23,
+   "working_name": "First bread / Ferragosto",
+   "in_season_at_midpoint": {
+    "items": 69,
+    "unique_plates": 31
+   },
+   "plate_candidates": [
+    {
+     "id": "apricot",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "baby-corn",
+     "plate": "sweetcorn",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "basil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beefsteak-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blueberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "borlotti-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broad-beans-fava",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cantaloupe-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cherry-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "courgette",
+     "plate": "courgette",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cucumber",
+     "plate": "cucumber",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "damson",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "dill",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "edamame",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "elephant-garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fig",
+     "plate": "fig",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garden-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-french-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "greengage",
+     "plate": "greengage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemongrass",
+     "plate": "lemongrass",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "little-gem",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mangetout",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "marjoram",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "marrow",
+     "plate": "courgette",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "nectarine",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "new-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "oregano",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "padr-n-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "peach",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum-san-marzano-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "redcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "runner-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "samphire",
+     "plate": "samphire",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "strawberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sugar-snap-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sweetcorn",
+     "plate": "sweetcorn",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tarragon",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tenderstem-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomatillo",
+     "plate": "tomatillo",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watermelon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "Lammas = loaf-mass, first bread — check Inwards",
+    "Ferragosto Aug 15",
+    "Fructidor + Prune day Aug 18 [v]"
+   ]
+  },
+  {
+   "num": 14,
+   "numeral": "XIV",
+   "name": "St Bartholomew",
+   "slug_candidate": "bartholomew",
+   "great_turn": false,
+   "opens": "08-24",
+   "closes": "09-07",
+   "days": 15,
+   "working_name": "Bartholomew wipes the rain / the glut",
+   "in_season_at_midpoint": {
+    "items": 69,
+    "unique_plates": 31
+   },
+   "plate_candidates": [
+    {
+     "id": "apricot",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "baby-corn",
+     "plate": "sweetcorn",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "basil",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beefsteak-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blueberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "borlotti-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broad-beans-fava",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cantaloupe-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cherry-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chives",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "courgette",
+     "plate": "courgette",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cucumber",
+     "plate": "cucumber",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "damson",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "dill",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "edamame",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "elephant-garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fig",
+     "plate": "fig",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garden-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "garlic",
+     "plate": "garlic",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "globe-artichoke",
+     "plate": "artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-french-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "greengage",
+     "plate": "greengage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemongrass",
+     "plate": "lemongrass",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "little-gem",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mangetout",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "marjoram",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "marrow",
+     "plate": "courgette",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "nectarine",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "new-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "oregano",
+     "plate": "rosemary",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "padr-n-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "peach",
+     "plate": "stone-fruit",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum-san-marzano-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pointed-hispi-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radish",
+     "plate": "radishes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "redcurrant",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "runner-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "samphire",
+     "plate": "samphire",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spring-onion",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "strawberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sugar-snap-peas",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sweetcorn",
+     "plate": "sweetcorn",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tarragon",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tenderstem-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomatillo",
+     "plate": "tomatillo",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watercress",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "watermelon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": false,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "USED: 'All the tears that St Swithin can cry / St Bartlemy's mantle wipes them dry' — Inwards, Weather Lore, 1869 [v]"
+   ],
+   "status": "SHIPPED-READY. v3 final: PT labels, NAMED FROM LISBON. Pin destination rec: /produce/greengage/."
+  },
+  {
+   "num": 15,
+   "numeral": "XV",
+   "name": "Marymas",
+   "slug_candidate": "marymas",
+   "great_turn": false,
+   "opens": "09-08",
+   "closes": "09-28",
+   "days": 21,
+   "working_name": "Summer breaks / the vindima",
+   "in_season_at_midpoint": {
+    "items": 73,
+    "unique_plates": 46
+   },
+   "plate_candidates": [
+    {
+     "id": "acorn-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beefsteak-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chanterelle",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cherry-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "conference-pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cooking-apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "date",
+     "plate": "date",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fig",
+     "plate": "fig",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes",
+     "plate": "green-grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes-black",
+     "plate": "grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-tomato",
+     "plate": "green-tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "heritage-carrots",
+     "plate": "carrots",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "horseradish",
+     "plate": "horseradish",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kabocha",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "olives",
+     "plate": "olives",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "physalis",
+     "plate": "physalis",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum-san-marzano-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pomegranate",
+     "plate": "pomegranate",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "porcini-cep",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "prickly-pear",
+     "plate": "prickly-pear",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "pumpkin",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "quince",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romanesco",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "runner-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spaghetti-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sweet-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "German phenology rhyme: 'Mariä Geburt fliegen die Schwalben furt' (at Mary's Nativity the swallows fly away) — strong candidate, VERIFY wording + find a citable collection",
+    "Vendémiaire opens Sep 22: Raisin, Safran, Châtaigne days [v]",
+    "Autumn equinox falls in-slot (Sep 22-23)",
+    "Check Inwards 1869 for Nativity/September entries"
+   ],
+   "status": "FLESHED 2026-07-30 — all strip forms and lore UNVERIFIED",
+   "epithet_options": [
+    "the vindima",
+    "summer breaks",
+    "the swallows leave"
+   ],
+   "saints_strip_candidates": {
+    "en_folk": "Marymas",
+    "pt": "Natividade de Nossa Senhora",
+    "es": "Natividad de la Virgen",
+    "it": "Natività di Maria",
+    "fr": "Nativité de la Vierge",
+    "de": "Mariä Geburt",
+    "VERIFY": "all six forms, field-guide standard. Consider whether the strip uses the Mary forms or the folk 'Marymas' family — decide once."
+   },
+   "data_hinge": "THE year's biggest churn (~90 items, early Sep): summer set out, autumn set in. This slot is the great turn — the card should feel like a changing of the guard.",
+   "plate_recommendations_9": [
+    "grapes (vindima hero)",
+    "fig (late)",
+    "apple (arriving)",
+    "pear (arriving)",
+    "pumpkin (arriving)",
+    "tomato (leaving — poignant)",
+    "sweetcorn (late)",
+    "aubergine (late)",
+    "melon (last)"
+   ],
+   "plate_notes": "Half-arriving/half-leaving roster IS the concept. NO berries plate for blackberry (ledger). Alternative: swap melon for cauliflower if more 'break' wanted.",
+   "vantage": null,
+   "vantage_note": "TBD. If unknown by production -> first exercise of above-the-map mode: per-plate decoder languages, tagged.",
+   "production_window": "produce after the mid-Aug Pinterest read; ship ON Sep 8."
+  },
+  {
+   "num": 16,
+   "numeral": "XVI",
+   "name": "Michaelmas",
+   "slug_candidate": "michaelmas",
+   "great_turn": true,
+   "opens": "09-29",
+   "closes": "10-09",
+   "days": 11,
+   "working_name": "Michaelmas geese / the squashes",
+   "in_season_at_midpoint": {
+    "items": 73,
+    "unique_plates": 46
+   },
+   "plate_candidates": [
+    {
+     "id": "acorn-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beefsteak-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chanterelle",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cherry-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "conference-pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cooking-apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "date",
+     "plate": "date",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fig",
+     "plate": "fig",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes",
+     "plate": "green-grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes-black",
+     "plate": "grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-tomato",
+     "plate": "green-tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "heritage-carrots",
+     "plate": "carrots",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "horseradish",
+     "plate": "horseradish",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kabocha",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "olives",
+     "plate": "olives",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "physalis",
+     "plate": "physalis",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum-san-marzano-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pomegranate",
+     "plate": "pomegranate",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "porcini-cep",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "prickly-pear",
+     "plate": "prickly-pear",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "pumpkin",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "quince",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romanesco",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "runner-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spaghetti-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sweet-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "'Eat goose on Michaelmas Day, want not for money all the year' — check Inwards 1869 for exact form",
+    "veranillo de San Miguel — the Spanish little summer of early Oct — VERIFY; strong polyglot hook",
+    "Quarter day: rents, hiring fairs, goose fairs [v historic-uk]",
+    "NOTE: the blackberry/devil lore belongs to Old Michaelmas (card XVII) — do not spend it here"
+   ],
+   "status": "FLESHED 2026-07-30 — all strip forms and lore UNVERIFIED",
+   "epithet_options": [
+    "the squashes",
+    "goose fairs",
+    "the quarter day"
+   ],
+   "saints_strip_candidates": {
+    "en": "Michaelmas",
+    "pt": "São Miguel",
+    "es": "San Miguel",
+    "it": "San Michele",
+    "fr": "la Saint-Michel",
+    "de": "Michaeli / Michaelistag",
+    "VERIFY": "all forms"
+   },
+   "data_hinge": "none in-slot (post-cliff steady state); autumn set fully in.",
+   "plate_recommendations_9": [
+    "pumpkin (hero)",
+    "apple",
+    "pear",
+    "grapes (still)",
+    "mushrooms",
+    "cauliflower",
+    "leek",
+    "beetroot",
+    "fig (last)"
+   ],
+   "plate_notes": "Goose is the day's motif but cards are produce-only — the goose lives in the dispatch prose. Check 'mushrooms' plate against chanterelle id at production.",
+   "vantage": null,
+   "vantage_note": "TBD.",
+   "production_window": "with XV, after the mid-Aug read; ship ON Sep 29."
+  },
+  {
+   "num": 17,
+   "numeral": "XVII",
+   "name": "Old Michaelmas",
+   "slug_candidate": "old-michaelmas",
+   "great_turn": false,
+   "opens": "10-10",
+   "closes": "10-17",
+   "days": 8,
+   "working_name": "The devil's blackberries",
+   "in_season_at_midpoint": {
+    "items": 73,
+    "unique_plates": 46
+   },
+   "plate_candidates": [
+    {
+     "id": "acorn-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beefsteak-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chanterelle",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cherry-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "conference-pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cooking-apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "date",
+     "plate": "date",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fig",
+     "plate": "fig",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes",
+     "plate": "green-grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes-black",
+     "plate": "grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-tomato",
+     "plate": "green-tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "heritage-carrots",
+     "plate": "carrots",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "horseradish",
+     "plate": "horseradish",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kabocha",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "olives",
+     "plate": "olives",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "physalis",
+     "plate": "physalis",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum-san-marzano-tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pomegranate",
+     "plate": "pomegranate",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "porcini-cep",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "prickly-pear",
+     "plate": "prickly-pear",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "pumpkin",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "quince",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romanesco",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "runner-beans",
+     "plate": "pods",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spaghetti-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sweet-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "tomato",
+     "plate": "tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "Old Michaelmas Oct 10-11: the devil spits on the blackberries [v] — pick no more",
+    "Potiron day Oct 4 [v]"
+   ]
+  },
+  {
+   "num": 18,
+   "numeral": "XVIII",
+   "name": "St Luke",
+   "slug_candidate": "luke",
+   "great_turn": false,
+   "opens": "10-18",
+   "closes": "10-31",
+   "days": 14,
+   "working_name": "St Luke's little summer / the last tomatoes",
+   "in_season_at_midpoint": {
+    "items": 69,
+    "unique_plates": 45
+   },
+   "plate_candidates": [
+    {
+     "id": "acorn-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chanterelle",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "conference-pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cooking-apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "date",
+     "plate": "date",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fig",
+     "plate": "fig",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes",
+     "plate": "green-grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes-black",
+     "plate": "grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-tomato",
+     "plate": "green-tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "heritage-carrots",
+     "plate": "carrots",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "horseradish",
+     "plate": "horseradish",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kabocha",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "medlar",
+     "plate": "medlar",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "olives",
+     "plate": "olives",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "physalis",
+     "plate": "physalis",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pomegranate",
+     "plate": "pomegranate",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "porcini-cep",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "prickly-pear",
+     "plate": "prickly-pear",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "pumpkin",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "quince",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romanesco",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spaghetti-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sweet-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "St Luke's little summer [v]; Altweibersommer (gossamer) [v]",
+    "Brumaire (mists) begins Oct 22 [v]",
+    "data hinge: the five tomatoes leave, medlar arrives"
+   ]
+  },
+  {
+   "num": 19,
+   "numeral": "XIX",
+   "name": "All Hallows",
+   "slug_candidate": "all-hallows",
+   "great_turn": true,
+   "opens": "11-01",
+   "closes": "11-10",
+   "days": 10,
+   "working_name": "All souls / the chestnut smoke",
+   "in_season_at_midpoint": {
+    "items": 69,
+    "unique_plates": 45
+   },
+   "plate_candidates": [
+    {
+     "id": "acorn-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chanterelle",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "conference-pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cooking-apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "date",
+     "plate": "date",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fig",
+     "plate": "fig",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes",
+     "plate": "green-grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes-black",
+     "plate": "grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-tomato",
+     "plate": "green-tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "heritage-carrots",
+     "plate": "carrots",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "horseradish",
+     "plate": "horseradish",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kabocha",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "medlar",
+     "plate": "medlar",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "olives",
+     "plate": "olives",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "physalis",
+     "plate": "physalis",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pomegranate",
+     "plate": "pomegranate",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "porcini-cep",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "prickly-pear",
+     "plate": "prickly-pear",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "pumpkin",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "quince",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romanesco",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spaghetti-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sweet-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "All Souls; chestnut braziers light",
+    "Endive day Nov 4 [v]"
+   ]
+  },
+  {
+   "num": 20,
+   "numeral": "XX",
+   "name": "Martinmas / São Martinho",
+   "slug_candidate": "martinmas",
+   "great_turn": false,
+   "opens": "11-11",
+   "closes": "12-05",
+   "days": 25,
+   "working_name": "New wine and chestnuts (magusto)",
+   "in_season_at_midpoint": {
+    "items": 69,
+    "unique_plates": 45
+   },
+   "plate_candidates": [
+    {
+     "id": "acorn-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "aubergine",
+     "plate": "aubergine",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "bell-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blackberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "broccoli-calabrese",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celery",
+     "plate": "celery",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chanterelle",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chard",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "chilli-pepper",
+     "plate": "bell-pepper",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "conference-pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cooking-apple",
+     "plate": "apple",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "coriander-cilantro",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "date",
+     "plate": "date",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fig",
+     "plate": "fig",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "golden-beetroot",
+     "plate": "golden-beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes",
+     "plate": "green-grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapes-black",
+     "plate": "grapes",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "green-tomato",
+     "plate": "green-tomato",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "heritage-carrots",
+     "plate": "carrots",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "honeydew-melon",
+     "plate": "melon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "horseradish",
+     "plate": "horseradish",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kabocha",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "kohlrabi",
+     "plate": "kohlrabi",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lettuce",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "medlar",
+     "plate": "medlar",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "mint",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "olives",
+     "plate": "olives",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsley",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pear",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "physalis",
+     "plate": "physalis",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "plum",
+     "plate": "plum",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "pomegranate",
+     "plate": "pomegranate",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "porcini-cep",
+     "plate": "mushrooms",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "prickly-pear",
+     "plate": "prickly-pear",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "pumpkin",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "quince",
+     "plate": "pear",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "raspberry",
+     "plate": "berries",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "rocket-arugula",
+     "plate": "parsley",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romaine-cos",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "romanesco",
+     "plate": "cauliflower",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spaghetti-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "spinach",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "sweet-potato",
+     "plate": "potato",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "São Martinho Nov 11 [v]: magusto, água-pé, new wine; verão de São Martinho / veranillo de San Martín / Martinigansl",
+    "Orange day Nov 14 [v]",
+    "St Catherine Nov 25: 'tout bois prend racine' — verify"
+   ]
+  },
+  {
+   "num": 21,
+   "numeral": "XXI",
+   "name": "St Nicholas",
+   "slug_candidate": "nicholas",
+   "great_turn": false,
+   "opens": "12-06",
+   "closes": "12-24",
+   "days": 19,
+   "working_name": "Nicholas and the citrus turn",
+   "in_season_at_midpoint": {
+    "items": 32,
+    "unique_plates": 21
+   },
+   "plate_candidates": [
+    {
+     "id": "avocado",
+     "plate": "avocado",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blood-orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapefruit",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemon",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lime",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "mandarin-clementine",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "St Nicholas Dec 6 (DE/NL/CZ/PL)",
+    "St Lucy Dec 13: 'Lucy light' old-solstice lore — verify",
+    "data hinge: north empties, south turns to citrus"
+   ]
+  },
+  {
+   "num": 22,
+   "numeral": "XXII",
+   "name": "Christmas",
+   "slug_candidate": "christmas",
+   "great_turn": true,
+   "opens": "12-25",
+   "closes": "01-05",
+   "days": 12,
+   "working_name": "The twelve days",
+   "in_season_at_midpoint": {
+    "items": 32,
+    "unique_plates": 21
+   },
+   "plate_candidates": [
+    {
+     "id": "avocado",
+     "plate": "avocado",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blood-orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapefruit",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemon",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lime",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "mandarin-clementine",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "The Twelve Days of Christmas — the slot IS the named unit",
+    "feasting on stores"
+   ]
+  },
+  {
+   "num": 23,
+   "numeral": "XXIII",
+   "name": "Epiphany",
+   "slug_candidate": "epiphany",
+   "great_turn": false,
+   "opens": "01-06",
+   "closes": "01-21",
+   "days": 16,
+   "working_name": "Kings' cake and the mineral days",
+   "in_season_at_midpoint": {
+    "items": 32,
+    "unique_plates": 21
+   },
+   "plate_candidates": [
+    {
+     "id": "avocado",
+     "plate": "avocado",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blood-orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapefruit",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemon",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lime",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "mandarin-clementine",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "Epiphany: galette des rois / bolo-rei",
+    "Plough Monday (movable — content only)",
+    "Nivôse mineral days [v]",
+    "data: mid-Jan arrival = PSB alone"
+   ]
+  },
+  {
+   "num": 24,
+   "numeral": "XXIV",
+   "name": "St Vincent",
+   "slug_candidate": "vincent",
+   "great_turn": false,
+   "opens": "01-22",
+   "closes": "02-01",
+   "days": 11,
+   "working_name": "Vincent prunes the vines",
+   "in_season_at_midpoint": {
+    "items": 33,
+    "unique_plates": 22
+   },
+   "plate_candidates": [
+    {
+     "id": "avocado",
+     "plate": "avocado",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "beetroot",
+     "plate": "beetroot",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "blood-orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "brussels-sprouts",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "butternut-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cardoon",
+     "plate": "cardoon",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cavolo-nero",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "celeriac",
+     "plate": "celeriac",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "crown-prince-squash",
+     "plate": "pumpkin",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "daikon-mooli",
+     "plate": "daikon-mooli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "endive-fris-e",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "fennel",
+     "plate": "fennel",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "grapefruit",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "green-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "jerusalem-artichoke",
+     "plate": "jerusalem-artichoke",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kale",
+     "plate": "chard",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "kiwi",
+     "plate": "kiwi",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lamb-s-lettuce-m-che",
+     "plate": "lettuce",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "leek",
+     "plate": "leek",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "lemon",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "lime",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "mandarin-clementine",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "orange",
+     "plate": "citrus",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "parsnip",
+     "plate": "parsnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "persimmon-kaki",
+     "plate": "persimmon-kaki",
+     "peak": true,
+     "med_only": true
+    },
+    {
+     "id": "purple-sprouting-broccoli",
+     "plate": "broccoli",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "radicchio",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "red-cabbage",
+     "plate": "red-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "savoy-cabbage",
+     "plate": "green-cabbage",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "shallot",
+     "plate": "onion",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "swede",
+     "plate": "swede",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "turnip",
+     "plate": "turnip",
+     "peak": true,
+     "med_only": false
+    },
+    {
+     "id": "cauliflower",
+     "plate": "cauliflower",
+     "peak": false,
+     "med_only": false
+    }
+   ],
+   "lore_leads": [
+    "St Vincent Jan 22, patron of vignerons — vine-pruning lore, verify rhyme",
+    "Pluviôse begins Jan 20 [v]"
+   ]
+  }
+ ]
+}

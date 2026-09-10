@@ -1,0 +1,141 @@
+<!-- The EXACT file that rendered turning-day-15-marymas.png on 2026-09-08 (v2). Local
+     @fontsource woff2 instead of the Google CDN. Needs ./fonts/ and ./plates/ beside it. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Turning Day XV — Marymas</title>
+<style>
+  @font-face{font-family:'Nunito';font-weight:600;src:url('fonts/nunito-latin-600-normal.woff2') format('woff2')}
+  @font-face{font-family:'Nunito';font-weight:600;src:url('fonts/nunito-latin-ext-600-normal.woff2') format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+  @font-face{font-family:'Nunito';font-weight:700;src:url('fonts/nunito-latin-700-normal.woff2') format('woff2')}
+  @font-face{font-family:'Nunito';font-weight:700;src:url('fonts/nunito-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+  @font-face{font-family:'JetBrains Mono';font-weight:500;src:url('fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2')}
+  @font-face{font-family:'JetBrains Mono';font-weight:500;src:url('fonts/jetbrains-mono-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+  @font-face{font-family:'JetBrains Mono';font-weight:600;src:url('fonts/jetbrains-mono-latin-600-normal.woff2') format('woff2')}
+  @font-face{font-family:'JetBrains Mono';font-weight:600;src:url('fonts/jetbrains-mono-latin-ext-600-normal.woff2') format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+  @font-face{font-family:'JetBrains Mono';font-weight:700;src:url('fonts/jetbrains-mono-latin-700-normal.woff2') format('woff2')}
+  @font-face{font-family:'JetBrains Mono';font-weight:700;src:url('fonts/jetbrains-mono-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+  @font-face{font-family:'Annie Use Your Telescope';font-weight:400;src:url('fonts/annie-use-your-telescope-latin-400-normal.woff2') format('woff2')}
+  @font-face{font-family:'Annie Use Your Telescope';font-weight:400;src:url('fonts/annie-use-your-telescope-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+  :root{
+    --ground:#fcf8ee; --ink:#1f3661; --accent:#529d7f;
+    --text-green:#35735b; --muted:#4d606b; --paprika:#e4572e; --M:106px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1600px;height:2400px}
+  body{background:var(--ground);font-family:'Nunito',sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden;position:relative}
+  #ink{position:absolute;inset:0;z-index:2;pointer-events:none}
+  #grain{position:absolute;inset:0;z-index:4;opacity:.07;mix-blend-mode:multiply;pointer-events:none}
+  #sheet{position:absolute;inset:0;z-index:3}
+
+  .head{position:absolute;left:var(--M);right:var(--M);top:108px;display:flex;justify-content:space-between;align-items:flex-start}
+  .mast{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:22px;letter-spacing:.20em;text-transform:uppercase;color:var(--muted)}
+  .mast .sub{display:block;font-weight:500;font-size:17px;letter-spacing:.15em;color:var(--muted);margin-top:10px}
+  .cardno{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:22px;letter-spacing:.20em;text-transform:uppercase;color:var(--muted);text-align:right}
+  .cardno .days{display:block;font-weight:500;font-size:17px;letter-spacing:.15em;margin-top:10px}
+
+  .titleblock{position:absolute;left:var(--M);right:var(--M);top:582px;text-align:center}
+  h1{font-weight:600;font-size:152px;line-height:1.03;color:var(--ink);letter-spacing:-.012em}
+  .glut{font-family:'Annie Use Your Telescope',cursive;font-size:124px;line-height:.9;color:var(--paprika);margin-top:6px;word-spacing:-.16em}
+
+  .decoder{position:absolute;left:56px;right:56px;top:898px;text-align:center;
+    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:21px;letter-spacing:.055em;color:var(--muted)}
+  .decoder b{font-weight:700;color:var(--text-green)}
+  .decoder i{font-style:normal;color:var(--muted);padding:0 10px}
+
+  /* TWELVE plates, 4x3. Law 7: the year's fullest turn (89 items) must out-pack XIV's nine.
+     XIV: 3 cols, 1008 grid, plate 304, gutter 32, row-gap 10.
+     XV : 4 cols, 1272 grid, plate 300, gutter 18, row-gap  8. */
+  .grid{position:absolute;left:50%;transform:translateX(-50%);top:960px;width:1272px;
+    display:grid;grid-template-columns:repeat(4,1fr);row-gap:8px}
+  .cell{position:relative;height:352px}
+  .plate{position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:300px;display:block}
+  .lab{position:absolute;left:0;right:0;top:304px;height:48px;text-align:center}
+  .lab .loc{font-weight:700;font-size:25px;color:var(--ink);letter-spacing:-.01em;line-height:1.1}
+  .lab .en{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+  .lore{position:absolute;left:56px;right:56px;top:2086px;text-align:center}
+  .lore p{font-weight:700;font-style:italic;font-size:41px;line-height:1.27;color:var(--ink)}
+
+  .colo{position:absolute;left:var(--M);right:var(--M);bottom:72px;display:flex;justify-content:space-between;align-items:flex-end}
+  .byline{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:20px;letter-spacing:.10em;text-transform:uppercase;color:var(--muted);line-height:1.55;padding-bottom:5px}
+  .byline b{font-weight:700;color:var(--ink)}
+  .mark{text-align:right}
+  .wordmark{display:flex;align-items:center;justify-content:flex-end;gap:11px;font-weight:700;font-size:44px;color:var(--accent);line-height:1}
+  .wordmark svg{width:44px;height:44px;display:block}
+  .dom{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:22px;color:var(--muted);margin-top:9px}
+</style>
+</head>
+<body>
+<div id="sheet">
+
+  <div class="head">
+    <div class="mast">The Greengage Line<span class="sub">Dispatches from the market year</span></div>
+    <div class="cardno">Card XV of XXIV<span class="days">XXI days</span></div>
+  </div>
+
+  <div class="titleblock">
+    <h1>Marymas</h1>
+    <div class="glut">the vindima</div>
+  </div>
+
+  <!-- polyglot decoder. ⚠ PT + DE verified; ES/IT/FR are shortest-standard forms, PROVISIONAL -->
+  <div class="decoder">
+    <b>Natividade de Nossa Senhora</b><i>·</i><b>Natividad de María</b><i>·</i><b>Natività di Maria</b><i>·</i><b>Nativité de Marie</b><i>·</i><b>Mariä Geburt</b>
+  </div>
+
+  <div class="grid">
+    <div class="cell"><img class="plate" src="plates/grapes.png" alt="black grapes">
+      <div class="lab"><div class="loc">Uvas pretas</div><div class="en">black grapes</div></div></div>
+    <div class="cell"><img class="plate" src="plates/green-grapes.png" alt="green grapes">
+      <div class="lab"><div class="loc">Uvas brancas</div><div class="en">green grapes</div></div></div>
+    <div class="cell"><img class="plate" src="plates/pumpkin.png" alt="pumpkin">
+      <div class="lab"><div class="loc">Abóbora</div><div class="en">pumpkin</div></div></div>
+    <div class="cell"><img class="plate" src="plates/pomegranate.png" alt="pomegranate">
+      <div class="lab"><div class="loc">Romã</div><div class="en">pomegranate</div></div></div>
+
+    <div class="cell"><img class="plate" src="plates/prickly-pear.png" alt="prickly pear">
+      <div class="lab"><div class="loc">Figo-da-índia</div><div class="en">prickly pear</div></div></div>
+    <div class="cell"><img class="plate" src="plates/pear.png" alt="pear">
+      <div class="lab"><div class="loc">Pera</div><div class="en">pear</div></div></div>
+    <div class="cell"><img class="plate" src="plates/jerusalem-artichoke.png" alt="jerusalem artichoke">
+      <div class="lab"><div class="loc">Tupinambo</div><div class="en">jerusalem artichoke</div></div></div>
+    <div class="cell"><img class="plate" src="plates/fennel.png" alt="fennel">
+      <div class="lab"><div class="loc">Funcho</div><div class="en">fennel</div></div></div>
+
+    <div class="cell"><img class="plate" src="plates/plum.png" alt="plum">
+      <div class="lab"><div class="loc">Ameixa</div><div class="en">plum</div></div></div>
+    <div class="cell"><img class="plate" src="plates/melon.png" alt="watermelon">
+      <div class="lab"><div class="loc">Melancia</div><div class="en">watermelon</div></div></div>
+    <div class="cell"><img class="plate" src="plates/fig.png" alt="fig">
+      <div class="lab"><div class="loc">Figo</div><div class="en">fig</div></div></div>
+    <div class="cell"><img class="plate" src="plates/tomato.png" alt="tomato">
+      <div class="lab"><div class="loc">Tomate</div><div class="en">tomato</div></div></div>
+  </div>
+
+  <!-- lore: verbatim from Inwards, Weather Lore (W. Tweedie, London, 1869), marked (Portuguese) -->
+  <div class="lore">
+    <p>&ldquo;September dries up wells or breaks down bridges.&rdquo;</p>
+  </div>
+
+  <div class="colo">
+    <div class="byline"><b>8 September + 9 months = 8 December</b><br>Inwards, Weather Lore, 1869<br>Named from Lisbon</div>
+    <div class="mark">
+      <div class="wordmark"><span>green</span>
+        <svg viewBox="0 0 613 613" aria-hidden="true"><path fill="#529d7f" id="sprout"/></svg>
+        <span>days</span></div>
+      <div class="dom">greendays.day</div>
+    </div>
+  </div>
+
+</div>
+
+<canvas id="ink" width="1600" height="2400"></canvas>
+<svg id="grain" width="1600" height="2400"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="1600" height="2400" filter="url(#g)"/></svg>
+
+<script src="sprout.js"></script>
+<script src="draw.js"></script>
+</body>
+</html>
