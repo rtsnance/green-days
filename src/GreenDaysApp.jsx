@@ -9,7 +9,7 @@ import {
   langOf, bandOf, countryLabel, COUNTRIES,
   seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel,
 } from './produce.js';
-import { ev, evOnce, SID, SOURCE, DISPLAY_MODE } from './analytics.js';
+import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
 
 const MONTH_NAME = new Date().toLocaleString('en-GB', { month: 'long' });
@@ -282,10 +282,34 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQu
     list.forEach((p) => { if (!p.hasPrint) evOnce('fb:' + p.id, 'fallback_shown', { detail: p.id }); });
   }, [activeCat, q, country]);
 
+  // Five taps on the wordmark toggles operator mode for THIS device — the only
+  // way to set it, and deliberately undiscoverable (no setting, no query param,
+  // see the note in src/analytics.js for why a param cannot work on iOS).
+  const opTaps = React.useRef({ n: 0, t: 0 });
+  const [opToast, setOpToast] = React.useState(null);
+  const tapWordmark = () => {
+    const now = Date.now();
+    const st = opTaps.current;
+    st.n = (now - st.t > 2500) ? 1 : st.n + 1;
+    st.t = now;
+    if (st.n < 5) return;
+    st.n = 0;
+    const on = toggleOperator();
+    setOpToast(on
+      ? 'Operator mode ON — this device is no longer counted in metrics'
+      : 'Operator mode OFF — this device is counted again');
+    setTimeout(() => setOpToast(null), 2800);
+  };
+
   return (
     <div style={{ padding: '8px 20px 24px' }}>
+      {opToast && (
+        <div role="status" style={{ position: 'fixed', left: 16, right: 16, bottom: 88, zIndex: 90, padding: '12px 16px', borderRadius: 14, background: 'var(--color-ink, #1f2b24)', color: '#fff', fontSize: 13, lineHeight: 1.35, textAlign: 'center', boxShadow: '0 8px 24px rgba(0,0,0,.18)' }}>
+          {opToast}
+        </div>
+      )}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
-        <img src={ASSET('gd/assets/wordmark_green.svg')} alt="green days" style={{ width: 190, height: 'auto', display: 'block', marginLeft: -2 }} />
+        <img src={ASSET('gd/assets/wordmark_green.svg')} alt="green days" draggable={false} onClick={tapWordmark} style={{ width: 190, height: 'auto', display: 'block', marginLeft: -2, WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0, marginRight: -8 }}>
           <button onClick={onOpenPrefs} aria-label="Preferences" style={{ width: 40, height: 40, borderRadius: 999, border: 'none', background: 'transparent', color: 'var(--color-icon-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <Icon d={I.tune} size={20} w={2} />
@@ -1286,6 +1310,10 @@ export default function GreenDaysApp() {
     if (params.get('src') === 'field_guide') ev('field_guide_add', { detail: id });
     params.delete('add');
     params.delete('src');
+    // SOURCE in analytics.js is computed at module load, well before this effect
+    // runs, so the utm has already been banked and scrubbing it here only keeps
+    // a shared/reloaded URL clean.
+    if (params.get('utm_source') === 'field_guide') params.delete('utm_source');
     const qs = params.toString();
     window.history.replaceState(null, '', window.location.pathname + (qs ? `?${qs}` : ''));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

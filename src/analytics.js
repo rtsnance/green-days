@@ -37,10 +37,46 @@ export const DISPLAY_MODE = (() => {
   } catch (_) { return 'browser'; }
 })();
 
+// --- Operator exclusion ---------------------------------------------------
+// Green Days is installed on Ryan's own home screen and there was no exclusion
+// of any kind, so every figure on /metrics counted him: ~12% of events at 224
+// sessions/month, ~40% at 18/week. No rate could be read past it and no Welcome
+// fix could be evaluated against it.
+//
+// A first-party preference flag in localStorage marks this device as the
+// operator's and silences the beacon entirely. The app already stores
+// gd_onboarded, so this is the same class of state: never sent anywhere, not a
+// cross-site identifier, consent-banner-free posture unchanged.
+//
+// Set it from INSIDE the installed app (five taps on the home wordmark). A
+// ?operator=1 query param would NOT work: the manifest start_url is '/', so the
+// param does not survive a home-screen launch, and an iOS home-screen web app
+// does not share Safari's storage container.
+const OPERATOR_KEY = 'gd_operator';
+
+let IS_OPERATOR = (() => {
+  try { return localStorage.getItem(OPERATOR_KEY) === '1'; } catch (_) { return false; }
+})();
+
+export function isOperator() { return IS_OPERATOR; }
+
+// Flips the flag and returns the NEW state, so the caller can confirm it to
+// whoever tapped. If storage throws (private mode), the in-memory flag still
+// holds for this page load.
+export function toggleOperator() {
+  IS_OPERATOR = !IS_OPERATOR;
+  try {
+    if (IS_OPERATOR) localStorage.setItem(OPERATOR_KEY, '1');
+    else localStorage.removeItem(OPERATOR_KEY);
+  } catch (_) { /* nothing persisted, but this load is still silenced */ }
+  return IS_OPERATOR;
+}
+
 const ENDPOINT = import.meta.env.BASE_URL + 'api/event'; // /api/event
 
 // Send one event. Only schema fields are ever included — never a query string.
 export function ev(name, data = {}) {
+  if (IS_OPERATOR) return; // operator's own device — see the block above
   try {
     const payload = { name, sid: SID };
     if (data.detail != null) payload.detail = String(data.detail).slice(0, 64);

@@ -302,7 +302,7 @@ ${BACK_LINK}
         <p class="fg-eyebrow">Field guide &middot; ${escapeHtml(produce.season)}</p>
         <h1>${escapeHtml(produce.name_en)}</h1>
         <p class="fg-body">${renderBody(entry.body)}</p>
-        <a class="fg-cta" href="/?add=${encodeURIComponent(produce.id)}&src=field_guide">Add to basket</a>
+        <a class="fg-cta" href="/?add=${encodeURIComponent(produce.id)}&amp;src=field_guide&amp;utm_source=field_guide">Add to basket</a>
         <p class="fg-noted">Noted ${escapeHtml(entry.first_noted)}</p>
       </article>
 ${ALMANAC_LINK}
@@ -403,7 +403,18 @@ function feedImage(entry) {
 function rssFeed(feedEntries) {
   const items = feedEntries.map((entry) => {
     const { produce } = entry;
+    // The GUID line below stays BYTE-IDENTICAL to what has always shipped: it is
+    // the item's identity, and touching it risks Pinterest reading every item as
+    // new and re-pinning the lot. This feed's dedupe has already failed once
+    // (see the greengage note in FEED_HOLD), so the delta here is one line.
     const link = `${SITE_URL}/produce/${produce.id}/`;
+    // The destination carries a utm because Pinterest's in-app browser strips
+    // the referrer, so without this the whole channel is unmeasurable — which is
+    // exactly why every /metrics pull since July has read "zero Pinterest"
+    // without anyone being able to say whether that meant zero or invisible.
+    // ONE param, deliberately: an `&` here would need XML-escaping to keep the
+    // feed valid, and a malformed feed fails silently on Pinterest's side.
+    const pinLink = `${link}?utm_source=pinterest`;
     const title = entry.pin_title || `${produce.name_en} — green days field guide`;
     // Pinterest shows a long description, so don't clip to the 155-char
     // og:description length — give it the whole note where there's no
@@ -412,7 +423,7 @@ function rssFeed(feedEntries) {
     const img = feedImage(entry);
     return `    <item>
       <title>${escapeHtml(title)}</title>
-      <link>${link}</link>
+      <link>${pinLink}</link>
       <guid isPermaLink="true">${link}</guid>
       <pubDate>${rfc822(entry.first_noted)}</pubDate>
       <description>${escapeHtml(description)}</description>
