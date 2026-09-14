@@ -5115,15 +5115,15 @@
     "season_ranges": {
       "mediterranean": [
         {
-          "from": "01-01",
-          "to": "12-31"
+          "from": "11-01",
+          "to": "03-31"
         }
       ],
       "temperate": []
     },
     "availability": "imported",
     "provenance": "sourced",
-    "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Abacate\" (abacate)",
+    "source": "DECO PROteste calendar lists Abacate year-round, but that is import availability, not season; the label's Med winter (legacy parse: Nov-Mar in the med band) is the season. See SEASON-SEAM.md on (Med/imported) winter arrivals.",
     "resolution": "month"
   },
   {
