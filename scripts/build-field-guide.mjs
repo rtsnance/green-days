@@ -232,6 +232,29 @@ const ALMANAC_LINK = `      <nav class="fg-nav"><a href="/season/">What&rsquo;s 
 // property groups, first one is the default most crawlers show.
 // `twitterImage`: the single image twitter:image points at (landscape reads
 // best for summary_large_image).
+// The CTA below is SAME-ORIGIN, so on the other side document.referrer is null
+// and SOURCE in src/analytics.js falls through to the CTA's own hardcoded
+// utm_source. Every field-guide conversion therefore files as utm:field_guide,
+// whatever channel actually delivered the reader — Pinterest, search and a
+// bookmark all collapse into one row. This carries the inbound source across
+// the hop as "<inbound>.field_guide". No storage, no network, no identifier:
+// same posture as the app's own beacon.
+const CTA_REF_SCRIPT = `    <script>
+      (function () {
+        try {
+          var inbound = new URLSearchParams(location.search).get('utm_source');
+          if (!inbound) return;
+          inbound = inbound.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 24);
+          if (!inbound) return;
+          var cta = document.querySelector('a.fg-cta');
+          if (!cta) return;
+          var url = new URL(cta.getAttribute('href'), location.origin);
+          url.searchParams.set('utm_source', inbound + '.field_guide');
+          cta.setAttribute('href', url.pathname + url.search);
+        } catch (e) { /* attribution must never break the page */ }
+      })();
+    </script>`;
+
 function pageShell({ title, description, canonical, images, twitterImage, bodyHtml }) {
   const ogImageTags = images.map((img) => `    <meta property="og:image" content="${img.url}" />
 ${img.width ? `    <meta property="og:image:width" content="${img.width}" />\n` : ''}${img.height ? `    <meta property="og:image:height" content="${img.height}" />\n` : ''}    <meta property="og:image:alt" content="${escapeHtml(img.alt)}" />`).join('\n');
@@ -263,6 +286,7 @@ ${ogImageTags}
   </head>
   <body>
 ${bodyHtml}
+${CTA_REF_SCRIPT}
   </body>
 </html>
 `;
