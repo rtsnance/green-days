@@ -602,7 +602,10 @@ function ListScreen({ basket, checked, lang, country, prefs, declared, onDeclare
                   {p.seasonality !== 'in' && <span style={{ marginTop: 5 }}><SeasonFlag p={p} /></span>}
                 </span>
                 <span className="gd-list-item__trailing" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <AddControl p={p} qty={basket[p.id]} onAdd={onAdd} />
+                  {/* Every row here is already added, so no Added button: it said
+                      nothing and crushed the name to one word per line on phones.
+                      Quantity shows only when it's more than one. */}
+                  {basket[p.id] > 1 && <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 800, fontSize: 13, color: 'var(--color-text-secondary)' }} aria-label={basket[p.id] + ' in basket'}>×{basket[p.id]}</span>}
                   <button className="gd-btn gd-btn--ghost gd-btn--icon-only gd-btn--sm" aria-label={'Remove ' + p.name} onClick={(e) => { e.stopPropagation(); onRemove(p.id); }} style={{ color: 'var(--color-text-tertiary)' }}>
                     <span className="gd-btn__icon"><Icon d={I.x} size={16} w={2.4} /></span>
                   </button>
