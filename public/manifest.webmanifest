@@ -1,6 +1,6 @@
 {
-  "name": "green days",
-  "short_name": "green days",
+  "name": "green\u00a0days",
+  "short_name": "green\u00a0days",
   "description": "A farmers-market companion. The season sets the palette, you tap your basket, one confident recipe comes back.",
   "start_url": "/",
   "scope": "/",
