@@ -438,7 +438,7 @@ function ListScreen({ basket, checked, lang, country, onAdd, onRemove, onToggle,
     <div style={{ padding: '8px 20px 24px' }}>
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', margin: '10px 0 2px' }}>
         <h2 style={{ fontSize: 21, fontWeight: 800, margin: 0 }}>Today's basket</h2>
-        {items.length > 0 && <span style={{ color: 'var(--color-text-secondary)', fontSize: 13, fontWeight: 600 }}>{doneCount}/{items.length} picked</span>}
+        {items.length > 0 && <span style={{ color: 'var(--color-text-secondary)', fontSize: 13, fontWeight: 600 }}>{doneCount}/{items.length} picked up</span>}
       </div>
       {items.length > 0 && (
         <div style={{ height: 8, borderRadius: 999, background: 'var(--color-background-muted)', overflow: 'hidden', margin: '10px 0 18px' }}>
