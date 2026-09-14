@@ -43,7 +43,7 @@ For general Green Days context (repo layout, deploy, data model), see
    `recipe_generated` events that skew production metrics):
 
    ```sh
-   cd ~/Design/greendays
+   cd ~/w/code/green-days
    # .dev.vars: ANTHROPIC_API_KEY=<real key>, MOCK_RECIPES unset/removed
    npm run build
    npx wrangler dev --port 8787 --local --persist-to "$(mktemp -d)" &

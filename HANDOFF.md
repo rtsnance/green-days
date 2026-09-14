@@ -19,22 +19,22 @@ recipe. Europe-first, one-handed, glanceable. **Live in production.**
 
 ## TL;DR
 
-- **Repo:** `~/Design/greendays` (git, remote `git@github.com:rtsnance/green-days.git`). The remote is **backup only** — nothing is wired to build from it. Deploy ships to prod from your working copy via `npm run deploy`, so pushing does not release anything and releasing does not require a push.
+- **Repo:** `~/w/code/green-days` (git, remote `git@github.com:rtsnance/green-days.git`). The remote is **backup only** — nothing is wired to build from it. Deploy ships to prod from your working copy via `npm run deploy`, so pushing does not release anything and releasing does not require a push.
 - **Live app:** https://greendays.day/ (migrated 2026-07-19 from lab.ryantnance.com/greendays; that URL now 301-redirects to greendays.day).
-- **Deploy:** `cd ~/Design/greendays && npm run deploy` (runs `predeploy` — build + the eval gate, see below — then `wrangler deploy`). Wrangler is authed as rtsnance@gmail.com.
+- **Deploy:** `cd ~/w/code/green-days && npm run deploy` (runs `predeploy` — build + the eval gate, see below — then `wrangler deploy`). Wrangler is authed as rtsnance@gmail.com.
 - **Stack:** Vite + React front-end (base path `/`, root of its own domain) + a single Cloudflare Worker that serves the built static assets AND the small API, on the route `greendays.day/*`. Also still bound to the retired `lab.ryantnance.com/greendays*` route purely to issue the redirect.
 - **Data source of truth:** `data/produce.json` (149 items) and `data/markets.json` (14 countries). Both are imported by the front-end *and* the Worker — one source, no drift, no separate `produceData.js`.
 - **Node:** installed user-space at `~/.local/opt/node-v22.17.0`, symlinked into `~/.local/bin` (`node`/`npm`/`npx`). This machine had no JS runtime before.
 
 There's also an auto-loaded memory file at
-`~/.claude/projects/-Users-ryannance-Design/memory/green-days.md` — this doc is the fuller version.
+`~/.claude/projects/-Users-ryannance-w-code-green-days/memory/green-days.md` — this doc is the fuller version.
 
 ---
 
 ## Local dev
 
 ```sh
-cd ~/Design/greendays
+cd ~/w/code/green-days
 npm install          # if node_modules is missing
 npm run dev          # build + `wrangler dev` on http://localhost:8787  (serves /…)
 npm run build        # front-end only → dist/
@@ -72,7 +72,7 @@ index.html             head: OG tags, favicon, Cloudflare Web Analytics beacon
 ```
 
 Original handoff docs (design specs, decisions, KPIs) live at
-`~/Claude/Projects/Business ideas/Green Days/`.
+`~/w/vault/Obsidian-Command-Center/Projects/green-days/`.
 
 ---
 
