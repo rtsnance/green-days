@@ -160,7 +160,29 @@ async function handleRecipe(request, env, ctx) {
   const avoid = Array.isArray(body.avoid)
     ? body.avoid.filter((t) => typeof t === 'string').map((t) => t.slice(0, 140)).slice(0, 8)
     : [];
+  // "Also in your kitchen": the first free text that reaches the model from this
+  // endpoint. Control and format characters (newlines included) are flattened
+  // so each item stays one bullet in its delimited prompt block; three items,
+  // 80 chars each. It modifies a cook and never constitutes one: the empty
+  // basket check above already ran.
+  const CTRL = /[\p{Cc}\p{Cf}]/gu;
+  const withItems = [...new Set((Array.isArray(body.with) ? body.with : [])
+    .filter((s) => typeof s === 'string')
+    .map((s) => s.replace(CTRL, ' ').replace(/\s+/g, ' ').trim().slice(0, 80))
+    .filter(Boolean))]
+    .slice(0, 3);
   const sid = str(body.sid); // per-visit grouping, shared with client events
+
+  // The shape of what people declare, never the words: a derived enum, so the
+  // no-free-text analytics contract holds. Fresh cooks only, so a re-roll does
+  // not count the same declaration twice, and ahead of the cache so hits count.
+  if (withItems.length && avoid.length === 0) {
+    track(env, 'with_declared', {
+      country, band, sid,
+      extra: [...new Set(withItems.map(shelfBucket))].sort().join(','),
+      v1: withItems.length,
+    });
+  }
 
   // recipe_generated is the money metric — record it (and errors) with the
   // session so activation/health queries line up with client events.
@@ -183,15 +205,18 @@ async function handleRecipe(request, env, ctx) {
   if (avoid.length === 0) {
     const keyMaterial = JSON.stringify({
       basket: [...basket].sort(),
+      // Same basket, market, day and declaration still returns the identical
+      // recipe. Normalised so "Chicken" and "chicken " share an entry.
+      with: withItems.map((s) => s.toLowerCase()).sort(),
       country,
       // Keyed on the day, not the month: seasonality can now change between two
-      // dates inside one month. v bumped so nothing cached under the old
-      // month-granular, parser-derived seasonality is served after the switch.
+      // dates inside one month. v3: the key gained `with` and the prompt gained
+      // the "yours" register.
       date: onDate,
       diet: prefs.diet,
       allergies: [...prefs.allergies].sort(),
       model: env.RECIPE_MODEL || 'claude-sonnet-5',
-      v: 2,
+      v: 3,
     });
     const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(keyMaterial));
     const hash = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
@@ -221,7 +246,7 @@ async function handleRecipe(request, env, ctx) {
   let recipe;
   if (!env.ANTHROPIC_API_KEY) {
     if (env.MOCK_RECIPES === '1') {
-      recipe = mockRecipe(basketItems, inSeasonIds, avoid, prefs);
+      recipe = mockRecipe(basketItems, inSeasonIds, avoid, prefs, withItems);
       rg('mock', 0, 1, 0);
     } else {
       return json({ error: 'recipe engine not configured' }, 503);
@@ -229,6 +254,7 @@ async function handleRecipe(request, env, ctx) {
   } else {
     const userMessage = buildUserMessage({
       basketItems,
+      withItems,
       country,
       countryName: countryName(country),
       month1,
@@ -367,14 +393,14 @@ function normalizeRecipe(r, basket) {
     stars: stars.length ? stars : basket.slice(0, 3),
     ingredients: (Array.isArray(r.ingredients) ? r.ingredients : [])
       .filter((i) => i && typeof i.item === 'string')
-      .map((i) => ({
-        item: i.item,
-        pantry: !!i.pantry,
-        // Keep the third register, falling back to the boolean when the model
-        // omits it or invents a value. Without this the counter buys are
-        // silently flattened back into produce and the app cannot separate them.
-        register: ['basket', 'pantry', 'counter'].includes(i.register) ? i.register : (i.pantry ? 'pantry' : 'basket'),
-      })),
+      .map((i) => {
+        // Keep the registers, falling back to the boolean when the model omits
+        // one or invents a value. Without this the counter buys are silently
+        // flattened back into produce and the app cannot separate them.
+        const register = ['basket', 'pantry', 'counter', 'yours'].includes(i.register) ? i.register : (i.pantry ? 'pantry' : 'basket');
+        // Declared items were not assumed, whatever the model set.
+        return { item: i.item, pantry: register === 'yours' ? false : !!i.pantry, register };
+      }),
     offSeasonAdvice: typeof r.offSeasonAdvice === 'string' && r.offSeasonAdvice.trim() ? r.offSeasonAdvice : null,
     grabOneMore: grab,
     protein: Array.isArray(r.protein) && r.protein.length ? r.protein.filter((p) => typeof p === 'string').slice(0, 2) : null,
@@ -479,8 +505,30 @@ function sanitizeBannedWords(r) {
   };
 }
 
+// Keyword buckets for the with_declared event. The rate of "other" is the
+// failure rate of this list, which is the same number as how big a real
+// vocabulary (data/counter.json) would have to be. First match wins.
+const SHELF_BUCKETS = [
+  ['shellfish', ['prawn', 'shrimp', 'squid', 'octopus', 'clam', 'mussel', 'crab', 'lobster', 'scallop', 'cuttlefish', 'lula', 'polvo', 'camarão', 'amêijoa']],
+  ['fish', ['fish', 'salmon', 'tuna', 'cod', 'bacalhau', 'sardine', 'mackerel', 'anchov', 'trout', 'hake', 'sea bass', 'bream', 'peixe', 'atum']],
+  ['meat', ['chicken', 'pork', 'beef', 'lamb', 'duck', 'turkey', 'sausage', 'chorizo', 'chouriço', 'bacon', 'ham', 'mince', 'veal', 'rabbit', 'steak', 'prosciutto', 'pancetta', 'salami', 'guanciale', 'frango', 'porco', 'carne']],
+  ['egg', ['egg', 'ovo']],
+  ['dairy', ['cheese', 'milk', 'cream', 'butter', 'yogurt', 'yoghurt', 'feta', 'mozzarella', 'ricotta', 'parmesan', 'halloumi', 'burrata', 'mascarpone', 'queijo', 'natas']],
+  ['soy', ['tofu', 'tempeh', 'miso', 'soy', 'soya']],
+  ['pulse', ['chickpea', 'lentil', 'bean', 'grão', 'feijão', 'lentilha', 'hummus']],
+  ['nut', ['almond', 'walnut', 'hazelnut', 'cashew', 'pine nut', 'peanut', 'pistachio', 'pecan']],
+  ['grain', ['rice', 'pasta', 'bread', 'couscous', 'noodle', 'quinoa', 'polenta', 'flour', 'oats', 'bulgur', 'farro', 'arroz', 'pão']],
+];
+function shelfBucket(item) {
+  const t = item.toLowerCase();
+  for (const [bucket, words] of SHELF_BUCKETS) {
+    if (words.some((w) => new RegExp(`(^|[^\\p{L}])${w}`, 'u').test(t))) return bucket;
+  }
+  return 'other';
+}
+
 // Local development without an API key (MOCK_RECIPES=1 in .dev.vars).
-function mockRecipe(basketItems, inSeasonIds, avoid, prefs = { diet: 'none', allergies: [] }) {
+function mockRecipe(basketItems, inSeasonIds, avoid, prefs = { diet: 'none', allergies: [] }, withItems = []) {
   const lead = basketItems.find((i) => i.seasonality !== 'out') || basketItems[0];
   const out = basketItems.find((i) => i.seasonality === 'out');
   const inSeasonStars = basketItems.filter((i) => i.seasonality !== 'out').map((i) => i.id);
@@ -508,6 +556,7 @@ function mockRecipe(basketItems, inSeasonIds, avoid, prefs = { diet: 'none', all
     stars,
     ingredients: [
       ...basketItems.map((i) => ({ item: i.name_en.toLowerCase(), pantry: false, register: 'basket' })),
+      ...withItems.map((w) => ({ item: w, pantry: false, register: 'yours' })),
       { item: 'olive oil', pantry: true, register: 'pantry' },
       { item: '1 clove garlic', pantry: true, register: 'pantry' },
       { item: 'flaky salt', pantry: true, register: 'pantry' },

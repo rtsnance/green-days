@@ -2,6 +2,9 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+# the shelf seeds must never duplicate a produce item (cheap, so it goes first)
+node scripts/check-shelf-seeds.mjs
+
 # build so wrangler dev serves the code that's about to ship
 npm run build
 

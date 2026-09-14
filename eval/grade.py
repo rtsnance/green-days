@@ -262,7 +262,7 @@ def lint(recipe, req, produce):
     no_register = [i.get("item") for i in ing if not i.get("register")]
     if no_register:
         warn.append(f"REGISTER: ingredient(s) missing the register field: {no_register[:4]}")
-    bad_register = [i.get("register") for i in ing if i.get("register") not in (None, "basket", "pantry", "counter")]
+    bad_register = [i.get("register") for i in ing if i.get("register") not in (None, "basket", "pantry", "counter", "yours")]
     if bad_register:
         warn.append(f"REGISTER: unknown register value(s): {sorted(set(bad_register))}")
     if len(basket_ids) == 1 and has_counter:

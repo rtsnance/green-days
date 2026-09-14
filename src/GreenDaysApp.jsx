@@ -11,6 +11,7 @@ import {
 } from './produce.js';
 import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
+import { seedsFor, matchProduce, MAX_WITH, MAX_WITH_LEN } from './shelf.js';
 
 const MONTH_NAME = new Date().toLocaleString('en-GB', { month: 'long' });
 const SEASON_RANK = { peak: 0, in: 1, out: 2 };
@@ -219,12 +220,13 @@ function AddControl({ p, qty, onAdd, size, block }) {
 }
 
 /* ---- recipe engine client ---- */
-async function requestRecipe({ basket, country, prefs, avoid }) {
+async function requestRecipe({ basket, withItems, country, prefs, avoid }) {
   const res = await fetch(ASSET('api/recipe'), {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
       basket,
+      with: withItems,
       country,
       month: MONTH + 1,
       prefs: { diet: prefs.diet || 'none', allergies: (prefs.allergies || []).map((a) => a.toLowerCase()) },
@@ -427,8 +429,126 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQu
   );
 }
 
+/* ---- Also in your kitchen ----
+   A second shelf under the basket for something the shopper already has. It
+   modifies the cook and never constitutes one: it lives only while the basket
+   does, it is never produce, and it gets smaller as it fills. Three states:
+   empty (seed rail + field), adding (tokens + seeds + live field), holding
+   (tokens + a dashed "one more" that reopens the rest). */
+const SHELF_CHIP = {
+  display: 'inline-flex', alignItems: 'center', gap: 5, flexShrink: 0, borderRadius: 999, padding: '6px 12px 6px 9px',
+  fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 700, cursor: 'pointer',
+};
+function KitchenShelf({ declared, prefs, basket, lang, country, onDeclare, onUndeclare, onAdd }) {
+  const [open, setOpen] = React.useState(false);
+  const [focused, setFocused] = React.useState(false);
+  const [draft, setDraft] = React.useState('');
+  const [produceHit, setProduceHit] = React.useState(null);
+  const shelfRef = React.useRef(null);
+  const inputRef = React.useRef(null);
+
+  const seeds = seedsFor(prefs, declared);
+  const full = declared.length >= MAX_WITH;
+  const expanded = !full && (declared.length === 0 || open);
+
+  const declare = (text) => {
+    const t = text.replace(/\s+/g, ' ').trim().slice(0, MAX_WITH_LEN);
+    if (!t) return;
+    // Produce belongs in the basket. Decline it here and point back there.
+    const hit = matchProduce(t, PRODUCE);
+    if (hit) { setProduceHit(decorate(hit, bandOf(country))); return; }
+    onDeclare(t);
+    setDraft('');
+  };
+  // Focus leaving the whole shelf collapses it back to holding, unless a
+  // half-typed line would be lost.
+  const onBlur = (e) => {
+    setFocused(false);
+    if (shelfRef.current && shelfRef.current.contains(e.relatedTarget)) return;
+    if (!draft.trim()) setOpen(false);
+  };
+  const keepFocus = (e) => { if (focused) e.preventDefault(); };
+
+  const hitName = produceHit ? ((lang && produceHit.name_local[lang]) || produceHit.name) : '';
+  const hitInBasket = produceHit && basket[produceHit.id] > 0;
+
+  const seedChip = (s) => (
+    <button key={s} type="button" onMouseDown={keepFocus} onClick={() => declare(s)}
+      style={{ ...SHELF_CHIP, background: 'var(--color-background-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-secondary)' }}>
+      <Icon d={I.plus} size={13} w={2.6} style={{ color: 'var(--color-accent)' }} /> {s}
+    </button>
+  );
+
+  return (
+    <div ref={shelfRef} style={{ marginBottom: 12 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 9 }}>
+        <div style={{ fontSize: 10, ...MONO, color: 'var(--color-text-tertiary)', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <Icon d={I.chef} size={13} w={2.2} /> Also in your kitchen
+        </div>
+        <span style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--color-text-tertiary)' }}>{declared.length ? 'clears with your basket' : 'tonight only'}</span>
+      </div>
+      <div className="gd-card gd-card--muted" style={{ padding: 13 }}>
+        {(declared.length > 0 || seeds.length > 0) && (
+          <div className={declared.length ? undefined : 'gd-filterrow'}
+            style={{ display: 'flex', gap: 6, ...(declared.length ? { flexWrap: 'wrap' } : { flexWrap: 'nowrap', overflowX: 'auto' }) }}>
+            {declared.map((w) => (
+              <span key={w} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, borderRadius: 999, padding: '6px 8px 6px 13px', maxWidth: '100%',
+                background: 'var(--color-background-accent-subtle)', border: '1px solid var(--color-border-accent)', fontSize: 13.5, fontWeight: 800, color: '#2f6b5b' }}>
+                <span style={{ overflowWrap: 'anywhere' }}>{w}</span>
+                <button type="button" aria-label={'Remove ' + w} onMouseDown={keepFocus} onClick={() => onUndeclare(w)}
+                  style={{ width: 19, height: 19, borderRadius: 999, border: 'none', padding: 0, cursor: 'pointer', flexShrink: 0,
+                    background: '#ffffffcc', color: '#42917c', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Icon d={I.x} size={11} w={2.8} />
+                </button>
+              </span>
+            ))}
+            {expanded && seeds.map(seedChip)}
+            {!expanded && !full && (
+              <button type="button" onClick={() => { setOpen(true); setTimeout(() => inputRef.current && inputRef.current.focus(), 0); }}
+                style={{ ...SHELF_CHIP, background: 'transparent', border: '1px dashed var(--color-border-strong)', color: 'var(--color-text-tertiary)' }}>
+                <Icon d={I.plus} size={13} w={2.6} /> one more
+              </button>
+            )}
+          </div>
+        )}
+        {expanded && (
+          <form onSubmit={(e) => { e.preventDefault(); declare(draft); }}
+            style={{ marginTop: (declared.length || seeds.length) ? 9 : 0, display: 'flex', alignItems: 'center', gap: 8, height: 42, paddingInline: 13, borderRadius: 8,
+              background: 'var(--color-background-surface)', color: 'var(--color-text-tertiary)',
+              border: focused ? '1px solid var(--color-accent)' : '1px dashed var(--color-border-strong)',
+              boxShadow: focused ? '0 0 0 3px #529d7f22' : 'none' }}>
+            <Icon d={I.plus} size={16} w={2.4} />
+            {/* 16px, not the spec's 14.5: anything smaller makes iOS Safari zoom on focus. */}
+            <input ref={inputRef} className="gd-input__field" value={draft} maxLength={MAX_WITH_LEN} enterKeyHint="done"
+              placeholder="Something else you've got" aria-label="Something else in your kitchen"
+              onChange={(e) => { setDraft(e.target.value); setProduceHit(null); }}
+              onKeyDown={(e) => { if (e.key === 'Enter' && !e.nativeEvent.isComposing) { e.preventDefault(); declare(draft); } }}
+              onFocus={() => { setFocused(true); setOpen(true); }} onBlur={onBlur}
+              style={{ fontSize: 16, fontWeight: 600, color: 'var(--color-text-primary)' }} />
+          </form>
+        )}
+        {produceHit && (
+          <div role="status" style={{ marginTop: 9, display: 'flex', alignItems: 'center', gap: 10, fontSize: 13, lineHeight: 1.45, color: 'var(--color-text-secondary)' }}>
+            <span style={{ flex: 1, minWidth: 0 }}>
+              {hitInBasket ? `${hitName} is already in your basket.`
+                : produceHit.seasonality === 'out' ? `${hitName} is produce, so it goes in your basket.`
+                : `${hitName} is in season here. Add it to your basket?`}
+            </span>
+            {!hitInBasket && (
+              <button type="button" className="gd-btn gd-btn--outline gd-btn--sm" onMouseDown={keepFocus}
+                onClick={() => { onAdd(produceHit.id, 1); setProduceHit(null); setDraft(''); }}>
+                <span className="gd-btn__icon"><Icon d={I.plus} size={15} w={2.6} /></span><span>Add</span>
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /* ================= Basket ================= */
-function ListScreen({ basket, checked, lang, country, onAdd, onRemove, onToggle, onOpen, onCook }) {
+function ListScreen({ basket, checked, lang, country, prefs, declared, onDeclare, onUndeclare, onAdd, onRemove, onToggle, onOpen, onCook }) {
   const band = bandOf(country);
   const items = PRODUCE.filter((p) => basket[p.id] > 0).map((p) => decorate(p, band));
   const doneCount = items.filter((p) => checked[p.id]).length;
@@ -493,6 +613,11 @@ function ListScreen({ basket, checked, lang, country, onAdd, onRemove, onToggle,
             );
           })}
         </div>
+      )}
+
+      {items.length > 0 && (
+        <KitchenShelf declared={declared} prefs={prefs} basket={basket} lang={lang} country={country}
+          onDeclare={onDeclare} onUndeclare={onUndeclare} onAdd={onAdd} />
       )}
 
       {items.length > 0 && (
@@ -561,6 +686,9 @@ function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, o
   // boolean, so fall back to it when register is absent.
   const registerOf = (i) => i.register || (i.pantry ? 'pantry' : 'basket');
   const fresh = r ? r.ingredients.filter((i) => registerOf(i) === 'basket') : [];
+  // What the shopper declared on the shelf, handed back under the shelf's own
+  // words. Never matched to a print: it was never in the catalogue.
+  const yours = r ? r.ingredients.filter((i) => registerOf(i) === 'yours') : [];
   const counter = r ? r.ingredients.filter((i) => registerOf(i) === 'counter') : [];
   const pantry = r ? r.ingredients.filter((i) => registerOf(i) === 'pantry') : [];
   const grabTerm = r && r.grabOneMore ? String(r.grabOneMore).trim() : '';
@@ -746,6 +874,21 @@ function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, o
                   </div>
                 );
               })}
+              {yours.length > 0 && (
+                <div style={{ borderTop: '1px solid var(--color-border)', margin: '6px 8px 0', padding: '10px 0 4px' }}>
+                  <div style={{ fontSize: 10, ...MONO, color: '#2f6b5b', marginBottom: 8 }}>In your kitchen</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {yours.map((s, i) => (
+                      <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'center', fontSize: 14.5, fontWeight: 800, color: 'var(--color-text-primary)' }}>
+                        <span style={{ width: 22, height: 22, borderRadius: 7, flexShrink: 0, background: 'var(--color-background-accent-subtle)', color: '#2f6b5b', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <Icon d={I.chef} size={13} w={2.2} />
+                        </span>
+                        <span>{s.item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
               {counter.length > 0 && (
                 <div style={{ borderTop: '1px solid var(--color-border)', margin: '6px 8px 0', padding: '10px 0 4px' }}>
                   <div style={{ fontSize: 10, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 8 }}>Also buy</div>
@@ -1286,15 +1429,19 @@ export default function GreenDaysApp() {
   }, []);
 
   // Basket persists and auto-clears 36 hours after the first item is added to
-  // an empty basket; the timer resets with each new shop.
+  // an empty basket; the timer resets with each new shop. `with` is the "also
+  // in your kitchen" shelf: it rides the same object, so it has no lifetime of
+  // its own and dies whenever the basket empties. Baskets saved before the
+  // shelf existed have no `with`, hence the default rather than a key bump.
   const [basketState, setBasketState] = React.useState(() => {
     try {
       const s = JSON.parse(localStorage.getItem(BASKET_KEY));
-      if (s && s.items) return (s.startedAt && Date.now() - s.startedAt > HRS36) ? { items: {}, startedAt: null } : s;
+      if (s && s.items) return (s.startedAt && Date.now() - s.startedAt > HRS36) ? { items: {}, with: [], startedAt: null } : { ...s, with: s.with ?? [] };
     } catch (e) { /* fresh start */ }
-    return { items: {}, startedAt: null };
+    return { items: {}, with: [], startedAt: null };
   });
   const basket = basketState.items;
+  const declared = basketState.with;
   // Deep link from a field-guide page (/produce/<slug>/?add=<slug>&src=field_guide):
   // drop the item straight into the basket and jump to it, then scrub the
   // params so reloads/shares don't keep re-adding it. `src=field_guide` is an
@@ -1323,10 +1470,18 @@ export default function GreenDaysApp() {
     let startedAt = st.startedAt;
     if (!had && has) startedAt = Date.now();
     if (!has) startedAt = null;
-    const nx = { items, startedAt };
+    const nx = { items, with: has ? st.with : [], startedAt };
     try { localStorage.setItem(BASKET_KEY, JSON.stringify(nx)); } catch (e) { /* private mode */ }
     return nx;
   });
+  const setDeclared = (updater) => setBasketState((st) => {
+    const nx = { ...st, with: updater(st.with) };
+    try { localStorage.setItem(BASKET_KEY, JSON.stringify(nx)); } catch (e) { /* private mode */ }
+    return nx;
+  });
+  const declare = (text) => setDeclared((w) =>
+    (w.length >= MAX_WITH || w.some((x) => x.toLowerCase() === text.toLowerCase())) ? w : [...w, text]);
+  const undeclare = (text) => setDeclared((w) => w.filter((x) => x !== text));
   // auto-clear once the 36h window elapses (also catches expiry while open)
   React.useEffect(() => {
     if (!basketState.startedAt) return;
@@ -1482,7 +1637,8 @@ export default function GreenDaysApp() {
       setTimeout(fire, 200);
     }
     try {
-      const recipe = await requestRecipe({ basket: ids, country, prefs, avoid });
+      // `declared` survives a re-roll: "Try another" reads the same state.
+      const recipe = await requestRecipe({ basket: ids, withItems: declared, country, prefs, avoid });
       const entry = { id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())), at: Date.now(), country, month0: MONTH, recipe };
       const swapId = avoid.length ? liveEntryId.current : null;
       setHistory((h) => {
@@ -1534,7 +1690,8 @@ export default function GreenDaysApp() {
         <div className="gd-screen-wrap">
           <div className="gd-screen">
             {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} onSetCountry={pickCountry} weather={weather} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)} />}
-            {tab === 'list' && <ListScreen basket={basket} checked={checked} lang={lang} country={country} onAdd={add} onRemove={(id) => setQty(id, 0)} onToggle={toggle} onOpen={setDetail} onCook={cookThis} />}
+            {tab === 'list' && <ListScreen basket={basket} checked={checked} lang={lang} country={country} prefs={prefs}
+              declared={declared} onDeclare={declare} onUndeclare={undeclare} onAdd={add} onRemove={(id) => setQty(id, 0)} onToggle={toggle} onOpen={setDetail} onCook={cookThis} />}
             {tab === 'recipes' && <RecipesListScreen history={history} onOpenEntry={openEntry} onGoHome={() => setTab('home')} />}
           </div>
           {recipeView && (
