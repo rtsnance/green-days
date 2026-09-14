@@ -27,7 +27,7 @@
     "in_season_at_midpoint"
    ],
    "why": "Derived from data/produce.json by a finer parser than the app ships, on 2026-07-30, then frozen. They gave the 24 turns only 8 distinct stall lists and could not track the season_ranges work. Recomputed at build time by scripts/build-market-year.mjs via seasonalityOf(). See SEASON-SEAM.md.",
-   "original": "~/Claude/Projects/Business ideas/Green Days/turning-days.json still carries them."
+   "original": "A copy at ~/Claude/Projects/Business ideas/Green Days/turning-days.json carried them until Sep 2026; that folder is dead and the project now lives at ~/w/code/green-days."
   }
  },
  "days": [
