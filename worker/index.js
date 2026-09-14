@@ -75,6 +75,17 @@ async function route(request, env, ctx) {
     return Response.redirect(`https://greendays.day${newPath}${qs ? `?${qs}` : ''}`, 301);
   }
 
+  // Short channel links for places that display the URL they point at, so the
+  // bio reads greendays.day/ig while the landing still carries the utm that
+  // analytics.js's SOURCE actually reads. A new channel is one more entry.
+  // 302, not 301: a marketing destination has to stay changeable, and browsers
+  // cache a 301 hard enough that a later edit never reaches anyone who tapped.
+  const CHANNEL = { '/ig': 'instagram' };
+  const channel = CHANNEL[url.pathname.toLowerCase().replace(/\/$/, '')];
+  if (channel) {
+    return Response.redirect(`${url.origin}/?utm_source=${channel}`, 302);
+  }
+
   if (url.pathname === '/api/context') return handleContext(request);
   if (url.pathname === '/api/recipe') return handleRecipe(request, env, ctx);
   if (url.pathname === '/api/event') return handleEvent(request, env);
