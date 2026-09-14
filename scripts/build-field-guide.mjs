@@ -234,26 +234,17 @@ const ALMANAC_LINK = `      <nav class="fg-nav"><a href="/season/">What&rsquo;s 
 // best for summary_large_image).
 // The CTA below is SAME-ORIGIN, so on the other side document.referrer is null
 // and SOURCE in src/analytics.js falls through to the CTA's own hardcoded
-// utm_source. Every field-guide conversion therefore files as utm:field_guide,
-// whatever channel actually delivered the reader — Pinterest, search and a
-// bookmark all collapse into one row. This carries the inbound source across
-// the hop as "<inbound>.field_guide". No storage, no network, no identifier:
-// same posture as the app's own beacon.
-const CTA_REF_SCRIPT = `    <script>
-      (function () {
-        try {
-          var inbound = new URLSearchParams(location.search).get('utm_source');
-          if (!inbound) return;
-          inbound = inbound.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 24);
-          if (!inbound) return;
-          var cta = document.querySelector('a.fg-cta');
-          if (!cta) return;
-          var url = new URL(cta.getAttribute('href'), location.origin);
-          url.searchParams.set('utm_source', inbound + '.field_guide');
-          cta.setAttribute('href', url.pathname + url.search);
-        } catch (e) { /* attribution must never break the page */ }
-      })();
-    </script>`;
+// utm_source. Every field-guide conversion therefore files as
+// `utm:field_guide` whatever channel delivered the reader. public/field-guide-cta.js
+// carries the inbound source across the hop as "<inbound>.field_guide".
+//
+// It is EXTERNAL, not inline: the Worker sends `script-src 'self'` with no
+// 'unsafe-inline' (worker/headers.js), so an inline script is blocked by CSP
+// and silently does nothing. That exact mistake shipped to production on
+// 14 Sep 2026 — the emitted HTML was correct, which proves only that the
+// script is THERE, never that it RAN. Verify attribution in a browser, not by
+// reading dist/. See the same note in public/market-year/boot.js.
+const CTA_REF_SCRIPT = `    <script src="/field-guide-cta.js" defer></script>`;
 
 function pageShell({ title, description, canonical, images, twitterImage, bodyHtml }) {
   const ogImageTags = images.map((img) => `    <meta property="og:image" content="${img.url}" />
