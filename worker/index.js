@@ -1,7 +1,7 @@
 /* Green Days Worker — static assets plus the small API.
    Serves greendays.day at the root; 301-redirects the retired
    lab.ryantnance.com/greendays* host to greendays.day.
-   Routes: GET  /api/context  → market country, band, season, weather line
+   Routes: GET  /api/context  → market country, band, season
            POST /api/recipe   → the recipe engine (Anthropic API)
    Everything else is served from the built front-end by the assets binding. */
 import PRODUCE from '../data/produce.json';
@@ -100,7 +100,9 @@ async function handleEvent(request, env) {
 }
 
 /* ---- GET /api/context ----
-   Edge country → language + climate band, with the v1 static weather line. */
+   Edge country → language + climate band. The old static "21°, clear"
+   weather line is gone: a fixed number next to real data read as live. If
+   weather returns, it should feed the recipe, not decorate the header. */
 function handleContext(request) {
   const country = (request.cf && request.cf.country) || 'PT';
   const now = new Date();
@@ -110,7 +112,6 @@ function handleContext(request) {
       band: bandOf(country),
       season: seasonForMonth0(now.getMonth()),
       month: now.getMonth() + 1,
-      weather: '21°, clear', // static placeholder for v1; real provider later
     },
     200,
     { 'cache-control': 'no-store' }

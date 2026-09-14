@@ -127,7 +127,6 @@ const I = {
   arrow: { main: 'M5 12h14 M13 6l6 6-6 6' },
   pin: { main: 'M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z', secondary: 'M12 10m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0' },
   leaf: { main: 'M11 20A7 7 0 0 1 4 13c0-5 4-9 16-9 0 10-5 13-9 13Z', secondary: 'M4 20c3-4 6-6 10-7' },
-  sun: { main: 'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z', secondary: 'M12 4V2 M12 22v-2 M5 5 3.5 3.5 M20.5 20.5 19 19 M4 12H2 M22 12h-2 M5 19l-1.5 1.5 M20.5 3.5 19 5' },
   info: { main: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z', secondary: 'M12 12v5 M12 8h.01' },
   chef: { main: 'M6 4 16 14.5 13.4 17.1C9 13.4 6 9.3 6 4Z', secondary: 'M13.7 16.8 15.9 14.5 21.1 19.5a1.7 1.7 0 0 1-.3 2.4l-1 1a1.7 1.7 0 0 1-2.4-.3Z' },
   basket: { main: 'M4 9h16l-1.3 9.7a1.5 1.5 0 0 1-1.5 1.3H6.8a1.5 1.5 0 0 1-1.5-1.3Z M8.5 9a3.5 3.5 0 0 1 7 0', secondary: 'M9.5 12.5l.5 4.5 M14.5 12.5l-.5 4.5 M12 12.5v4.5', filled: 'M4 9h16l-1.3 9.7a1.5 1.5 0 0 1-1.5 1.3H6.8a1.5 1.5 0 0 1-1.5-1.3ZM8.5 9a3.5 3.5 0 0 1 7 0h-2a1.5 1.5 0 0 0-3 0Zm2.4 3.3h1.4v4.6h-1.4Z' },
@@ -240,7 +239,7 @@ async function requestRecipe({ basket, withItems, country, prefs, avoid }) {
 }
 
 /* ================= Home ================= */
-function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQuery, onAdd, onOpen, onCook, onOpenPrefs }) {
+function HomeScreen({ basket, lang, country, onSetCountry, query, setQuery, onAdd, onOpen, onCook, onOpenPrefs }) {
   const [cat, setCat] = React.useState('All');
   const term = query.trim();
   const q = stripDia(term);
@@ -335,9 +334,6 @@ function HomeScreen({ basket, lang, country, onSetCountry, weather, query, setQu
             {COUNTRIES.map(([code, label]) => <option key={code} value={code}>{label}</option>)}
           </select>
         </span>
-        <span style={{ color: 'var(--color-text-tertiary)' }}>·</span>
-        <Icon d={I.sun} size={14} style={{ color: 'var(--color-gold)' }} />
-        <span>{weather}</span>
       </div>
 
       {/* Empty basket → gentle welcome; replaced by the cook banner once something's in */}
@@ -1568,13 +1564,11 @@ export default function GreenDaysApp() {
   const [countryPicked] = React.useState(() => {
     try { return !!localStorage.getItem(COUNTRY_KEY); } catch (e) { return false; }
   });
-  const [weather, setWeather] = React.useState('21°, clear');
   React.useEffect(() => {
     fetch(ASSET('api/context'))
       .then((r) => (r.ok ? r.json() : null))
       .then((ctx) => {
         if (!ctx) return;
-        if (ctx.weather) setWeather(ctx.weather);
         // Europe-first: only adopt the edge country when it's a market we
         // carry language/season data for; otherwise stay on the default.
         if (!countryPicked && ctx.country && COUNTRIES.some(([c]) => c === ctx.country)) setCountry(ctx.country);
@@ -1692,7 +1686,7 @@ export default function GreenDaysApp() {
             them is scrolled; only .gd-screen itself scrolls. */}
         <div className="gd-screen-wrap">
           <div className="gd-screen">
-            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} onSetCountry={pickCountry} weather={weather} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)} />}
+            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} onSetCountry={pickCountry} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)} />}
             {tab === 'list' && <ListScreen basket={basket} checked={checked} lang={lang} country={country} prefs={prefs}
               declared={declared} onDeclare={declare} onUndeclare={undeclare} onAdd={add} onRemove={(id) => setQty(id, 0)} onToggle={toggle} onOpen={setDetail} onCook={cookThis} />}
             {tab === 'recipes' && <RecipesListScreen history={history} onOpenEntry={openEntry} onGoHome={() => setTab('home')} />}

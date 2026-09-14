@@ -31,7 +31,7 @@ greendays.day.
   `build-market-year.mjs` (`/market-year/` and its 24 day pages), and
   `build-sitemap.mjs`, which merges their URL fragments into `sitemap.xml` last.
 - `worker/` — the Worker: `GET /api/context` (edge country → language
-  + climate band + static weather line) and `POST /api/recipe`
+  + climate band) and `POST /api/recipe`
   (the Anthropic-powered recipe engine; system prompt in `worker/prompt.js`,
   built from Recipe_Principles.md with the three anchor recipes as examples).
 
