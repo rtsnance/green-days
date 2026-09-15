@@ -9,11 +9,17 @@ import {
   langOf, bandOf, countryLabel, COUNTRIES,
   seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel,
 } from './produce.js';
-import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator } from './analytics.js';
+import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator, setMarket, COUNTRY_KEY } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
 import { seedsFor, matchProduce, MAX_WITH, MAX_WITH_LEN } from './shelf.js';
 
 const MONTH_NAME = new Date().toLocaleString('en-GB', { month: 'long' });
+// Name for a country that is not one of our markets: the edge country an
+// out-of-market arrival is told about. The browser's own region names, the
+// bare code if it has none.
+const regionName = (code) => {
+  try { return new Intl.DisplayNames(['en'], { type: 'region' }).of(code) || code; } catch (e) { return code; }
+};
 const SEASON_RANK = { peak: 0, in: 1, out: 2 };
 // Now that peak is a declared claim it fires on almost no days, so the rank
 // alone ties nearly the whole catalogue at 'in' and the name comparator decides
@@ -239,7 +245,7 @@ async function requestRecipe({ basket, withItems, country, prefs, avoid }) {
 }
 
 /* ================= Home ================= */
-function HomeScreen({ basket, lang, country, onSetCountry, query, setQuery, onAdd, onOpen, onCook, onOpenPrefs }) {
+function HomeScreen({ basket, lang, country, outOfMarket, onSetCountry, query, setQuery, onAdd, onOpen, onCook, onOpenPrefs }) {
   const [cat, setCat] = React.useState('All');
   const term = query.trim();
   const q = stripDia(term);
@@ -335,6 +341,13 @@ function HomeScreen({ basket, lang, country, onSetCountry, query, setQuery, onAd
           </select>
         </span>
       </div>
+      {/* Out-of-market arrival: say so, right under the line that fixes it.
+          Until 15 Sep 2026 these sessions were shown Portugal without a word. */}
+      {outOfMarket && (
+        <p style={{ margin: '8px 0 0', fontSize: 13, lineHeight: 1.5, color: 'var(--color-text-secondary)' }}>
+          We don't cover {regionName(outOfMarket)} yet, so this is {countryLabel(country)}'s market. Tap the place above to pick the nearest one.
+        </p>
+      )}
 
       {/* Empty basket → gentle welcome; replaced by the cook banner once something's in */}
       {basketCount === 0 && (
@@ -1245,7 +1258,7 @@ const ALLERGIES = ['Nuts', 'Dairy', 'Gluten', 'Eggs', 'Shellfish', 'Soy'];
    steps (welcome, market, diet & allergies); "Get started" persists prefs +
    the market and lands on Home. Replaces the first-run role of PrefsScreen. */
 const ONBOARD_STEPS = ['welcome', 'market', 'diet'];
-function OnboardScreen({ country, onSetCountry, prefs, onDone }) {
+function OnboardScreen({ country, outOfMarket, onSetCountry, prefs, onDone }) {
   const [step, setStep] = React.useState(0);
   // Pre-fill from existing prefs so a returning user who taps through keeps
   // their saved diet/allergies; new users start at the defaults.
@@ -1279,9 +1292,14 @@ function OnboardScreen({ country, onSetCountry, prefs, onDone }) {
         {step === 1 && (
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div style={{ fontFamily: 'var(--font-brand)', fontSize: 34, lineHeight: 1.05, color: 'var(--color-accent)', marginBottom: 8 }}>Where's your market?</div>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '0 0 26px', maxWidth: 320 }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: outOfMarket ? '0 0 12px' : '0 0 26px', maxWidth: 320 }}>
               This sets the local language on produce and what's in season right now. You can change it anytime from Home.
             </p>
+            {outOfMarket && (
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '0 0 26px', maxWidth: 320 }}>
+                We don't cover {regionName(outOfMarket)} yet. {countryLabel(country)} is selected; pick the nearest market to you.
+              </p>
+            )}
             {/* The 14 markets from markets.json; picking one sets the app-wide
                 country that drives produce language + climate band (Fix 7). */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -1394,7 +1412,8 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
 }
 
 /* ================= App shell ================= */
-const BASKET_KEY = 'gd_basket', HISTORY_KEY = 'gd_recipes', PREFS_KEY = 'gd_prefs', COUNTRY_KEY = 'gd_country', ONBOARD_KEY = 'gd_onboarded', LAST_VISIT_KEY = 'gd_last_visit', NOTIFY_KEY = 'gd_notify';
+// COUNTRY_KEY lives in analytics.js: the beacon reads the saved market at load.
+const BASKET_KEY = 'gd_basket', HISTORY_KEY = 'gd_recipes', PREFS_KEY = 'gd_prefs', MARKET_ORIGIN_KEY = 'gd_market_origin', ONBOARD_KEY = 'gd_onboarded', LAST_VISIT_KEY = 'gd_last_visit', NOTIFY_KEY = 'gd_notify';
 const HRS36 = 36 * 3600 * 1000;
 
 export default function GreenDaysApp() {
@@ -1524,7 +1543,13 @@ export default function GreenDaysApp() {
     setPrefs(np);
     try { localStorage.setItem(PREFS_KEY, JSON.stringify(np)); } catch (e) { /* private mode */ }
     ev('prefs_set', { detail: np.diet, extra: np.allergies.map((a) => a.toLowerCase()).join(','), v1: np.allergies.length });
-    persistCountry(country);         // lock in the confirmed/auto-detected market (no extra market_selected)
+    // Lock in the confirmed/auto-detected market. market_locked, not
+    // market_selected: this is the one event that records the market every
+    // session actually ran on (a hand pick fires market_selected as well, and
+    // the two series stay separable). extra = how it was arrived at; 'default'
+    // means Portugal was served to an out-of-market arrival who never picked.
+    persistCountry(country, marketOrigin);
+    ev('market_locked', { detail: country, extra: marketOrigin });
     try { localStorage.setItem(ONBOARD_KEY, '1'); } catch (e) { /* private mode */ }
     setOnboarded(true);
     setTab('home');
@@ -1564,17 +1589,45 @@ export default function GreenDaysApp() {
   const [countryPicked] = React.useState(() => {
     try { return !!localStorage.getItem(COUNTRY_KEY); } catch (e) { return false; }
   });
+  // How the session's market came to be what it is. Carried on market_locked
+  // (extra) so /metrics can tell an edge-detected market from a silent
+  // Portugal fallback from a hand pick:
+  //   'stored'  — a market saved by an earlier session
+  //   'edge'    — the edge country is one of the 14 markets and was adopted
+  //   'default' — nothing better: out-of-market edge, or /api/context failed
+  //   'picked'  — the person chose one (market_selected fired too)
+  // 'default' is persisted (MARKET_ORIGIN_KEY) when onboarding locks it in,
+  // so the out-of-market line keeps showing on later visits until the person
+  // actually picks; every other origin clears that flag.
+  const [marketOrigin, setMarketOrigin] = React.useState(() => {
+    try {
+      if (!localStorage.getItem(COUNTRY_KEY)) return 'default';
+      return localStorage.getItem(MARKET_ORIGIN_KEY) === 'default' ? 'default' : 'stored';
+    } catch (e) { return 'default'; }
+  });
+  // The edge country as Cloudflare saw it, market or not: what the
+  // out-of-market line names.
+  const [edgeCountry, setEdgeCountry] = React.useState(null);
   React.useEffect(() => {
     fetch(ASSET('api/context'))
       .then((r) => (r.ok ? r.json() : null))
       .then((ctx) => {
         if (!ctx) return;
+        if (ctx.country) setEdgeCountry(ctx.country);
         // Europe-first: only adopt the edge country when it's a market we
         // carry language/season data for; otherwise stay on the default.
-        if (!countryPicked && ctx.country && COUNTRIES.some(([c]) => c === ctx.country)) setCountry(ctx.country);
+        if (!countryPicked && ctx.country && COUNTRIES.some(([c]) => c === ctx.country)) {
+          setCountry(ctx.country);
+          setMarketOrigin('edge');
+        }
       })
       .catch(() => { /* offline or vite-only dev: keep defaults */ });
   }, []);
+  // Out of market: the edge country is known, is not one of the 14, and
+  // nobody has picked a market. About three quarters of arrivals. They are
+  // told on Home and in the onboarding market step; picking clears it.
+  const outOfMarket = (edgeCountry && marketOrigin === 'default' && !COUNTRIES.some(([c]) => c === edgeCountry))
+    ? edgeCountry : null;
 
   // Which produce ids have a field-guide page — published at build time to
   // dist/produce/manifest.json (scripts/build-field-guide.mjs), fetched once
@@ -1586,12 +1639,18 @@ export default function GreenDaysApp() {
       .then((slugs) => setFieldGuideSlugs(new Set(slugs)))
       .catch(() => { /* offline or vite-only dev: no field-guide links */ });
   }, []);
-  const persistCountry = (c) => {
+  const persistCountry = (c, origin) => {
     setCountry(c);
-    try { localStorage.setItem(COUNTRY_KEY, c); } catch (e) { /* private mode */ }
+    setMarket(c); // every event from here on carries the market (blob7)
+    try {
+      localStorage.setItem(COUNTRY_KEY, c);
+      if (origin === 'default') localStorage.setItem(MARKET_ORIGIN_KEY, 'default');
+      else localStorage.removeItem(MARKET_ORIGIN_KEY);
+    } catch (e) { /* private mode */ }
   };
-  // Explicit user picks fire market_selected; the onboarding lock-in does not.
-  const pickCountry = (c) => { persistCountry(c); ev('market_selected', { detail: c }); };
+  // Explicit user picks fire market_selected; the onboarding lock-in fires
+  // market_locked instead (finishOnboarding).
+  const pickCountry = (c) => { setMarketOrigin('picked'); persistCountry(c, 'picked'); ev('market_selected', { detail: c }); };
   const lang = langOf(country);
 
   const add = (id, n) => {
@@ -1686,7 +1745,7 @@ export default function GreenDaysApp() {
             them is scrolled; only .gd-screen itself scrolls. */}
         <div className="gd-screen-wrap">
           <div className="gd-screen">
-            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} onSetCountry={pickCountry} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)} />}
+            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} outOfMarket={outOfMarket} onSetCountry={pickCountry} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)} />}
             {tab === 'list' && <ListScreen basket={basket} checked={checked} lang={lang} country={country} prefs={prefs}
               declared={declared} onDeclare={declare} onUndeclare={undeclare} onAdd={add} onRemove={(id) => setQty(id, 0)} onToggle={toggle} onOpen={setDetail} onCook={cookThis} />}
             {tab === 'recipes' && <RecipesListScreen history={history} onOpenEntry={openEntry} onGoHome={() => setTab('home')} />}
@@ -1718,7 +1777,7 @@ export default function GreenDaysApp() {
         )}
 
         {/* First-run walkthrough — covers the whole phone until "Get started" */}
-        {!onboarded && <OnboardScreen country={country} onSetCountry={pickCountry} prefs={prefs} onDone={finishOnboarding} />}
+        {!onboarded && <OnboardScreen country={country} outOfMarket={outOfMarket} onSetCountry={pickCountry} prefs={prefs} onDone={finishOnboarding} />}
       </div>
     </div>
   );

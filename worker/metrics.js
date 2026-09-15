@@ -103,12 +103,24 @@ export async function handleMetrics(request, env) {
 
   const I = `NOW() - INTERVAL '${days}' DAY`;
   const Q = {
-    activation: `SELECT blob1 AS event, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1 IN ('app_open','recipe_generated') AND timestamp > ${I} GROUP BY event`,
+    // Grouped by blob2 (edge country) so the rate can be split in-market vs
+    // out-of-market below. recipe_generated rows before 15 Sep 2026 carry the
+    // requested market in blob2, not the edge country: in a window reaching
+    // back past that date the split undercounts out-of-market recipes.
+    activation: `SELECT blob1 AS event, blob2 AS country, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1 IN ('app_open','recipe_generated') AND timestamp > ${I} GROUP BY event, country`,
     onboarding: `SELECT blob4 AS step, blob5 AS action, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='onboarding_step' AND timestamp > ${I} GROUP BY step, action ORDER BY n DESC`,
     recipes: `SELECT SUM(_sample_interval) AS recipes, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='recipe_generated' AND timestamp > ${I}`,
     tryAnother: `SELECT blob1 AS event, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1 IN ('recipe_generated','recipe_try_another') AND timestamp > ${I} GROUP BY event`,
     search: `SELECT double1 AS has_results, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='search' AND timestamp > ${I} GROUP BY has_results`,
-    market: `SELECT blob2 AS country, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY country ORDER BY sessions DESC`,
+    // blob2 = edge country (Cloudflare's request.cf.country), on every event.
+    edge: `SELECT blob2 AS country, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY country ORDER BY sessions DESC`,
+    // blob7 = the market the session ran on (src/analytics.js setMarket):
+    // present on a returning session's app_open, and on market_locked when a
+    // first-run session finishes onboarding. Empty before 15 Sep 2026.
+    market: `SELECT blob7 AS market, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1 IN ('app_open','market_locked') AND blob7 != '' AND timestamp > ${I} GROUP BY market ORDER BY sessions DESC`,
+    // blob5 on market_locked = how the market was arrived at (see
+    // src/GreenDaysApp.jsx marketOrigin): edge / default / picked / stored.
+    locked: `SELECT blob5 AS origin, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='market_locked' AND timestamp > ${I} GROUP BY origin ORDER BY n DESC`,
     fieldGuide: `SELECT blob4 AS produce, SUM(_sample_interval) AS adds FROM ${DATASET} WHERE blob1='field_guide_add' AND timestamp > ${I} GROUP BY produce ORDER BY adds DESC`,
     fieldNote: `SELECT blob4 AS produce, SUM(_sample_interval) AS shares FROM ${DATASET} WHERE blob1='field_note_share_tap' AND timestamp > ${I} GROUP BY produce ORDER BY shares DESC`,
     notifyIntent: `SELECT blob4 AS produce, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='notify_intent' AND timestamp > ${I} GROUP BY produce ORDER BY n DESC`,
@@ -124,8 +136,10 @@ export async function handleMetrics(request, env) {
     affiliate: `SELECT blob4 AS partner, blob2 AS country, SUM(_sample_interval) AS taps FROM ${DATASET} WHERE blob1='affiliate_cta_tap' AND timestamp > ${I} GROUP BY partner, country ORDER BY taps DESC`,
     // Denominator: recipes generated in covered markets only. A tap rate against
     // all recipes would be meaningless while most markets render no CTA at all.
+    // The CTA renders by market, so this reads blob7; recipes before 15 Sep
+    // 2026 have no blob7 and drop out of the denominator.
     affiliateBase: COVERED.length
-      ? `SELECT SUM(_sample_interval) AS recipes FROM ${DATASET} WHERE blob1='recipe_generated' AND blob2 IN (${COVERED.map((c) => `'${c}'`).join(',')}) AND timestamp > ${I}`
+      ? `SELECT SUM(_sample_interval) AS recipes FROM ${DATASET} WHERE blob1='recipe_generated' AND blob7 IN (${COVERED.map((c) => `'${c}'`).join(',')}) AND timestamp > ${I}`
       : null,
     // blob4 on app_open = SOURCE from src/analytics.js ('utm:x' / 'ref:host'),
     // empty when the visit was direct or the referrer was same-origin.
@@ -143,11 +157,24 @@ export async function handleMetrics(request, env) {
   // --- derive the KPIs from the grouped rows ---
   const byEvent = (arr, key = 'event', val = 'n') => Object.fromEntries((arr || []).map((r) => [r[key], num(r[val])]));
 
-  const act = byEvent(rows.activation, 'event', 'sessions');
+  // Activation, split by whether the edge country is one of the 14 markets.
+  // About three quarters of loads are out of market, and until 15 Sep 2026
+  // every rate on this page was computed over that mixed audience. This split
+  // is what says whether the out-of-market majority is people or automation.
+  const IN_MARKET = new Set(Object.keys(MARKETS));
+  const actIn = { app_open: 0, recipe_generated: 0 }, actOut = { app_open: 0, recipe_generated: 0 };
+  (rows.activation || []).forEach((r) => {
+    const b = IN_MARKET.has(r.country) ? actIn : actOut;
+    if (b[r.event] != null) b[r.event] += num(r.sessions);
+  });
+  const actRate = (b) => ({
+    app_open_sessions: b.app_open, recipe_sessions: b.recipe_generated,
+    rate: b.app_open ? b.recipe_generated / b.app_open : null,
+  });
   const activation = {
-    app_open_sessions: act.app_open || 0,
-    recipe_sessions: act.recipe_generated || 0,
-    rate: act.app_open ? (act.recipe_generated || 0) / act.app_open : null,
+    ...actRate({ app_open: actIn.app_open + actOut.app_open, recipe_generated: actIn.recipe_generated + actOut.recipe_generated }),
+    in_market: actRate(actIn),
+    out_of_market: actRate(actOut),
   };
 
   const ONB_STEPS = ['welcome', 'market', 'diet'];
@@ -176,7 +203,17 @@ export async function handleMetrics(request, env) {
   (rows.search || []).forEach((r) => { (num(r.has_results) === 1 ? (hit += num(r.n)) : (miss += num(r.n))); });
   const search = { has_results: hit, no_results: miss, miss_rate: (hit + miss) ? miss / (hit + miss) : null };
 
-  const market = (rows.market || []).map((r) => ({ country: r.country || '', name: countryName(r.country), sessions: num(r.sessions) }));
+  // Edge country: where Cloudflare saw the request come from. This list was
+  // titled "Market distribution" until 15 Sep 2026 and never showed a market,
+  // which is why it rendered "US US" beside "Portugal PT".
+  const edge = (rows.edge || []).map((r) => ({ country: r.country || '', name: countryName(r.country), sessions: num(r.sessions) }));
+  // Market: the one each session actually ran on.
+  const market = (rows.market || []).map((r) => ({ country: r.market || '', name: countryName(r.market), sessions: num(r.sessions) }));
+  // How the locked market was arrived at. 'default' is the number that
+  // matters: out-of-market arrivals who were served Portugal and never picked.
+  const lockedByOrigin = {};
+  (rows.locked || []).forEach((r) => { const o = r.origin || '(unknown)'; lockedByOrigin[o] = (lockedByOrigin[o] || 0) + num(r.n); });
+  const marketLocked = { total: Object.values(lockedByOrigin).reduce((s, n) => s + n, 0), by_origin: lockedByOrigin };
 
   const fieldGuideByProduce = (rows.fieldGuide || []).map((r) => ({ produce: r.produce || '(unknown)', adds: num(r.adds) }));
   const fieldGuide = { total: fieldGuideByProduce.reduce((s, r) => s + r.adds, 0), by_produce: fieldGuideByProduce };
@@ -253,7 +290,7 @@ export async function handleMetrics(request, env) {
   const known = sourceRows.filter((r) => r.source !== '(direct)').reduce((s, r) => s + r.sessions, 0);
   const source = { total_sessions: sourceTotal, attributed_sessions: known, by_source: sourceRows };
 
-  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, market, field_guide: fieldGuide, field_note: fieldNote, install, notify, health, retention, affiliate, source, errors };
+  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, edge, market, market_locked: marketLocked, field_guide: fieldGuide, field_note: fieldNote, install, notify, health, retention, affiliate, source, errors };
 
   if (wantJson) return withSession(json(metrics, 200));
   return withSession(html(renderPage(metrics), 200));
@@ -323,10 +360,13 @@ function card(title, inner, err) {
 function renderPage(m) {
   const e = m.errors;
 
+  const actRow = (label, a) => `<div class="row"><span class="k">${label}</span><span class="v">${pct(a.rate)} <span style="color:var(--muted);font-weight:600">${a.recipe_sessions}/${a.app_open_sessions}</span></span></div>`;
   const activation = card('Activation rate',
     m.activation.rate == null ? NO_DATA :
       `<div class="big">${pct(m.activation.rate)}</div>
-       <div class="note">${m.activation.recipe_sessions} of ${m.activation.app_open_sessions} visits generated a recipe</div>`, e.activation);
+       <div class="note">${m.activation.recipe_sessions} of ${m.activation.app_open_sessions} visits generated a recipe</div>
+       <div style="margin-top:10px">${actRow('in market', m.activation.in_market)}${actRow('out of market', m.activation.out_of_market)}</div>
+       <div class="note">in market = the edge country is one of the 14 markets</div>`, e.activation);
 
   const R = m.retention;
   const retention = card('Return-visit rate', (R.returning_sessions + R.new_sessions) ?
@@ -355,10 +395,21 @@ function renderPage(m) {
       `<div class="big small">${pct(m.search.miss_rate)}</div>
        <div class="note">${m.search.no_results} misses ÷ ${m.search.has_results + m.search.no_results} searches</div>`, e.search);
 
-  const maxMk = Math.max(1, ...m.market.map((r) => r.sessions));
-  const market = card('Market distribution', m.market.length ?
-    m.market.map((r) => `<div class="row"><span class="k">${esc(r.name)}${r.country ? ` <span style="color:var(--muted);font-weight:600">${esc(r.country)}</span>` : ''}</span><span class="bar"><i style="width:${(r.sessions / maxMk * 100).toFixed(0)}%"></i></span><span class="v">${r.sessions}</span></div>`).join('')
-    : NO_DATA, e.market);
+  const countryRows = (list) => {
+    const max = Math.max(1, ...list.map((r) => r.sessions));
+    return list.map((r) => `<div class="row"><span class="k">${esc(r.name)}${r.country ? ` <span style="color:var(--muted);font-weight:600">${esc(r.country)}</span>` : ''}</span><span class="bar"><i style="width:${(r.sessions / max * 100).toFixed(0)}%"></i></span><span class="v">${r.sessions}</span></div>`).join('');
+  };
+  const L = m.market_locked;
+  const originLabel = { edge: 'edge-detected', default: 'default (Portugal, never picked)', picked: 'picked', stored: 'stored' };
+  const originNote = L.total
+    ? `locked at onboarding: ${Object.keys(L.by_origin).map((o) => `${L.by_origin[o]} ${originLabel[o] || esc(o)}`).join(' · ')}`
+    : 'no onboarding lock-ins in this window';
+  const market = card('Market', m.market.length ?
+    `${countryRows(m.market)}<div class="note">the market each session ran on · ${originNote}</div>`
+    : `${NO_DATA}<div class="note">sessions carry their market from 15 Sep 2026; earlier windows cannot be sliced this way</div>`, e.market || e.locked);
+  const edgeCard = card('Edge country', m.edge.length ?
+    `${countryRows(m.edge)}<div class="note">where Cloudflare saw the request come from · not the market, see the Market card</div>`
+    : NO_DATA, e.edge);
 
   const maxFg = Math.max(1, ...m.field_guide.by_produce.map((f) => f.adds));
   const fieldGuideCard = card('Field guide → basket', m.field_guide.total ?
@@ -415,7 +466,7 @@ function renderPage(m) {
      ${S.by_source.map((r) => `<div class="row"><span class="k">${esc(r.source)}</span><span class="bar"><i style="width:${(r.sessions / maxSrc * 100).toFixed(0)}%"></i></span><span class="v">${r.sessions}</span></div>`).join('')}`
     : NO_DATA, e.source);
 
-  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${market}${fieldGuideCard}${fieldNoteCard}${installCard}${notifyCard}${affiliateCard}${sourceCard}${health}</div>`;
+  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${market}${edgeCard}${fieldGuideCard}${fieldNoteCard}${installCard}${notifyCard}${affiliateCard}${sourceCard}${health}</div>`;
   return shell(grid, m.days);
 }
 

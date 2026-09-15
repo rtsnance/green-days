@@ -30,7 +30,18 @@ const json = (data, status = 200, headers = {}) =>
   new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json; charset=utf-8', ...headers } });
 
 /* ---- product analytics (Workers Analytics Engine) ----
-   Aggregate-only, no user IDs, no PII, no free-text. One dataset, one shape. */
+   Aggregate-only, no user IDs, no PII, no free-text. One dataset, one shape:
+     blob1 event name        blob2 edge country (request.cf.country)
+     blob3 climate band      blob4 detail          blob5 extra
+     blob6 session id        blob7 market the session ran on (from 15 Sep 2026;
+                                   empty before, and on first-run events before
+                                   onboarding locks a market in)
+     double1-3 v1-v3
+   blob2 is the edge country on EVERY event, server-side ones included. Until
+   15 Sep 2026 recipe_generated / with_declared / error wrote the requested
+   market there instead, so an out-of-market session cooking on the Portugal
+   default looked like a Portuguese one. Rows before that date keep the old
+   meaning; worker/metrics.js says where that matters. */
 const str = (x, max = 64) => (x == null ? '' : String(x)).slice(0, max);
 const num = (x) => { const n = Number(x); return Number.isFinite(n) ? n : 0; };
 // Client-postable events (recipe_generated is server-only and not in this set).
@@ -40,13 +51,15 @@ const CLIENT_EVENTS = new Set([
   'grab_one_more_tap', 'offseason_added', 'error', 'time_to_first_content',
   'affiliate_cta_tap', 'field_guide_add', 'field_note_share_tap',
   'pwa_install', 'notify_intent', 'notify_permission',
+  'market_locked',
 ]);
+const MARKET_CODE = /^[A-Z]{2}$/;
 function track(env, name, f = {}) {
   if (!env.GD_EVENTS) return; // binding absent (e.g. vite-only dev) → no-op
   try {
     env.GD_EVENTS.writeDataPoint({
       indexes: [name],
-      blobs: [name, str(f.country, 2), str(f.band, 16), str(f.detail), str(f.extra), str(f.sid)],
+      blobs: [name, str(f.country, 2), str(f.band, 16), str(f.detail), str(f.extra), str(f.sid), str(f.market, 2)],
       doubles: [num(f.v1), num(f.v2), num(f.v3)],
     });
   } catch (_) { /* never let analytics break a request */ }
@@ -106,6 +119,7 @@ async function handleEvent(request, env) {
   track(env, b.name, {
     country, band: bandOf(country),
     detail: b.detail, extra: b.extra, v1: b.v1, v2: b.v2, v3: b.v3, sid: b.sid,
+    market: MARKET_CODE.test(b.market || '') ? b.market : '',
   });
   return new Response(null, { status: 204 });
 }
@@ -148,8 +162,12 @@ async function handleRecipe(request, env, ctx) {
   if (unknown.length) return json({ error: `unknown produce: ${unknown.join(', ')}` }, 400);
   if (basket.length === 0) return json({ error: 'basket is empty' }, 400);
 
-  const cfCountry = (request.cf && request.cf.country) || 'PT';
-  const country = /^[A-Z]{2}$/.test(body.country || '') ? body.country : cfCountry;
+  // edgeCountry is what analytics files as blob2, the same as client events;
+  // `country` is the market the recipe is cooked for and goes to blob7.
+  const edgeCountry = (request.cf && request.cf.country) || '';
+  const cfCountry = edgeCountry || 'PT';
+  const country = MARKET_CODE.test(body.country || '') ? body.country : cfCountry;
+  const market = MARKET_CODE.test(body.country || '') ? body.country : '';
   // Seasonality is a day question now, not a month one, but the endpoint still
   // accepts an optional body.month (1-12) and callers rely on that. Judgment
   // call: when a month is supplied that is all we know, so read it on the 15th —
@@ -190,7 +208,7 @@ async function handleRecipe(request, env, ctx) {
   // not count the same declaration twice, and ahead of the cache so hits count.
   if (withItems.length && avoid.length === 0) {
     track(env, 'with_declared', {
-      country, band, sid,
+      country: edgeCountry, band, sid, market,
       extra: [...new Set(withItems.map(shelfBucket))].sort().join(','),
       v1: withItems.length,
     });
@@ -199,8 +217,8 @@ async function handleRecipe(request, env, ctx) {
   // recipe_generated is the money metric — record it (and errors) with the
   // session so activation/health queries line up with client events.
   const rg = (model, latencyMs, ok, tokens) =>
-    track(env, 'recipe_generated', { country, band, detail: model, v1: latencyMs, v2: ok, v3: tokens, sid });
-  const trackErr = (code) => track(env, 'error', { country, band, detail: 'recipe', extra: code, sid });
+    track(env, 'recipe_generated', { country: edgeCountry, band, market, detail: model, v1: latencyMs, v2: ok, v3: tokens, sid });
+  const trackErr = (code) => track(env, 'error', { country: edgeCountry, band, market, detail: 'recipe', extra: code, sid });
 
   // Light rate limit per IP (cost control). Skipped under the local mock
   // engine so the eval gate can fire 40 requests without throttling.

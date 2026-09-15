@@ -37,6 +37,23 @@ export const DISPLAY_MODE = (() => {
   } catch (_) { return 'browser'; }
 })();
 
+// --- Session market -------------------------------------------------------
+// The market the session runs on (an ISO code from data/markets.json). Not
+// blob2: that is the edge country Cloudflare stamps on the request, which
+// /metrics mislabelled "Market distribution" until 15 Sep 2026. Before this
+// no event recorded which market a session actually ran on; only a hand
+// change after onboarding fired market_selected.
+//
+// Read once from the key the app persists the market under, so a returning
+// session's app_open already carries it. A first-run session carries nothing
+// until onboarding locks a market in (market_locked, via setMarket), and every
+// event after that carries it. Sent as `market`, stored server-side as blob7.
+export const COUNTRY_KEY = 'gd_country';
+let MARKET = (() => {
+  try { return localStorage.getItem(COUNTRY_KEY) || null; } catch (_) { return null; }
+})();
+export function setMarket(code) { MARKET = code || null; }
+
 // --- Operator exclusion ---------------------------------------------------
 // Green Days is installed on Ryan's own home screen and there was no exclusion
 // of any kind, so every figure on /metrics counted him: ~12% of events at 224
@@ -79,6 +96,7 @@ export function ev(name, data = {}) {
   if (IS_OPERATOR) return; // operator's own device — see the block above
   try {
     const payload = { name, sid: SID };
+    if (MARKET) payload.market = MARKET;
     if (data.detail != null) payload.detail = String(data.detail).slice(0, 64);
     if (data.extra != null) payload.extra = String(data.extra).slice(0, 64);
     if (data.v1 != null) payload.v1 = data.v1;
