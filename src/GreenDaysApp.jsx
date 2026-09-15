@@ -7,7 +7,7 @@ import React from 'react';
 import {
   PRODUCE, byId, decorate, MONTH, ASSET,
   langOf, bandOf, countryLabel, COUNTRIES,
-  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, nextSeasonStartLabel, timingFor,
+  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, nextSeasonStartLabel, hasLocalSeasonFor, timingFor,
 } from './produce.js';
 import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator, setMarket, COUNTRY_KEY } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
@@ -115,12 +115,18 @@ function timingNote(p, country) {
 // Honest, data-derived note for an out-of-season item. When the market
 // has dated ranges the "next" month is read from them, so a market that
 // disagrees with the English label (GB after the sourcing pass) stops
-// promising the label's month. Falls back to the label for the 46
-// unranged items and any year-round window.
+// promising the label's month. When the market's entry declares no local
+// season ({ ranges: [] } — e.g. a mediterranean-only item viewed from
+// temperate), the copy says nothing about "next" rather than silently
+// falling back to the English label the market's data denied. Falls back
+// to the label for the 46 unranged items and any year-round window.
 function outAdvice(p, country) {
   const back = nextSeasonStartLabel(p, country);
-  const tail = back ? ('Back in ' + back + '.') : ('Look for it in ' + (p.season || 'its own season') + '.');
-  return 'Out of season in ' + countryLabel(country) + ' this month — it travels a long way and tastes flatter now. ' + tail;
+  const local = hasLocalSeasonFor(p, country);
+  const tail = back ? (' Back in ' + back + '.')
+             : local === false ? ''
+             : (' Look for it in ' + (p.season || 'its own season') + '.');
+  return 'Out of season in ' + countryLabel(country) + ' this month — it travels a long way and tastes flatter now.' + tail;
 }
 
 /* ---- Name-forward fallback when an item has no print yet ----
@@ -1119,9 +1125,13 @@ function rememberNotify(id) {
 
 function NotifyWhenBack({ p, lang, country }) {
   // Prefer the market's own dates. Falls back to the legacy label parser
-  // for unranged items and year-round windows, so nothing that used to
-  // render a button silently loses one.
-  const label = nextSeasonStartLabel(p, country) || nextSeasonLabel(p.season, MONTH, bandOf(country));
+  // when the market has NO entry at this scope. When the market's entry
+  // declares no local season ({ ranges: [] }), no button — silently
+  // promising the label's month over the market's authored "no season
+  // here" is exactly the contradiction Phase A closed on the copy side.
+  const back = nextSeasonStartLabel(p, country);
+  const local = hasLocalSeasonFor(p, country);
+  const label = back || (local === null ? nextSeasonLabel(p.season, MONTH, bandOf(country)) : null);
   const [state, setState] = React.useState(() => {
     try { return JSON.parse(localStorage.getItem(NOTIFY_KEY) || '[]').indexOf(p.id) > -1 ? 'saved' : 'idle'; }
     catch (_) { return 'idle'; }
@@ -1209,6 +1219,12 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, field
   const qty = basket[p.id] || 0;
   const out = p.seasonality === 'out';
   const swap = out ? PRODUCE.map((x) => decorate(x, country)).find((x) => x.seasonality !== 'out' && x.tab === p.tab && x.hasPrint && x.id !== p.id) : null;
+  // The "back in X" claim: computed once per render and reused by both the
+  // header sentence below and the out-block copy further down. `back === null`
+  // with `local === false` means the market's data explicitly declared no
+  // local season — say nothing rather than promise the label's month.
+  const back = out ? nextSeasonStartLabel(p, country) : null;
+  const local = out ? hasLocalSeasonFor(p, country) : null;
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 20, display: 'flex', flexDirection: 'column', overflow: 'auto', overscrollBehavior: 'contain' }}>
       <div style={{ position: 'relative', background: 'var(--color-background-body)', paddingTop: 12, borderBottom: '1px solid #d9cfbe' }}>
@@ -1237,7 +1253,7 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, field
           {p.seasonality !== 'peak' && <SeasonFlag p={p} />}
           <span style={{ fontSize: 13.5, fontWeight: 700, color: out ? 'var(--color-text-secondary)' : 'var(--color-text-accent)' }}>{VITALITY[p.seasonality]}</span>
         </div>
-        <p style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--color-text-primary)', margin: '0 0 6px' }}>{out ? (nextSeasonStartLabel(p, country) ? ('Best enjoyed in its season — back in ' + nextSeasonStartLabel(p, country) + '.') : ('Best enjoyed in its season: ' + p.season + '.')) : ('In season in ' + countryLabel(country) + ' right now — a good week to buy it. Season: ' + p.season + '.')}</p>
+        <p style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--color-text-primary)', margin: '0 0 6px' }}>{out ? (back ? ('Best enjoyed in its season — back in ' + back + '.') : local === false ? 'Out of season here — not a local crop.' : ('Best enjoyed in its season: ' + p.season + '.')) : ('In season in ' + countryLabel(country) + ' right now — a good week to buy it. Season: ' + p.season + '.')}</p>
         {/* Whose dates these are, right under the claim they qualify. */}
         <p style={{ fontSize: 12.5, lineHeight: 1.5, color: 'var(--color-text-tertiary)', margin: '0 0 20px' }}>{timingNote(p, country)}</p>
 

@@ -111,6 +111,13 @@ t('next wrap-window before', ns(wrap, '10-01'), 10);
 // No ranges falls through to null; the caller falls back to the label parser.
 t('next unranged item',      nextRangeStart({ season: 'Autumn–spring' }, '09-15', 'temperate'), null);
 t('next other band',         nextRangeStart(banded(plain), '08-16', 'mediterranean'), null);
+// A `from` that opens mid-month must NOT render as "back in {that month}" —
+// the shopper would look at the start of the month and find nothing. Say
+// null and let the caller stay silent rather than promise a wrong date.
+t('next mid-month from is null', ns([{from:'04-15', to:'06-30'}], '02-01'), null);
+t('next mid-month from wraps null', ns([{from:'11-15', to:'02-15'}], '09-01'), null);
+// A month-boundary `from` still works.
+t('next month-01 from returns month', ns([{from:'04-01', to:'06-30'}], '02-01'), 3);
 
 console.log(fail ? `\n${fail} FAILED` : '\nall pass');
 process.exit(fail ? 1 : 0);

@@ -6,7 +6,7 @@ import RAW from '../data/produce.json';
 import MARKETS from '../data/markets.json';
 import AFFILIATES from '../data/affiliates.json';
 import {
-  SEASON_MONTHS, SEASON_CYCLE, seasonNameForMonth, seasonalityOf, legacySeasonMonths, daysLeftIn, seasonEntryFor, nextRangeStart,
+  SEASON_MONTHS, SEASON_CYCLE, seasonNameForMonth, seasonalityOf, legacySeasonMonths, daysLeftIn, seasonEntryFor, nextRangeStart, rangesFor,
 } from './season.js';
 
 export { MARKETS };
@@ -67,6 +67,23 @@ export const nextSeasonStart = (p, country) => (p ? nextRangeStart(p, TODAY, ban
 export const nextSeasonStartLabel = (p, country) => {
   const m = nextSeasonStart(p, country);
   return m == null ? null : MONTH_NAMES[m];
+};
+
+// Three-state answer for "does this market's calendar declare a local season
+// for this item":
+//   true    the market has ranges with content — a real season
+//   false   the market has an explicit { ranges: [] } — the source authored
+//           "no local season here" (e.g. a mediterranean-only item viewed
+//           from temperate). Callers must NOT silently promise a month from
+//           the English prose label in this case; the market's own data
+//           denied that promise.
+//   null    no entry at this scope — no data, so the label parser is the
+//           last honest fallback.
+export const hasLocalSeasonFor = (p, country) => {
+  if (!p) return null;
+  const ranges = rangesFor(p, bandOf(country), country);
+  if (ranges === null) return null;
+  return ranges.length > 0;
 };
 
 export const PRODUCE = RAW.map((it) => ({

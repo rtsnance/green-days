@@ -1166,27 +1166,6 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Spring onion\"; months marked best or coming"
-      },
-      "ES": {
-        "ranges": [
-          {
-            "from": "01-01",
-            "to": "12-31"
-          }
-        ],
-        "provenance": "sourced",
-        "resolution": "month",
-        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Ajo y ajos frescos\"; months read from .mes-imagen-activo cells"
-      },
-      "IT": {
-        "inherit": "ES",
-        "provenance": "inferred",
-        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
-      },
-      "GR": {
-        "inherit": "ES",
-        "provenance": "inferred",
-        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     }
   },

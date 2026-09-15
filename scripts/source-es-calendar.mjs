@@ -64,6 +64,13 @@
      runner-beans, garden-peas, mangetout, sugar-snap, broad-beans-fava,
      edamame, borlotti-beans  "Judías verdes" covers French/green beans only.
                            Others are not distinguished; left unmatched.
+     spring-onion          the source's "Ajo y ajos frescos" is green garlic
+                           (a spring product with a specific window), read
+                           year-round in Consumer's Spanish market view.
+                           Cebolleta (spring onion proper) is not in either
+                           table. Removed after the 2026-09-15 review — a
+                           wrong sourced claim (spring onion year-round) is
+                           worse than the fallback (Trap 8).
 
    ALSO WRITTEN: IT and GR receive `inherit: "ES"` entries for every ES-matched
    item, so the app says "Dates are Spain's" for Italy and Greece rather than
@@ -200,7 +207,6 @@ const MAP = {
   // vegetables and hortalizas
   chard: ['h', 'Acelga'],
   garlic: ['h', 'Ajo y ajos frescos'],
-  'spring-onion': ['h', 'Ajo y ajos frescos'],  // ajos frescos are green garlic, the closest thing to a spring allium in the source
   aubergine: ['h', 'Berenjena'],
   'globe-artichoke': ['h', 'Alcachofa'],
   leek: ['h', 'Puerro'],
