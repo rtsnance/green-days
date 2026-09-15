@@ -62,6 +62,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Tomato\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Tomate\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -126,6 +147,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Tomato\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Tomate\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -190,6 +232,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Tomato\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Tomate\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -254,6 +317,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Tomato\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Tomate\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -369,6 +453,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Aubergine\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Berenjena\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -433,6 +538,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Courgette\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Calabacín\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -564,6 +690,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Cucumber\""
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Pepino\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -628,6 +775,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Pepper\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Pimiento\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -832,6 +1000,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Onion\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Cebolla\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "stored"
@@ -896,6 +1085,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Onion\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Cebolla\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -956,6 +1166,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Spring onion\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Ajo y ajos frescos\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     }
   },
@@ -1022,6 +1253,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Leek\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Puerro\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -1086,6 +1338,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Garlic\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Ajo y ajos frescos\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "stored"
@@ -1330,6 +1603,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Beetroot\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Remolacha\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -1397,6 +1691,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Beetroot\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Remolacha\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -1461,6 +1776,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Radish\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Rábano\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -1525,6 +1861,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Radish\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Rábano\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -1640,6 +1997,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Turnip\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Nabo\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -2083,6 +2461,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Cabbage\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Berza o repollo\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -2403,6 +2802,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Cauliflower\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Coliflor\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -2520,6 +2940,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Broccoli\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Brécol\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -2648,6 +3089,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Broccoli\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Brécol\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -2685,6 +3147,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Brussels sprouts\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Coles de Bruselas\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     }
   },
@@ -2915,6 +3398,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Swiss chard\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Acelga\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -2979,6 +3483,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Spinach\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Espinacas\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -3079,6 +3604,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Lettuce\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Lechuga\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -3143,6 +3689,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Lettuce\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Lechuga\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -3207,6 +3774,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Lettuce\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Lechuga\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -3259,6 +3847,27 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Escarola\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local",
@@ -3433,6 +4042,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Fennel bulb\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Hinojo\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     }
   },
@@ -3469,6 +4099,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Celery\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Apio\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     }
   },
@@ -3535,6 +4186,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Asparagus\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Espárragos\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -3666,6 +4338,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Globe artichoke\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Alcachofa\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -3691,7 +4384,30 @@
       "el": "Κάρδος",
       "sv": "Kardon"
     },
-    "selection": "Firm, pale stalks with fresh cut ends and no browning. It should feel crisp, not rubbery."
+    "selection": "Firm, pale stalks with fresh cut ends and no browning. It should feel crisp, not rubbery.",
+    "season_ranges": {
+      "ES": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Cardo\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
+      }
+    }
   },
   {
     "id": "samphire",
@@ -3819,6 +4535,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Pumpkin\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Calabaza\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local",
@@ -3884,6 +4621,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Butternut Squash\""
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Calabaza\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -3948,6 +4706,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Winter Squash\""
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Calabaza\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -4012,6 +4791,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Winter Squash\""
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Calabaza\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -4076,6 +4876,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Winter Squash\""
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Calabaza\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -4140,6 +4961,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Winter Squash\""
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Calabaza\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -4204,6 +5046,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"French Beans\""
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Judías verdes\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -4786,6 +5649,31 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Wild Mushrooms\""
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "05-31"
+          },
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Setas\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     }
   },
@@ -4822,6 +5710,31 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Wild Mushrooms\""
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "05-31"
+          },
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026); matched on \"Setas\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     }
   },
@@ -5320,6 +6233,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Apple\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Manzana\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "stored"
@@ -5384,6 +6318,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Bramley apple\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Manzana\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -5448,6 +6403,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Pear\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Pera\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -5512,6 +6488,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Pear\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Pera\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -5576,6 +6573,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Quince\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Membrillo\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -5698,6 +6716,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Plum\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Ciruela\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local",
@@ -5906,6 +6945,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Cherry\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Cereza\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local",
@@ -5971,6 +7031,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Peach\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Melocotón\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -6035,6 +7116,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Nectarine\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Melocotón\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -6106,6 +7208,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Apricot\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Albaricoque\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local",
@@ -6171,6 +7294,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Fig\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Higo\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -6228,6 +7372,27 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Uva\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local",
@@ -6289,6 +7454,27 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Uva\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local",
@@ -6354,6 +7540,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Strawberry\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Fresa\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -6418,6 +7625,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Raspberry\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Frambuesa\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -6482,6 +7710,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Blackberry\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Mora\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -6546,6 +7795,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Blueberries\""
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Arándano\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -6583,6 +7853,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Redcurrant\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Grosella\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     }
   },
@@ -6736,6 +8027,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Lemon\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Limón\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -6761,7 +8073,30 @@
       "el": "Λάιμ",
       "sv": "Lime"
     },
-    "selection": "Heavy and firm with glossy, deep green skin. A little give and a fragrant skin mean juicy."
+    "selection": "Heavy and firm with glossy, deep green skin. A little give and a fragrant skin mean juicy.",
+    "season_ranges": {
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Lima\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
+      }
+    }
   },
   {
     "id": "orange",
@@ -6823,6 +8158,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Orange\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Naranja\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local",
@@ -6926,6 +8282,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Clementine\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Mandarina\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -6980,6 +8357,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Grapefruit\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Pomelo\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -7037,6 +8435,27 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Melón\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local",
@@ -7102,6 +8521,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Watermelon\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Sandía\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -7155,6 +8595,27 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Melón\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -7214,6 +8675,27 @@
         "provenance": "sourced",
         "resolution": "month",
         "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Pomegranate\"; months marked best or coming"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Granada\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -7265,6 +8747,27 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Caqui\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -7316,6 +8819,27 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Kiwi\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -7367,6 +8891,27 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Winter (Med/imported)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Aguacate\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "imported"
@@ -7415,6 +8960,27 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Year-round (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Piña\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "imported"
@@ -7565,6 +9131,27 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Alquejenje\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
@@ -7759,6 +9346,27 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "ES": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026); matched on \"Níspero\"; months read from .mes-imagen-activo cells"
+      },
+      "IT": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Italy; no Italian source recorded yet"
+      },
+      "GR": {
+        "inherit": "ES",
+        "provenance": "inferred",
+        "source": "Spain's calendar, applied to Greece; no Greek source recorded yet"
       }
     },
     "availability": "local"
