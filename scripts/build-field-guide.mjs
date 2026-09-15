@@ -96,11 +96,13 @@ const FEED_HOLD = new Set([
   'damson',           // out of season until Jul 2027; also the plum enclosure twin
   'greengage',        // already auto-published to staging TWICE — dedupe failed once already
   'cantaloupe-melon', // out of season until May 2027
-  // Batch 2 (~15 Sep) — the set-6 pin-title split test, must release together.
-  'olives',
-  'horseradish',
-  'swede',
-  'kiwi',
+  // ✅ Batch 2, released 2026-09-15: olives, horseradish, swede, kiwi.
+  //    Released together as the grouping asked, though the pin-title split test
+  //    it was grouped for is not readable: a pin is a perennial, so its first
+  //    season carries no accumulated signal, and it is one pin per arm.
+  //    All four descriptions were rewritten first — Pinterest shows only the
+  //    first ~50 characters and caps at 500, and all four opened mid-list and
+  //    two ran past the cap. Hook first, decoder fact below the fold.
   // Batch 3 (~29 Sep).
   'fig',
   'quince',           // ⚠️ hold until produce_raw/quince.png exists — its illustration is `pear`
