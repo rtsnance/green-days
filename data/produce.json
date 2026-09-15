@@ -51,6 +51,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Tomato\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -104,6 +115,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Tomato\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -157,6 +179,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Tomato\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -210,6 +243,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Tomato\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -314,6 +358,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Aubergine\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -367,6 +422,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Courgette\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -420,6 +486,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Late summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Marrow\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -476,6 +553,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Cucumber\""
       }
     },
     "availability": "local"
@@ -529,6 +617,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "02-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Pepper\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -582,6 +681,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Chillies\""
       }
     },
     "availability": "local"
@@ -711,6 +821,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Year-round (harvest late summer)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Onion\"; months marked best or coming"
       }
     },
     "availability": "stored"
@@ -764,6 +885,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Year-round\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Onion\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -812,7 +944,20 @@
       "el": "Φρέσκο κρεμμυδάκι",
       "sv": "Salladslök"
     },
-    "selection": "Crisp white bulbs and perky, bright green tops. Skip any that are slimy or yellowing at the leaf."
+    "selection": "Crisp white bulbs and perky, bright green tops. Skip any that are slimy or yellowing at the leaf.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Spring onion\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "leek",
@@ -866,6 +1011,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Leek\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -919,6 +1075,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer harvest, stores\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Garlic\"; months marked best or coming"
       }
     },
     "availability": "stored"
@@ -1152,6 +1319,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Beetroot\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -1208,6 +1386,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Beetroot\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -1261,6 +1450,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Radish\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -1314,6 +1514,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Radish\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -1418,6 +1629,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Turnip\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -1443,7 +1665,20 @@
       "el": "Γογγύλι σουηδικό",
       "sv": "Kålrot"
     },
-    "selection": "Heavy and firm with smooth skin, no soft patches. Smaller ones are sweeter and less fibrous."
+    "selection": "Heavy and firm with smooth skin, no soft patches. Smaller ones are sweeter and less fibrous.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Swede\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "parsnip",
@@ -1466,7 +1701,20 @@
       "el": "Παστινάκι",
       "sv": "Palsternacka"
     },
-    "selection": "Firm and smooth, small to medium. Very large parsnips have a woody core worth avoiding."
+    "selection": "Firm and smooth, small to medium. Very large parsnips have a woody core worth avoiding.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Parsnip\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "celeriac",
@@ -1489,7 +1737,20 @@
       "el": "Σελινόριζα",
       "sv": "Rotselleri"
     },
-    "selection": "Heavy and firm with as few knobbles as possible. A light, hollow one will be pithy inside."
+    "selection": "Heavy and firm with as few knobbles as possible. A light, hollow one will be pithy inside.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Celeriac\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "potato",
@@ -1593,6 +1854,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Late spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"New potatoes\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -1618,7 +1890,20 @@
       "el": "Γλυκοπατάτα",
       "sv": "Sötpotatis"
     },
-    "selection": "Firm and smooth with no soft spots, cracks, or sprouting. Even-shaped ones cook more evenly."
+    "selection": "Firm and smooth with no soft spots, cracks, or sprouting. Even-shaped ones cook more evenly.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Sweet potato\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "jerusalem-artichoke",
@@ -1664,6 +1949,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Jerusalem artichoke\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -1689,7 +1985,20 @@
       "el": "Γογγυλοκράμβη",
       "sv": "Kålrabbi"
     },
-    "selection": "Firm bulbs smaller than a tennis ball, with fresh leaves. Big ones go woody."
+    "selection": "Firm bulbs smaller than a tennis ball, with fresh leaves. Big ones go woody.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Kohlrabi\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "horseradish",
@@ -1763,6 +2072,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Cabbage\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -1816,6 +2136,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Savoy Cabbage\""
       }
     },
     "availability": "local"
@@ -1869,6 +2200,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Sweetheart Cabbage\""
       }
     },
     "availability": "local"
@@ -1922,6 +2264,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Spring greens\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -1975,6 +2328,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Red Cabbage\""
       }
     },
     "availability": "local"
@@ -2028,6 +2392,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Cauliflower\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2134,6 +2509,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Broccoli\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2187,6 +2573,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Late winter–spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Purple sprouting broccoli\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2240,6 +2637,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Broccoli\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2265,7 +2673,20 @@
       "el": "Λαχανάκια Βρυξελλών",
       "sv": "Brysselkål"
     },
-    "selection": "Tight, firm, bright green sprouts, on the stalk if you can. Loose or yellowing leaves mean old."
+    "selection": "Tight, firm, bright green sprouts, on the stalk if you can. Loose or yellowing leaves mean old.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Brussels sprouts\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "kale",
@@ -2316,6 +2737,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Kale\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2369,6 +2801,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Cavolo nero\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2394,7 +2837,20 @@
       "el": "Πακ τσόι",
       "sv": "Pak choi"
     },
-    "selection": "Crisp white stems and glossy green leaves, no slime or yellowing at the base."
+    "selection": "Crisp white stems and glossy green leaves, no slime or yellowing at the base.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Pak choi\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "chard",
@@ -2448,6 +2904,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Swiss chard\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2501,6 +2968,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Spinach\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2526,7 +3004,20 @@
       "el": "Ρόκα",
       "sv": "Ruccola"
     },
-    "selection": "Perky, deep green leaves with no yellowing or sliminess. Smaller leaves are milder."
+    "selection": "Perky, deep green leaves with no yellowing or sliminess. Smaller leaves are milder.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Rocket\""
+      }
+    }
   },
   {
     "id": "lettuce",
@@ -2577,6 +3068,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Lettuce\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2630,6 +3132,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Lettuce\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2683,6 +3196,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Lettuce\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2761,7 +3285,20 @@
       "el": "Ραντίκιο",
       "sv": "Radicchio"
     },
-    "selection": "Firm, heavy heads with tight, glossy crimson leaves and a crisp white core."
+    "selection": "Firm, heavy heads with tight, glossy crimson leaves and a crisp white core.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Radicchio\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "watercress",
@@ -2812,6 +3349,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Watercress\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2837,7 +3385,20 @@
       "el": "Βαλεριάνα",
       "sv": "Vintersallat"
     },
-    "selection": "Small, dark, springy rosettes with no yellowing or slime. Delicate, so buy fresh and use fast."
+    "selection": "Small, dark, springy rosettes with no yellowing or slime. Delicate, so buy fresh and use fast.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Lamb's lettuce\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "fennel",
@@ -2860,7 +3421,20 @@
       "el": "Μάραθο",
       "sv": "Fänkål"
     },
-    "selection": "White, tight bulbs with crisp feathery fronds and no browning. Rounder bulbs are more tender."
+    "selection": "White, tight bulbs with crisp feathery fronds and no browning. Rounder bulbs are more tender.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Fennel bulb\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "celery",
@@ -2883,7 +3457,20 @@
       "el": "Σέλινο",
       "sv": "Blekselleri"
     },
-    "selection": "Firm, crisp stalks that snap cleanly, with fresh green tops. Limp, bendy stalks mean age."
+    "selection": "Firm, crisp stalks that snap cleanly, with fresh green tops. Limp, bendy stalks mean age.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Celery\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "asparagus",
@@ -2937,6 +3524,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Asparagus\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -2992,6 +3590,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Rhubarb\"; months marked best or coming"
       }
     },
     "availability": "local",
@@ -3046,6 +3655,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Globe artichoke\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -3117,6 +3737,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Samphire\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -3177,6 +3808,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Pumpkin\"; months marked best or coming"
       }
     },
     "availability": "local",
@@ -3231,6 +3873,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Butternut Squash\""
       }
     },
     "availability": "local"
@@ -3284,6 +3937,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Winter Squash\""
       }
     },
     "availability": "local"
@@ -3337,6 +4001,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Winter Squash\""
       }
     },
     "availability": "local"
@@ -3390,6 +4065,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Winter Squash\""
       }
     },
     "availability": "local"
@@ -3443,6 +4129,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Winter Squash\""
       }
     },
     "availability": "local"
@@ -3496,6 +4193,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"French Beans\""
       }
     },
     "availability": "local"
@@ -3549,6 +4257,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Runner bean\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -3602,6 +4321,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Late spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Broad bean\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -3678,6 +4408,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Late spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Peas\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -3731,6 +4472,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Mangetout\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -3784,6 +4536,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Mangetout\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -3860,6 +4623,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Late summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Sweetcorn\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -4000,7 +4774,20 @@
       "el": "Κανθαρέλα",
       "sv": "Kantarell"
     },
-    "selection": "Firm, dry, bright golden with a fruity smell. Skip any slimy, dark, or shrivelled ones."
+    "selection": "Firm, dry, bright golden with a fruity smell. Skip any slimy, dark, or shrivelled ones.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Wild Mushrooms\""
+      }
+    }
   },
   {
     "id": "porcini-cep",
@@ -4023,7 +4810,20 @@
       "el": "Βωλίτης",
       "sv": "Karljohansvamp"
     },
-    "selection": "Firm, heavy caps with a pale spongy underside and a rich smell. Soft or wormy stems mean pass."
+    "selection": "Firm, heavy caps with a pale spongy underside and a rich smell. Soft or wormy stems mean pass.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Wild Mushrooms\""
+      }
+    }
   },
   {
     "id": "shiitake",
@@ -4115,7 +4915,20 @@
       "el": "Βασιλικός",
       "sv": "Basilika"
     },
-    "selection": "Bright, unblemished leaves with a strong scent. Black spots or wilting mean it is fading fast."
+    "selection": "Bright, unblemished leaves with a strong scent. Black spots or wilting mean it is fading fast.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Basil\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "mint",
@@ -4138,7 +4951,20 @@
       "el": "Δυόσμος",
       "sv": "Mynta"
     },
-    "selection": "Vivid, perky leaves that smell strongly when rubbed. Skip darkening or limp stems."
+    "selection": "Vivid, perky leaves that smell strongly when rubbed. Skip darkening or limp stems.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Mint\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "dill",
@@ -4184,7 +5010,20 @@
       "el": "Σκαντζίκι",
       "sv": "Körvel"
     },
-    "selection": "Delicate, perky bright leaves with no wilt. Fragile, so use it soon after buying."
+    "selection": "Delicate, perky bright leaves with no wilt. Fragile, so use it soon after buying.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Chervil\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "tarragon",
@@ -4470,6 +5309,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Autumn (stores to winter)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Apple\"; months marked best or coming"
       }
     },
     "availability": "stored"
@@ -4523,6 +5373,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Bramley apple\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -4576,6 +5437,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Pear\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -4629,6 +5501,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Pear\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -4682,6 +5565,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Quince\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -4793,6 +5687,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Late summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Plum\"; months marked best or coming"
       }
     },
     "availability": "local",
@@ -4847,6 +5752,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Late summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Damson\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -4907,6 +5823,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Midsummer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Greengages\""
       }
     },
     "availability": "local",
@@ -4968,6 +5895,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Early summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Cherry\"; months marked best or coming"
       }
     },
     "availability": "local",
@@ -5022,6 +5960,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Peach\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -5075,6 +6024,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Nectarine\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -5135,6 +6095,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Apricot\"; months marked best or coming"
       }
     },
     "availability": "local",
@@ -5189,6 +6160,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Late summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Fig\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -5361,6 +6343,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Strawberry\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -5414,6 +6407,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Raspberry\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -5467,6 +6471,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Late summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Blackberry\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -5520,6 +6535,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026); matched on \"Blueberries\""
       }
     },
     "availability": "local"
@@ -5545,7 +6571,20 @@
       "el": "Κόκκινο φραγκοστάφυλο",
       "sv": "Röda vinbär"
     },
-    "selection": "Glossy, plump strings of bright red berries firmly on the stem, no shrivelling."
+    "selection": "Glossy, plump strings of bright red berries firmly on the stem, no shrivelling.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Redcurrant\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "blackcurrant",
@@ -5568,7 +6607,20 @@
       "el": "Μαύρο φραγκοστάφυλο",
       "sv": "Svarta vinbär"
     },
-    "selection": "Firm, glossy, deep-black berries on the strig, with no splitting or wrinkling."
+    "selection": "Firm, glossy, deep-black berries on the strig, with no splitting or wrinkling.",
+    "season_ranges": {
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Blackcurrants\"; months marked best or coming"
+      }
+    }
   },
   {
     "id": "gooseberry",
@@ -5614,6 +6666,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Early summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Gooseberry\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -5662,6 +6725,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Lemon\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -5738,6 +6812,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Orange\"; months marked best or coming"
       }
     },
     "availability": "local",
@@ -5830,6 +6915,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Clementine\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -5873,6 +6969,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Grapefruit\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -5984,6 +7091,17 @@
         "provenance": "inferred",
         "resolution": "half-month",
         "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Watermelon\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -6085,6 +7203,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Pomegranate\"; months marked best or coming"
       }
     },
     "availability": "local"
@@ -6334,6 +7463,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Date\"; months marked best or coming"
       }
     },
     "availability": "imported"
@@ -6552,6 +7692,17 @@
         "provenance": "inferred",
         "resolution": "quarter",
         "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      },
+      "GB": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026); matched on \"Chestnut\"; months marked best or coming"
       }
     },
     "availability": "local"

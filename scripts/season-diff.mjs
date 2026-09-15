@@ -10,8 +10,8 @@ import { legacySeasonalityOf, rangeSeasonalityOf, rangesFor } from '../src/seaso
 const P = JSON.parse(fs.readFileSync('data/produce.json', 'utf8'));
 // Scopes, not bands: PT is its own calendar (the mediterranean band inherits
 // it), so it is read on its own. A newly sourced market is one more entry here.
-const SCOPES = ['PT', 'mediterranean', 'temperate'];
-const legacyBand = (scope) => (scope === 'PT' ? 'mediterranean' : scope);
+const SCOPES = ['PT', 'GB', 'mediterranean', 'temperate'];
+const legacyBand = (scope) => (scope === 'PT' ? 'mediterranean' : scope === 'GB' ? 'temperate' : scope);
 const TICKS = [];
 for (let m = 1; m <= 12; m++) for (const d of ['01', '16']) TICKS.push(`${String(m).padStart(2,'0')}-${d}`);
 
