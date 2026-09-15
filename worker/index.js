@@ -261,12 +261,12 @@ async function handleRecipe(request, env, ctx) {
 
   const basketItems = basket.map((id) => {
     const p = BY_ID.get(id);
-    return { id, name_en: p.name_en, season: p.season, seasonality: seasonalityOf(p, onDate, band) };
+    return { id, name_en: p.name_en, season: p.season, seasonality: seasonalityOf(p, onDate, band, country) };
   });
 
   // Candidates for "grab one more": in season now, not in the basket, peak first.
   const inSeasonIds = PRODUCE
-    .map((p) => ({ id: p.id, s: seasonalityOf(p, onDate, band) }))
+    .map((p) => ({ id: p.id, s: seasonalityOf(p, onDate, band, country) }))
     .filter((x) => x.s !== 'out' && !basket.includes(x.id))
     .sort((a, b) => (a.s === 'peak' ? 0 : 1) - (b.s === 'peak' ? 0 : 1))
     .slice(0, 40)

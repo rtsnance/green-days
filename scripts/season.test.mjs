@@ -1,5 +1,5 @@
 /* node scripts/season.test.mjs — wrap and peak arithmetic. No deps, no runner. */
-import { inRanges, peakRanges, doy, daysLeftIn } from '../src/season.js';
+import { inRanges, peakRanges, doy, daysLeftIn, seasonEntryFor, rangeSeasonalityOf } from '../src/season.js';
 const within = (a,b,x) => (a<=b ? x>=a&&x<=b : x>=a||x<=b);
 const inPeak = (r,t) => peakRanges(r).some(([a,b]) => within(a,b,doy(t)));
 let fail = 0;
@@ -65,6 +65,35 @@ t('days two between', dl(two,'06-20'), null);
 t('days unranged item', daysLeftIn({ season: 'Summer' }, '08-16', 'temperate'), null);
 t('days other band',    daysLeftIn(banded(plain), '08-16', 'mediterranean'), null);
 t('days empty band',    daysLeftIn({ season_ranges: { temperate: [] } }, '08-16', 'temperate'), null);
+
+/* ---- scopes: market key over band key, inherit, legacy arrays ---- */
+const scoped = {
+  season_ranges: {
+    PT: { ranges: plain, provenance: 'sourced', resolution: 'month', source: 'APN' },
+    mediterranean: { inherit: 'PT', provenance: 'inferred', source: 'PT applied to the band' },
+    temperate: { ranges: wrap, provenance: 'inferred', resolution: 'quarter', source: 'label' },
+  },
+};
+const e = (band, country) => seasonEntryFor(scoped, band, country);
+t('scope PT is sourced',            e('mediterranean', 'PT').provenance, 'sourced');
+t('scope PT scope is itself',       e('mediterranean', 'PT').scope, 'PT');
+t('scope ES falls to band',         e('mediterranean', 'ES').scope, 'PT');
+t('scope ES is inferred',           e('mediterranean', 'ES').provenance, 'inferred');
+t('scope ES says whose dates',      e('mediterranean', 'ES').inferred_from, 'PT');
+t('scope ES keeps the pointer source', e('mediterranean', 'ES').source, 'PT applied to the band');
+t('scope band alone follows inherit', e('mediterranean').scope, 'PT');
+t('scope DE is temperate',          e('temperate', 'DE').scope, 'temperate');
+t('scope DE inferred, no pointer',  e('temperate', 'DE').inferred_from, null);
+t('scope same dates via inherit',   rangeSeasonalityOf(scoped, '08-16', 'mediterranean', 'ES'), rangeSeasonalityOf(scoped, '08-16', 'mediterranean', 'PT'));
+t('scope days via inherit',         daysLeftIn(scoped, '08-16', 'mediterranean', 'ES'), 30);
+t('scope unknown market uses band', rangeSeasonalityOf(scoped, '12-20', 'temperate', 'XX'), 'in');
+t('scope missing band is null',     seasonEntryFor(scoped, 'continental', 'PL'), null);
+const legacyItem = { season_ranges: { temperate: plain }, provenance: 'sourced', source: 'old' };
+t('legacy array reads',             seasonEntryFor(legacyItem, 'temperate').ranges, plain);
+t('legacy array provenance',        seasonEntryFor(legacyItem, 'temperate').provenance, 'sourced');
+t('legacy array no provenance',     seasonEntryFor({ season_ranges: { temperate: plain } }, 'temperate').provenance, 'inferred');
+const loop = { season_ranges: { a: { inherit: 'b' }, b: { inherit: 'a' } } };
+t('inherit loop terminates',        seasonEntryFor(loop, 'a'), null);
 
 console.log(fail ? `\n${fail} FAILED` : '\nall pass');
 process.exit(fail ? 1 : 0);

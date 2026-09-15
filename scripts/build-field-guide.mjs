@@ -498,7 +498,9 @@ for (const entry of entries) {
 // parser for the catalogue items that have no season_ranges yet, so this is
 // never worse than the old behaviour and improves as ranges are added.
 // 'peak' counts as in season — a declared peak is always on the stall.
-for (const e of entries) e.seasonality = seasonalityOf(e.produce, BUILD_MMDD, SEASON_BAND);
+// 'PT': the field guide is written from Portugal's stall, so it reads PT's own
+// calendar (the mediterranean band inherits it today; the two could part later).
+for (const e of entries) e.seasonality = seasonalityOf(e.produce, BUILD_MMDD, SEASON_BAND, 'PT');
 const inSeason = entries.filter((e) => e.seasonality !== 'out');
 const offSeason = entries.filter((e) => e.seasonality === 'out');
 

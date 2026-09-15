@@ -424,25 +424,40 @@ for (const it of P) {
                   : ov ? ov.mediterranean
                   : ptRange ? [ptRange]
                   : mediterranean;
-  it.season_ranges = { mediterranean: medFinal, temperate: ov ? ov.temperate : temperate };
+  let medRanges = medFinal, tempRanges = ov ? ov.temperate : temperate;
   const dp = DECLARED_PEAKS[it.id];
   if (dp) {
-    it.season_ranges.mediterranean = applyPeak(it.season_ranges.mediterranean, dp.day);
-    it.season_ranges.temperate     = applyPeak(it.season_ranges.temperate, dp.day);
+    medRanges  = applyPeak(medRanges, dp.day);
+    tempRanges = applyPeak(tempRanges, dp.day);
     it.peak_source = dp.src;
   }
   it.availability  = ov?.availability ?? (imported ? 'imported' : stored ? 'stored' : 'local');
   /* provenance was hardcoded 'inferred' for everything, including hand
      overrides argued from a dated source. It is the field the Fruta Feia
-     calendar's honesty rests on, so it now tells the truth per item. */
-  it.provenance    = ptWins ? 'sourced' : ov ? 'argued' : ptx ? 'sourced' : 'inferred';
-  it.resolution    = ov ? 'half-month' : sp ? 'half-month' : ptx ? 'month' : 'quarter';
-  it.source        = (ptWins ? null : ov?.source)
+     calendar's honesty rests on, so it tells the truth — per CALENDAR, not per
+     item, since 2026-09-15 (scripts/migrate-season-scopes.mjs, src/season.js):
+     a Portuguese source is PT's own calendar, the mediterranean band inherits
+     it, and the temperate dates are the label's and say so. */
+  const provenance = ptWins ? 'sourced' : ov ? 'argued' : ptx ? 'sourced' : 'inferred';
+  const resolution = ov ? 'half-month' : sp ? 'half-month' : ptx ? 'month' : 'quarter';
+  const source     = (ptWins ? null : ov?.source)
     ?? (ptx ? `Portuguese national seasonality, ${PT_SOURCE_NAMES[ptx.src]}; matched on "${ptx.pt}" (${ptx.key})${sp ? `. EDGE SPLIT: ${SOURCE_SPLITS_WHY}` : ''}`
             : `derived from the "${it.season}" label by scripts/derive-season-ranges.mjs; not checked against a stall`);
+  const labelSource = `derived from the "${it.season}" label by scripts/derive-season-ranges.mjs; no northern-European source recorded`;
+  it.season_ranges = provenance === 'sourced'
+    ? {
+        PT: { ranges: medRanges, provenance: 'sourced', resolution, source },
+        mediterranean: { inherit: 'PT', provenance: 'inferred', source: "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet" },
+        temperate: { ranges: tempRanges, provenance: 'inferred', resolution: ov ? 'half-month' : 'quarter', source: labelSource },
+      }
+    : {
+        mediterranean: { ranges: medRanges, provenance, resolution, source },
+        temperate: { ranges: tempRanges, provenance, resolution, source },
+      };
+  delete it.provenance; delete it.resolution; delete it.source;
 
   const fmt = (r) => r.length ? `${r[0].from}..${r[0].to}` : '(none)';
-  console.log(`${it.id.padEnd(20)} ${String(it.season).padEnd(24)} med ${fmt(it.season_ranges.mediterranean).padEnd(14)} temp ${fmt(it.season_ranges.temperate).padEnd(14)} [${it.availability}]${ptWins ? '  <-- PT SOURCE BEATS OVERRIDE (med only)' : ov ? '  <-- HAND OVERRIDE' : ptx ? '  <-- PT SOURCED' : ''}`);
+  console.log(`${it.id.padEnd(20)} ${String(it.season).padEnd(24)} med ${fmt(medRanges).padEnd(14)} temp ${fmt(tempRanges).padEnd(14)} [${it.availability}]${ptWins ? '  <-- PT SOURCE BEATS OVERRIDE (med only)' : ov ? '  <-- HAND OVERRIDE' : ptx ? '  <-- PT SOURCED' : ''}`);
   n++;
 }
 console.log(`\n${n} items derived.`);

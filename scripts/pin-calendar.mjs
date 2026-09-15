@@ -23,6 +23,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { rangesFor, seasonEntryFor } from '../src/season.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LEAD_DAYS = 49; // 7 weeks
@@ -58,13 +59,13 @@ const rows = [];
 for (const id of entryIds) {
   const p = byId.get(id);
   if (!p) { rows.push({ id, err: 'no produce record' }); continue; }
-  const ranges = (p.season_ranges && (p.season_ranges[BAND] || p.season_ranges.mediterranean || p.season_ranges.temperate)) || [];
+  const ranges = rangesFor(p, BAND) || rangesFor(p, 'mediterranean') || rangesFor(p, 'temperate') || [];
   if (!ranges.length) { rows.push({ id, err: 'no season range' }); continue; }
   // Earliest upcoming publish date across this item's ranges.
   const best = ranges.map((r) => publishDateFor(r.from)).filter(Boolean)
     .sort((a, b) => a.publish - b.publish)[0];
   if (!best) { rows.push({ id, err: 'no upcoming window' }); continue; }
-  rows.push({ id, name: p.name_en, publish: best.publish, open: best.open, availability: p.availability, provenance: p.provenance });
+  rows.push({ id, name: p.name_en, publish: best.publish, open: best.open, availability: p.availability, provenance: (seasonEntryFor(p, BAND) || {}).provenance });
 }
 
 const ok = rows.filter((r) => !r.err).sort((a, b) => a.publish - b.publish);

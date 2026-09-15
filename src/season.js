@@ -1,8 +1,8 @@
 /* Green Days — shared seasonality.
-   Phase 1 of Code_Handoff_Computed_Seasons.md. NOT YET IMPORTED by src/produce.js
-   or worker/index.js; both still carry their own copies. This module is inert
-   until those are switched over, and exists now so scripts/season-diff.mjs can
-   compare the two answers before anything changes.
+   The one implementation, imported by src/produce.js, worker/index.js and the
+   build scripts. Plain ESM with no import.meta and no JSON imports, on purpose:
+   node runs the scripts against it unbundled, and wrangler bundles it for the
+   Worker. Market knowledge (which band a country is in) stays with the callers.
 
    Quarters survive here as a VISUAL device only: seasonBannerSrc() needs
    seasonNameForMonth() to pick one of the 16 banner assets. They stop being a
@@ -89,6 +89,38 @@ export function peakRanges(ranges) {
     .map((r) => [doy(r.peak_from), doy(r.peak_to)]);
 }
 
+/* ---- scopes: which calendar answers for a market ----
+   season_ranges is keyed by SCOPE: a market code ("PT") or a climate band
+   ("mediterranean", "temperate"). A market answers with its own key when it has
+   one and with its band's key otherwise, so a market can be sourced on its own
+   without the band moving. Each entry is one of:
+     { ranges: [...], provenance: 'sourced'|'inferred', resolution, source }
+     { inherit: "<scope>", provenance: 'inferred', source }
+   `inherit` means the same dates as another scope, said honestly: the
+   mediterranean band inherits PT, so Spain, Italy and Greece run on Portugal's
+   calendar until each has a source of its own, and the app can say so.
+   A bare array is the pre-2026-09-15 shape. It still reads, with provenance
+   taken from the item-level field and 'inferred' when that is absent, so a
+   test fixture or an unmigrated item cannot break anything. */
+export function seasonEntryFor(item, band, country) {
+  const sr = item && item.season_ranges;
+  if (!sr) return null;
+  const key = country && sr[country] != null ? country : band;
+  let e = sr[key], scope = key, hops = 0, via = null;
+  while (e && !Array.isArray(e) && e.inherit && hops++ < 4) {
+    via = via || e;                   // the entry that pointed away, for its source text
+    scope = e.inherit; e = sr[scope];
+  }
+  if (!e || (!Array.isArray(e) && e.inherit)) return null;   // missing, or a pointer loop
+  const own = Array.isArray(e)
+    ? { ranges: e, provenance: item.provenance || 'inferred', resolution: item.resolution || null, source: item.source || null, inferred_from: null }
+    : { ranges: e.ranges || [], provenance: e.provenance || 'inferred', resolution: e.resolution || null, source: e.source || null, inferred_from: e.inferred_from || null };
+  if (!via) return { ...own, scope };
+  // Reached through `inherit`: the dates are `scope`'s, the claim is inferred.
+  return { ...own, scope, provenance: 'inferred', inferred_from: scope, source: via.source || own.source };
+}
+export const rangesFor = (item, band, country) => { const e = seasonEntryFor(item, band, country); return e ? e.ranges : null; };
+
 // Whole days until the window the item is in RIGHT NOW closes, counting the
 // closing day itself as 0. null when the item has no ranges for this band, or
 // has them and is not inside one today — "no answer", not "leaving today", so
@@ -97,8 +129,8 @@ export function peakRanges(ranges) {
 // This is a sort key and a threshold, not a measurement. Most ranges are
 // derived from a prose label and snap to the 1st, 15th or month end, so the
 // number is only ever accurate to about a fortnight. Never show it.
-export function daysLeftIn(item, mmdd, band) {
-  const ranges = item.season_ranges?.[band];
+export function daysLeftIn(item, mmdd, band, country) {
+  const ranges = rangesFor(item, band, country);
   if (!ranges || !ranges.length) return null;
   const x = doy(mmdd);
   let soonest = null;
@@ -111,8 +143,8 @@ export function daysLeftIn(item, mmdd, band) {
   return soonest;
 }
 
-export function rangeSeasonalityOf(item, mmdd, band) {
-  const ranges = item.season_ranges?.[band];
+export function rangeSeasonalityOf(item, mmdd, band, country) {
+  const ranges = rangesFor(item, band, country);
   if (!ranges) return null;
   if (!ranges.length) return 'out';            // no local season in this band
   if (!inRanges(ranges, mmdd)) return 'out';
@@ -121,8 +153,11 @@ export function rangeSeasonalityOf(item, mmdd, band) {
   return peakRanges(ranges).some(([a, b]) => within(a, b, x)) ? 'peak' : 'in';
 }
 
-// The one both callers should use once Phase 1 lands.
-export function seasonalityOf(item, mmdd, band) {
-  const r = rangeSeasonalityOf(item, mmdd, band);
+// The one both callers should use once Phase 1 lands. `country` is optional:
+// with it, a market that carries its own calendar answers from that; without
+// it, the band answers. Today only PT has its own key and the band inherits
+// it, so the two agree; they part the day a second market is sourced.
+export function seasonalityOf(item, mmdd, band, country) {
+  const r = rangeSeasonalityOf(item, mmdd, band, country);
   return r !== null ? r : legacySeasonalityOf(item.season, Number(mmdd.slice(0, 2)) - 1, band);
 }

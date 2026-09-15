@@ -7,7 +7,7 @@ import React from 'react';
 import {
   PRODUCE, byId, decorate, MONTH, ASSET,
   langOf, bandOf, countryLabel, COUNTRIES,
-  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel,
+  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, timingFor,
 } from './produce.js';
 import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator, setMarket, COUNTRY_KEY } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
@@ -20,6 +20,23 @@ const MONTH_NAME = new Date().toLocaleString('en-GB', { month: 'long' });
 const regionName = (code) => {
   try { return new Intl.DisplayNames(['en'], { type: 'region' }).of(code) || code; } catch (e) { return code; }
 };
+// Europe, for the out-of-market line: "pick the nearest" is only an honest
+// offer when there is a nearest. Everyone else is told the markets are all
+// European and left to decide.
+const EUROPE = new Set('AD AL AT AX BA BE BG BY CH CY CZ DE DK EE ES FI FO FR GB GG GI GR HR HU IE IM IS IT JE LI LT LU LV MC MD ME MK MT NL NO PL PT RO RS RU SE SI SJ SK SM UA VA XK'.split(' '));
+// The out-of-market line, in two registers. `verb` is what the screen lets
+// them do about it: Home has the tappable place line, onboarding has the list.
+function outOfMarketLine(edge, country, where) {
+  const here = countryLabel(country), there = regionName(edge);
+  if (EUROPE.has(edge)) {
+    return where === 'home'
+      ? `We don't cover ${there} yet, so this is ${here}'s market. Tap the place above to pick the nearest one.`
+      : `We don't cover ${there} yet. ${here} is selected; pick the nearest market to you.`;
+  }
+  return where === 'home'
+    ? `We don't have a calendar for ${there} yet, so this is ${here}'s market. Every market we have is in Europe; tap the place above to change it.`
+    : `We don't have a calendar for ${there} yet. Every market below is in Europe; ${here} is selected.`;
+}
 const SEASON_RANK = { peak: 0, in: 1, out: 2 };
 // Now that peak is a declared claim it fires on almost no days, so the rank
 // alone ties nearly the whole catalogue at 'in' and the name comparator decides
@@ -80,6 +97,19 @@ function ProduceName({ p, lang, size = 16, strike = false }) {
       {local && local !== p.name && <div style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: size * 0.7, lineHeight: 1.2, color: 'var(--color-text-tertiary)', marginTop: 2, overflowWrap: 'break-word', textDecoration: strike ? 'line-through' : 'none' }}>{p.name}</div>}
     </div>
   );
+}
+
+// The line under every season claim: whose dates these are. An estimate must
+// never read as a measurement. Until a market is sourced, its dates are either
+// Portugal's (the mediterranean band inherits PT), derived from the season
+// label (the temperate band, and 16 label-only items), or just the label.
+function timingNote(p, country) {
+  const here = countryLabel(country);
+  const t = timingFor(p, country);
+  if (t.kind === 'sourced') return 'Dates from a published calendar for ' + here + '.';
+  if (t.kind === 'inherited') return 'Dates are ' + countryLabel(t.from) + "'s. Not yet checked against a source for " + here + '.';
+  if (t.kind === 'inferred') return 'Dates are estimated. Not yet checked against a source for ' + here + '.';
+  return 'A season label, not dates. Not yet checked against a source for ' + here + '.';
 }
 
 // Honest, data-derived note for an out-of-season item.
@@ -345,7 +375,7 @@ function HomeScreen({ basket, lang, country, outOfMarket, onSetCountry, query, s
           Until 15 Sep 2026 these sessions were shown Portugal without a word. */}
       {outOfMarket && (
         <p style={{ margin: '8px 0 0', fontSize: 13, lineHeight: 1.5, color: 'var(--color-text-secondary)' }}>
-          We don't cover {regionName(outOfMarket)} yet, so this is {countryLabel(country)}'s market. Tap the place above to pick the nearest one.
+          {outOfMarketLine(outOfMarket, country, 'home')}
         </p>
       )}
 
@@ -1163,14 +1193,14 @@ function NotifyWhenBack({ p, lang, band }) {
 /* ================= Product detail overlay ================= */
 function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, fieldGuideSlugs }) {
   const band = bandOf(country);
-  const p = decorate(byId(id), band);
+  const p = decorate(byId(id), country);   // the market's own calendar, when it has one
   React.useEffect(() => {
     if (p) ev('product_view', { detail: p.id, v1: p.seasonality !== 'out' ? 1 : 0 });
   }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
   if (!p) return null;
   const qty = basket[p.id] || 0;
   const out = p.seasonality === 'out';
-  const swap = out ? PRODUCE.map((x) => decorate(x, band)).find((x) => x.seasonality !== 'out' && x.tab === p.tab && x.hasPrint && x.id !== p.id) : null;
+  const swap = out ? PRODUCE.map((x) => decorate(x, country)).find((x) => x.seasonality !== 'out' && x.tab === p.tab && x.hasPrint && x.id !== p.id) : null;
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 20, display: 'flex', flexDirection: 'column', overflow: 'auto', overscrollBehavior: 'contain' }}>
       <div style={{ position: 'relative', background: 'var(--color-background-body)', paddingTop: 12, borderBottom: '1px solid #d9cfbe' }}>
@@ -1199,7 +1229,9 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, field
           {p.seasonality !== 'peak' && <SeasonFlag p={p} />}
           <span style={{ fontSize: 13.5, fontWeight: 700, color: out ? 'var(--color-text-secondary)' : 'var(--color-text-accent)' }}>{VITALITY[p.seasonality]}</span>
         </div>
-        <p style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--color-text-primary)', margin: '0 0 20px' }}>{out ? ('Best enjoyed in its season: ' + p.season + '.') : ('In season in ' + countryLabel(country) + ' right now — a good week to buy it. Season: ' + p.season + '.')}</p>
+        <p style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--color-text-primary)', margin: '0 0 6px' }}>{out ? ('Best enjoyed in its season: ' + p.season + '.') : ('In season in ' + countryLabel(country) + ' right now — a good week to buy it. Season: ' + p.season + '.')}</p>
+        {/* Whose dates these are, right under the claim they qualify. */}
+        <p style={{ fontSize: 12.5, lineHeight: 1.5, color: 'var(--color-text-tertiary)', margin: '0 0 20px' }}>{timingNote(p, country)}</p>
 
         {out && (
           <div className="gd-card" style={{ marginBottom: 20, padding: 16, background: 'var(--color-error-muted)' }}>
@@ -1297,7 +1329,7 @@ function OnboardScreen({ country, outOfMarket, onSetCountry, prefs, onDone }) {
             </p>
             {outOfMarket && (
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '0 0 26px', maxWidth: 320 }}>
-                We don't cover {regionName(outOfMarket)} yet. {countryLabel(country)} is selected; pick the nearest market to you.
+                {outOfMarketLine(outOfMarket, country, 'onboarding')}
               </p>
             )}
             {/* The 14 markets from markets.json; picking one sets the app-wide

@@ -25,23 +25,35 @@
       "pt": "Escolha pelo cheiro, não pelo aspeto. O maduro cheira no pé e cede um pouco na mão; pesado para o tamanho quer dizer sumarento."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-01",
-          "to": "09-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "10-15"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Tomate\" (tomate)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-15"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Tomate\" (tomate)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "cherry-tomato",
@@ -66,23 +78,35 @@
     },
     "selection": "Look for taut, split-free skins and deep even colour. Give the punnet a sniff, it should smell sweet.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-01",
-          "to": "09-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "10-15"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Tomate-cereja\" (tomate)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-15"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Tomate-cereja\" (tomate)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "beefsteak-tomato",
@@ -107,23 +131,35 @@
     },
     "selection": "Heavy and faintly soft, with a strong scent at the stem. The shoulders should be fully coloured, not pale.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-01",
-          "to": "09-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "10-15"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Tomate coração-de-boi\" (tomate)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-15"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Tomate coração-de-boi\" (tomate)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "plum-san-marzano-tomato",
@@ -148,23 +184,35 @@
     },
     "selection": "Firm, richly red, with a sweet stem smell. A little give is fine if it is bound for sauce.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-01",
-          "to": "09-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "10-15"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Tomate-chucha\" (tomate)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-15"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Tomate-chucha\" (tomate)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "green-tomato",
@@ -189,23 +237,30 @@
     },
     "selection": "Firm and glossy is the point. Choose unblemished ones with taut skin for frying or chutney.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "local"
   },
   {
     "id": "aubergine",
@@ -233,23 +288,35 @@
       "pt": "Leve para o tamanho, de pele esticada e luzidia. Carregue devagar: deve voltar ao sítio; a marca que fica é sinal de velha e amarga."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "10-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Beringela\" (beringela)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Beringela\" (beringela)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "courgette",
@@ -274,23 +341,35 @@
     },
     "selection": "Small and firm beats big. Taut glossy skin and a dense heft; oversized ones turn seedy and watery.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "09-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Courgette\" (curgete)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Courgette\" (curgete)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "marrow",
@@ -315,23 +394,35 @@
     },
     "selection": "Firm with unblemished skin. The smaller marrows are sweeter and less watery.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "09-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "07-16",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Courgette grande\" (curgete)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "07-16",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Late summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Courgette grande\" (curgete)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "cucumber",
@@ -359,23 +450,35 @@
       "pt": "Firme de ponta a ponta, sem partes moles nem enrugadas. Os mais finos costumam ter menos grainha."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "03-01",
-          "to": "10-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Pepino\" (pepino)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Pepino\" (pepino)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "bell-pepper",
@@ -400,23 +503,35 @@
     },
     "selection": "Heavy, glossy and firm with taut skin and a fresh green stem. Wrinkles or soft patches mean it is past it.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "10-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Pimento\" (pimento)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Pimento\" (pimento)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "chilli-pepper",
@@ -441,23 +556,35 @@
     },
     "selection": "Firm, glossy and taut. Wrinkled skin means age, though it still cooks fine if you want it milder.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "10-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Malagueta\" (pimento)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Malagueta\" (pimento)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "padr-n-pepper",
@@ -482,23 +609,35 @@
     },
     "selection": "Small, firm and bright green with smooth skin. The little ones are mild, the plump ones can surprise you.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "10-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Pimento de Padrón\" (pimento)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Pimento de Padrón\" (pimento)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "tomatillo",
@@ -546,23 +685,35 @@
     },
     "selection": "Firm all over with dry, papery skin, no green shoots or soft necks. It should feel heavy and smell only faintly.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Cebola\" (cebola)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Year-round (harvest late summer)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "stored",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Cebola\" (cebola)",
-    "resolution": "month"
+    "availability": "stored"
   },
   {
     "id": "red-onion",
@@ -587,23 +738,35 @@
     },
     "selection": "Firm and heavy with tight, dry skin. Avoid softness at the top or a strong smell through the skin.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Cebola roxa\" (cebola)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Year-round\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Cebola roxa\" (cebola)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "shallot",
@@ -677,23 +840,35 @@
       "pt": "Pé branco firme e folha verde fresca. Os mais finos são mais tenros; evite folha rachada ou amarelada."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-16",
-          "to": "03-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alho-francês\" (alho-frances)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-16",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alho-francês\" (alho-frances)",
-    "resolution": "half-month"
+    "availability": "local"
   },
   {
     "id": "garlic",
@@ -718,23 +893,35 @@
     },
     "selection": "Plump, firm heads with tight papery skin. Squeeze gently, it should feel solid with no soft or sprouting cloves.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alho\" (alho)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer harvest, stores\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "stored",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alho\" (alho)",
-    "resolution": "month"
+    "availability": "stored"
   },
   {
     "id": "elephant-garlic",
@@ -782,23 +969,30 @@
     },
     "selection": "Bright, perky leaves with a strong garlicky smell when rubbed. Skip anything wilted or yellowing.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "02-16",
-          "to": "05-15"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "05-31"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "02-16",
+            "to": "05-15"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "local"
   },
   {
     "id": "carrot",
@@ -823,23 +1017,35 @@
     },
     "selection": "Firm and smooth with bright colour. If the tops are on they should be fresh and green, not limp.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Cenoura\" (cenoura)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Year-round (peak autumn)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Cenoura\" (cenoura)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "heritage-carrots",
@@ -864,23 +1070,35 @@
     },
     "selection": "Firm with vivid colour and smooth skin. Fresh feathery tops mean a recent pull.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Cenouras coloridas\" (cenoura)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Cenouras coloridas\" (cenoura)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "beetroot",
@@ -908,23 +1126,35 @@
       "pt": "Firme, lisa e pesada para o tamanho. As pequenas são mais doces; folhas verdes querem dizer colheita recente."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "08-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "02-28"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Beterraba\" (beterraba)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Beterraba\" (beterraba)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "golden-beetroot",
@@ -952,23 +1182,35 @@
       "pt": "Firme e lisa, de pele inteira. As mais pequenas são mais doces e menos fibrosas."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "08-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Beterraba dourada\" (beterraba)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Beterraba dourada\" (beterraba)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "radish",
@@ -993,23 +1235,35 @@
     },
     "selection": "Firm with taut skin and bright colour. Perky leaves mean fresh; soft, spongy roots are old.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-01",
-          "to": "06-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Rabanete\" (rabanete)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Rabanete\" (rabanete)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "breakfast-radish",
@@ -1034,23 +1288,35 @@
     },
     "selection": "Firm and crisp with smooth skin and lively tops. A gentle squeeze should meet no give.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-01",
-          "to": "06-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "05-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Rabanete comprido\" (rabanete)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Rabanete comprido\" (rabanete)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "daikon-mooli",
@@ -1075,23 +1341,30 @@
     },
     "selection": "Firm and heavy with smooth, taut skin and no soft spots. It should feel dense, not hollow.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "local"
   },
   {
     "id": "turnip",
@@ -1119,23 +1392,35 @@
       "pt": "Pequeno, firme e pesado, de pele lisa. Os grandes ficam fibrosos e picantes."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "11-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Nabo\" (nabo)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Nabo\" (nabo)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "swede",
@@ -1229,23 +1514,35 @@
     },
     "selection": "Firm with taut skin, no green tinge or sprouting eyes. Green means bitter, so pass it by.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Batata\" (batata)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Year-round (harvest late summer)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "stored",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Batata\" (batata)",
-    "resolution": "month"
+    "availability": "stored"
   },
   {
     "id": "new-potato",
@@ -1270,23 +1567,35 @@
     },
     "selection": "Firm with thin, flaky skin that rubs off easily; that thin skin is the sign of a true new potato.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-01",
-          "to": "08-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "04-16",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Batata nova\" (batata-nova)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "04-16",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Late spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Batata nova\" (batata-nova)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "sweet-potato",
@@ -1334,23 +1643,30 @@
     },
     "selection": "Firm and knobbly with no soft or wrinkled patches. Smoother tubers are simply easier to peel.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "local"
   },
   {
     "id": "kohlrabi",
@@ -1421,23 +1737,35 @@
     },
     "selection": "Heavy and tight-headed for its size, with crisp outer leaves. Loose or yellowing leaves mean age.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "11-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Repolho\" (couve)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Repolho\" (couve)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "savoy-cabbage",
@@ -1462,23 +1790,35 @@
     },
     "selection": "Crisp, deeply crinkled leaves and a head that feels heavy. Avoid limp or browning outer leaves.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "11-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-lombarda\" (couve)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-lombarda\" (couve)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "pointed-hispi-cabbage",
@@ -1503,23 +1843,35 @@
     },
     "selection": "Firm and heavy for its size with fresh, tight leaves. A pale, loose head is older.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "11-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-coração\" (couve)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-coração\" (couve)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "spring-greens",
@@ -1544,23 +1896,35 @@
     },
     "selection": "Bright, perky leaves with no yellowing or slime. The fresher they look, the sweeter they cook.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "11-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "05-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-galega\" (couve)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-galega\" (couve)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "red-cabbage",
@@ -1585,23 +1949,35 @@
     },
     "selection": "Dense and heavy with tight, glossy leaves and no splits. It should feel solid when squeezed.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "11-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-roxa\" (couve)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-roxa\" (couve)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "cauliflower",
@@ -1626,23 +2002,35 @@
     },
     "selection": "Tight, creamy-white curds with no grey speckling, wrapped in fresh green leaves.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-01",
-          "to": "05-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "05-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Couve-flor\" (couve-flor)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Couve-flor\" (couve-flor)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "romanesco",
@@ -1667,23 +2055,35 @@
     },
     "selection": "Bright lime spirals, tight and unbroken, with fresh leaves. Skip any browning tips.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-01",
-          "to": "05-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Couve romanesco\" (couve-flor)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Couve romanesco\" (couve-flor)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "broccoli-calabrese",
@@ -1708,23 +2108,35 @@
     },
     "selection": "Tight, dark blue-green heads with firm stalks. Yellowing florets or open buds mean it is going over.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-01",
-          "to": "05-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Brócolos\" (brocolo)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Brócolos\" (brocolo)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "purple-sprouting-broccoli",
@@ -1749,23 +2161,35 @@
     },
     "selection": "Perky purple spears with tight buds and no yellow flowering. Snappable stalks are freshest.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-01",
-          "to": "05-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "01-16",
-          "to": "05-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Brócolos roxos\" (brocolo)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "01-16",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Late winter–spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Brócolos roxos\" (brocolo)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "tenderstem-broccoli",
@@ -1790,23 +2214,35 @@
     },
     "selection": "Firm, crisp stems and tight green heads. Limp stems or open buds mean age.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-01",
-          "to": "05-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Brócolos-de-haste\" (brocolo)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Brócolos-de-haste\" (brocolo)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "brussels-sprouts",
@@ -1854,23 +2290,35 @@
     },
     "selection": "Deeply coloured, perky leaves with firm stems. Yellowing or wilting means past its best.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "11-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-frisada\" (couve)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-frisada\" (couve)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "cavolo-nero",
@@ -1895,23 +2343,35 @@
     },
     "selection": "Dark, firm, blistered leaves that stand up. Limp or yellow-edged leaves are old.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "11-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-negra\" (couve)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Couve-negra\" (couve)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "pak-choi",
@@ -1962,23 +2422,35 @@
       "pt": "Talos direitos e estaladiços, folha luzidia e sem manchas. Folha murcha ou talo viscoso é velha."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "01-01",
-          "to": "04-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Acelga\" (acelga)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Acelga\" (acelga)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "spinach",
@@ -2003,23 +2475,35 @@
     },
     "selection": "Bright, springy leaves with no dark slimy patches. It should smell fresh and green.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-01",
-          "to": "05-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Espinafre\" (espinafre)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Espinafre\" (espinafre)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "rocket-arugula",
@@ -2067,23 +2551,35 @@
     },
     "selection": "A head that feels heavy for its size, with soft, unbruised leaves and no brown edges.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alface\" (alface)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alface\" (alface)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "romaine-cos",
@@ -2108,23 +2604,35 @@
     },
     "selection": "Crisp, tightly packed leaves and firm ribs. Wilting outer leaves or brown edges mean age.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alface-romana\" (alface)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alface-romana\" (alface)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "little-gem",
@@ -2149,23 +2657,35 @@
     },
     "selection": "Small, tight, heavy heads with crisp pale hearts. Avoid browning at the base.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alface mini-romana\" (alface)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alface mini-romana\" (alface)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "endive-fris-e",
@@ -2190,28 +2710,35 @@
     },
     "selection": "Crisp, springy leaves with pale hearts. Limp or browning frizz means old stock.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "02-28",
-          "peak_from": "10-28",
-          "peak_to": "11-11"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28",
-          "peak_from": "10-28",
-          "peak_to": "11-11"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28",
+            "peak_from": "10-28",
+            "peak_to": "11-11"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28",
+            "peak_from": "10-28",
+            "peak_to": "11-11"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
     "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "peak_source": "Republican Endive day, 4 Nov (turning day XIX)",
-    "resolution": "quarter"
+    "peak_source": "Republican Endive day, 4 Nov (turning day XIX)"
   },
   {
     "id": "radicchio",
@@ -2259,23 +2786,35 @@
     },
     "selection": "Deep green, perky leaves and firm stems with a peppery smell. Yellowing bunches are old.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "03-01",
-          "to": "10-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Agrião\" (agriao)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Agrião\" (agriao)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "lamb-s-lettuce-m-che",
@@ -2372,23 +2911,35 @@
       "pt": "Lanças firmes, de ponta fechada e caule que range. O corte deve estar húmido, não seco."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "02-01",
-          "to": "06-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "05-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "02-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Espargos\" (espargos)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Espargos\" (espargos)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "rhubarb",
@@ -2416,28 +2967,35 @@
       "pt": "Talos firmes, luzidios, que partem em vez de dobrar. Os mais finos têm menos fio."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "02-16",
-          "to": "05-15",
-          "peak_from": "04-23",
-          "peak_to": "05-07"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "05-31",
-          "peak_from": "04-23",
-          "peak_to": "05-07"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "02-16",
+            "to": "05-15",
+            "peak_from": "04-23",
+            "peak_to": "05-07"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "05-31",
+            "peak_from": "04-23",
+            "peak_to": "05-07"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
     "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "peak_source": "Republican Rhubarbe day, 30 Apr (turning day VI)",
-    "resolution": "quarter"
+    "peak_source": "Republican Rhubarbe day, 30 Apr (turning day VI)"
   },
   {
     "id": "globe-artichoke",
@@ -2462,23 +3020,35 @@
     },
     "selection": "Heavy, tight heads whose leaves squeak when squeezed. Loose, dry leaves mean old.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "07-01",
-          "to": "08-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Alcachofra\" (alcachofra)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Alcachofra\" (alcachofra)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "cardoon",
@@ -2526,23 +3096,30 @@
     },
     "selection": "Bright green, crisp and springy with a salty-sea smell. Skip any that is soft or yellowing.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-16",
-          "to": "08-15"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "05-16",
+            "to": "08-15"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "local"
   },
   {
     "id": "pumpkin",
@@ -2570,28 +3147,40 @@
       "pt": "Pesada para o tamanho, casca dura e baça, com o pé agarrado. Som oco quer dizer madura."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "02-28",
-          "peak_from": "09-27",
-          "peak_to": "10-11"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30",
-          "peak_from": "09-27",
-          "peak_to": "10-11"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28",
+            "peak_from": "09-27",
+            "peak_to": "10-11"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora\" (abobora)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30",
+            "peak_from": "09-27",
+            "peak_to": "10-11"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
     "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora\" (abobora)",
-    "peak_source": "Republican Potiron day, 4 Oct (turning day XVII)",
-    "resolution": "month"
+    "peak_source": "Republican Potiron day, 4 Oct (turning day XVII)"
   },
   {
     "id": "butternut-squash",
@@ -2616,23 +3205,35 @@
     },
     "selection": "Matte, hard skin and a heavy feel, an even beige colour. A green tinge means underripe.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora-manteiga\" (abobora)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora-manteiga\" (abobora)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "acorn-squash",
@@ -2657,23 +3258,35 @@
     },
     "selection": "Hard, dull skin and heavy in the hand; a shiny skin means picked early. A patch of orange is fine.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora-bolota\" (abobora)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora-bolota\" (abobora)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "crown-prince-squash",
@@ -2698,23 +3311,35 @@
     },
     "selection": "Firm and heavy with hard blue-grey skin and an intact stalk. Dense weight means good flesh.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora crown prince\" (abobora)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora crown prince\" (abobora)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "spaghetti-squash",
@@ -2739,23 +3364,35 @@
     },
     "selection": "Hard, pale-yellow skin with no soft spots or green. Heavy for its size is best.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora-espaguete\" (abobora)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora-espaguete\" (abobora)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "kabocha",
@@ -2780,23 +3417,35 @@
     },
     "selection": "Hard, dull deep-green skin and a heavy, dense feel. A firm stalk is a good sign.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora kabocha\" (abobora)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Abóbora kabocha\" (abobora)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "green-french-beans",
@@ -2821,23 +3470,35 @@
     },
     "selection": "Slim, firm beans that snap crisply with bright colour. Bulging or limp pods mean old and tough.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "09-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Feijão-verde\" (feijao-verde)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Feijão-verde\" (feijao-verde)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "runner-beans",
@@ -2862,23 +3523,35 @@
     },
     "selection": "Firm, bright pods that snap cleanly, with no seeds bulging through. Smaller ones are more tender.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "09-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "10-15"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Feijão-de-trepar\" (feijao-verde)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-15"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–early autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Feijão-de-trepar\" (feijao-verde)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "broad-beans-fava",
@@ -2903,23 +3576,35 @@
     },
     "selection": "Plump, firm, bright green pods. Smaller pods hold younger, sweeter beans; leathery pods are old.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "03-01",
-          "to": "10-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "04-16",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Favas\" (favas)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "04-16",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Late spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Favas\" (favas)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "borlotti-beans",
@@ -2967,23 +3652,35 @@
     },
     "selection": "Plump, firm, bright pods that feel full. A pod should squeak and snap; dull or yellow pods are old.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "03-01",
-          "to": "06-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "04-16",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Ervilhas\" (ervilha)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "04-16",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Late spring–summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Ervilhas\" (ervilha)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "mangetout",
@@ -3008,23 +3705,35 @@
     },
     "selection": "Flat, crisp, bright pods with tiny peas inside. They should snap cleanly, not bend.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "03-01",
-          "to": "06-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Ervilha-torta\" (ervilha)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Ervilha-torta\" (ervilha)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "sugar-snap-peas",
@@ -3049,23 +3758,35 @@
     },
     "selection": "Plump, crisp, bright pods that snap. Soft or dull ones are past it.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "03-01",
-          "to": "06-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Ervilha-doce\" (ervilha)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Ervilha-doce\" (ervilha)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "edamame",
@@ -3113,23 +3834,35 @@
     },
     "selection": "Fresh green husks and golden, slightly sticky silks. Peel back a little; kernels should be plump and milky.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "10-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "07-16",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Milho-doce\" (milho)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "07-16",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Late summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Milho-doce\" (milho)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "baby-corn",
@@ -3660,23 +4393,30 @@
     },
     "selection": "Firm, heavy stalks with a fresh lemon smell and pale, tight bases. Dry, woody stalks are old.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "imported",
-    "provenance": "inferred",
-    "source": "derived from the \"Summer (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "imported"
   },
   {
     "id": "apple",
@@ -3704,23 +4444,35 @@
       "pt": "Firme e pesada, de pele esticada e sem pisaduras. Dê-lhe um piparote: som seco é bom sinal; deve cheirar levemente a doce."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "08-16",
-          "to": "05-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "02-28"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "08-16",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Maçã\" (maca). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Autumn (stores to winter)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "stored",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Maçã\" (maca). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "resolution": "half-month"
+    "availability": "stored"
   },
   {
     "id": "cooking-apple",
@@ -3745,23 +4497,35 @@
     },
     "selection": "Firm, heavy and unbruised with taut green skin. Size is fine here, but no soft brown spots.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "08-16",
-          "to": "05-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "08-16",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Maçã para cozer\" (maca). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Maçã para cozer\" (maca). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "resolution": "half-month"
+    "availability": "local"
   },
   {
     "id": "pear",
@@ -3786,23 +4550,35 @@
     },
     "selection": "Firm with a slight give at the neck when ripe. Buy firm and let it soften at home over a day or two.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "08-01",
-          "to": "11-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Pera\" (pera)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Pera\" (pera)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "conference-pear",
@@ -3827,23 +4603,35 @@
     },
     "selection": "Firm with a little give at the stem end; the skin bronzes as it ripens. Ripen hard ones on the counter.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "08-01",
-          "to": "11-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Pera conference\" (pera)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Pera conference\" (pera)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "quince",
@@ -3868,23 +4656,35 @@
     },
     "selection": "Firm, heavy and fragrant, with golden fuzz. A strong perfume means ripe; hard green ones ripen at home.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "10-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Marmelo\" (marmelo)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand); matched on \"Marmelo\" (marmelo)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "medlar",
@@ -3912,23 +4712,30 @@
       "pt": "Firme e castanha. Come-se passada, por isso leve-a firme e deixe-a amolecer em casa."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-16",
-          "to": "11-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "10-16",
-          "to": "11-30"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "10-16",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Late autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "10-16",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Late autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Late autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "local"
   },
   {
     "id": "plum",
@@ -3956,28 +4763,40 @@
       "pt": "Carnuda, cedendo um pouco, com aquele pó na pele. Dura de mais está verde; mole de mais já passou."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "09-30",
-          "peak_from": "08-11",
-          "peak_to": "08-25"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "07-16",
-          "to": "11-30",
-          "peak_from": "08-11",
-          "peak_to": "08-25"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30",
+            "peak_from": "08-11",
+            "peak_to": "08-25"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Ameixa\" (ameixa)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "07-16",
+            "to": "11-30",
+            "peak_from": "08-11",
+            "peak_to": "08-25"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Late summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
     "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Ameixa\" (ameixa)",
-    "peak_source": "Republican Prune day, 18 Aug (turning day XIII)",
-    "resolution": "month"
+    "peak_source": "Republican Prune day, 18 Aug (turning day XIII)"
   },
   {
     "id": "damson",
@@ -4002,23 +4821,35 @@
     },
     "selection": "Small, firm, deep blue-black with a bloom. Tart by nature, so choose firm ones for cooking.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "09-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "07-16",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Abrunho\" (ameixa)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "07-16",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Late summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Abrunho\" (ameixa)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "greengage",
@@ -4046,28 +4877,40 @@
       "pt": "Carnuda, cedendo um pouco, entre o verde e o dourado. Cheiro a mel quer dizer madura e doce."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "08-15",
-          "peak_from": "07-01",
-          "peak_to": "07-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "07-15",
-          "to": "09-01",
-          "peak_from": "08-01",
-          "peak_to": "08-20"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-15",
+            "peak_from": "07-01",
+            "peak_to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "mediterranean band corrected 2026-09-08. Two independent Portuguese sources put the Rainha Cláudia harvest in June and July: the Ameixa d'Elvas DOP product specification (DGADR), \"o período de maturação dos frutos, que corresponde aos meses de Junho e Julho\", and MemoriaMedia, \"O processo começa em Junho/Julho quando é apanhada a ameixa Rainha Cláudia.\" The end date is bounded by a single dated observation, not a document: no rainha-cláudia on the stall at Mercado d' Santos, Lisbon, 18 August 2026. The previous range (07-16 to 09-15) was hand-set from desk research whose own note said \"real season roughly August\", and was wrong at both ends. The temperate band has no Portuguese source governing it and is still argued, not sourced."
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "07-15",
+            "to": "09-01",
+            "peak_from": "08-01",
+            "peak_to": "08-20"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Midsummer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
     "availability": "local",
-    "provenance": "sourced",
-    "source": "mediterranean band corrected 2026-09-08. Two independent Portuguese sources put the Rainha Cláudia harvest in June and July: the Ameixa d'Elvas DOP product specification (DGADR), \"o período de maturação dos frutos, que corresponde aos meses de Junho e Julho\", and MemoriaMedia, \"O processo começa em Junho/Julho quando é apanhada a ameixa Rainha Cláudia.\" The end date is bounded by a single dated observation, not a document: no rainha-cláudia on the stall at Mercado d' Santos, Lisbon, 18 August 2026. The previous range (07-16 to 09-15) was hand-set from desk research whose own note said \"real season roughly August\", and was wrong at both ends. The temperate band has no Portuguese source governing it and is still argued, not sourced.",
-    "peak_source": "Ameixa d'Elvas DOP specification (DGADR) and MemoriaMedia, both placing the harvest in June and July. Supersedes the previous peak, which was pegged to St Bartholomew, 24 August, a turning day rather than a harvest.",
-    "resolution": "half-month"
+    "peak_source": "Ameixa d'Elvas DOP specification (DGADR) and MemoriaMedia, both placing the harvest in June and July. Supersedes the previous peak, which was pegged to St Bartholomew, 24 August, a turning day rather than a harvest."
   },
   {
     "id": "cherry",
@@ -4095,28 +4938,40 @@
       "pt": "Firmes, luzidias, carnudas, com o pé verde agarrado. Pele baça ou pé seco é cereja velha."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-01",
-          "to": "06-30",
-          "peak_from": "06-17",
-          "peak_to": "06-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "07-15",
-          "peak_from": "06-17",
-          "peak_to": "07-01"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "06-30",
+            "peak_from": "06-17",
+            "peak_to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Cereja\" (cereja)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "07-15",
+            "peak_from": "06-17",
+            "peak_to": "07-01"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Early summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
     "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Cereja\" (cereja)",
-    "peak_source": "turning day X names it: \"São João fires / the cherries\", cherries at peak",
-    "resolution": "month"
+    "peak_source": "turning day X names it: \"São João fires / the cherries\", cherries at peak"
   },
   {
     "id": "peach",
@@ -4141,23 +4996,35 @@
     },
     "selection": "Press gently by the stem, it should just yield, and smell it. Loudly sweet means ripe; hard means picked early.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "09-15"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-15"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Pêssego\" (pessego). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Pêssego\" (pessego). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "resolution": "half-month"
+    "availability": "local"
   },
   {
     "id": "nectarine",
@@ -4182,23 +5049,35 @@
     },
     "selection": "A slight give along the seam and a sweet smell. Firm ones ripen on the counter in a day or two.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "09-15"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-15"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Nectarina\" (pessego). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Nectarina\" (pessego). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "resolution": "half-month"
+    "availability": "local"
   },
   {
     "id": "apricot",
@@ -4226,28 +5105,40 @@
       "pt": "Carnudo, cheiroso, cor de laranja por igual, cedendo um pouco. Pálido ou duro foi colhido cedo de mais."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-01",
-          "to": "08-15",
-          "peak_from": "07-24",
-          "peak_to": "08-07"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31",
-          "peak_from": "07-24",
-          "peak_to": "08-07"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "08-15",
+            "peak_from": "07-24",
+            "peak_to": "08-07"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alperce\" (damasco/alperce). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31",
+            "peak_from": "07-24",
+            "peak_to": "08-07"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
     "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Alperce\" (damasco/alperce). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "peak_source": "Republican Abricot day, 31 Jul (turning day XII)",
-    "resolution": "half-month"
+    "peak_source": "Republican Abricot day, 31 Jul (turning day XII)"
   },
   {
     "id": "fig",
@@ -4272,23 +5163,35 @@
     },
     "selection": "Soft, heavy and hanging slightly, with a sweet smell and maybe a bead of syrup at the base. Firm figs never sweeten.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "07-16",
-          "to": "09-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "07-16",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "07-16",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Figo\" (figo). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "07-16",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Late summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Figo\" (figo). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "resolution": "half-month"
+    "availability": "local"
   },
   {
     "id": "grapes",
@@ -4313,28 +5216,40 @@
     },
     "selection": "Plump grapes firmly attached to green, pliable stems, with a fresh bloom. Brown stems mean old.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "08-01",
-          "to": "11-15",
-          "peak_from": "09-15",
-          "peak_to": "09-29"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30",
-          "peak_from": "09-15",
-          "peak_to": "09-29"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "11-15",
+            "peak_from": "09-15",
+            "peak_to": "09-29"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Uvas brancas\" (uva). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30",
+            "peak_from": "09-15",
+            "peak_to": "09-29"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
     "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Uvas brancas\" (uva). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "peak_source": "Republican Raisin day, 22 Sep, and the vindima (turning day XV)",
-    "resolution": "half-month"
+    "peak_source": "Republican Raisin day, 22 Sep, and the vindima (turning day XV)"
   },
   {
     "id": "grapes-black",
@@ -4362,28 +5277,40 @@
       "pt": "Bagos bem escuros e firmes, presos a um cacho de pé verde. Bagos enrugados ou a cair já são velhos."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "08-01",
-          "to": "11-15",
-          "peak_from": "09-15",
-          "peak_to": "09-29"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30",
-          "peak_from": "09-15",
-          "peak_to": "09-29"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "11-15",
+            "peak_from": "09-15",
+            "peak_to": "09-29"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Uvas pretas\" (uva). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30",
+            "peak_from": "09-15",
+            "peak_to": "09-29"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
     "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Uvas pretas\" (uva). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "peak_source": "Republican Raisin day, 22 Sep, and the vindima (turning day XV)",
-    "resolution": "half-month"
+    "peak_source": "Republican Raisin day, 22 Sep, and the vindima (turning day XV)"
   },
   {
     "id": "strawberry",
@@ -4408,23 +5335,35 @@
     },
     "selection": "Fully red to the tip with fresh green caps and a strong sweet smell. White shoulders mean picked early.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "03-01",
-          "to": "06-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Morango\" (morango)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Morango\" (morango)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "raspberry",
@@ -4449,23 +5388,35 @@
     },
     "selection": "Plump, dry, evenly coloured berries with no mould in the punnet; sniff for sweetness.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-01",
-          "to": "07-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Framboesa\" (framboesa)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Framboesa\" (framboesa)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "blackberry",
@@ -4490,23 +5441,35 @@
     },
     "selection": "Deep black, plump and glossy; red beads mean underripe and sour. Check the base for mould.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "08-01",
-          "to": "10-10"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Amora\" (amora)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "10-10"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Late summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Amora\" (amora)",
-    "resolution": "half-month"
+    "availability": "local"
   },
   {
     "id": "blueberry",
@@ -4531,23 +5494,35 @@
     },
     "selection": "Firm, dusty-blue berries that roll freely, with a silvery bloom. Soft, leaky ones spoil the box.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-16",
-          "to": "08-15"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "05-16",
+            "to": "08-15"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Mirtilo\" (mirtilo). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Mirtilo\" (mirtilo). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "resolution": "half-month"
+    "availability": "local"
   },
   {
     "id": "redcurrant",
@@ -4618,23 +5593,30 @@
     },
     "selection": "Firm, taut berries; hard and green for cooking, softer and blushed for eating raw.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "05-16",
-          "to": "06-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "07-15"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "05-16",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Early summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "07-15"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Early summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Early summer\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "local"
   },
   {
     "id": "lemon",
@@ -4659,18 +5641,30 @@
     },
     "selection": "Heavy for its size with taut, glossy skin; that weight means juicy. Hard, light lemons are dry.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": []
+      "PT": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Limão\" (limao)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Limão\" (limao)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "lime",
@@ -4721,21 +5715,33 @@
       "pt": "Pesada para o tamanho, de pele firme e esticada. Para o sumo, o peso conta mais do que a cor."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "11-01",
-          "to": "04-30",
-          "peak_from": "11-07",
-          "peak_to": "11-21"
-        }
-      ],
-      "temperate": []
+      "PT": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "04-30",
+            "peak_from": "11-07",
+            "peak_to": "11-21"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Laranja\" (laranja)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
     "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Laranja\" (laranja)",
-    "peak_source": "Republican Orange day, 14 Nov (turning day XX)",
-    "resolution": "half-month"
+    "peak_source": "Republican Orange day, 14 Nov (turning day XX)"
   },
   {
     "id": "blood-orange",
@@ -4760,18 +5766,25 @@
     },
     "selection": "Heavy and firm; a reddish blush hints at the colour inside, but weight is the real tell.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "12-01",
-          "to": "02-28"
-        }
-      ],
-      "temperate": []
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "local"
   },
   {
     "id": "mandarin-clementine",
@@ -4796,18 +5809,30 @@
     },
     "selection": "Heavy for the size with glossy skin, slightly loose is fine. Light, puffy fruit is dry inside.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-01",
-          "to": "03-15"
-        }
-      ],
-      "temperate": []
+      "PT": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-15"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Tangerina\" (tangerina). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Tangerina\" (tangerina). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "resolution": "half-month"
+    "availability": "local"
   },
   {
     "id": "grapefruit",
@@ -4832,18 +5857,25 @@
     },
     "selection": "Heavy and firm with springy, taut skin. The heavier it feels, the juicier.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "12-01",
-          "to": "02-28"
-        }
-      ],
-      "temperate": []
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "12-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Winter (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "local"
   },
   {
     "id": "cantaloupe-melon",
@@ -4868,28 +5900,40 @@
     },
     "selection": "Sniff the blossom end for a sweet musky smell; it should feel heavy with a slight give there.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "09-30",
-          "peak_from": "07-14",
-          "peak_to": "07-28"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31",
-          "peak_from": "07-14",
-          "peak_to": "07-28"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30",
+            "peak_from": "07-14",
+            "peak_to": "07-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Meloa\" (meloa)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31",
+            "peak_from": "07-14",
+            "peak_to": "07-28"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
     "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Meloa\" (meloa)",
-    "peak_source": "Republican Melon day, 21 Jul (turning day XI)",
-    "resolution": "month"
+    "peak_source": "Republican Melon day, 21 Jul (turning day XI)"
   },
   {
     "id": "watermelon",
@@ -4914,23 +5958,35 @@
     },
     "selection": "Heavy for its size with a creamy-yellow ground spot; a deep hollow knock means ripe.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "09-15"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "08-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-15"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Melancia\" (melancia). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Summer\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Melancia\" (melancia). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "resolution": "half-month"
+    "availability": "local"
   },
   {
     "id": "honeydew-melon",
@@ -4955,23 +6011,35 @@
     },
     "selection": "Heavy, with waxy (not shiny) skin, a faint sweet smell, and slight give at the blossom end.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "06-01",
-          "to": "09-15"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "06-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-15"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "half-month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Melão\" (melao). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "half-month",
+        "source": "derived from the \"Summer–autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Melão\" (melao). EDGE SPLIT: APN and DECO differ by one month at this edge; the boundary is placed between their claims, on the half-month grid, rather than picking a winner",
-    "resolution": "half-month"
+    "availability": "local"
   },
   {
     "id": "pomegranate",
@@ -4996,18 +6064,30 @@
     },
     "selection": "Heavy for its size with taut, leathery skin; the heaviest are juiciest. A little angular is fine.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ],
-      "temperate": []
+      "PT": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Romã\" (roma)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Romã\" (roma)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "persimmon-kaki",
@@ -5035,18 +6115,30 @@
       "pt": "Se for de comer mole, leve-o bem laranja e a ceder como geleia; se for dos rijos, firme e sem marcas."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": []
+      "PT": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Dióspiro\" (diospiro)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Dióspiro\" (diospiro)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "kiwi",
@@ -5074,18 +6166,30 @@
       "pt": "Deve ceder um pouco a uma pressão leve quando está maduro. Compre firme e amadureça em casa; muito duro é ácido."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-01",
-          "to": "03-31"
-        }
-      ],
-      "temperate": []
+      "PT": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Kiwi\" (kiwi)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn–winter (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021; matched on \"Kiwi\" (kiwi)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "avocado",
@@ -5113,18 +6217,30 @@
       "pt": "Segure na palma, não espete. Deve ceder por igual. Os duros amadurecem em poucos dias fora do frigorífico."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "11-01",
-          "to": "03-31"
-        }
-      ],
-      "temperate": []
+      "PT": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "DECO PROteste calendar lists Abacate year-round, but that is import availability, not season; the label's Med winter (legacy parse: Nov-Mar in the med band) is the season. See SEASON-SEAM.md on (Med/imported) winter arrivals."
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Winter (Med/imported)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "imported",
-    "provenance": "sourced",
-    "source": "DECO PROteste calendar lists Abacate year-round, but that is import availability, not season; the label's Med winter (legacy parse: Nov-Mar in the med band) is the season. See SEASON-SEAM.md on (Med/imported) winter arrivals.",
-    "resolution": "month"
+    "availability": "imported"
   },
   {
     "id": "pineapple",
@@ -5149,23 +6265,30 @@
     },
     "selection": "Heavy and fragrant at the base, with fresh green leaves; a leaf should tug free with a little resistance.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "01-01",
-          "to": "12-31"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Year-round (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Year-round (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "imported",
-    "provenance": "inferred",
-    "source": "derived from the \"Year-round (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "imported"
   },
   {
     "id": "date",
@@ -5190,23 +6313,30 @@
     },
     "selection": "Plump, glossy and slightly wrinkled, with no sugar crystallising out and no dryness. Soft means fresh.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "imported",
-    "provenance": "inferred",
-    "source": "derived from the \"Autumn (imported)\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "imported"
   },
   {
     "id": "prickly-pear",
@@ -5231,18 +6361,25 @@
     },
     "selection": "Firm with a slight give and even colour; handle carefully for the tiny spines. Too soft means over.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ],
-      "temperate": []
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Autumn (Med)\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "local"
   },
   {
     "id": "physalis",
@@ -5267,23 +6404,30 @@
     },
     "selection": "Papery husks that are dry and intact, with a firm, golden berry inside.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "mediterranean": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall"
+      }
     },
-    "availability": "local",
-    "provenance": "inferred",
-    "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; not checked against a stall",
-    "resolution": "quarter"
+    "availability": "local"
   },
   {
     "id": "ginger",
@@ -5331,18 +6475,30 @@
     },
     "selection": "For loose olives, look for firm, glossy fruit in clean brine; they should smell fresh, not musty.",
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "11-01",
-          "to": "01-31"
-        }
-      ],
-      "temperate": []
+      "PT": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, calendarios.info, \"A apanha da azeitona em Portugal\", quoting the harvest as \"entre novembro e janeiro\"; GREEN TABLE olives are picked earlier and that earlier window is NOT verified; matched on \"Azeitonas\" (azeitona)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn (Med)\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, calendarios.info, \"A apanha da azeitona em Portugal\", quoting the harvest as \"entre novembro e janeiro\"; GREEN TABLE olives are picked earlier and that earlier window is NOT verified; matched on \"Azeitonas\" (azeitona)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "chestnut",
@@ -5370,23 +6526,35 @@
       "pt": "Pesada para o tamanho e com a casca colada ao miolo. A castanha que chocalha secou por dentro; mancha baça ou furo quer dizer bicho."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "10-01",
-          "to": "12-31"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "09-01",
-          "to": "11-30"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Castanha\" (castanha)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Autumn\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Castanha\" (castanha)",
-    "resolution": "month"
+    "availability": "local"
   },
   {
     "id": "loquat-nespera",
@@ -5414,22 +6582,34 @@
       "pt": "Pele esticada e bem alaranjada, nunca pálida. Pisa ao toque e não amadurece depois de colhida: leve as que parecem quase moles de mais e coma-as no mesmo dia."
     },
     "season_ranges": {
-      "mediterranean": [
-        {
-          "from": "04-01",
-          "to": "06-30"
-        }
-      ],
-      "temperate": [
-        {
-          "from": "03-01",
-          "to": "05-31"
-        }
-      ]
+      "PT": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Nespera\" (nespera)"
+      },
+      "mediterranean": {
+        "inherit": "PT",
+        "provenance": "inferred",
+        "source": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet"
+      },
+      "temperate": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "inferred",
+        "resolution": "quarter",
+        "source": "derived from the \"Spring\" label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+      }
     },
-    "availability": "local",
-    "provenance": "sourced",
-    "source": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24; matched on \"Nespera\" (nespera)",
-    "resolution": "month"
+    "availability": "local"
   }
 ]

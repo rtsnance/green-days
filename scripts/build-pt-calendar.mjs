@@ -11,7 +11,7 @@
    node scripts/build-pt-calendar.mjs [--embed] [--out DIR]
 */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
-import { seasonalityOf } from '../src/season.js';
+import { seasonalityOf, seasonEntryFor } from '../src/season.js';
 
 const R = (p) => new URL(p, import.meta.url);
 const produce = JSON.parse(readFileSync(R('../data/produce.json')));
@@ -28,7 +28,7 @@ const ill  = (id) => byId[id]?.illustration || null;
 const state = (mmdd) => {
   const inn = [], peak = [];
   for (const p of produce) {
-    const s = seasonalityOf(p, mmdd, BAND);
+    const s = seasonalityOf(p, mmdd, BAND, 'PT');
     if (s === 'in' || s === 'peak') inn.push(p.id);
     if (s === 'peak') peak.push(p.id);
   }
@@ -89,7 +89,7 @@ const CAP = 12;
    12-bucket model produces a dated claim the data cannot support. An item whose
    boundary is month-grain is marked, and the page says which day it can and
    cannot vouch for. Nothing is hidden: the reader is told the resolution.        */
-const resOf = (id) => byId[id]?.resolution || 'quarter';
+const resOf = (id) => seasonEntryFor(byId[id], BAND, 'PT')?.resolution || 'quarter';
 const isSoft = (id) => resOf(id) !== 'half-month';
 
 const list = (ids, cls) => ids.length

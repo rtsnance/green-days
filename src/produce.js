@@ -6,7 +6,7 @@ import RAW from '../data/produce.json';
 import MARKETS from '../data/markets.json';
 import AFFILIATES from '../data/affiliates.json';
 import {
-  SEASON_MONTHS, SEASON_CYCLE, seasonNameForMonth, seasonalityOf, legacySeasonMonths, daysLeftIn,
+  SEASON_MONTHS, SEASON_CYCLE, seasonNameForMonth, seasonalityOf, legacySeasonMonths, daysLeftIn, seasonEntryFor,
 } from './season.js';
 
 export { MARKETS };
@@ -82,18 +82,46 @@ export const PRODUCE = RAW.map((it) => ({
 
 export const byId = (id) => PRODUCE.find((p) => p.id === id);
 
-// Recompute seasonality for a market's band and return a shallow copy the
-// components can read `.seasonality` from, so vivid/faded tracks the band.
-export const seasonalityFor = (p, band) => (p ? seasonalityOf(p, TODAY, band) : 'out');
+// `scope` is a market code (preferred: a market answers from its own calendar
+// when it has one, its band's otherwise) or a bare band name (the band
+// answers). Older call sites pass the band and still get the same answer; the
+// two only part once a market other than PT is sourced on its own.
+const scopeOf = (scope) => (MARKETS[scope] ? { band: MARKETS[scope].band, country: scope } : { band: scope, country: null });
+// Recompute seasonality for a market and return a shallow copy the components
+// can read `.seasonality` from, so vivid/faded tracks the market.
+export const seasonalityFor = (p, scope) => {
+  if (!p) return 'out';
+  const { band, country } = scopeOf(scope);
+  return seasonalityOf(p, TODAY, band, country);
+};
 // Days until this item's current window closes, or null for "no answer" —
 // unranged, or ranged and out of season today. Both bands' answers differ, so
 // it belongs here beside seasonality rather than on the base PRODUCE record.
 // It orders the home list and gates the Going soon chip. It is never displayed:
 // most ranges snap to the 1st or 15th, so the number is a sort key, not a
 // measurement (see daysLeftIn in season.js).
-export const daysLeftFor = (p, band) => (p ? daysLeftIn(p, TODAY, band) : null);
-export const decorate = (p, band) =>
-  (p ? { ...p, seasonality: seasonalityFor(p, band), daysLeft: daysLeftFor(p, band) } : p);
+export const daysLeftFor = (p, scope) => {
+  if (!p) return null;
+  const { band, country } = scopeOf(scope);
+  return daysLeftIn(p, TODAY, band, country);
+};
+export const decorate = (p, scope) =>
+  (p ? { ...p, seasonality: seasonalityFor(p, scope), daysLeft: daysLeftFor(p, scope) } : p);
+
+/* ---- where an item's dates come from, for the market being looked at ----
+   kind: 'sourced'   a published calendar for this market (`source` names it)
+         'inherited' another market's dates; `from` says whose (ES/IT/GR read PT)
+         'inferred'  derived from the prose label; no source for this market
+         'label'     no dated ranges at all: the prose season label is all there is
+   The app shows this beside every season claim so an estimate never reads as a
+   measurement. Until a second market is sourced, only PT is ever 'sourced'. */
+export function timingFor(p, country) {
+  const e = p ? seasonEntryFor(p, bandOf(country), country) : null;
+  if (!e) return { kind: 'label', from: null, source: null };
+  if (e.provenance === 'sourced') return { kind: 'sourced', from: e.scope, source: e.source };
+  if (e.inferred_from && MARKETS[e.inferred_from]) return { kind: 'inherited', from: e.inferred_from, source: e.source };
+  return { kind: 'inferred', from: e.inferred_from, source: e.source };
+}
 
 /* ---- markets: ISO country → { country, lang, band } (data/markets.json) ---- */
 const market = (country) => MARKETS[(country || '').toUpperCase()];
