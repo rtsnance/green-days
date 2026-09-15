@@ -6,7 +6,7 @@ import RAW from '../data/produce.json';
 import MARKETS from '../data/markets.json';
 import AFFILIATES from '../data/affiliates.json';
 import {
-  SEASON_MONTHS, SEASON_CYCLE, seasonNameForMonth, seasonalityOf, legacySeasonMonths, daysLeftIn, seasonEntryFor,
+  SEASON_MONTHS, SEASON_CYCLE, seasonNameForMonth, seasonalityOf, legacySeasonMonths, daysLeftIn, seasonEntryFor, nextRangeStart,
 } from './season.js';
 
 export { MARKETS };
@@ -55,6 +55,17 @@ export function nextSeasonMonth(seasonStr, from = MONTH, band) {
 
 export const nextSeasonLabel = (seasonStr, from = MONTH, band) => {
   const m = nextSeasonMonth(seasonStr, from, band);
+  return m == null ? null : MONTH_NAMES[m];
+};
+
+// Range-aware next-window-start for the market being looked at. Reads the
+// market's own dates when it has them, its band's otherwise, then walks
+// forward from today. Returns the 0-indexed month or null; the 46 unranged
+// items and year-round ranges both fall through to the legacy label parser
+// at the call sites, which is the same shape nextSeasonMonth already uses.
+export const nextSeasonStart = (p, country) => (p ? nextRangeStart(p, TODAY, bandOf(country), country) : null);
+export const nextSeasonStartLabel = (p, country) => {
+  const m = nextSeasonStart(p, country);
   return m == null ? null : MONTH_NAMES[m];
 };
 

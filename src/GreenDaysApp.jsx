@@ -7,7 +7,7 @@ import React from 'react';
 import {
   PRODUCE, byId, decorate, MONTH, ASSET,
   langOf, bandOf, countryLabel, COUNTRIES,
-  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, timingFor,
+  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, nextSeasonStartLabel, timingFor,
 } from './produce.js';
 import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator, setMarket, COUNTRY_KEY } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
@@ -112,9 +112,15 @@ function timingNote(p, country) {
   return 'A season label, not dates. Not yet checked against a source for ' + here + '.';
 }
 
-// Honest, data-derived note for an out-of-season item.
+// Honest, data-derived note for an out-of-season item. When the market
+// has dated ranges the "next" month is read from them, so a market that
+// disagrees with the English label (GB after the sourcing pass) stops
+// promising the label's month. Falls back to the label for the 46
+// unranged items and any year-round window.
 function outAdvice(p, country) {
-  return 'Out of season in ' + countryLabel(country) + ' this month — it travels a long way and tastes flatter now. Look for it in ' + (p.season || 'its own season') + '.';
+  const back = nextSeasonStartLabel(p, country);
+  const tail = back ? ('Back in ' + back + '.') : ('Look for it in ' + (p.season || 'its own season') + '.');
+  return 'Out of season in ' + countryLabel(country) + ' this month — it travels a long way and tastes flatter now. ' + tail;
 }
 
 /* ---- Name-forward fallback when an item has no print yet ----
@@ -1111,8 +1117,11 @@ function rememberNotify(id) {
   } catch (_) { /* private mode — the intent event still fired, which is the measurement */ }
 }
 
-function NotifyWhenBack({ p, lang, band }) {
-  const label = nextSeasonLabel(p.season, MONTH, band);
+function NotifyWhenBack({ p, lang, country }) {
+  // Prefer the market's own dates. Falls back to the legacy label parser
+  // for unranged items and year-round windows, so nothing that used to
+  // render a button silently loses one.
+  const label = nextSeasonStartLabel(p, country) || nextSeasonLabel(p.season, MONTH, bandOf(country));
   const [state, setState] = React.useState(() => {
     try { return JSON.parse(localStorage.getItem(NOTIFY_KEY) || '[]').indexOf(p.id) > -1 ? 'saved' : 'idle'; }
     catch (_) { return 'idle'; }
@@ -1192,7 +1201,6 @@ function NotifyWhenBack({ p, lang, band }) {
 
 /* ================= Product detail overlay ================= */
 function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, fieldGuideSlugs }) {
-  const band = bandOf(country);
   const p = decorate(byId(id), country);   // the market's own calendar, when it has one
   React.useEffect(() => {
     if (p) ev('product_view', { detail: p.id, v1: p.seasonality !== 'out' ? 1 : 0 });
@@ -1229,7 +1237,7 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, field
           {p.seasonality !== 'peak' && <SeasonFlag p={p} />}
           <span style={{ fontSize: 13.5, fontWeight: 700, color: out ? 'var(--color-text-secondary)' : 'var(--color-text-accent)' }}>{VITALITY[p.seasonality]}</span>
         </div>
-        <p style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--color-text-primary)', margin: '0 0 6px' }}>{out ? ('Best enjoyed in its season: ' + p.season + '.') : ('In season in ' + countryLabel(country) + ' right now — a good week to buy it. Season: ' + p.season + '.')}</p>
+        <p style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--color-text-primary)', margin: '0 0 6px' }}>{out ? (nextSeasonStartLabel(p, country) ? ('Best enjoyed in its season — back in ' + nextSeasonStartLabel(p, country) + '.') : ('Best enjoyed in its season: ' + p.season + '.')) : ('In season in ' + countryLabel(country) + ' right now — a good week to buy it. Season: ' + p.season + '.')}</p>
         {/* Whose dates these are, right under the claim they qualify. */}
         <p style={{ fontSize: 12.5, lineHeight: 1.5, color: 'var(--color-text-tertiary)', margin: '0 0 20px' }}>{timingNote(p, country)}</p>
 
@@ -1240,7 +1248,7 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, field
               <span style={{ fontWeight: 800, fontSize: 15, color: 'var(--color-paprika)' }}>Better in {p.season}</span>
             </div>
             <div style={{ marginBottom: swap ? 14 : 0 }}><PaprikaTip text={outAdvice(p, country)} /></div>
-            <NotifyWhenBack p={p} lang={lang} band={band} />
+            <NotifyWhenBack p={p} lang={lang} country={country} />
             {swap && (
               <button onClick={() => onOpen(swap.id)} style={{ width: '100%', border: 'none', cursor: 'pointer', padding: 10, borderRadius: 'var(--radius-element)', background: 'var(--color-background-surface)', display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left', fontFamily: 'var(--font-body)', boxShadow: 'var(--shadow-low)' }}>
                 <div style={{ flexShrink: 0 }}><ProduceThumb p={swap} size={40} radius={12} /></div>

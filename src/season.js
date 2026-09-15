@@ -143,6 +143,25 @@ export function daysLeftIn(item, mmdd, band, country) {
   return soonest;
 }
 
+// The 0-indexed month of the next window that opens after `mmdd`, walking
+// forward around the year. null when the item has no ranges for this
+// market/band (the caller falls back to the legacy prose parser), or when
+// `mmdd` is inside a range today — including the all-year case, which is
+// inside every day. Companion to daysLeftIn: same layering, same nulls.
+export function nextRangeStart(item, mmdd, band, country) {
+  const ranges = rangesFor(item, band, country);
+  if (!ranges || !ranges.length) return null;
+  if (inRanges(ranges, mmdd)) return null;
+  const x = doy(mmdd);
+  let bestGap = Infinity, best = null;
+  for (const r of ranges) {
+    const a = doy(r.from);
+    const gap = a >= x ? a - x : a + YEAR - x;
+    if (gap > 0 && gap < bestGap) { bestGap = gap; best = r; }
+  }
+  return best ? Number(best.from.slice(0, 2)) - 1 : null;
+}
+
 export function rangeSeasonalityOf(item, mmdd, band, country) {
   const ranges = rangesFor(item, band, country);
   if (!ranges) return null;

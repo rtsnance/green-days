@@ -1,5 +1,5 @@
 /* node scripts/season.test.mjs — wrap and peak arithmetic. No deps, no runner. */
-import { inRanges, peakRanges, doy, daysLeftIn, seasonEntryFor, rangeSeasonalityOf } from '../src/season.js';
+import { inRanges, peakRanges, doy, daysLeftIn, seasonEntryFor, rangeSeasonalityOf, nextRangeStart } from '../src/season.js';
 const within = (a,b,x) => (a<=b ? x>=a&&x<=b : x>=a||x<=b);
 const inPeak = (r,t) => peakRanges(r).some(([a,b]) => within(a,b,doy(t)));
 let fail = 0;
@@ -94,6 +94,23 @@ t('legacy array provenance',        seasonEntryFor(legacyItem, 'temperate').prov
 t('legacy array no provenance',     seasonEntryFor({ season_ranges: { temperate: plain } }, 'temperate').provenance, 'inferred');
 const loop = { season_ranges: { a: { inherit: 'b' }, b: { inherit: 'a' } } };
 t('inherit loop terminates',        seasonEntryFor(loop, 'a'), null);
+
+/* ---- nextRangeStart: the label seam ---- */
+const ns = (ranges, mmdd) => nextRangeStart(banded(ranges), mmdd, 'temperate');
+// The two the doc names by name.
+t('next wrap Nov→Jan',       ns([{from:'01-01', to:'02-15'}], '11-15'), 0);
+t('next all-year is null',   ns([{from:'01-01', to:'12-31'}], '08-16'), null);
+// Sanity: earliest future `from` around the year, in vs. out.
+t('next plain before',       ns(plain, '07-15'), 7);
+t('next plain in-range',     ns(plain, '08-16'), null);
+t('next plain after',        ns(plain, '10-01'), 7);
+t('next two after both',     ns(two, '11-01'), 2);
+t('next two between',        ns(two, '06-01'), 8);
+t('next wrap-window in',     ns(wrap, '12-20'), null);
+t('next wrap-window before', ns(wrap, '10-01'), 10);
+// No ranges falls through to null; the caller falls back to the label parser.
+t('next unranged item',      nextRangeStart({ season: 'Autumn–spring' }, '09-15', 'temperate'), null);
+t('next other band',         nextRangeStart(banded(plain), '08-16', 'mediterranean'), null);
 
 console.log(fail ? `\n${fail} FAILED` : '\nall pass');
 process.exit(fail ? 1 : 0);
