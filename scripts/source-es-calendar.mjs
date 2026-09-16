@@ -80,7 +80,7 @@
    source we have for those. Resolution is 'month' throughout: the source
    speaks in whole months. */
 import fs from 'node:fs';
-import { rangeSeasonalityOf } from '../src/season.js';
+import { rangesOf, TICKS, measureWrite, fmt } from './_source-calendar-util.mjs';
 
 const FILE = 'data/produce.json';
 const P = JSON.parse(fs.readFileSync(FILE, 'utf8'));
@@ -241,28 +241,10 @@ const SOURCE = {
   h: (name) => `Spanish seasonality, Eroski Consumer "Calendario anual de verduras y hortalizas" (verduras.consumer.es/calendario, read ${READ_ON}); matched on "${name}"; months read from .mes-imagen-activo cells`,
 };
 
-/* ---- months -> ranges (wrap-safe, whole months) ---- */
-const END = ['31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'];
-const mm = (m) => String(m + 1).padStart(2, '0');
-function rangesOf(months) {
-  const on = [...months].map((c) => c !== '.');
-  if (on.every(Boolean)) return [{ from: '01-01', to: '12-31' }];
-  if (!on.some(Boolean)) return [];
-  const out = [];
-  for (let m = 0; m < 12; m++) {
-    if (!on[m] || on[(m + 11) % 12]) continue;
-    let e = m; while (on[(e + 1) % 12]) e = (e + 1) % 12;
-    out.push({ from: `${mm(m)}-01`, to: `${mm(e)}-${END[e]}` });
-  }
-  return out;
-}
-
 /* ---- apply, and measure against what a mediterranean-band session sees today ----
    The "before" baseline is what an ES session sees NOW: sr.mediterranean → inherit
    PT → Portugal's ranges. So the movement number is what a Spanish shopper's stall
    description actually changes by, not just what the calendar entry says. */
-const TICKS = [];
-for (let m = 1; m <= 12; m++) for (const d of ['01', '16']) TICKS.push(`${String(m).padStart(2, '0')}-${d}`);
 let written = 0, unmatched = [], movedItems = 0, movedTicks = 0, totalTicks = 0;
 const report = [];
 // Adjective per inheriting country. Reading through a map (rather than a
@@ -278,15 +260,12 @@ for (const it of P) {
   const months = (src === 'f' ? FRUTAS : HORTALIZAS).get(name);
   if (!months) { console.error(`NO SOURCE ROW for ${it.id}: ${src} "${name}"`); process.exit(1); }
   const ranges = rangesOf(months);
-  const before = TICKS.map((t) => rangeSeasonalityOf(it, t, 'mediterranean', 'ES') || 'label');
-  if (!it.season_ranges) it.season_ranges = {};
-  it.season_ranges.ES = { ranges, provenance: 'sourced', resolution: 'month', source: SOURCE[src](name) };
-  it.season_ranges.IT = { inherit: 'ES', provenance: 'inferred', source: INHERIT_SOURCE('Italy') };
-  it.season_ranges.GR = { inherit: 'ES', provenance: 'inferred', source: INHERIT_SOURCE('Greece') };
-  const after = TICKS.map((t) => rangeSeasonalityOf(it, t, 'mediterranean', 'ES'));
-  const diff = TICKS.filter((_, i) => before[i] !== after[i]).length;
+  const diff = measureWrite(it, 'mediterranean', 'ES', (sr) => {
+    sr.ES = { ranges, provenance: 'sourced', resolution: 'month', source: SOURCE[src](name) };
+    sr.IT = { inherit: 'ES', provenance: 'inferred', source: INHERIT_SOURCE('Italy') };
+    sr.GR = { inherit: 'ES', provenance: 'inferred', source: INHERIT_SOURCE('Greece') };
+  });
   totalTicks += TICKS.length; movedTicks += diff; if (diff) movedItems++;
-  const fmt = (r) => (r.length ? r.map((x) => `${x.from}..${x.to}`).join(',') : '(none)');
   const ptEntry = it.season_ranges.PT;
   const ptRanges = ptEntry ? (Array.isArray(ptEntry) ? ptEntry : ptEntry.ranges) : null;
   report.push(`${it.id.padEnd(26)} ${months}  ES ${fmt(ranges).padEnd(28)} PT ${(ptRanges ? fmt(ptRanges) : '(no PT)').padEnd(28)} ${diff ? diff + ' ticks move' : ''}`);

@@ -5,6 +5,10 @@ cd "$(dirname "$0")/.."
 # the shelf seeds must never duplicate a produce item (cheap, so it goes first)
 node scripts/check-shelf-seeds.mjs
 
+# data-shape invariants on data/produce.json — twin-writes, entry shape.
+# Fails the gate on the kinds of drift no runtime test would catch.
+node scripts/check-season-invariants.mjs
+
 # build so wrangler dev serves the code that's about to ship
 npm run build
 

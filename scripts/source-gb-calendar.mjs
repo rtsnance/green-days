@@ -39,7 +39,7 @@
      blood orange    not BBC "Orange"; its own window, no UK source.
    Resolution is 'month' throughout: both sources speak in whole months. */
 import fs from 'node:fs';
-import { rangeSeasonalityOf } from '../src/season.js';
+import { rangesOf, TICKS, measureWrite, fmt } from './_source-calendar-util.mjs';
 
 const FILE = 'data/produce.json';
 const P = JSON.parse(fs.readFileSync(FILE, 'utf8'));
@@ -207,26 +207,7 @@ const SOURCE = {
   vs: (name) => `UK-grown produce by month, The Vegetarian Society "Seasonal UK Grown Produce" (vegsoc.org, 1 Jan 2022, read ${READ_ON}); matched on "${name}"`,
 };
 
-/* ---- months -> ranges (wrap-safe, whole months) ---- */
-const END = ['31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'];
-const mm = (m) => String(m + 1).padStart(2, '0');
-function rangesOf(months) {
-  const on = [...months].map((c) => c !== '.');
-  if (on.every(Boolean)) return [{ from: '01-01', to: '12-31' }];
-  if (!on.some(Boolean)) return [];
-  // start each run at a month whose predecessor is off, walking the circle
-  const out = [];
-  for (let m = 0; m < 12; m++) {
-    if (!on[m] || on[(m + 11) % 12]) continue;
-    let e = m; while (on[(e + 1) % 12]) e = (e + 1) % 12;
-    out.push({ from: `${mm(m)}-01`, to: `${mm(e)}-${END[e]}` });
-  }
-  return out;
-}
-
 /* ---- apply, and measure against the temperate dates ---- */
-const TICKS = [];
-for (let m = 1; m <= 12; m++) for (const d of ['01', '16']) TICKS.push(`${String(m).padStart(2, '0')}-${d}`);
 let written = 0, unmatched = [], movedItems = 0, movedTicks = 0, totalTicks = 0;
 const report = [];
 for (const it of P) {
@@ -236,13 +217,10 @@ for (const it of P) {
   const months = (src === 'bbc' ? BBC : VS).get(name);
   if (!months) { console.error(`NO SOURCE ROW for ${it.id}: ${src} "${name}"`); process.exit(1); }
   const ranges = rangesOf(months);
-  const before = TICKS.map((t) => rangeSeasonalityOf(it, t, 'temperate', 'GB') || 'label');
-  if (!it.season_ranges) it.season_ranges = {};
-  it.season_ranges.GB = { ranges, provenance: 'sourced', resolution: 'month', source: SOURCE[src](name) };
-  const after = TICKS.map((t) => rangeSeasonalityOf(it, t, 'temperate', 'GB'));
-  const diff = TICKS.filter((_, i) => before[i] !== after[i]).length;
+  const diff = measureWrite(it, 'temperate', 'GB', (sr) => {
+    sr.GB = { ranges, provenance: 'sourced', resolution: 'month', source: SOURCE[src](name) };
+  });
   totalTicks += TICKS.length; movedTicks += diff; if (diff) movedItems++;
-  const fmt = (r) => (r.length ? r.map((x) => `${x.from}..${x.to}`).join(',') : '(none)');
   const tempEntry = it.season_ranges.temperate;
   const tempRanges = tempEntry ? (Array.isArray(tempEntry) ? tempEntry : tempEntry.ranges) : null;
   report.push(`${it.id.padEnd(26)} ${months}  GB ${fmt(ranges).padEnd(28)} temperate ${(tempRanges ? fmt(tempRanges) : '(label only)').padEnd(28)} ${diff ? diff + ' ticks move' : ''}`);
