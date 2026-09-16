@@ -44,7 +44,6 @@ import { rangesOf, TICKS, measureWrite, fmt } from './_source-calendar-util.mjs'
 const FILE = 'data/produce.json';
 const P = JSON.parse(fs.readFileSync(FILE, 'utf8'));
 const WRITE = process.argv.includes('--write');
-const READ_ON = '15 Sep 2026';
 
 /* ---- source 1: BBC Good Food, verbatim (kind|name|JanFebMarAprMayJunJulAugSepOctNovDec) ---- */
 const BBC_ROWS = `fruit|Apple|BB......BBBB
@@ -202,9 +201,12 @@ const MAP = {
   watermelon: ['bbc', 'Watermelon'], pomegranate: ['bbc', 'Pomegranate'], date: ['bbc', 'Date'], chestnut: ['bbc', 'Chestnut'],
 };
 
+// source_id lives in data/sources.json (one publication string per id).
+// matched_on is per-item context: the source's name for the item, and
+// (only for BBC) a note about which cell colours were read as in-season.
 const SOURCE = {
-  bbc: (name) => `UK seasonality, BBC Good Food "Seasonal calendar" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read ${READ_ON}); matched on "${name}"; months marked best or coming`,
-  vs: (name) => `UK-grown produce by month, The Vegetarian Society "Seasonal UK Grown Produce" (vegsoc.org, 1 Jan 2022, read ${READ_ON}); matched on "${name}"`,
+  bbc: { id: 'bbc_good_food_2024', matched: (name) => `${name}; months marked best or coming` },
+  vs: { id: 'vegetarian_society_2022', matched: (name) => name },
 };
 
 /* ---- apply, and measure against the temperate dates ---- */
@@ -217,8 +219,9 @@ for (const it of P) {
   const months = (src === 'bbc' ? BBC : VS).get(name);
   if (!months) { console.error(`NO SOURCE ROW for ${it.id}: ${src} "${name}"`); process.exit(1); }
   const ranges = rangesOf(months);
+  const spec = SOURCE[src];
   const diff = measureWrite(it, 'temperate', 'GB', (sr) => {
-    sr.GB = { ranges, provenance: 'sourced', resolution: 'month', source: SOURCE[src](name) };
+    sr.GB = { ranges, provenance: 'sourced', resolution: 'month', source_id: spec.id, matched_on: spec.matched(name) };
   });
   totalTicks += TICKS.length; movedTicks += diff; if (diff) movedItems++;
   const tempEntry = it.season_ranges.temperate;

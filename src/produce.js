@@ -5,6 +5,7 @@
 import RAW from '../data/produce.json';
 import MARKETS from '../data/markets.json';
 import AFFILIATES from '../data/affiliates.json';
+import SOURCES from '../data/sources.json';
 import {
   SEASON_MONTHS, SEASON_CYCLE, seasonNameForMonth, seasonalityOf, legacySeasonMonths, daysLeftIn, seasonEntryFor, nextRangeStart, rangesFor,
 } from './season.js';
@@ -164,12 +165,26 @@ export const decorate = (p, country) =>
          'label'     no dated ranges at all: the prose season label is all there is
    The app shows this beside every season claim so an estimate never reads as a
    measurement. Until a second market is sourced, only PT is ever 'sourced'. */
+// Compose a full source sentence from the fields on the entry: the shared
+// publication (looked up in data/sources.json by source_id), plus the
+// per-item matched_on, plus the optional source_note. Falls back to a
+// legacy `.source` string if the entry never went through the migration.
+const resolveSource = (e) => {
+  if (e.source_id && SOURCES[e.source_id]) {
+    let out = SOURCES[e.source_id];
+    if (e.matched_on) out += `; matched on ${e.matched_on}`;
+    if (e.source_note) out += ` — ${e.source_note}`;
+    return out;
+  }
+  return e.source || null;
+};
 export function timingFor(p, country) {
   const e = p ? seasonEntryFor(p, bandOf(country), country) : null;
   if (!e) return { kind: 'label', from: null, source: null };
-  if (e.provenance === 'sourced') return { kind: 'sourced', from: e.scope, source: e.source };
-  if (e.inferred_from && MARKETS[e.inferred_from]) return { kind: 'inherited', from: e.inferred_from, source: e.source };
-  return { kind: 'inferred', from: e.inferred_from, source: e.source };
+  const source = resolveSource(e);
+  if (e.provenance === 'sourced') return { kind: 'sourced', from: e.scope, source };
+  if (e.inferred_from && MARKETS[e.inferred_from]) return { kind: 'inherited', from: e.inferred_from, source };
+  return { kind: 'inferred', from: e.inferred_from, source };
 }
 
 /* ---- affiliate delivery partners: ISO country → partner, or null if uncovered ----

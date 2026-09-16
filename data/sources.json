@@ -1,0 +1,13 @@
+{
+  "apn_2021": "Portuguese national seasonality, Alianca contra a Fome e a Ma-nutricao / APN, \"Calendarios de Producao Nacional\", 2021",
+  "continente_2024": "Portuguese national seasonality, Continente feed, \"Fruta e legumes da epoca\", updated 2024-01-25 (retail listing, imports removed by hand)",
+  "deco_proteste_2024": "Portuguese national seasonality, DECO PROteste, \"Fruta e legumes da epoca: calendario anual\", updated 2024-09-24",
+  "bbc_good_food_2024": "UK seasonality, BBC Good Food \"Seasonal calendar\" (bbcgoodfood.com/seasonal-calendar/all, published 25 Sep 2024, read 15 Sep 2026)",
+  "vegetarian_society_2022": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026)",
+  "eroski_frutas_2026": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026)",
+  "eroski_hortalizas_2026": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026)",
+  "med_inherits_pt": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet",
+  "es_applied_to_italy": "Spain's calendar, applied to Italy; no Italian source recorded yet",
+  "es_applied_to_greece": "Spain's calendar, applied to Greece; no Greek source recorded yet",
+  "derived_from_label": "derived from the item's English season label by scripts/derive-season-ranges.mjs; no northern-European source recorded"
+}

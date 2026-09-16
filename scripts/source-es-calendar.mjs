@@ -85,7 +85,6 @@ import { rangesOf, TICKS, measureWrite, fmt } from './_source-calendar-util.mjs'
 const FILE = 'data/produce.json';
 const P = JSON.parse(fs.readFileSync(FILE, 'utf8'));
 const WRITE = process.argv.includes('--write');
-const READ_ON = '15 Sep 2026';
 
 /* ---- source 1: Eroski Consumer, frutas.consumer.es, verbatim ----
    Format: group|name|JanFebMarAprMayJunJulAugSepOctNovDec (B = .mes-imagen-activo, . = .mes-imagen) */
@@ -236,9 +235,13 @@ const MAP = {
   'beefsteak-tomato': ['h', 'Tomate'], 'plum-san-marzano-tomato': ['h', 'Tomate'],
 };
 
+// source_id lives in data/sources.json (one publication string per id).
+// matched_on is per-item context: the source's Spanish name for the item
+// plus the DOM-read note (both Consumer tables encode in-season via the
+// same .mes-imagen-activo class).
 const SOURCE = {
-  f: (name) => `Spanish seasonality, Eroski Consumer "Calendario anual de frutas" (frutas.consumer.es/calendario-frutas, read ${READ_ON}); matched on "${name}"; months read from .mes-imagen-activo cells`,
-  h: (name) => `Spanish seasonality, Eroski Consumer "Calendario anual de verduras y hortalizas" (verduras.consumer.es/calendario, read ${READ_ON}); matched on "${name}"; months read from .mes-imagen-activo cells`,
+  f: { id: 'eroski_frutas_2026', matched: (name) => `${name}; months read from .mes-imagen-activo cells` },
+  h: { id: 'eroski_hortalizas_2026', matched: (name) => `${name}; months read from .mes-imagen-activo cells` },
 };
 
 /* ---- apply, and measure against what a mediterranean-band session sees today ----
@@ -251,8 +254,10 @@ const report = [];
 // two-branch ternary) means a third inheritor added later gets `undefined`
 // and blows up loudly, instead of being silently written as "no Greek
 // source recorded yet".
-const INHERIT_ADJ = { Italy: 'Italian', Greece: 'Greek' };
-const INHERIT_SOURCE = (country) => `Spain's calendar, applied to ${country}; no ${INHERIT_ADJ[country]} source recorded yet`;
+// The two inheritance publications live in data/sources.json under their
+// own ids; a third inheritor added later without a source_id blows up
+// loudly at write time rather than silently borrowing the wrong string.
+const INHERIT_SOURCE_ID = { Italy: 'es_applied_to_italy', Greece: 'es_applied_to_greece' };
 for (const it of P) {
   const m = MAP[it.id];
   if (!m) { unmatched.push(it.id); continue; }
@@ -260,10 +265,11 @@ for (const it of P) {
   const months = (src === 'f' ? FRUTAS : HORTALIZAS).get(name);
   if (!months) { console.error(`NO SOURCE ROW for ${it.id}: ${src} "${name}"`); process.exit(1); }
   const ranges = rangesOf(months);
+  const spec = SOURCE[src];
   const diff = measureWrite(it, 'mediterranean', 'ES', (sr) => {
-    sr.ES = { ranges, provenance: 'sourced', resolution: 'month', source: SOURCE[src](name) };
-    sr.IT = { inherit: 'ES', provenance: 'inferred', source: INHERIT_SOURCE('Italy') };
-    sr.GR = { inherit: 'ES', provenance: 'inferred', source: INHERIT_SOURCE('Greece') };
+    sr.ES = { ranges, provenance: 'sourced', resolution: 'month', source_id: spec.id, matched_on: spec.matched(name) };
+    sr.IT = { inherit: 'ES', provenance: 'inferred', source_id: INHERIT_SOURCE_ID.Italy };
+    sr.GR = { inherit: 'ES', provenance: 'inferred', source_id: INHERIT_SOURCE_ID.Greece };
   });
   totalTicks += TICKS.length; movedTicks += diff; if (diff) movedItems++;
   const ptEntry = it.season_ranges.PT;

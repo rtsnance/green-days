@@ -8,6 +8,7 @@
 import fs from 'node:fs';
 
 const P = JSON.parse(fs.readFileSync('data/produce.json', 'utf8'));
+const SOURCES = JSON.parse(fs.readFileSync('data/sources.json', 'utf8'));
 
 const failures = [];
 
@@ -53,6 +54,21 @@ for (const it of P) {
     }
     if (!('ranges' in e) && !('inherit' in e)) {
       failures.push(`${it.id}: sr.${scope} has neither ranges nor inherit — a typo or a half-write`);
+    }
+  }
+}
+
+/* ---- source_id resolves: every source_id on a scope entry must exist in
+   data/sources.json. Migrating the shared prose out of produce.json only
+   pays off if the ids don't dangle. A typo like `source_id: "bbc_2024"`
+   (missing the `_good_food`) would render an empty source line silently;
+   catch it at the gate. */
+for (const it of P) {
+  const sr = it.season_ranges || {};
+  for (const [scope, e] of Object.entries(sr)) {
+    if (e === null || Array.isArray(e) || typeof e !== 'object') continue;
+    if (e.source_id && !(e.source_id in SOURCES)) {
+      failures.push(`${it.id}: sr.${scope}.source_id "${e.source_id}" is not in data/sources.json`);
     }
   }
 }

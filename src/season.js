@@ -122,11 +122,18 @@ export function seasonEntryFor(item, band, country) {
   }
   if (!e || (!Array.isArray(e) && e.inherit)) return null;   // missing, or a pointer loop
   const own = Array.isArray(e)
-    ? { ranges: e, provenance: item.provenance || 'inferred', resolution: item.resolution || null, source: item.source || null, inferred_from: null }
-    : { ranges: e.ranges || [], provenance: e.provenance || 'inferred', resolution: e.resolution || null, source: e.source || null, inferred_from: e.inferred_from || null };
+    ? { ranges: e, provenance: item.provenance || 'inferred', resolution: item.resolution || null, source: item.source || null, source_id: null, matched_on: null, source_note: null, inferred_from: null }
+    : { ranges: e.ranges || [], provenance: e.provenance || 'inferred', resolution: e.resolution || null, source: e.source || null, source_id: e.source_id || null, matched_on: e.matched_on || null, source_note: e.source_note || null, inferred_from: e.inferred_from || null };
   if (!via) return { ...own, scope };
   // Reached through `inherit`: the dates are `scope`'s, the claim is inferred.
-  return { ...own, scope, provenance: 'inferred', inferred_from: scope, source: via.source || own.source };
+  // The via-entry's source explains WHY (e.g. "Spain's calendar, applied to
+  // Italy"), so it wins over the underlying scope's source across all four
+  // provenance fields.
+  return { ...own, scope, provenance: 'inferred', inferred_from: scope,
+    source: via.source || own.source,
+    source_id: via.source_id || own.source_id,
+    matched_on: via.matched_on || own.matched_on,
+    source_note: via.source_note || own.source_note };
 }
 export const rangesFor = (item, band, country) => { const e = seasonEntryFor(item, band, country); return e ? e.ranges : null; };
 
