@@ -119,6 +119,20 @@ Two layers, both privacy-first (cookieless, no consent banner, no PII, no query 
    - Client: `src/analytics.js` `ev()`/`evOnce()`, `SID` = per-page-load `crypto.randomUUID` (in memory only). Fires the catalog (app_open, onboarding_step, market_selected, prefs_set, search [outcome only], tab_view, product_view, produce_added, offseason_added, fallback_shown, basket_cook, recipe_try_another, grab_one_more_tap, error).
    - Server: `worker/index.js` `track()` + `POST /api/event` (allowlisted, adds country/band from `request.cf.country`) + `recipe_generated` (latency/ok/tokens) from the recipe endpoint.
 
+### Event schema changes
+
+- **2026-09-15 — `notify_intent.extra` step-change.** After Phase A
+  (commit `a48eb6f`), the `extra` field on `notify_intent` shifted from
+  label-derived months (`nextSeasonLabel(p.season, MONTH, band)`) to
+  range-derived months for ranged items in sourced markets. Same
+  `(produce, extra)` join key can emit a different month string across
+  that date — GB cauliflower shifted from `October` to `December`. Every
+  subsequent sourcing pass (Phase B, ES, commit `54a6192`) extends the
+  drift. Follow-up commit `4a64ab0` filtered mid-month `from` values
+  from the copy path, so the field emits only when the walker returns a
+  whole-month answer; older commits emit both. No underlying event was
+  dropped; the join-key distribution moved.
+
 ### Metrics dashboard — `/metrics`
 
 Private, gated by `METRICS_TOKEN` (via `?key=` or HTTP Basic; 401 otherwise). Renders the 8 KPIs from `KPIs_and_Dashboard.md` (activation, onboarding drop-off, recipes/session, try-another, search no-results, top fallback produce, market distribution, engine health). `?days=N` sets the window; `?format=json` returns raw numbers.

@@ -1113,12 +1113,26 @@ const isStandalone = () => {
       || window.navigator.standalone === true;
   } catch (_) { return false; }
 };
-function rememberNotify(id) {
+function rememberNotify(id, label) {
   try {
     const cur = JSON.parse(localStorage.getItem(NOTIFY_KEY) || '[]');
     if (cur.indexOf(id) === -1) { cur.push(id); localStorage.setItem(NOTIFY_KEY, JSON.stringify(cur)); }
+    // Persist the promised month next to the id so the saved-state message
+    // keeps saying what the user was told when they tapped, not whatever the
+    // range walker returns on the next render. Sourcing pass shifts (GB
+    // cauliflower moved from "October" to "December" on 2026-09-15) would
+    // otherwise silently rewrite the promise in place.
+    const labels = JSON.parse(localStorage.getItem(NOTIFY_LABEL_KEY) || '{}');
+    if (label && labels[id] !== label) { labels[id] = label; localStorage.setItem(NOTIFY_LABEL_KEY, JSON.stringify(labels)); }
   } catch (_) { /* private mode — the intent event still fired, which is the measurement */ }
 }
+// The month string a shopper was promised when they tapped this item's
+// notify button. null when never tapped, or when tapped before the label
+// store existed (falls back to the current label at render time).
+const savedNotifyLabel = (id) => {
+  try { return JSON.parse(localStorage.getItem(NOTIFY_LABEL_KEY) || '{}')[id] || null; }
+  catch (_) { return null; }
+};
 
 function NotifyWhenBack({ p, lang, country }) {
   // Prefer the market's own dates. Falls back to the legacy label parser
@@ -1165,7 +1179,7 @@ function NotifyWhenBack({ p, lang, country }) {
     const handle = (result) => {
       if (done) return; done = true;
       ev('notify_permission', { detail: result });
-      if (result === 'granted') { rememberNotify(p.id); confirm(); setState('saved'); }
+      if (result === 'granted') { rememberNotify(p.id, label); confirm(); setState('saved'); }
       else setState('blocked');
     };
     try {
@@ -1176,7 +1190,7 @@ function NotifyWhenBack({ p, lang, country }) {
 
   if (state === 'saved') return (
     <div style={{ marginTop: 12, fontSize: 13.5, fontWeight: 700, color: 'var(--color-text-accent)' }}>
-      Noted. We'll tell you around {label}.
+      Noted. We'll tell you around {savedNotifyLabel(p.id) || label}.
     </div>
   );
   if (state === 'needs-install') return (
@@ -1466,7 +1480,7 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
 
 /* ================= App shell ================= */
 // COUNTRY_KEY lives in analytics.js: the beacon reads the saved market at load.
-const BASKET_KEY = 'gd_basket', HISTORY_KEY = 'gd_recipes', PREFS_KEY = 'gd_prefs', MARKET_ORIGIN_KEY = 'gd_market_origin', ONBOARD_KEY = 'gd_onboarded', LAST_VISIT_KEY = 'gd_last_visit', NOTIFY_KEY = 'gd_notify';
+const BASKET_KEY = 'gd_basket', HISTORY_KEY = 'gd_recipes', PREFS_KEY = 'gd_prefs', MARKET_ORIGIN_KEY = 'gd_market_origin', ONBOARD_KEY = 'gd_onboarded', LAST_VISIT_KEY = 'gd_last_visit', NOTIFY_KEY = 'gd_notify', NOTIFY_LABEL_KEY = 'gd_notify_labels';
 const HRS36 = 36 * 3600 * 1000;
 
 export default function GreenDaysApp() {
