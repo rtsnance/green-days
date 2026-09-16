@@ -94,6 +94,20 @@ t('legacy array provenance',        seasonEntryFor(legacyItem, 'temperate').prov
 t('legacy array no provenance',     seasonEntryFor({ season_ranges: { temperate: plain } }, 'temperate').provenance, 'inferred');
 const loop = { season_ranges: { a: { inherit: 'b' }, b: { inherit: 'a' } } };
 t('inherit loop terminates',        seasonEntryFor(loop, 'a'), null);
+// `sr.IT = {}` (empty object with no ranges and no inherit) used to be read
+// as an authoritative empty entry for Italy — every day of the year out of
+// season, silently. Now falls through to the band.
+const bogus = { season_ranges: { mediterranean: { ranges: plain, provenance: 'sourced', source: 'PT-band' }, IT: {} } };
+t('empty-object scope falls through to band', seasonEntryFor(bogus, 'mediterranean', 'IT')?.scope, 'mediterranean');
+t('empty-object scope keeps band answer',     rangeSeasonalityOf(bogus, '08-16', 'mediterranean', 'IT'), 'in');
+// `null` at a scope key is treated the same way — fall to band.
+const nulled = { season_ranges: { mediterranean: { ranges: plain, provenance: 'sourced', source: 'PT-band' }, IT: null } };
+t('null scope falls through to band',         seasonEntryFor(nulled, 'mediterranean', 'IT')?.scope, 'mediterranean');
+// But `{ ranges: [] }` remains authoritative: the source authored "no local
+// season here" and callers must respect it.
+const empty = { season_ranges: { mediterranean: { ranges: plain, provenance: 'sourced', source: 'PT-band' }, IT: { ranges: [], provenance: 'sourced', source: 'IT-none' } } };
+t('empty-ranges scope stays authoritative',   seasonEntryFor(empty, 'mediterranean', 'IT').scope, 'IT');
+t('empty-ranges scope reads out',             rangeSeasonalityOf(empty, '08-16', 'mediterranean', 'IT'), 'out');
 
 /* ---- nextRangeStart: the label seam ---- */
 const ns = (ranges, mmdd) => nextRangeStart(banded(ranges), mmdd, 'temperate');

@@ -102,10 +102,19 @@ export function peakRanges(ranges) {
    A bare array is the pre-2026-09-15 shape. It still reads, with provenance
    taken from the item-level field and 'inferred' when that is absent, so a
    test fixture or an unmigrated item cannot break anything. */
+// A scope entry is "real" only if it is a bare array (legacy shape), OR an
+// object with a `ranges` key (a per-market calendar, even an authoritative
+// empty one), OR an object with an `inherit` pointer. Anything else — most
+// commonly a `{}` from a half-typed save — is treated as absent so the band
+// takes over. Without this, `sr.IT = {}` reads as "authoritatively empty for
+// Italy" and quietly paints every Italian view of the item out-of-season
+// year-round with no diagnostic.
+const isRealEntry = (e) => Array.isArray(e) || (e != null && (typeof e === 'object') && ('ranges' in e || 'inherit' in e));
+
 export function seasonEntryFor(item, band, country) {
   const sr = item && item.season_ranges;
   if (!sr) return null;
-  const key = country && sr[country] != null ? country : band;
+  const key = country && isRealEntry(sr[country]) ? country : band;
   let e = sr[key], scope = key, hops = 0, via = null;
   while (e && !Array.isArray(e) && e.inherit && hops++ < 4) {
     via = via || e;                   // the entry that pointed away, for its source text

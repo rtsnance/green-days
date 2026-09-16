@@ -58,6 +58,21 @@ export const nextSeasonLabel = (seasonStr, from = MONTH, band) => {
   return m == null ? null : MONTH_NAMES[m];
 };
 
+/* ---- markets: ISO country → { country, lang, band } (data/markets.json) ---- */
+// Declared here (above the seasonality helpers below) so `nextSeasonStart` and
+// `hasLocalSeasonFor` — arrow-const exports that read `bandOf` at call time —
+// never enter the temporal dead zone at module load. Anything added between
+// this block and their call sites can safely reference `bandOf`.
+const market = (country) => MARKETS[(country || '').toUpperCase()];
+// name_local key for the market's language; 'en' (UK/IE) and any missing key
+// fall back to name_en (a single line) in the name components.
+export const langOf = (country) => (market(country) || {}).lang || 'en';
+// climate band drives the recipe banner and the vivid/faded treatment.
+export const bandOf = (country) => (market(country) || {}).band || 'temperate';
+// The correctable market list for the picker (14 countries).
+export const COUNTRIES = Object.entries(MARKETS).map(([code, m]) => [code, m.country]);
+export const countryLabel = (code) => (market(code) || {}).country || code || 'Europe';
+
 // Range-aware next-window-start for the market being looked at. Reads the
 // market's own dates when it has them, its band's otherwise, then walks
 // forward from today. Returns the 0-indexed month or null; the 46 unranged
@@ -150,17 +165,6 @@ export function timingFor(p, country) {
   if (e.inferred_from && MARKETS[e.inferred_from]) return { kind: 'inherited', from: e.inferred_from, source: e.source };
   return { kind: 'inferred', from: e.inferred_from, source: e.source };
 }
-
-/* ---- markets: ISO country → { country, lang, band } (data/markets.json) ---- */
-const market = (country) => MARKETS[(country || '').toUpperCase()];
-// name_local key for the market's language; 'en' (UK/IE) and any missing key
-// fall back to name_en (a single line) in the name components.
-export const langOf = (country) => (market(country) || {}).lang || 'en';
-// climate band drives the recipe banner and the vivid/faded treatment.
-export const bandOf = (country) => (market(country) || {}).band || 'temperate';
-// The correctable market list for the picker (14 countries).
-export const COUNTRIES = Object.entries(MARKETS).map(([code, m]) => [code, m.country]);
-export const countryLabel = (code) => (market(code) || {}).country || code || 'Europe';
 
 /* ---- affiliate delivery partners: ISO country → partner, or null if uncovered ----
    Countries absent from data/affiliates.json get no CTA — that is the gating.

@@ -8,10 +8,14 @@ import fs from 'node:fs';
 import { legacySeasonalityOf, rangeSeasonalityOf, rangesFor } from '../src/season.js';
 
 const P = JSON.parse(fs.readFileSync('data/produce.json', 'utf8'));
+const MARKETS = JSON.parse(fs.readFileSync('data/markets.json', 'utf8'));
 // Scopes, not bands: PT is its own calendar (the mediterranean band inherits
 // it), so it is read on its own. A newly sourced market is one more entry here.
 const SCOPES = ['PT', 'ES', 'GB', 'mediterranean', 'temperate'];
-const legacyBand = (scope) => (scope === 'PT' ? 'mediterranean' : scope === 'ES' ? 'mediterranean' : scope === 'GB' ? 'temperate' : scope);
+// A market scope reads through the label parser as its climate band; a bare
+// band scope IS its band. Reading MARKETS keeps this in sync with the shared
+// truth — one place per new sourced market instead of two parallel lists.
+const legacyBand = (scope) => MARKETS[scope]?.band ?? scope;
 const TICKS = [];
 for (let m = 1; m <= 12; m++) for (const d of ['01', '16']) TICKS.push(`${String(m).padStart(2,'0')}-${d}`);
 

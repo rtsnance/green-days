@@ -265,7 +265,12 @@ const TICKS = [];
 for (let m = 1; m <= 12; m++) for (const d of ['01', '16']) TICKS.push(`${String(m).padStart(2, '0')}-${d}`);
 let written = 0, unmatched = [], movedItems = 0, movedTicks = 0, totalTicks = 0;
 const report = [];
-const INHERIT_SOURCE = (country) => `Spain's calendar, applied to ${country}; no ${country === 'Italy' ? 'Italian' : 'Greek'} source recorded yet`;
+// Adjective per inheriting country. Reading through a map (rather than a
+// two-branch ternary) means a third inheritor added later gets `undefined`
+// and blows up loudly, instead of being silently written as "no Greek
+// source recorded yet".
+const INHERIT_ADJ = { Italy: 'Italian', Greece: 'Greek' };
+const INHERIT_SOURCE = (country) => `Spain's calendar, applied to ${country}; no ${INHERIT_ADJ[country]} source recorded yet`;
 for (const it of P) {
   const m = MAP[it.id];
   if (!m) { unmatched.push(it.id); continue; }
