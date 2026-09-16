@@ -295,11 +295,10 @@ function HomeScreen({ basket, lang, country, outOfMarket, onSetCountry, query, s
   // Search overrides categories: while a term is active the tabs snap to All
   // and the whole catalogue is searched (across every language, via matchesQuery).
   const activeCat = searching ? 'All' : cat;
-  const band = bandOf(country); // vivid/faded per the market's climate band
   const list = PRODUCE
     .filter((p) => searching || activeCat === 'All' || p.tab === activeCat || (activeCat === 'Herbs' && p.tab === 'Herb'))
     .filter((p) => matchesQuery(p, q))
-    .map((p) => decorate(p, band))
+    .map((p) => decorate(p, country))
     .sort((a, b) => SEASON_RANK[a.seasonality] - SEASON_RANK[b.seasonality]
       || byDaysLeft(a, b)
       || a.name.localeCompare(b.name));
@@ -507,7 +506,7 @@ function KitchenShelf({ declared, prefs, basket, lang, country, onDeclare, onUnd
     if (!t) return;
     // Produce belongs in the basket. Decline it here and point back there.
     const hit = matchProduce(t, PRODUCE);
-    if (hit) { setProduceHit(decorate(hit, bandOf(country))); return; }
+    if (hit) { setProduceHit(decorate(hit, country)); return; }
     onDeclare(t);
     setDraft('');
   };
@@ -600,8 +599,7 @@ function KitchenShelf({ declared, prefs, basket, lang, country, onDeclare, onUnd
 
 /* ================= Basket ================= */
 function ListScreen({ basket, checked, lang, country, prefs, declared, onDeclare, onUndeclare, onAdd, onRemove, onToggle, onOpen, onCook }) {
-  const band = bandOf(country);
-  const items = PRODUCE.filter((p) => basket[p.id] > 0).map((p) => decorate(p, band));
+  const items = PRODUCE.filter((p) => basket[p.id] > 0).map((p) => decorate(p, country));
   const doneCount = items.filter((p) => checked[p.id]).length;
   const outItems = items.filter((p) => p.seasonality === 'out');
 
@@ -720,7 +718,6 @@ function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, o
   // Names, banner, and seasonality follow the market the recipe was cooked in.
   const rc = entry ? entry.country : 'PT';
   const lang = langOf(rc);
-  const band = bandOf(rc);
   const affiliate = affiliatePartnerOf(rc);
   const banner = seasonBannerSrc(rc, entry ? entry.month0 : MONTH);
   const r = entry && entry.recipe;
@@ -730,10 +727,10 @@ function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, o
     <div style={{ fontSize: 12, ...MONO, color: accent ? 'var(--color-text-accent)' : 'var(--color-text-tertiary)', margin: '0 0 10px', display: 'flex', alignItems: 'center', gap: 6 }}>{text}</div>
   );
 
-  const stars = r ? r.stars.map((id) => decorate(byId(id), band)).filter(Boolean) : [];
+  const stars = r ? r.stars.map((id) => decorate(byId(id), rc)).filter(Boolean) : [];
   // Anticipatory stars while loading: the shopper's own basket, no model call
   // in the path, so it's safe to paint the instant the "Cook this" tap lands.
-  const shellStars = status === 'loading' ? (view.shellIds || []).map((id) => decorate(byId(id), band)).filter(Boolean) : [];
+  const shellStars = status === 'loading' ? (view.shellIds || []).map((id) => decorate(byId(id), rc)).filter(Boolean) : [];
   // Three ingredient registers: basket produce (dominant), counter buys such as
   // a protein from the butcher or fishmonger (a real buy, but not the star), and
   // assumed pantry (tertiary chips). Older recipes carry only the pantry
@@ -746,12 +743,12 @@ function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, o
   const counter = r ? r.ingredients.filter((i) => registerOf(i) === 'counter') : [];
   const pantry = r ? r.ingredients.filter((i) => registerOf(i) === 'pantry') : [];
   const grabTerm = r && r.grabOneMore ? String(r.grabOneMore).trim() : '';
-  const oneMore = grabTerm ? decorate(resolveSuggestion(grabTerm), band) : null;
+  const oneMore = grabTerm ? decorate(resolveSuggestion(grabTerm), rc) : null;
 
   // Match a fresh-ingredient line back to a produce print where possible.
   const freshProduce = (item) => {
     const t = stripDia(item);
-    return decorate(stars.find((p) => t.includes(stripDia(p.name))) || PRODUCE.find((p) => t.includes(stripDia(p.name))), band);
+    return decorate(stars.find((p) => t.includes(stripDia(p.name))) || PRODUCE.find((p) => t.includes(stripDia(p.name))), rc);
   };
 
   return (
@@ -1711,7 +1708,7 @@ export default function GreenDaysApp() {
 
   const add = (id, n) => {
     setBasket((b) => ({ ...b, [id]: (b[id] || 0) + n }));
-    const p = decorate(byId(id), bandOf(country));
+    const p = decorate(byId(id), country);
     if (p) {
       ev('produce_added', { detail: id, extra: (p.tab || '').toLowerCase(), v1: p.seasonality !== 'out' ? 1 : 0 });
       if (p.seasonality === 'out') ev('offseason_added', { detail: id });

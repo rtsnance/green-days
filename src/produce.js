@@ -125,16 +125,22 @@ export const PRODUCE = RAW.map((it) => ({
 
 export const byId = (id) => PRODUCE.find((p) => p.id === id);
 
-// `scope` is a market code (preferred: a market answers from its own calendar
-// when it has one, its band's otherwise) or a bare band name (the band
-// answers). Older call sites pass the band and still get the same answer; the
-// two only part once a market other than PT is sourced on its own.
-const scopeOf = (scope) => (MARKETS[scope] ? { band: MARKETS[scope].band, country: scope } : { band: scope, country: null });
+// Country-only, on purpose. The earlier signature forgave a bare band name
+// and quietly returned `country: null`, which is how Home, Basket and the
+// recipe screen kept answering from Portugal after ES/IT/GR/GB got their
+// own calendars — the whole point of Phase B never reached those surfaces.
+// Rejecting a band here means any accidental band-pass surfaces loudly at
+// the seam instead of silently under-serving 74 items on Home.
+const scopeOf = (country) => {
+  const m = MARKETS[country];
+  if (!m) throw new Error(`decorate/seasonalityFor requires a market code (got ${JSON.stringify(country)}). Pass the country you were rendering for, not bandOf(country).`);
+  return { band: m.band, country };
+};
 // Recompute seasonality for a market and return a shallow copy the components
 // can read `.seasonality` from, so vivid/faded tracks the market.
-export const seasonalityFor = (p, scope) => {
+export const seasonalityFor = (p, country) => {
   if (!p) return 'out';
-  const { band, country } = scopeOf(scope);
+  const { band } = scopeOf(country);
   return seasonalityOf(p, TODAY, band, country);
 };
 // Days until this item's current window closes, or null for "no answer" —
@@ -143,13 +149,13 @@ export const seasonalityFor = (p, scope) => {
 // It orders the home list and gates the Going soon chip. It is never displayed:
 // most ranges snap to the 1st or 15th, so the number is a sort key, not a
 // measurement (see daysLeftIn in season.js).
-export const daysLeftFor = (p, scope) => {
+export const daysLeftFor = (p, country) => {
   if (!p) return null;
-  const { band, country } = scopeOf(scope);
+  const { band } = scopeOf(country);
   return daysLeftIn(p, TODAY, band, country);
 };
-export const decorate = (p, scope) =>
-  (p ? { ...p, seasonality: seasonalityFor(p, scope), daysLeft: daysLeftFor(p, scope) } : p);
+export const decorate = (p, country) =>
+  (p ? { ...p, seasonality: seasonalityFor(p, country), daysLeft: daysLeftFor(p, country) } : p);
 
 /* ---- where an item's dates come from, for the market being looked at ----
    kind: 'sourced'   a published calendar for this market (`source` names it)
