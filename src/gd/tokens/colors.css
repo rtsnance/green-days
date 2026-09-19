@@ -28,6 +28,7 @@
   --color-accent-hover: #4a9276;
   --color-accent-strong: #42917c;
   --color-accent-muted: #529d7f22;
+  --color-accent-deep: #2e7d63;          /* chips with white text: 4.96:1, passes AA */
   --color-on-accent: #ffffff;
 
   /* ---- Neutral / overlays ---- */

@@ -76,7 +76,8 @@ function inkStyle(p) {
     maskSize: 'cover', WebkitMaskSize: 'cover',
     maskComposite: 'intersect', WebkitMaskComposite: 'source-in',
   };
-  if (p.seasonality === 'peak') return { filter: 'saturate(1.12) contrast(1.03)' };
+  // No filter on peak. saturate+contrast pushed the print's baked-in cream paper
+  // (#fcf8ee) to #fffff2, so peak prints showed as a pale box on the card.
   return { filter: 'none' };
 }
 function PaprikaTip({ text, style }) {
@@ -84,7 +85,6 @@ function PaprikaTip({ text, style }) {
 }
 function thumbStyle(p) {
   if (p.seasonality === 'out') return { background: OFF_SEASON.thumbBg, filter: OFF_SEASON.filter };
-  if (p.seasonality === 'peak') return { filter: 'saturate(1.12) contrast(1.03)' };
   return { filter: 'none' };
 }
 
@@ -205,7 +205,7 @@ function Icon({ d, size = 22, w = 2, style, filled }) {
 function SeasonFlag({ p }) {
   if (p.seasonality === 'peak') {
     return (
-      <span className="gd-badge" style={{ ...MONO, fontSize: 10.5, height: 22, paddingInline: 8, gap: 4, background: 'var(--color-accent)', color: '#fff', boxShadow: 'var(--shadow-low)' }}>
+      <span className="gd-badge" style={{ ...MONO, fontSize: 10.5, height: 22, paddingInline: 8, gap: 4, background: 'var(--color-accent-deep)', color: '#fff', boxShadow: 'var(--shadow-low)' }}>
         <Icon d={I.leaf} size={11} w={2.6} /> Peak now
       </span>
     );
@@ -225,13 +225,13 @@ function SeasonFlag({ p }) {
    days is what frees the slot for the thing that is about to leave.
    The chip never carries the day count — see GOING_SOON_DAYS. ---- */
 const CHIP = {
-  position: 'absolute', top: 8, left: 8, fontFamily: 'var(--font-mono)', fontWeight: 700,
+  display: 'inline-block', lineHeight: '14px', fontFamily: 'var(--font-mono)', fontWeight: 700,
   fontSize: 9.5, letterSpacing: '0.06em', borderRadius: 999, padding: '3px 8px', pointerEvents: 'none',
 };
 
 function CornerChip({ p }) {
   if (p.seasonality === 'peak') {
-    return <span style={{ ...CHIP, color: 'var(--color-on-accent)', background: 'var(--color-accent)' }}>PEAK SEASON</span>;
+    return <span style={{ ...CHIP, color: 'var(--color-on-accent)', background: 'var(--color-accent-deep)' }}>PEAK SEASON</span>;
   }
   if (isGoingSoon(p)) {
     return <span style={{ ...CHIP, color: 'var(--color-on-warning)', background: 'var(--color-warning)' }}>GOING SOON</span>;
@@ -451,10 +451,13 @@ function HomeScreen({ basket, lang, country, outOfMarket, onSetCountry, query, s
           return (
             <div key={p.id} onClick={() => onOpen(p.id)}
               style={{ position: 'relative', cursor: 'pointer', background: 'var(--color-background-body)', border: '1px solid #d9cfbe', borderRadius: 0, overflow: 'hidden', boxShadow: '0 1px 2px #1f36610d' }}>
-              {/* Print fills the card width; its own cream margin is the padding. Height trimmed so the name block always fits. */}
-              <div style={{ position: 'relative', width: '100%', aspectRatio: '1 / 0.92', ...thumbStyle(p) }}>
-                <ProduceImg p={p} style={inkStyle(p)} />
+              {/* Chip sits in its own row above the print, never on the artwork.
+                  The row is reserved on every card so prints line up across the grid. */}
+              <div style={{ height: 20, padding: '10px 12px 0', boxSizing: 'content-box' }}>
                 <CornerChip p={p} />
+              </div>
+              <div style={{ position: 'relative', margin: '6px 12px 0', aspectRatio: '1 / 0.86', ...thumbStyle(p) }}>
+                <ProduceImg p={p} style={inkStyle(p)} />
               </div>
               {/* Bilingual name strip; room at right for the Add button */}
               <div style={{ padding: '10px 52px 12px 12px' }}>
@@ -786,9 +789,9 @@ function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, o
           {shellStars.length > 0 && (
             <div>
               {label(<span><Icon d={I.leaf} size={13} w={2.4} /> Your stars · the heart of the dish</span>, true)}
-              <div className="gd-card" style={{ background: 'var(--color-background-accent-subtle)', padding: 10, display: 'flex', flexDirection: 'column', gap: 8, border: '1px solid var(--color-border-accent)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {shellStars.map((p) => (
-                  <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 14, background: 'var(--color-background-surface)', borderRadius: 14, padding: 10, boxShadow: 'var(--shadow-low)' }}>
+                  <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 14, background: 'var(--color-background-body)', borderRadius: 14, padding: 10, border: '1px solid #d9cfbe' }}>
                     <ProduceThumb p={p} size={54} radius={14} />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <ProduceName p={p} lang={lang} size={17} />
@@ -890,9 +893,9 @@ function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, o
           {stars.length > 0 && (
             <div>
               {label(<span><Icon d={I.leaf} size={13} w={2.4} /> Your stars · the heart of the dish</span>, true)}
-              <div className="gd-card" style={{ background: 'var(--color-background-accent-subtle)', padding: 10, display: 'flex', flexDirection: 'column', gap: 8, border: '1px solid var(--color-border-accent)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {stars.map((p) => (
-                  <div key={p.id} onClick={() => onOpen(p.id)} style={{ display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer', background: 'var(--color-background-surface)', borderRadius: 14, padding: 10, boxShadow: 'var(--shadow-low)' }}>
+                  <div key={p.id} onClick={() => onOpen(p.id)} style={{ display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer', background: 'var(--color-background-body)', borderRadius: 14, padding: 10, border: '1px solid #d9cfbe' }}>
                     <ProduceThumb p={p} size={54} radius={14} />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <ProduceName p={p} lang={lang} size={17} />
