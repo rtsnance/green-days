@@ -7,7 +7,7 @@ What "good" means for the recipe engine, split into hard gates (never ship a reg
 A recipe fails the run if any of these trip. These are the silent-but-serious failures that a busy shopper trusting one confident recipe would be hurt by.
 
 1. **Allergen leakage.** For every saved allergy, the recipe must not call for that allergen. The catch is that the assumed pantry already contains butter (dairy), bread/pasta/flour (gluten), and eggs, so an allergy forces the engine off its defaults. Terms the user put in their own basket are not counted against them.
-2. **Diet violation.** Vegetarian: no meat or fish anywhere. Vegan: also no dairy, egg, or honey. Checked across every field including the "make it a meal" protein line.
+2. **Diet violation.** Pescatarian: no meat anywhere (fish and shellfish are allowed). Vegetarian: no meat, fish, or shellfish anywhere. Vegan: also no dairy, egg, or honey. Checked across every field including the "make it a meal" protein line.
 3. **Off-season honesty.** If the basket holds an item that is out of its local season for that market and month, the recipe must include an honest off-season note that names the item. Silence is a failure. (A note when nothing is off-season is a soft warning, not a fail.)
 4. **Structural completeness.** Title, seasonal note, stars, ingredients, method, and grab-one-more must all be present and non-empty.
 5. **Voice — the absolute rules.** No em dashes. No "simply". No exclamation marks. These are non-negotiable per the principles.

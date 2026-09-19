@@ -1320,7 +1320,7 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, field
 }
 
 /* ================= One-time preferences ================= */
-const DIETS = [['none', 'No limits'], ['vegetarian', 'Vegetarian'], ['vegan', 'Vegan']];
+const DIETS = [['none', 'No limits'], ['pescatarian', 'Pescatarian'], ['vegetarian', 'Vegetarian'], ['vegan', 'Vegan']];
 const ALLERGIES = ['Nuts', 'Dairy', 'Gluten', 'Eggs', 'Shellfish', 'Soy'];
 
 /* ================= First-run onboarding walkthrough =================

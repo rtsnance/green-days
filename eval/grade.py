@@ -208,6 +208,10 @@ def lint(recipe, req, produce):
         found = [t for t in _hits(shell_scan, MEAT+FISH+ALLERGEN["Shellfish"]) if not _wl(t)]
         if found:
             hard.append(f"DIET[{diet}]: animal terms present: {found}")
+    elif diet == "pescatarian":
+        found = [t for t in _hits(blob, MEAT) if not _wl(t)]
+        if found:
+            hard.append(f"DIET[pescatarian]: meat terms present: {found}")
     if diet == "vegan":
         found = [t for t in _hits(dairy_scan, DAIRY) if not _wl(t)] \
               + [t for t in _hits(blob, EGG + ["honey"]) if not _wl(t)]

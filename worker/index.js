@@ -16,7 +16,7 @@ import { withSecurityHeaders } from './headers.js';
 import { seasonalityOf, SEASON_MONTHS } from '../src/season.js';
 
 const BY_ID = new Map(PRODUCE.map((p) => [p.id, p]));
-const DIETS = new Set(['none', 'vegetarian', 'vegan']);
+const DIETS = new Set(['none', 'pescatarian', 'vegetarian', 'vegan']);
 const ALLERGIES = new Set(['nuts', 'dairy', 'gluten', 'eggs', 'shellfish', 'soy']);
 
 // Country → { country, lang, band } from markets.json (same source as the app).
@@ -480,8 +480,10 @@ function auditRecipe(recipe, prefs, basketNames = []) {
   const out = [];
   const push = (tag, hits) => hits.filter((t) => !basketNames.some((n) => n.includes(t))).forEach((t) => out.push(`${tag}:${t}`));
 
-  if (prefs.diet === 'vegan' || prefs.diet === 'vegetarian') {
+  if (prefs.diet === 'vegan' || prefs.diet === 'vegetarian' || prefs.diet === 'pescatarian') {
     push('diet-meat', termHits(text, MEAT));
+  }
+  if (prefs.diet === 'vegan' || prefs.diet === 'vegetarian') {
     push('diet-fish', termHits(shellText, FISH.concat(SHELLFISH)));
   }
   if (prefs.diet === 'vegan') {
@@ -569,12 +571,12 @@ function mockRecipe(basketItems, inSeasonIds, avoid, prefs = { diet: 'none', all
   // Honor diet/allergy silently, same contract as the real engine.
   const allergies = new Set(prefs.allergies || []);
   const candidates = [
-    { text: 'a soft-boiled egg', vegan: false, vegetarian: true, allergen: 'eggs' },
-    { text: 'grilled sardines', vegan: false, vegetarian: false, allergen: null },
-    { text: 'a spoon of chickpeas', vegan: true, vegetarian: true, allergen: null },
+    { text: 'a soft-boiled egg', vegan: false, vegetarian: true, pescatarian: true, allergen: 'eggs' },
+    { text: 'grilled sardines', vegan: false, vegetarian: false, pescatarian: true, allergen: null },
+    { text: 'a spoon of chickpeas', vegan: true, vegetarian: true, pescatarian: true, allergen: null },
   ];
   const protein = candidates
-    .filter((p) => (prefs.diet === 'vegan' ? p.vegan : prefs.diet === 'vegetarian' ? p.vegetarian : true))
+    .filter((p) => (prefs.diet === 'vegan' ? p.vegan : prefs.diet === 'vegetarian' ? p.vegetarian : prefs.diet === 'pescatarian' ? p.pescatarian : true))
     .filter((p) => !(p.allergen && allergies.has(p.allergen)))
     .slice(0, 2)
     .map((p) => p.text);

@@ -4,9 +4,10 @@
    the only thing the basket takes, and nothing here may also be produce. */
 
 export const SHELF_SEEDS = {
-  none:       ['Chicken', 'Eggs', 'Fish'],
-  vegetarian: ['Eggs', 'Cheese', 'Chickpeas'],
-  vegan:      ['Chickpeas', 'Lentils', 'Tofu'],
+  none:         ['Chicken', 'Eggs', 'Fish'],
+  pescatarian:  ['Fish', 'Eggs', 'Chickpeas'],
+  vegetarian:   ['Eggs', 'Cheese', 'Chickpeas'],
+  vegan:        ['Chickpeas', 'Lentils', 'Tofu'],
 };
 export const MAX_WITH = 3;
 export const MAX_WITH_LEN = 80;

@@ -480,6 +480,32 @@
       }
     },
     {
+      "id": "pesc-fennel-orange",
+      "intent": "Pescatarian: fish OK, meat forbidden. Portuguese winter basket that invites sardines or mackerel.",
+      "tags": [
+        "diet",
+        "pescatarian"
+      ],
+      "request": {
+        "basket": [
+          "fennel",
+          "orange"
+        ],
+        "country": "PT",
+        "month": 1,
+        "prefs": {
+          "diet": "pescatarian",
+          "allergies": []
+        },
+        "avoid": []
+      },
+      "expect": {
+        "band": "mediterranean",
+        "off_season_items": [],
+        "must_flag_off_season": false
+      }
+    },
+    {
       "id": "gluten-tomato",
       "intent": "Dairy/gluten trap: tomatoes usually on TOAST; gluten allergy",
       "tags": [
