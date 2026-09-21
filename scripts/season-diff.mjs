@@ -11,7 +11,7 @@ const P = JSON.parse(fs.readFileSync('data/produce.json', 'utf8'));
 const MARKETS = JSON.parse(fs.readFileSync('data/markets.json', 'utf8'));
 // Scopes, not bands: PT is its own calendar (the mediterranean band inherits
 // it), so it is read on its own. A newly sourced market is one more entry here.
-const SCOPES = ['PT', 'ES', 'GB', 'mediterranean', 'temperate'];
+const SCOPES = ['PT', 'ES', 'GB', 'FR', 'BE', 'NL', 'CH', 'AT', 'IE', 'DK', 'SE', 'mediterranean', 'temperate'];
 // A market scope reads through the label parser as its climate band; a bare
 // band scope IS its band. Reading MARKETS keeps this in sync with the shared
 // truth — one place per new sourced market instead of two parallel lists.
