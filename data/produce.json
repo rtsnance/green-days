@@ -87,6 +87,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Tomate; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -176,6 +188,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Tomate; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -265,6 +289,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Tomate; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -354,6 +390,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Tomate; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -498,6 +546,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Aubergine; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -587,6 +647,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Courgette; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -746,6 +818,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Concombre; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -835,6 +919,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Poivron; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -1069,6 +1165,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Oignon; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "stored"
@@ -1158,6 +1266,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Oignon; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -1183,7 +1303,21 @@
       "el": "Ασκαλώνιο",
       "sv": "Schalottenlök"
     },
-    "selection": "Firm and dry with intact skin, no sprouting from the tip. Heavy for its size is best."
+    "selection": "Firm and dry with intact skin, no sprouting from the tip. Heavy for its size is best.",
+    "season_ranges": {
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Échalote; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      }
+    }
   },
   {
     "id": "spring-onion",
@@ -1310,6 +1444,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Poireau; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -1399,6 +1545,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Ail; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "stored"
@@ -1676,6 +1834,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Betterave; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -1768,6 +1938,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Betterave; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -1857,6 +2039,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Radis; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -1946,6 +2140,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Radis; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -2090,6 +2296,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Navet; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -2165,6 +2383,18 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Parsnip; months marked best or coming"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Panais; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     }
   },
@@ -2424,6 +2654,18 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Jerusalem artichoke; months marked best or coming"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Topinambour; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -2573,6 +2815,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Chou; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -2640,6 +2894,18 @@
         "resolution": "month",
         "source_id": "vegetarian_society_2022",
         "matched_on": "Savoy Cabbage"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Chou; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -2707,6 +2973,18 @@
         "resolution": "month",
         "source_id": "vegetarian_society_2022",
         "matched_on": "Sweetheart Cabbage"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Chou; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -2774,6 +3052,18 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Spring greens; months marked best or coming"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Chou; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -2841,6 +3131,18 @@
         "resolution": "month",
         "source_id": "vegetarian_society_2022",
         "matched_on": "Red Cabbage"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Chou; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -2930,6 +3232,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Chou-fleur; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -3074,6 +3388,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Brocoli; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -3230,6 +3556,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Brocoli; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -3290,6 +3628,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Chou de Bruxelles; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     }
   },
@@ -3552,6 +3902,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Blette; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -3641,6 +4003,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Épinard; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -3767,6 +4141,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Laitue; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -3856,6 +4242,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Laitue; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -3945,6 +4343,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Laitue; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -4166,6 +4576,18 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Lamb's lettuce; months marked best or coming"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Mâche; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     }
   },
@@ -4225,6 +4647,22 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "04-30"
+          },
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Fenouil; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     }
   },
@@ -4284,6 +4722,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Céleri; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     }
   },
@@ -4375,6 +4825,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Asperge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -4446,6 +4908,18 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Rhubarb; months marked best or coming"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Rhubarbe; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local",
@@ -4536,6 +5010,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Artichaut; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -4743,6 +5229,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Potiron; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local",
@@ -4833,6 +5331,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Courge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -4922,6 +5432,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Courge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -5011,6 +5533,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Courge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -5100,6 +5634,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Courge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -5189,6 +5735,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Courge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -5278,6 +5836,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Haricot vert (cru); months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -5502,6 +6072,18 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Peas; months marked best or coming"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Petit pois; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -5726,6 +6308,18 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Sweetcorn; months marked best or coming"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Maïs; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -6499,6 +7093,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Pomme; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "stored"
@@ -6589,6 +7195,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Pomme; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -6678,6 +7296,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Poire; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -6767,6 +7397,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Poire; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -6856,6 +7498,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Coing; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -7007,6 +7661,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Prune; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local",
@@ -7148,6 +7814,18 @@
         "resolution": "month",
         "source_id": "vegetarian_society_2022",
         "matched_on": "Greengages"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Reine claude; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local",
@@ -7245,6 +7923,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Cerise; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local",
@@ -7336,6 +8026,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Pêche; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -7426,6 +8128,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Nectarine; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -7523,6 +8237,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Abricot; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local",
@@ -7614,6 +8340,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Figue; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -7696,6 +8434,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Raisin; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local",
@@ -7782,6 +8532,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Raisin; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local",
@@ -7872,6 +8634,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Fraise; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -7961,6 +8735,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Framboise; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -8050,6 +8836,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Mûre; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -8140,6 +8938,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Myrtille; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -8200,6 +9010,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Groseille; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     }
   },
@@ -8237,6 +9059,18 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Blackcurrants; months marked best or coming"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Cassis; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     }
   },
@@ -8384,6 +9218,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Citron; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -8520,6 +9366,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Orange; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local",
@@ -8653,6 +9511,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Clémentine; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -8734,6 +9604,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "02-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Pamplemousse; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -8815,6 +9697,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Melon; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local",
@@ -8906,6 +9800,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Pastèque; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -8984,6 +9890,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Melon; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -9143,6 +10061,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Kaki; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"
@@ -9218,6 +10148,18 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "FR": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ademe_impactco2_2026",
+        "matched_on": "Kiwi; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
       }
     },
     "availability": "local"

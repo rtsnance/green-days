@@ -6,6 +6,7 @@
   "vegetarian_society_2022": "UK-grown produce by month, The Vegetarian Society \"Seasonal UK Grown Produce\" (vegsoc.org, 1 Jan 2022, read 15 Sep 2026)",
   "eroski_frutas_2026": "Spanish seasonality, Eroski Consumer \"Calendario anual de frutas\" (frutas.consumer.es/calendario-frutas, read 15 Sep 2026)",
   "eroski_hortalizas_2026": "Spanish seasonality, Eroski Consumer \"Calendario anual de verduras y hortalizas\" (verduras.consumer.es/calendario, read 15 Sep 2026)",
+  "ademe_impactco2_2026": "French seasonality, ADEME (Agence de la transition écologique / beta.gouv), \"Fruits et légumes\" API (impactco2.fr/api/v1/fruitsetlegumes, read 21 Sep 2026)",
   "med_inherits_pt": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet",
   "es_applied_to_italy": "Spain's calendar, applied to Italy; no Italian source recorded yet",
   "es_applied_to_greece": "Spain's calendar, applied to Greece; no Greek source recorded yet",
