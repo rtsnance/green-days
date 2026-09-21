@@ -10,6 +10,8 @@
   "vlam_groenten_2026": "Belgian (Flemish) vegetable seasonality with four supply levels per month, VLAM / Lekker van bij ons, \"Seizoenskalender Groenten\" (lekkervanbijons.be/producten/groenten/seizoenskalender-groenten, read 21 Sep 2026)",
   "vlam_fruit_2026": "Belgian (Flemish) fruit seasonality with four supply levels per month, VLAM / Lekker van bij ons, \"Seizoenskalender Fruit\" (lekkervanbijons.be/fruit/seizoenskalender-fruit, read 21 Sep 2026)",
   "be_applied_to_netherlands": "Belgium's calendar, applied to the Netherlands; no Dutch source recorded yet (the Voedingscentrum PDF has not been read)",
+  "vsgp_2026": "Swiss vegetable seasonality, Verband Schweizer Gemüseproduzenten (VSGP) / gemuese.ch, \"Saisonkalender Schweiz\" (gemuese.ch/saisonkalender, read 21 Sep 2026; vegetables and herbs only)",
+  "ch_veg_applied_to_austria": "Switzerland's vegetable calendar, applied to Austria; no Austrian vegetable source recorded yet (Alpine, German-speaking neighbour). Austrian fruit continues to fall to the temperate-band fallback.",
   "med_inherits_pt": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet",
   "es_applied_to_italy": "Spain's calendar, applied to Italy; no Italian source recorded yet",
   "es_applied_to_greece": "Spain's calendar, applied to Greece; no Greek source recorded yet",

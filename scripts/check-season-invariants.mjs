@@ -26,6 +26,7 @@ const failures = [];
 const INHERITORS = {
   ES: ['IT', 'GR'],
   BE: ['NL'],
+  CH: ['AT'],
 };
 
 for (const it of P) {

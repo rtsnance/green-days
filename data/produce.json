@@ -119,6 +119,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Tomate; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -240,6 +257,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Cherrytomate; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -361,6 +395,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Rispentomate; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -482,6 +533,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Perettitomate; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -658,6 +726,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Aubergine; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -779,6 +864,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Zucchetti; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -866,6 +968,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Zucchetti; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -990,6 +1109,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Gurke; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -1111,6 +1247,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Peperoni; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -1375,6 +1528,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Zwiebel; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "stored"
@@ -1494,6 +1664,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Zwiebel; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -1550,6 +1737,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Schalotte; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -1605,6 +1809,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Bundzwiebel; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -1728,6 +1949,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Lauch; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -1829,6 +2067,23 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Ail; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Knoblauch; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "stored"
@@ -1979,6 +2234,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Karotte; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -2054,6 +2326,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Karotte; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -2178,6 +2467,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Rande; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -2302,6 +2608,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Rande; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -2423,6 +2746,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Radieschen; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -2544,6 +2884,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Radieschen; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -2720,6 +3077,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Herbstrübe; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -2758,6 +3132,23 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Swede; months marked best or coming"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Bodenkohlrabi; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -2827,6 +3218,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Pastinake; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -2884,6 +3292,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Knollensellerie; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -2938,6 +3363,23 @@
         "resolution": "quarter",
         "source_id": "derived_from_label",
         "matched_on": "Year-round (harvest late summer)"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kartoffel; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "stored"
@@ -3063,6 +3505,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Süsskartoffel; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -3158,6 +3617,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Topinambur; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -3216,6 +3692,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kohlrabi; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -3359,6 +3852,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Weisskabis; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -3458,6 +3968,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Wirz; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -3555,6 +4082,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Weisskabis; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -3654,6 +4198,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Weisskabis; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -3753,6 +4314,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Rotkabis; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -3872,6 +4450,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Blumenkohl; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -3927,6 +4522,23 @@
         "resolution": "quarter",
         "source_id": "derived_from_label",
         "matched_on": "Autumn"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Romanesco; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -4048,6 +4660,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Broccoli; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -4234,6 +4863,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Broccoli; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -4326,6 +4972,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Rosenkohl; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -4412,6 +5075,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Federkohl; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -4499,6 +5179,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Federkohl; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -4557,6 +5254,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Pak-Choi; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -4678,6 +5392,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Krautstiel; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -4797,6 +5528,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Spinat; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -4835,6 +5583,23 @@
         "resolution": "month",
         "source_id": "vegetarian_society_2022",
         "matched_on": "Rocket"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Rucola; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -4953,6 +5718,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kopfsalat; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -5072,6 +5854,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Lattich; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -5191,6 +5990,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Lattich; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -5287,6 +6103,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Endivie glatt/gekraust; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local",
@@ -5344,6 +6177,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Cicorino rot; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -5430,6 +6280,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Brunnenkresse; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -5480,6 +6347,23 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Mâche; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Nüsslisalat; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -5575,6 +6459,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Fenchel; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -5666,6 +6567,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Stangensellerie; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -5789,6 +6707,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Bleichspargel; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -5892,6 +6827,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Rhabarber; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local",
@@ -5994,6 +6946,23 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Artichaut; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Artischocke; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -6042,6 +7011,23 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "11-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kardy; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -6233,6 +7219,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kürbis; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local",
@@ -6355,6 +7358,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kürbis; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -6476,6 +7496,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kürbis; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -6597,6 +7634,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kürbis; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -6718,6 +7772,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kürbis; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -6839,6 +7910,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kürbis; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -6960,6 +8048,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Bohnen; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -7236,6 +8341,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Erbsen; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -7303,6 +8425,23 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Mangetout; months marked best or coming"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kefe; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -7472,6 +8611,23 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Maïs; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Zuckermais; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
@@ -7848,6 +9004,23 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Petersilie; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -7872,7 +9045,26 @@
       "el": "Κόλιανδρος",
       "sv": "Koriander"
     },
-    "selection": "Bright, springy leaves with a strong citrusy smell. Yellowing or slimy bunches are old."
+    "selection": "Bright, springy leaves with a strong citrusy smell. Yellowing or slimy bunches are old.",
+    "season_ranges": {
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Koriander; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
+      }
+    }
   },
   {
     "id": "basil",
@@ -7908,6 +9100,23 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Basil; months marked best or coming"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Basilikum; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -7945,6 +9154,23 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Mint; months marked best or coming"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Minze; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -7969,7 +9195,26 @@
       "el": "Άνηθος",
       "sv": "Dill"
     },
-    "selection": "Feathery, bright green fronds with a fresh smell, not wilted or yellowing."
+    "selection": "Feathery, bright green fronds with a fresh smell, not wilted or yellowing.",
+    "season_ranges": {
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Dill; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
+      }
+    }
   },
   {
     "id": "chervil",
@@ -8005,6 +9250,23 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Chervil; months marked best or coming"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Kerbel; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     }
   },
@@ -8029,7 +9291,26 @@
       "el": "Εστραγκόν",
       "sv": "Dragon"
     },
-    "selection": "Glossy, springy leaves with a strong aniseed smell. Blackened leaves mean old."
+    "selection": "Glossy, springy leaves with a strong aniseed smell. Blackened leaves mean old.",
+    "season_ranges": {
+      "CH": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Estragon; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
+      }
+    }
   },
   {
     "id": "chives",
@@ -8052,7 +9333,26 @@
       "el": "Σχοινόπρασο",
       "sv": "Gräslök"
     },
-    "selection": "Firm, upright, bright green stems with no yellowing or slime at the tips."
+    "selection": "Firm, upright, bright green stems with no yellowing or slime at the tips.",
+    "season_ranges": {
+      "CH": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Schnittlauch; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
+      }
+    }
   },
   {
     "id": "rosemary",
@@ -8075,7 +9375,26 @@
       "el": "Δεντρολίβανο",
       "sv": "Rosmarin"
     },
-    "selection": "Firm sprigs with pliable needles and a strong scent. Dry, dropping needles mean old."
+    "selection": "Firm sprigs with pliable needles and a strong scent. Dry, dropping needles mean old.",
+    "season_ranges": {
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Rosmarin; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
+      }
+    }
   },
   {
     "id": "thyme",
@@ -8098,7 +9417,26 @@
       "el": "Θυμάρι",
       "sv": "Timjan"
     },
-    "selection": "Fresh, fragrant sprigs with tiny firm leaves that cling. Bare, brittle stems are past it."
+    "selection": "Fresh, fragrant sprigs with tiny firm leaves that cling. Bare, brittle stems are past it.",
+    "season_ranges": {
+      "CH": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Thymian; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
+      }
+    }
   },
   {
     "id": "sage",
@@ -8121,7 +9459,26 @@
       "el": "Φασκόμηλο",
       "sv": "Salvia"
     },
-    "selection": "Firm, velvety, silver-green leaves with a strong smell. Wilting or dark spots mean age."
+    "selection": "Firm, velvety, silver-green leaves with a strong smell. Wilting or dark spots mean age.",
+    "season_ranges": {
+      "CH": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Salbei; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
+      }
+    }
   },
   {
     "id": "oregano",
@@ -8144,7 +9501,26 @@
       "el": "Ρίγανη",
       "sv": "Oregano"
     },
-    "selection": "Fragrant, firm sprigs with even green leaves. Skip any that look dry or yellowed."
+    "selection": "Fragrant, firm sprigs with even green leaves. Skip any that look dry or yellowed.",
+    "season_ranges": {
+      "CH": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Oregano; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
+      }
+    }
   },
   {
     "id": "bay",
@@ -8190,7 +9566,26 @@
       "el": "Ματζουράνα",
       "sv": "Mejram"
     },
-    "selection": "Small, soft, fragrant leaves on firm stems, no wilting or yellowing."
+    "selection": "Small, soft, fragrant leaves on firm stems, no wilting or yellowing.",
+    "season_ranges": {
+      "CH": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Majoran; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
+      }
+    }
   },
   {
     "id": "lemongrass",
@@ -11227,6 +12622,23 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Melon; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Melone; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local",
@@ -11420,6 +12832,23 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Melon; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "CH": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vsgp_2026",
+        "matched_on": "Melone; in-season months read from <span class=\"has-season\">x</span> cells in the DOM at gemuese.ch/saisonkalender"
+      },
+      "AT": {
+        "inherit": "CH",
+        "provenance": "inferred",
+        "source_id": "ch_veg_applied_to_austria"
       }
     },
     "availability": "local"
