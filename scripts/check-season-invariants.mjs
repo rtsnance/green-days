@@ -27,6 +27,7 @@ const INHERITORS = {
   ES: ['IT', 'GR'],
   BE: ['NL'],
   CH: ['AT'],
+  GB: ['IE'],
 };
 
 for (const it of P) {

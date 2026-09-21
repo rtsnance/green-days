@@ -136,6 +136,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -274,6 +279,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -412,6 +422,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -550,6 +565,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -743,6 +763,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -881,6 +906,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -985,6 +1015,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -1126,6 +1161,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -1264,6 +1304,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -1331,6 +1376,11 @@
         "resolution": "month",
         "source_id": "vegetarian_society_2022",
         "matched_on": "Chillies"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -1545,6 +1595,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "stored"
@@ -1681,6 +1736,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -1826,6 +1886,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -1966,6 +2031,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -2084,6 +2154,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "stored"
@@ -2484,6 +2559,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -2625,6 +2705,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -2763,6 +2848,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -2901,6 +2991,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -3094,6 +3189,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -3149,6 +3249,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -3235,6 +3340,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -3309,6 +3419,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -3447,6 +3562,11 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "New potatoes; months marked best or coming"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -3522,6 +3642,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -3634,6 +3759,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -3709,6 +3839,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -3869,6 +4004,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -3985,6 +4125,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -4099,6 +4244,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -4215,6 +4365,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -4331,6 +4486,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -4467,6 +4627,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -4677,6 +4842,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -4744,6 +4914,11 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Purple sprouting broccoli; months marked best or coming"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -4880,6 +5055,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -4989,6 +5169,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -5092,6 +5277,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -5196,6 +5386,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -5271,6 +5466,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -5409,6 +5609,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -5545,6 +5750,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -5600,6 +5810,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -5735,6 +5950,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -5871,6 +6091,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -6007,6 +6232,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -6194,6 +6424,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -6297,6 +6532,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -6364,6 +6604,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -6476,6 +6721,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -6584,6 +6834,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -6724,6 +6979,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -6844,6 +7104,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local",
@@ -6963,6 +7228,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -7091,6 +7361,11 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Samphire; months marked best or coming"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -7236,6 +7511,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local",
@@ -7375,6 +7655,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -7513,6 +7798,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -7651,6 +7941,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -7789,6 +8084,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -7927,6 +8227,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -8065,6 +8370,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -8152,6 +8462,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -8219,6 +8534,11 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Broad bean; months marked best or coming"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -8358,6 +8678,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -8442,6 +8767,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -8509,6 +8839,11 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Mangetout; months marked best or coming"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -8628,6 +8963,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -8851,6 +9191,11 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -8914,6 +9259,11 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -9117,6 +9467,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -9171,6 +9526,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -9267,6 +9627,11 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -9760,6 +10125,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "stored"
@@ -9882,6 +10252,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -10003,6 +10378,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -10124,6 +10504,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -10225,6 +10610,11 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Coing; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -10408,6 +10798,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local",
@@ -10496,6 +10891,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -10601,6 +11001,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local",
@@ -10728,6 +11133,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local",
@@ -10831,6 +11241,11 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Pêche; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -10933,6 +11348,11 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Nectarine; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -11042,6 +11462,11 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Abricot; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local",
@@ -11145,6 +11570,11 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Figue; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -11459,6 +11889,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -11580,6 +12015,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -11701,6 +12141,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -11823,6 +12268,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -11915,6 +12365,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -11964,6 +12419,11 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Cassis; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     }
   },
@@ -12047,6 +12507,11 @@
         "inherit": "BE",
         "provenance": "inferred",
         "source_id": "be_applied_to_netherlands"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -12143,6 +12608,11 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Citron; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -12291,6 +12761,11 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Orange; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local",
@@ -12436,6 +12911,11 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Clémentine; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -12529,6 +13009,11 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Pamplemousse; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -12742,6 +13227,11 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Pastèque; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -12933,6 +13423,11 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
@@ -13320,6 +13815,11 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Date; months marked best or coming"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "imported"
@@ -13584,6 +14084,11 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Chestnut; months marked best or coming"
+      },
+      "IE": {
+        "inherit": "GB",
+        "provenance": "inferred",
+        "source_id": "gb_applied_to_ireland"
       }
     },
     "availability": "local"
