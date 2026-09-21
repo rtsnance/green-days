@@ -13,6 +13,8 @@
   "vsgp_2026": "Swiss vegetable seasonality, Verband Schweizer Gemüseproduzenten (VSGP) / gemuese.ch, \"Saisonkalender Schweiz\" (gemuese.ch/saisonkalender, read 21 Sep 2026; vegetables and herbs only)",
   "ch_veg_applied_to_austria": "Switzerland's vegetable calendar, applied to Austria; no Austrian vegetable source recorded yet (Alpine, German-speaking neighbour). Austrian fruit continues to fall to the temperate-band fallback.",
   "gb_applied_to_ireland": "Britain's calendar, applied to Ireland; no Irish source recorded yet (Bord Bia's Best in Season sits behind a bot check that has not been bypassed). Same island group, closest sourced neighbour.",
+  "taenk_2024": "Danish seasonality, Forbrugerrådet Tænk, \"Vælg danske frugter og grøntsager i sæson\" (taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson, updated 2 December 2024, read 21 Sep 2026). Source disclaims completeness: \"Listen er ikke udtømmende.\"",
+  "ica_2026": "Swedish seasonality, ICA (retailer), \"Säsongskalender frukt, bär och grönsaker\" (ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong, read 21 Sep 2026; cultivar variants folded to the canonical Swedish name in the loader)",
   "med_inherits_pt": "Portugal's calendar, applied to the whole mediterranean band; no source recorded for Spain, Italy or Greece yet",
   "es_applied_to_italy": "Spain's calendar, applied to Italy; no Italian source recorded yet",
   "es_applied_to_greece": "Spain's calendar, applied to Greece; no Greek source recorded yet",

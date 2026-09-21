@@ -141,6 +141,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "tomater; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "tomat; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -284,6 +308,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "tomater; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "tomat; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -427,6 +475,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "tomater; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "tomat; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -570,6 +642,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "tomater; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "tomat; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -911,6 +1007,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "squash; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "zucchini; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -1020,6 +1140,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "squash; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "zucchini; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -1166,6 +1310,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "agurk; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "gurka; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -1309,6 +1477,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "peberfrugt; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local"
@@ -1600,6 +1780,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "løg; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "lök; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "stored"
@@ -1741,6 +1945,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "løg; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "lök; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -1814,6 +2042,18 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "løg; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     }
   },
@@ -1891,6 +2131,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "forårsløg; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "salladslök; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -2036,6 +2300,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "porrer; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "purjolök; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -2234,6 +2522,18 @@
         "source_id": "derived_from_label",
         "matched_on": "Spring",
         "source_note": "not checked against a stall"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "ramslök; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -2564,6 +2864,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "rødbeder; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "rödbeta; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -2710,6 +3034,34 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "rødbeder; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "02-28"
+          },
+          {
+            "from": "07-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "gulbeta; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -2853,6 +3205,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "radiser; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local"
@@ -2996,6 +3360,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "radiser; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local"
@@ -3254,6 +3630,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "kålrot; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -3345,6 +3733,34 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "pastinakker; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "02-28"
+          },
+          {
+            "from": "09-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "palsternacka; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -3424,6 +3840,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "knoldselleri; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "rotselleri; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -3567,6 +4007,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "färskpotatis; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -3764,6 +4216,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "jordskokker; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "jordärtskocka; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -3844,6 +4320,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "glaskål; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "kålrabbi; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -3868,7 +4368,25 @@
       "el": "Χρένο",
       "sv": "Pepparrot"
     },
-    "selection": "Firm, heavy roots with no soft or mouldy spots. It should smell sharp only once cut."
+    "selection": "Firm, heavy roots with no soft or mouldy spots. It should smell sharp only once cut.",
+    "season_ranges": {
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "08-31"
+          },
+          {
+            "from": "10-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "pepparrot; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
+      }
+    }
   },
   {
     "id": "green-cabbage",
@@ -4009,6 +4527,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "hvidkål; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "vitkål; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -4130,6 +4672,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "savoykål; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -4249,6 +4803,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "spidskål; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "spetskål; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -4370,6 +4948,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "hvidkål; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "vitkål; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -4491,6 +5093,38 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "rødkål; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "02-01",
+            "to": "02-28"
+          },
+          {
+            "from": "07-01",
+            "to": "07-31"
+          },
+          {
+            "from": "09-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "rödkål; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -4632,6 +5266,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "blomkål; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "blomkål; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -4847,6 +5505,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "broccoli; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "broccoli; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -5060,6 +5742,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "broccoli; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "broccoli; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -5174,6 +5880,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "rosenkål; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "brysselkål; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -5282,6 +6012,34 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "grønkål; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "07-31"
+          },
+          {
+            "from": "10-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "grönkål; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -5391,6 +6149,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "grønkål; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "svartkål; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -5614,6 +6396,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "bladbeder; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local"
@@ -5755,6 +6549,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "spinat; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "spenat; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -5815,6 +6633,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "rucola; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     }
   },
@@ -5955,6 +6785,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "salat; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "isbergssallad; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -6096,6 +6950,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "salat; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "isbergssallad; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -6237,6 +7115,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "salat; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "isbergssallad; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -6726,6 +7628,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "fenikel; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "fänkål; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -6839,6 +7765,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "bladselleri; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "blekselleri; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -6984,6 +7934,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "asparges; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "sparris; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -7109,6 +8083,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "rabarber; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "rabarber; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local",
@@ -7516,6 +8514,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "hokkaido; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "pumpa; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local",
@@ -7660,6 +8682,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "hokkaido; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "pumpa; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -7803,6 +8849,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "hokkaido; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "pumpa; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -7946,6 +9016,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "hokkaido; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "pumpa; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -8089,6 +9183,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "hokkaido; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "pumpa; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -8232,6 +9350,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "hokkaido; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "pumpa; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -8375,6 +9517,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "grønne bønner; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "brytböna; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -8467,6 +9633,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "grønne bønner; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local"
@@ -8539,6 +9717,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "hestebønner; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "bondböna; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -8683,6 +9885,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "ærter; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "sockerärta; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -8844,6 +10070,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "sukkerærter; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "sockerärta; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -8968,6 +10218,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "majs; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "majs; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -9196,6 +10470,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "kantareller; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -9264,6 +10550,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "karl johansvamp; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -9371,6 +10669,34 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "persille; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "06-30"
+          },
+          {
+            "from": "08-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "persilja; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -9413,6 +10739,18 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "koriander; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     }
   },
@@ -9573,6 +10911,30 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "dild; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "dill; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -9716,6 +11078,30 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "purløg; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "gräslök; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     }
   },
@@ -10130,6 +11516,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "æbler; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "stored"
@@ -10257,6 +11655,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "æbler; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local"
@@ -10383,6 +11793,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "pærer; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "päron; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -10509,6 +11943,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "pærer; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "päron; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -10803,6 +12261,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "blommer; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "plommon; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local",
@@ -10896,6 +12378,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "blommer; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "plommon; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -11006,6 +12512,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "blommer; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "plommon; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local",
@@ -11138,6 +12668,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "kirsebær; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "körsbär; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local",
@@ -11669,6 +13223,18 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Raisin; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "vindruer; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local",
@@ -11767,6 +13333,18 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Raisin; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "vindruer; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local",
@@ -11894,6 +13472,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "jordbær; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "jordgubbar; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -12020,6 +13622,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "hindbær; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "hallon; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -12146,6 +13772,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "brombær; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local"
@@ -12273,6 +13911,30 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "blåbær; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
+      },
+      "SE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "ica_2026",
+        "matched_on": "blåbär; months collated from the January–December headings at ica.se/artikel/svenska-gronsaker-och-frukt-i-sasong (retailer listing; cultivar variants folded to the canonical Swedish name)"
       }
     },
     "availability": "local"
@@ -12370,6 +14032,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "ribs; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     }
   },
@@ -12424,6 +14098,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "solbær; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     }
   },
@@ -12512,6 +14198,18 @@
         "inherit": "GB",
         "provenance": "inferred",
         "source_id": "gb_applied_to_ireland"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "stikkelsbær; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local"
@@ -13124,6 +14822,18 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "melon; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local",
@@ -13339,6 +15049,18 @@
         "inherit": "CH",
         "provenance": "inferred",
         "source_id": "ch_veg_applied_to_austria"
+      },
+      "DK": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "taenk_2024",
+        "matched_on": "melon; months collated from the \"Grønt:\" / \"Frugt:\" lists under each month heading at taenk.dk/forbrugerliv/mad-og-indkoeb/vaelg-danske-frugter-og-groentsager-i-saeson"
       }
     },
     "availability": "local"
