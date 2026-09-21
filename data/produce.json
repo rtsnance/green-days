@@ -99,6 +99,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Tomate; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "05-01",
+            "peak_to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Tomaat; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llmmhhhhhhll"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -200,6 +220,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Tomate; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "05-01",
+            "peak_to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Tomaat; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llmmhhhhhhll"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -301,6 +341,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Tomate; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "05-01",
+            "peak_to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Tomaat; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llmmhhhhhhll"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -402,6 +462,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Tomate; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "05-01",
+            "peak_to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Tomaat; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llmmhhhhhhll"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -558,6 +638,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Aubergine; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "02-01",
+            "to": "11-30",
+            "peak_from": "05-01",
+            "peak_to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Aubergine; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nllmhhhmmlln"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -659,6 +759,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Courgette; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "11-30",
+            "peak_from": "06-01",
+            "peak_to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Courgette; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nnllmhhhhmln"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -726,6 +846,26 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Marrow; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "11-30",
+            "peak_from": "06-01",
+            "peak_to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Courgette; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nnllmhhhhmln"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -830,6 +970,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Concombre; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "04-01",
+            "peak_to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Komkommer; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llmhhhhhmlll"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -931,6 +1091,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Poivron; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "10-31",
+            "peak_from": "06-01",
+            "peak_to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Paprika; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nnlmmhhhmlnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -1177,6 +1357,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Oignon; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Ajuin; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mmmmmmmmmmmm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "stored"
@@ -1278,6 +1476,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Oignon; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Ajuin; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mmmmmmmmmmmm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -1316,6 +1532,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Échalote; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Sjalot; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mllllllllllm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -1353,6 +1587,24 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Spring onion; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Lente-uitjes; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mmmmmmmmmmmm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -1456,6 +1708,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Poireau; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "09-01",
+            "peak_to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Prei; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhhhmmmmhhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -1687,6 +1959,26 @@
         "resolution": "quarter",
         "source_id": "derived_from_label",
         "matched_on": "Year-round (peak autumn)"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "02-28",
+            "peak_from": "06-01",
+            "peak_to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Wortelen; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llnlmhhhhhml"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -1742,6 +2034,26 @@
         "resolution": "quarter",
         "source_id": "derived_from_label",
         "matched_on": "Autumn"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "02-28",
+            "peak_from": "06-01",
+            "peak_to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Wortelen; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llnlmhhhhhml"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -1846,6 +2158,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Betterave; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "12-01",
+            "peak_to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Rode biet; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhhhmmmmmmmh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -1950,6 +2282,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Betterave; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "12-01",
+            "peak_to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Rode biet; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhhhmmmmmmmh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -2051,6 +2403,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Radis; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "05-01",
+            "peak_to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Radijsjes; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llmmhhmmmmmm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -2152,6 +2524,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Radis; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "05-01",
+            "peak_to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Radijsjes; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llmmhhmmmmmm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -2308,6 +2700,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Navet; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "03-31",
+            "peak_from": "10-01",
+            "peak_to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Raap; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhmnnnnnmhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -2395,6 +2807,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Panais; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "11-01",
+            "peak_to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Pastinaak; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhhmlllllmhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -2432,6 +2864,26 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Celeriac; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "11-01",
+            "peak_to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Knolselder; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhhhhhmlmmhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -2591,6 +3043,26 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Sweet potato; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "05-31",
+            "peak_from": "12-01",
+            "peak_to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Zoete aardappel; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhhmlnnnnlmh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -2666,6 +3138,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Topinambour; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "10-01",
+            "to": "04-30",
+            "peak_from": "12-01",
+            "peak_to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Aardpeer; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mmllnnnnnlmh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -2704,6 +3196,26 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Kohlrabi; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "12-31",
+            "peak_from": "09-01",
+            "peak_to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Koolrabi; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nnnnlmmmhhhl"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -2827,6 +3339,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Chou; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "02-28",
+            "peak_from": "09-01",
+            "peak_to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Witte kool; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhnmlmllhhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -2906,6 +3438,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Chou; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "09-01",
+            "peak_to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Savooikool; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhmllllmhhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -2985,6 +3537,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Chou; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Spitskool; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llnnmmllmmll"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -3064,6 +3634,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Chou; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "02-28",
+            "peak_from": "09-01",
+            "peak_to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Witte kool; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhnmlmllhhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -3143,6 +3733,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Chou; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "10-01",
+            "peak_to": "04-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Rode kool; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhhhllllmhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -3244,6 +3854,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Chou-fleur; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Bloemkool; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llllmhmmhmll"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -3400,6 +4028,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Brocoli; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "12-31",
+            "peak_from": "09-01",
+            "peak_to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Broccoli; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nnnnlmmmhmll"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -3568,6 +4216,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Brocoli; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "02-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Broccolini; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nmmmmmmmmmnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -3640,6 +4306,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Chou de Bruxelles; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "08-01",
+            "to": "04-30",
+            "peak_from": "10-01",
+            "peak_to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Spruitjes; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhmlnnnlmhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -3706,6 +4392,26 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Kale; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "03-31",
+            "peak_from": "01-01",
+            "peak_to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Boerenkool; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhmnnnnnlmmm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -3773,6 +4479,26 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Cavolo nero; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "09-01",
+            "to": "03-31",
+            "peak_from": "01-01",
+            "peak_to": "02-28"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Boerenkool; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hhmnnnnnlmmm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -3811,6 +4537,26 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Pak choi; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "05-01",
+            "peak_to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Paksoi; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llmmhhhhhhmm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -3914,6 +4660,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Blette; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Warmoes/snijbiet; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nnnnlmmmmlnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -4015,6 +4779,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Épinard; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Spinazie; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "lllmhhmmhhml"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -4153,6 +4935,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Laitue; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Sla; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mmhhhmmmmmhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -4254,6 +5054,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Laitue; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Sla; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mmhhhmmmmmhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -4355,6 +5173,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Laitue; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Sla; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mmhhhmmmmmhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -4433,6 +5269,24 @@
         "inherit": "ES",
         "provenance": "inferred",
         "source_id": "es_applied_to_greece"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Krulandijvie; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mmmmmmmmmmmm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local",
@@ -4472,6 +5326,24 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Radicchio; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Radicchio Rosso; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nnnnnmmmmmmn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -4538,6 +5410,26 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Watercress; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "12-01",
+            "peak_to": "01-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Waterkers; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "hmmmmmmmmmmh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -4663,6 +5555,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Fenouil; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30",
+            "peak_from": "06-01",
+            "peak_to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Venkel; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nnnlmhhhhhln"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -4734,6 +5646,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Céleri; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "01-31",
+            "peak_from": "06-01",
+            "peak_to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Selder; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "lnnlmhhhhhml"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -4837,6 +5769,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Asperge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "02-01",
+            "to": "07-31",
+            "peak_from": "05-01",
+            "peak_to": "05-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Asperge (wit); --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nlmmhmlnnnnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -4920,6 +5872,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Rhubarbe; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "02-01",
+            "to": "10-31",
+            "peak_from": "05-01",
+            "peak_to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Rabarber; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nllmhhhmllnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local",
@@ -5241,6 +6213,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Potiron; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "03-31",
+            "peak_from": "09-01",
+            "peak_to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Pompoen; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "lllnnnllhhhm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local",
@@ -5343,6 +6335,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Courge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "03-31",
+            "peak_from": "09-01",
+            "peak_to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Pompoen; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "lllnnnllhhhm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -5444,6 +6456,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Courge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "03-31",
+            "peak_from": "09-01",
+            "peak_to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Pompoen; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "lllnnnllhhhm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -5545,6 +6577,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Courge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "03-31",
+            "peak_from": "09-01",
+            "peak_to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Pompoen; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "lllnnnllhhhm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -5646,6 +6698,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Courge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "03-31",
+            "peak_from": "09-01",
+            "peak_to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Pompoen; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "lllnnnllhhhm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -5747,6 +6819,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Courge; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "03-31",
+            "peak_from": "09-01",
+            "peak_to": "11-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Pompoen; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "lllnnnllhhhm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -5848,6 +6940,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Haricot vert (cru); months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "03-01",
+            "to": "10-31",
+            "peak_from": "07-01",
+            "peak_to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Groene boontjes; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nnllmmhhmlnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -5915,6 +7027,26 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Runner bean; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "09-30",
+            "peak_from": "07-01",
+            "peak_to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Boontjes; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nnnnnnhhhnnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -6084,6 +7216,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Petit pois; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "08-31",
+            "peak_from": "06-01",
+            "peak_to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Erwtjes; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "nnnnlhmlnnnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -6391,7 +7543,29 @@
       "el": "Μανιτάρι λευκό",
       "sv": "Champinjon"
     },
-    "selection": "Firm, dry, closed caps with no dark or slimy spots. A clean earthy smell is a good sign."
+    "selection": "Firm, dry, closed caps with no dark or slimy spots. A clean earthy smell is a good sign.",
+    "season_ranges": {
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "12-01",
+            "peak_to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Champignon; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mmmmmmmmmmmh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
+      }
+    }
   },
   {
     "id": "portobello",
@@ -6437,7 +7611,29 @@
       "el": "Μανιτάρι πλευρώτους",
       "sv": "Ostronskivling"
     },
-    "selection": "Firm, moist-looking but not slimy, with intact fan edges. Avoid yellowing or dried-out edges."
+    "selection": "Firm, moist-looking but not slimy, with intact fan edges. Avoid yellowing or dried-out edges.",
+    "season_ranges": {
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "12-01",
+            "peak_to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Oesterzwam; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mmmmmmmmmmmh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
+      }
+    }
   },
   {
     "id": "chanterelle",
@@ -6586,7 +7782,29 @@
       "el": "Σιτάκε",
       "sv": "Shiitake"
     },
-    "selection": "Firm, dry, plump caps with curled edges. Cracked, dry, or slimy caps are past it."
+    "selection": "Firm, dry, plump caps with curled edges. Cracked, dry, or slimy caps are past it.",
+    "season_ranges": {
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "10-01",
+            "peak_to": "12-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Shii-take; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "mmmmmlllmhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
+      }
+    }
   },
   {
     "id": "parsley",
@@ -6609,7 +7827,29 @@
       "el": "Μαϊντανός",
       "sv": "Persilja"
     },
-    "selection": "Perky, deep green bunches with a fresh smell and no yellowing or wilt."
+    "selection": "Perky, deep green bunches with a fresh smell and no yellowing or wilt.",
+    "season_ranges": {
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "06-01",
+            "peak_to": "10-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_groenten_2026",
+        "matched_on": "Peterselie; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/producten/groenten/seizoenskalender-groenten",
+        "levels": "llllmhhhhhmm"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
+      }
+    }
   },
   {
     "id": "coriander-cilantro",
@@ -7105,6 +8345,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Pomme; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "09-01",
+            "peak_to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Appel; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "hhhhhhmmhhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "stored"
@@ -7207,6 +8467,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Pomme; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "09-01",
+            "peak_to": "06-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Appel; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "hhhhhhmmhhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -7308,6 +8588,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Poire; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "09-01",
+            "peak_to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Peer; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "hhhmmmllhhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -7409,6 +8709,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Poire; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "09-01",
+            "peak_to": "03-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Peer; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "hhhmmmllhhhh"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -7673,6 +8993,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Prune; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31",
+            "peak_from": "07-01",
+            "peak_to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Pruim; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "nnnnnnhhmlnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local",
@@ -7741,6 +9081,26 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Damson; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31",
+            "peak_from": "07-01",
+            "peak_to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Pruim; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "nnnnnnhhmlnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -7826,6 +9186,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Reine claude; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "07-01",
+            "to": "10-31",
+            "peak_from": "07-01",
+            "peak_to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Pruim; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "nnnnnnhhmlnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local",
@@ -7935,6 +9315,24 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Cerise; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Kers; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "nnnnnmmnnnnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local",
@@ -8646,6 +10044,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Fraise; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "01-01",
+            "to": "12-31",
+            "peak_from": "04-01",
+            "peak_to": "09-30"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Aardbei; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "llmhhhhhhmml"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -8747,6 +10165,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Framboise; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "11-30",
+            "peak_from": "06-01",
+            "peak_to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Framboos; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "nnnlmhhhmmln"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -8848,6 +10286,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Mûre; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "12-31",
+            "peak_from": "06-01",
+            "peak_to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Braambes; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "nnnlmhhhmmml"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -8950,6 +10408,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Myrtille; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "04-01",
+            "to": "10-31",
+            "peak_from": "06-01",
+            "peak_to": "07-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Blauwe bes; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "nnnlmhhmmmnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"
@@ -9022,6 +10500,26 @@
         "resolution": "month",
         "source_id": "ademe_impactco2_2026",
         "matched_on": "Groseille; months read from the `months` array of impactco2.fr/api/v1/fruitsetlegumes"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "06-01",
+            "to": "11-30",
+            "peak_from": "07-01",
+            "peak_to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Rode bes; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "nnnnnmhhmlln"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     }
   },
@@ -9134,6 +10632,26 @@
         "resolution": "month",
         "source_id": "bbc_good_food_2024",
         "matched_on": "Gooseberry; months marked best or coming"
+      },
+      "BE": {
+        "ranges": [
+          {
+            "from": "05-01",
+            "to": "09-30",
+            "peak_from": "07-01",
+            "peak_to": "08-31"
+          }
+        ],
+        "provenance": "sourced",
+        "resolution": "month",
+        "source_id": "vlam_fruit_2026",
+        "matched_on": "Stekelbes; --none/--low/--normal/--high month cells read verbatim from lekkervanbijons.be/fruit/seizoenskalender-fruit",
+        "levels": "nnnnllhhlnnn"
+      },
+      "NL": {
+        "inherit": "BE",
+        "provenance": "inferred",
+        "source_id": "be_applied_to_netherlands"
       }
     },
     "availability": "local"

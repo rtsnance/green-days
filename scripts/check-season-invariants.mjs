@@ -25,6 +25,7 @@ const failures = [];
    inheritance-based sourcing pass lands. */
 const INHERITORS = {
   ES: ['IT', 'GR'],
+  BE: ['NL'],
 };
 
 for (const it of P) {
