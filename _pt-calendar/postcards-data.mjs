@@ -11,12 +11,17 @@
    Run:  node _pt-calendar/postcards-data.mjs > _pt-calendar/postcards.json
 */
 import { readFileSync } from 'node:fs';
-import { seasonalityOf } from '../src/season.js';
+import { seasonalityOf, rangesFor } from '../src/season.js';
 
 const P = JSON.parse(readFileSync(new URL('../data/produce.json', import.meta.url)));
 const D = JSON.parse(readFileSync(new URL('../data/turning-days.json', import.meta.url))).days;
 const ED = JSON.parse(readFileSync(new URL('./pt-days.json', import.meta.url))).days;
 const byId = Object.fromEntries(P.map((p) => [p.id, p]));
+
+/* Which calendar the roster is verified against. The Portuguese edition reads
+   PT's own sourced dates, not the mediterranean band (which only inherits them). */
+const BAND = 'mediterranean';
+const MARKET = 'PT';
 
 /* The roster. Every entry verified `in` or `peak` on its own date, mediterranean
    band. No repeated produce, no repeated plate. Changing a line here changes the
@@ -53,10 +58,14 @@ const cards = D.map((day) => {
   const p = byId[id];
   if (!p) throw new Error(`roster id not in catalogue: ${id}`);
   const ed = ED[String(day.num)] || {};
-  const state = seasonalityOf(p, day.opens, 'mediterranean');
+  const state = seasonalityOf(p, day.opens, BAND, MARKET);
   if (state === 'out') throw new Error(`${day.numeral} ${id} is OUT on ${day.opens}`);
 
-  const pk = (p.season_ranges?.mediterranean || []).find((r) => r.peak_from && r.peak_to);
+  /* 2026-09-16: season_ranges stopped being a bare array per band when provenance
+     moved into each calendar. Reaching into .mediterranean now yields
+     {inherit:'PT',...} and .find() throws. Ask season.js for the ranges instead,
+     so this follows an inherit chain and reads the market's own dates. */
+  const pk = (rangesFor(p, BAND, MARKET) || []).find((r) => r.peak_from && r.peak_to);
 
   return {
     numeral: day.numeral,
