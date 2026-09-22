@@ -93,11 +93,14 @@ export async function handleMetrics(request, env) {
 
   const url = new URL(request.url);
   const days = Math.min(365, Math.max(1, parseInt(url.searchParams.get('days'), 10) || 7));
-  const wantJson = url.searchParams.get('format') === 'json';
+  const format = url.searchParams.get('format');
+  const wantJson = format === 'json';
+  const wantCsv = format === 'csv';
 
   if (!env.CF_ACCOUNT_ID || !env.AE_API_TOKEN) {
     const msg = { error: 'metrics_not_configured', detail: 'Set CF_ACCOUNT_ID and AE_API_TOKEN secrets.' };
     if (wantJson) return withSession(json(msg, 200));
+    if (wantCsv) return withSession(csv('error,detail\nmetrics_not_configured,"Set CF_ACCOUNT_ID and AE_API_TOKEN secrets."\n', days));
     return withSession(html(renderNotConfigured(days), 200));
   }
 
@@ -293,12 +296,115 @@ export async function handleMetrics(request, env) {
   const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, edge, market, market_locked: marketLocked, field_guide: fieldGuide, field_note: fieldNote, install, notify, health, retention, affiliate, source, errors };
 
   if (wantJson) return withSession(json(metrics, 200));
+  if (wantCsv) return withSession(csv(renderCsv(metrics), days));
   return withSession(html(renderPage(metrics), 200));
 }
 
 /* ================= rendering ================= */
 const json = (data, status = 200) => new Response(JSON.stringify(data, null, 2), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 const html = (body, status = 200) => new Response(body, { status, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'x-robots-tag': 'noindex' } });
+const csv = (body, days) => new Response(body, { status: 200, headers: {
+  'content-type': 'text/csv; charset=utf-8',
+  'cache-control': 'no-store',
+  'content-disposition': `attachment; filename="green-days-metrics-${days}d-${new Date().toISOString().slice(0,10)}.csv"`,
+} });
+
+// Long-format CSV: one row per (section, dimension, key, value). Handles the
+// mixed shapes on the page without needing a wide header per section.
+function csvCell(v) {
+  if (v == null) return '';
+  const s = typeof v === 'number' ? (Number.isFinite(v) ? String(v) : '') : String(v);
+  return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+}
+function renderCsv(m) {
+  const rows = [['section', 'dimension', 'key', 'value']];
+  const push = (section, dimension, key, value) => rows.push([section, dimension || '', key, value]);
+  push('meta', '', 'dataset', m.dataset);
+  push('meta', '', 'days', m.days);
+  push('meta', '', 'generated_at', m.generated_at);
+
+  const A = m.activation;
+  push('activation', 'total', 'rate', A.rate);
+  push('activation', 'total', 'app_open_sessions', A.app_open_sessions);
+  push('activation', 'total', 'recipe_sessions', A.recipe_sessions);
+  for (const d of ['in_market', 'out_of_market']) {
+    push('activation', d, 'rate', A[d].rate);
+    push('activation', d, 'app_open_sessions', A[d].app_open_sessions);
+    push('activation', d, 'recipe_sessions', A[d].recipe_sessions);
+  }
+
+  const R = m.retention;
+  push('retention', '', 'rate', R.rate);
+  push('retention', '', 'returning_sessions', R.returning_sessions);
+  push('retention', '', 'new_sessions', R.new_sessions);
+  push('retention', '', 'median_days_since_return', R.median_days_since_return);
+
+  for (const s of m.onboarding.steps) {
+    push('onboarding', s.step, 'next', s.next);
+    push('onboarding', s.step, 'complete', s.complete);
+    push('onboarding', s.step, 'abandon', s.abandon);
+  }
+  push('onboarding', '', 'completed', m.onboarding.completed);
+
+  const RPS = m.recipes_per_session;
+  push('recipes_per_session', '', 'value', RPS.value);
+  push('recipes_per_session', '', 'recipes', RPS.recipes);
+  push('recipes_per_session', '', 'sessions', RPS.sessions);
+
+  const T = m.try_another;
+  push('try_another', '', 'rate', T.rate);
+  push('try_another', '', 'recipe_generated', T.recipe_generated);
+  push('try_another', '', 'recipe_try_another', T.recipe_try_another);
+
+  push('search', '', 'miss_rate', m.search.miss_rate);
+  push('search', '', 'has_results', m.search.has_results);
+  push('search', '', 'no_results', m.search.no_results);
+
+  for (const r of m.edge) push('edge_country', `${r.country} ${r.name}`, 'sessions', r.sessions);
+  for (const r of m.market) push('market', `${r.country} ${r.name}`, 'sessions', r.sessions);
+  push('market_locked', '', 'total', m.market_locked.total);
+  for (const [o, n] of Object.entries(m.market_locked.by_origin || {})) push('market_locked', o, 'n', n);
+
+  push('field_guide', '', 'total', m.field_guide.total);
+  for (const r of m.field_guide.by_produce) push('field_guide', r.produce, 'adds', r.adds);
+  push('field_note', '', 'total', m.field_note.total);
+  for (const r of m.field_note.by_produce) push('field_note', r.produce, 'shares', r.shares);
+
+  const I = m.install;
+  push('install', '', 'standalone_rate', I.standalone_rate);
+  push('install', '', 'standalone_sessions', I.standalone_sessions);
+  push('install', '', 'browser_sessions', I.browser_sessions);
+  push('install', '', 'android_installs', I.android_installs);
+
+  const N = m.notify;
+  push('notify', '', 'intent_total', N.intent_total);
+  push('notify', '', 'grant_rate', N.grant_rate);
+  for (const r of N.permission) push('notify_permission', r.result, 'n', r.n);
+  for (const r of N.by_produce) push('notify_intent', r.produce, 'n', r.n);
+
+  const H = m.health;
+  push('health', '', 'recipes', H.recipes);
+  push('health', '', 'p50_ms', H.p50_ms);
+  push('health', '', 'p95_ms', H.p95_ms);
+  push('health', '', 'ok_rate', H.ok_rate);
+  push('health', '', 'avg_tokens', H.avg_tokens);
+
+  const AF = m.affiliate;
+  push('affiliate', '', 'taps', AF.taps);
+  push('affiliate', '', 'tap_rate', AF.tap_rate);
+  push('affiliate', '', 'recipes_in_covered_markets', AF.recipes_in_covered_markets);
+  push('affiliate', '', 'covered_markets', AF.covered_markets.join('|'));
+  for (const r of AF.by_partner) push('affiliate', `${r.partner}${r.country ? ' ' + r.country : ''}`, 'taps', r.taps);
+
+  const S = m.source;
+  push('source', '', 'total_sessions', S.total_sessions);
+  push('source', '', 'attributed_sessions', S.attributed_sessions);
+  for (const r of S.by_source) push('source', r.source, 'sessions', r.sessions);
+
+  for (const [k, v] of Object.entries(m.errors || {})) push('errors', k, 'message', v);
+
+  return rows.map((r) => r.map(csvCell).join(',')).join('\n') + '\n';
+}
 
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const NO_DATA = '<div class="empty">no data yet</div>';
@@ -318,9 +424,13 @@ function shell(inner, days) {
   h1 { font-size:26px; font-weight:900; margin:0; letter-spacing:-0.01em; }
   h1 .g { color:var(--accent); }
   .sub { color:var(--muted); font-size:13px; font-weight:600; }
-  .windows { display:flex; gap:8px; margin:14px 0 22px; flex-wrap:wrap; }
+  .windows { display:flex; gap:8px; margin:14px 0 10px; flex-wrap:wrap; }
   .windows a { text-decoration:none; font-size:13px; font-weight:700; color:var(--muted); border:1px solid var(--line); background:var(--card); padding:6px 12px; border-radius:999px; }
   .windows a.on { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .exports { display:flex; gap:8px; margin:0 0 22px; flex-wrap:wrap; align-items:center; }
+  .exports a { text-decoration:none; font-size:12px; font-weight:700; color:var(--muted); border:1px solid var(--line); background:var(--card); padding:5px 10px; border-radius:999px; }
+  .exports a:hover { color:var(--accent-strong); border-color:var(--accent); }
+  .exports .lbl { font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-right:2px; }
   .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; }
   .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 18px 16px; }
   .card h2 { font-size:11px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin:0 0 12px; }
@@ -348,6 +458,11 @@ function shell(inner, days) {
 </style></head><body><div class="wrap">
 <header><h1><span class="g">green days</span> · metrics</h1><div class="sub">last ${days} day${days === 1 ? '' : 's'}</div></header>
 <div class="windows">${[1, 7, 14, 30, 90].map((d) => `<a class="${d === days ? 'on' : ''}" href="?days=${d}">${d}d</a>`).join('')}</div>
+<div class="exports">
+  <span class="lbl">export</span>
+  <a href="?days=${days}&format=csv" download>CSV</a>
+  <a href="?days=${days}&format=json" download="green-days-metrics-${days}d.json">JSON</a>
+</div>
 ${inner}
 <footer>Aggregate-only, cookieless. Generated ${esc(new Date().toUTCString())}.</footer>
 </div></body></html>`;
