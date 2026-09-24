@@ -3,12 +3,18 @@
    lab.ryantnance.com/greendays* host to greendays.day.
    Routes: GET  /api/context  → market country, band, season
            POST /api/recipe   → the recipe engine (Anthropic API)
+           GET  /api/local    → a local grower's week, scored (worker/local.js)
+           GET  /.well-known/api-catalog, /openapi.json, /docs/api,
+                /api/health   → API discovery (worker/catalog.js)
    Everything else is served from the built front-end by the assets binding. */
 import PRODUCE from '../data/produce.json';
 import MARKETS from '../data/markets.json';
 import { SYSTEM_PROMPT, SYSTEM_PROMPT_HAIKU, pickSystemPrompt, RECIPE_SCHEMA, buildUserMessage } from './prompt.js';
 import { handleMetrics } from './metrics.js';
 import { withSecurityHeaders } from './headers.js';
+import { handleLocal, placeForEdge } from './local.js';
+import { negotiate } from './markdown.js';
+import { handleCatalog } from './catalog.js';
 // The one seasonality implementation, shared with the front end. Reaching
 // outside worker/ is already how ../data/*.json gets here, and season.js is
 // plain ESM with no import.meta, so wrangler bundles it. Do NOT import
@@ -52,6 +58,7 @@ const CLIENT_EVENTS = new Set([
   'affiliate_cta_tap', 'field_guide_add', 'field_note_share_tap',
   'pwa_install', 'notify_intent', 'notify_permission',
   'market_locked',
+  'local_banner_view', 'local_list_tap', 'local_order_tap', 'local_picked',
 ]);
 const MARKET_CODE = /^[A-Z]{2}$/;
 function track(env, name, f = {}) {
@@ -99,12 +106,20 @@ async function route(request, env, ctx) {
     return Response.redirect(`${url.origin}/?utm_source=${channel}`, 302);
   }
 
+  // RFC 9727 discovery: /.well-known/api-catalog, /openapi.json, /docs/api,
+  // /api/health. See worker/catalog.js for what is and is not announced.
+  const catalog = handleCatalog(request, url);
+  if (catalog) return catalog;
+
   if (url.pathname === '/api/context') return handleContext(request);
   if (url.pathname === '/api/recipe') return handleRecipe(request, env, ctx);
   if (url.pathname === '/api/event') return handleEvent(request, env);
+  if (url.pathname === '/api/local') return handleLocal(request, { byId: BY_ID, bandOf });
   if (url.pathname === '/metrics') return handleMetrics(request, env);
   if (url.pathname.startsWith('/api/')) return json({ error: 'not found' }, 404);
-  return env.ASSETS.fetch(request);
+  // Pages answer Accept: text/markdown with a markdown rendering; browsers
+  // still get HTML. See worker/markdown.js.
+  return negotiate(request, await env.ASSETS.fetch(request));
 }
 
 /* ---- POST /api/event ----
@@ -134,6 +149,9 @@ function handleContext(request) {
   return json(
     {
       country,
+      // A place with a local grower (data/local-partners.json), from the edge
+      // region. Region only, never city: IP city is unreliable on islands.
+      local: placeForEdge(request.cf),
       band: bandOf(country),
       season: seasonForMonth0(now.getMonth()),
       month: now.getMonth() + 1,

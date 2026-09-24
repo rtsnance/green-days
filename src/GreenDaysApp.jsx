@@ -56,6 +56,59 @@ const byDaysLeft = (a, b) => {
 const GOING_SOON_DAYS = 21;
 const isGoingSoon = (p) => p.daysLeft != null && p.daysLeft <= GOING_SOON_DAYS;
 const MONO = { fontFamily: 'var(--font-mono)', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase' };
+
+/* ---- Local growers (data/local-partners.json, worker/local.js) ----
+   Ibiza is a PLACE inside the ES market, not a market: same language, same
+   band, same calendar. It only adds a grower's weekly list, read against our
+   calendar, and an order link. Pickers carry it as the value 'ES:ibiza'. */
+const IBIZA = 'ES:ibiza';
+const placeLabel = (v) => (v === IBIZA ? 'Ibiza' : countryLabel(v));
+const placeOptions = () => COUNTRIES.flatMap(([code, label]) => {
+  const o = [<option key={code} value={code}>{label}</option>];
+  if (code === 'ES') o.push(<option key={IBIZA} value={IBIZA}>Ibiza (Spain)</option>);
+  return o;
+});
+const pickupLabel = (iso) => {
+  if (!iso) return '';
+  const d = new Date(iso + 'T12:00:00');
+  return isNaN(d) ? '' : d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+};
+const nameList = (ids) => {
+  const ns = ids.map((id) => byId(id)).filter(Boolean).map((p) => p.name.toLowerCase());
+  return ns.length < 2 ? ns.join('') : ns.slice(0, -1).join(', ') + ' and ' + ns[ns.length - 1];
+};
+
+/* The score, on Home. Their list against our calendar, today: of the things
+   on their list that we track, how many did we have in season. Recall only —
+   one farm not growing something says nothing about whether it is in season,
+   so what we list and they don't is never counted against us. */
+function LocalWeekBanner({ data, source }) {
+  const s = data.score;
+  React.useEffect(() => {
+    evOnce('local_banner_view', 'local_banner_view', { detail: data.partner.id, extra: source, v1: s.called, v2: s.tracked, v3: s.missed.length });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  if (!s.tracked) return null;
+  return (
+    <div className="gd-card" style={{ marginTop: 14, padding: '14px 16px' }}>
+      <div style={{ fontSize: 11, ...MONO, color: 'var(--color-text-tertiary)' }}>
+        {source === 'edge' ? 'On Ibiza? ' : ''}This week at {data.partner.name}
+      </div>
+      <div style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 900, margin: '6px 0 4px', color: 'var(--color-text-primary)' }}>
+        We called {s.called} of {s.tracked}
+      </div>
+      <p style={{ margin: 0, fontSize: 13, lineHeight: 1.5, color: 'var(--color-text-secondary)' }}>
+        Their list has {s.tracked} things we track, and we had {s.called === s.tracked ? 'every one' : s.called} in season today.
+        {s.missed.length > 0 && <> We had {nameList(s.missed)} down as out.</>}
+      </p>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginTop: 10 }}>
+        <span style={{ fontSize: 12, color: 'var(--color-text-tertiary)' }}>One farm's week, not the whole island.</span>
+        <a href={data.partner.order_url} target="_blank" rel="noopener noreferrer"
+          onClick={() => ev('local_list_tap', { detail: data.partner.id, extra: 'home' })}
+          style={{ fontSize: 13, fontWeight: 800, color: 'var(--color-text-accent)', whiteSpace: 'nowrap' }}>See their list ↗</a>
+      </div>
+    </div>
+  );
+}
 const VITALITY = {
   peak: 'At its peak — as good as it gets right now.',
   in: 'In season and reliable this week.',
@@ -287,7 +340,7 @@ async function requestRecipe({ basket, withItems, country, prefs, avoid }) {
 }
 
 /* ================= Home ================= */
-function HomeScreen({ basket, lang, country, outOfMarket, onSetCountry, query, setQuery, onAdd, onOpen, onCook, onOpenPrefs }) {
+function HomeScreen({ basket, lang, country, place, local, localSource, localData, outOfMarket, onSetCountry, query, setQuery, onAdd, onOpen, onCook, onOpenPrefs }) {
   const [cat, setCat] = React.useState('All');
   const term = query.trim();
   const q = stripDia(term);
@@ -376,9 +429,9 @@ function HomeScreen({ basket, lang, country, outOfMarket, onSetCountry, query, s
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--color-text-secondary)', marginTop: 10, fontSize: 13, fontWeight: 600 }}>
         <Icon d={I.pin} size={14} style={{ color: 'var(--color-accent)' }} />
         <span style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-          <span style={{ borderBottom: '1px dashed var(--color-border-strong)' }}>{countryLabel(country)}, {MONTH_NAME}</span>
-          <select className="gd-locpick" aria-label="Market country" value={country} onChange={(e) => onSetCountry(e.target.value)}>
-            {COUNTRIES.map(([code, label]) => <option key={code} value={code}>{label}</option>)}
+          <span style={{ borderBottom: '1px dashed var(--color-border-strong)' }}>{placeLabel(place)}, {MONTH_NAME}</span>
+          <select className="gd-locpick" aria-label="Market country" value={place} onChange={(e) => onSetCountry(e.target.value)}>
+            {placeOptions()}
           </select>
         </span>
       </div>
@@ -389,6 +442,7 @@ function HomeScreen({ basket, lang, country, outOfMarket, onSetCountry, query, s
           {outOfMarketLine(outOfMarket, country, 'home')}
         </p>
       )}
+      {local && localData && localData.ok && <LocalWeekBanner data={localData} source={localSource} />}
 
       {/* Empty basket → gentle welcome; replaced by the cook banner once something's in */}
       {basketCount === 0 && (
@@ -716,7 +770,7 @@ function useRotatingCue(active, ms = 1400) {
   return COOK_CUES[i];
 }
 
-function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, onGoHome, onTryAnother }) {
+function RecipeDetailScreen({ view, history, local, localData, onOpen, onSearchProduce, onClose, onGoHome, onTryAnother }) {
   const { entry, status, error, live } = view;
   // Names, banner, and seasonality follow the market the recipe was cooked in.
   const rc = entry ? entry.country : 'PT';
@@ -1031,6 +1085,55 @@ function RecipeDetailScreen({ view, history, onOpen, onSearchProduce, onClose, o
               ))}
             </div>
           </div>
+
+          {/* ZONE 7b — Order at a local grower (Ibiza: Can Cristòfol). Not an
+              affiliate: no commission, so no `sponsored`. Names which of this
+              recipe's produce is on their list this week when we could read it. */}
+          {local && localData && localData.partner && localData.orders_open !== false && (() => {
+            const lp = localData.partner;
+            const ids = [...new Set([...(Array.isArray(r.stars) ? r.stars : []), oneMore ? oneMore.id : null].filter(Boolean))];
+            const have = localData.ok ? ids.filter((id) => localData.have.includes(id)) : [];
+            const when = pickupLabel(lp.next_pickup);
+            // With a match and their WhatsApp number, the card skips their form
+            // and opens a chat already written: their product names, the next
+            // pickup day, and where it came from. They confirm every order on
+            // WhatsApp anyway. Without either, it falls back to their list.
+            const theirNames = have.map((id) => (localData.names && localData.names[id]) || (byId(id) || {}).name).filter(Boolean);
+            const viaWa = !!(lp.whatsapp && theirNames.length);
+            const waText = 'Hi ' + lp.name + ', I\'d like to order for pickup' + (when ? ' on ' + when : '') + ':\n'
+              + theirNames.map((n) => '- ' + n).join('\n') + '\n\nFound you through Green Days.';
+            const href = viaWa ? 'https://wa.me/' + lp.whatsapp + '?text=' + encodeURIComponent(waText) : lp.order_url;
+            return (
+              <div className="gd-reveal" style={{ animationDelay: '250ms' }}>
+                {label('Order at ' + lp.name)}
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => ev('local_order_tap', { detail: lp.id, extra: viaWa ? 'whatsapp' : 'list', v1: have.length, v2: ids.length })}
+                  className="gd-card"
+                  style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 14, textDecoration: 'none', color: 'var(--color-text-primary)' }}
+                >
+                  <span style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 800, fontSize: 15 }}>
+                      {have.length ? ('They have ' + nameList(have) + ' this week') : 'See what they have this week'}
+                    </div>
+                    <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginTop: 2 }}>
+                      {viaWa ? 'Order them on WhatsApp · ' : ''}{lp.method === 'collection' ? 'pickup at the farm' : 'order direct'}{when ? ', next ' + when : ''} · not a paid link
+                    </div>
+                  </span>
+                  <Icon d={I.arrow} size={18} style={{ transform: 'rotate(-45deg)', color: 'var(--color-text-tertiary)', flexShrink: 0 }} />
+                </a>
+                {viaWa && (
+                  <a href={lp.order_url} target="_blank" rel="noopener noreferrer"
+                    onClick={() => ev('local_list_tap', { detail: lp.id, extra: 'recipe' })}
+                    style={{ display: 'inline-block', marginTop: 8, fontSize: 12.5, fontWeight: 700, color: 'var(--color-text-tertiary)' }}>
+                    Or see everything they have this week ↗
+                  </a>
+                )}
+              </div>
+            );
+          })()}
 
           {/* ZONE 8 — Get these delivered (affiliate, external, deliberately quiet —
               this sends someone out of the app, unlike every zone above it) */}
@@ -1441,11 +1544,11 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
         <div style={{ position: 'relative', marginBottom: 8 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '13px 16px', borderRadius: 'var(--radius-element)', border: '1px solid var(--color-border)', background: 'var(--color-background-surface)' }}>
             <Icon d={I.pin} size={18} style={{ color: 'var(--color-accent)', flexShrink: 0 }} />
-            <span style={{ flex: 1, minWidth: 0, fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary)' }}>{countryLabel(market)}</span>
+            <span style={{ flex: 1, minWidth: 0, fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary)' }}>{placeLabel(market)}</span>
             <Icon d={I.chevron} size={18} style={{ color: 'var(--color-text-tertiary)', flexShrink: 0, transform: 'rotate(90deg)' }} />
           </div>
           <select className="gd-locpick" aria-label="Market country" value={market} onChange={(e) => setMarket(e.target.value)}>
-            {COUNTRIES.map(([code, label]) => <option key={code} value={code}>{label}</option>)}
+            {placeOptions()}
           </select>
         </div>
         <p style={{ fontSize: 12.5, lineHeight: 1.4, color: 'var(--color-text-tertiary)', margin: '0 0 28px' }}>Sets your market's produce names and what's in season.</p>
@@ -1483,6 +1586,7 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
 
 /* ================= App shell ================= */
 // COUNTRY_KEY lives in analytics.js: the beacon reads the saved market at load.
+const LOCAL_KEY = 'gd_local'; // 'ibiza' (picked) | 'off' (declined by picking elsewhere) | absent (follow the edge)
 const BASKET_KEY = 'gd_basket', HISTORY_KEY = 'gd_recipes', PREFS_KEY = 'gd_prefs', MARKET_ORIGIN_KEY = 'gd_market_origin', ONBOARD_KEY = 'gd_onboarded', LAST_VISIT_KEY = 'gd_last_visit', NOTIFY_KEY = 'gd_notify', NOTIFY_LABEL_KEY = 'gd_notify_labels';
 const HRS36 = 36 * 3600 * 1000;
 
@@ -1678,12 +1782,18 @@ export default function GreenDaysApp() {
   // The edge country as Cloudflare saw it, market or not: what the
   // out-of-market line names.
   const [edgeCountry, setEdgeCountry] = React.useState(null);
+  // A place with a local grower, from the edge region (worker placeForEdge).
+  const [edgeLocal, setEdgeLocal] = React.useState('');
+  const [localPick, setLocalPick] = React.useState(() => {
+    try { return localStorage.getItem(LOCAL_KEY) || ''; } catch (e) { return ''; }
+  });
   React.useEffect(() => {
     fetch(ASSET('api/context'))
       .then((r) => (r.ok ? r.json() : null))
       .then((ctx) => {
         if (!ctx) return;
         if (ctx.country) setEdgeCountry(ctx.country);
+        if (ctx.local) setEdgeLocal(ctx.local);
         // Europe-first: only adopt the edge country when it's a market we
         // carry language/season data for; otherwise stay on the default.
         if (!countryPicked && ctx.country && COUNTRIES.some(([c]) => c === ctx.country)) {
@@ -1721,6 +1831,29 @@ export default function GreenDaysApp() {
   // Explicit user picks fire market_selected; the onboarding lock-in fires
   // market_locked instead (finishOnboarding).
   const pickCountry = (c) => { setMarketOrigin('picked'); persistCountry(c, 'picked'); ev('market_selected', { detail: c }); };
+  // Pickers hand over a market code or IBIZA. Picking Ibiza is picking Spain
+  // plus the place; picking anything else, Spain included, turns the place off
+  // so an edge guess (the Balearic region covers Mallorca and Menorca) can be
+  // declined for good.
+  const persistLocal = (v) => { setLocalPick(v); try { localStorage.setItem(LOCAL_KEY, v); } catch (e) { /* private mode */ } };
+  const pickPlace = (v) => {
+    if (v === IBIZA) { pickCountry('ES'); persistLocal('ibiza'); ev('local_picked', { detail: 'ibiza' }); return; }
+    pickCountry(v);
+    if (localPick === 'ibiza' || edgeLocal) persistLocal('off');
+  };
+  const local = country === 'ES' ? (localPick === 'ibiza' ? 'ibiza' : localPick === 'off' ? '' : edgeLocal) : '';
+  const localSource = localPick === 'ibiza' ? 'picked' : 'edge';
+  const place = (local && localSource === 'picked') ? IBIZA : country;
+  const [localData, setLocalData] = React.useState(null);
+  React.useEffect(() => {
+    if (!local) { setLocalData(null); return; }
+    let live = true;
+    fetch(ASSET('api/local?place=' + encodeURIComponent(local)))
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (live) setLocalData(d && d.partner ? d : null); })
+      .catch(() => { /* offline or vite-only dev: no local grower */ });
+    return () => { live = false; };
+  }, [local]);
   const lang = langOf(country);
 
   const add = (id, n) => {
@@ -1815,17 +1948,17 @@ export default function GreenDaysApp() {
             them is scrolled; only .gd-screen itself scrolls. */}
         <div className="gd-screen-wrap">
           <div className="gd-screen">
-            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} outOfMarket={outOfMarket} onSetCountry={pickCountry} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)} />}
+            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} place={place} local={local} localSource={localSource} localData={localData} outOfMarket={outOfMarket} onSetCountry={pickPlace} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)} />}
             {tab === 'list' && <ListScreen basket={basket} checked={checked} lang={lang} country={country} prefs={prefs}
               declared={declared} onDeclare={declare} onUndeclare={undeclare} onAdd={add} onRemove={(id) => setQty(id, 0)} onToggle={toggle} onOpen={setDetail} onCook={cookThis} />}
             {tab === 'recipes' && <RecipesListScreen history={history} onOpenEntry={openEntry} onGoHome={() => setTab('home')} />}
           </div>
           {recipeView && (
-            <RecipeDetailScreen view={recipeView} history={history} onOpen={setDetail} onSearchProduce={searchProduce} onClose={closeRecipe}
+            <RecipeDetailScreen view={recipeView} history={history} local={local} localData={localData} onOpen={setDetail} onSearchProduce={searchProduce} onClose={closeRecipe}
               onGoHome={() => { closeRecipe(); setTab('home'); }} onTryAnother={tryAnother} />
           )}
           {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={add} onClose={() => setDetail(null)} onOpen={setDetail} fieldGuideSlugs={fieldGuideSlugs} />}
-          {showPrefs && <PrefsScreen prefs={prefs} firstRun={!prefs.seen} country={country} onSetCountry={pickCountry} onSave={savePrefs} onClose={() => setShowPrefs(false)} />}
+          {showPrefs && <PrefsScreen prefs={prefs} firstRun={!prefs.seen} country={place} onSetCountry={pickPlace} onSave={savePrefs} onClose={() => setShowPrefs(false)} />}
         </div>
 
         {/* Tab bar is hidden until onboarding completes */}
