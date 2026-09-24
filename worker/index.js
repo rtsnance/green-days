@@ -14,7 +14,7 @@ import { handleMetrics } from './metrics.js';
 import { withSecurityHeaders } from './headers.js';
 import { handleLocal, placeForEdge } from './local.js';
 import { negotiate } from './markdown.js';
-import { handleCatalog } from './catalog.js';
+import { handleCatalog, withDiscoveryLinks } from './catalog.js';
 // The one seasonality implementation, shared with the front end. Reaching
 // outside worker/ is already how ../data/*.json gets here, and season.js is
 // plain ESM with no import.meta, so wrangler bundles it. Do NOT import
@@ -119,7 +119,8 @@ async function route(request, env, ctx) {
   if (url.pathname.startsWith('/api/')) return json({ error: 'not found' }, 404);
   // Pages answer Accept: text/markdown with a markdown rendering; browsers
   // still get HTML. See worker/markdown.js.
-  return negotiate(request, await env.ASSETS.fetch(request));
+  // Every page also carries Link headers to the API catalog (catalog.js).
+  return withDiscoveryLinks(await negotiate(request, await env.ASSETS.fetch(request)));
 }
 
 /* ---- POST /api/event ----

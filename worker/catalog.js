@@ -4,6 +4,7 @@
    GET      /openapi.json            → the OpenAPI 3.1 description (service-desc)
    GET      /docs/api                → the human docs page (service-doc)
    GET      /api/health              → a trivial liveness answer (status)
+   and a Link header naming the first three on every page (withDiscoveryLinks).
 
    What is catalogued, and what is deliberately not:
      /api/context  yes. Free, read-only, cheap.
@@ -210,6 +211,26 @@ const DOCS_HTML = `<!doctype html>
 
 const CORS = { 'access-control-allow-origin': '*' };
 const LINK = `<${CATALOG_PATH}>; rel="api-catalog"`;
+
+/* RFC 8288 Link headers on every page, for agent discovery (RFC 9727 s3).
+   A page an agent lands on, the homepage first, points at the catalog, the
+   OpenAPI description and the docs, so nothing has to guess /.well-known.
+   Pages only (HTML, and the markdown rendering of the same page): an image
+   or a stylesheet has no use for them. Relative targets resolve against the
+   page, and every page is on greendays.day. */
+const PAGE_LINKS = [
+  LINK,
+  '</openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json"',
+  '</docs/api>; rel="service-doc"; type="text/html"',
+].join(', ');
+
+export function withDiscoveryLinks(response) {
+  const type = response.headers.get('content-type') || '';
+  if (!response.ok || !/text\/(html|markdown)/.test(type)) return response;
+  const out = new Response(response.body, response);
+  out.headers.append('link', PAGE_LINKS);
+  return out;
+}
 
 // Returns a Response for the catalog routes, or null when the path is not one.
 export function handleCatalog(request, url) {
