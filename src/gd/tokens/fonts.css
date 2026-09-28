@@ -1,7 +1,8 @@
 /* Green Days — Webfonts
-   Loaded from Google Fonts CDN. To self-host, replace this @import with local
-   @font-face rules and drop the .woff2 files into /assets/fonts.
+   Self-hosted since 28 Sep 2026: the @font-face rules live in
+   public/fonts/fonts.css (served at /fonts/fonts.css) and index.html links it,
+   so no visitor's browser contacts Google. The static pages (field guide,
+   market year) and /metrics link the same file.
    - Annie Use Your Telescope : brand wordmark + warm display accents
    - Nunito                    : headings + body + UI
    - JetBrains Mono            : code / numeric tabular */
-@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Nunito:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');

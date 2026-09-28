@@ -419,8 +419,7 @@ function shell(inner, days) {
   return `<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><title>Green Days · metrics</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/fonts/fonts.css">
 <style>
   :root { --accent:#529d7f; --accent-strong:#42917c; --ground:#fcf8ee; --ink:#1a2023; --muted:#4d606b; --card:#ffffff; --line:#e3ddcd; }
   * { box-sizing:border-box; }
