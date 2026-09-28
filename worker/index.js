@@ -512,7 +512,9 @@ function normalizeRecipe(r, basket, inSeasonIds = []) {
   let grab = null;
   if (typeof r.grabOneMore === 'string') {
     const g = r.grabOneMore.trim();
-    if (g && BY_ID.has(g)) grab = basket.includes(g) ? null : g;
+    // A catalogue id must also be in season here today; the model sometimes
+    // names a good pairing that is out (cebolleta in Spain in September).
+    if (g && BY_ID.has(g)) grab = basket.includes(g) || !inSeasonIds.includes(g) ? null : g;
     else if (g) {
       const found = produceMentions(g).filter((id) => !basket.includes(id));
       const inSeason = found.filter((id) => inSeasonIds.includes(id));

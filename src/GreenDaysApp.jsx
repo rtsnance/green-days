@@ -839,6 +839,9 @@ function RecipeDetailScreen({ view, history, local, localData, onOpen, onSearchP
   const grabRaw = r && r.grabOneMore ? String(r.grabOneMore).trim() : '';
   const grabTerm = grabRaw && grabRaw.split(/\s+/).length <= 3 ? grabRaw : '';
   const oneMore = grabTerm ? decorate(resolveSuggestion(grabTerm), rc) : null;
+  // Never suggest buying something that is out of season in this market
+  // (older cached recipes can still carry one).
+  const grabOut = !!(oneMore && oneMore.seasonality === 'out');
 
   // Match a fresh-ingredient line back to a produce print where possible.
   const freshProduce = (item) => {
@@ -1087,7 +1090,7 @@ function RecipeDetailScreen({ view, history, local, localData, onOpen, onSearchP
           {/* ZONE 5 — Grab one more (forward, Seagrass). A resolved suggestion
               opens its product detail; an unmatched one opens Home with the
               term pre-filled in search (never a bare Home fallback). */}
-          {grabTerm && (
+          {grabTerm && !grabOut && (
             <div className="gd-reveal" style={{ animationDelay: '160ms' }}>
               {label(<span><Icon d={I.pin} size={13} w={2.4} /> Grab one more at the stalls</span>, true)}
               <button onClick={() => { ev('grab_one_more_tap', { detail: oneMore ? oneMore.id : '' }); (oneMore ? onOpen(oneMore.id) : onSearchProduce(grabTerm)); }} style={{ width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', padding: 12, borderRadius: 'var(--radius-container)', background: 'linear-gradient(120deg, var(--color-accent-strong), var(--color-accent))', color: '#fff', display: 'flex', alignItems: 'center', gap: 14, boxShadow: 'var(--shadow-med)', fontFamily: 'var(--font-body)' }}>
@@ -1098,7 +1101,7 @@ function RecipeDetailScreen({ view, history, local, localData, onOpen, onSearchP
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontWeight: 800, fontSize: 17 }}>{oneMore ? ((lang && oneMore.name_local[lang]) || oneMore.name) : grabTerm}</div>
-                  <div style={{ fontSize: 13, opacity: .9 }}>{oneMore ? 'In season now · finishes the dish' : 'Find it at the stalls'}</div>
+                  <div style={{ fontSize: 13, opacity: .9 }}>{oneMore ? (oneMore.seasonality === 'peak' ? 'At its best now · finishes the dish' : 'In season now · finishes the dish') : 'Find it at the stalls'}</div>
                 </div>
                 <Icon d={I.arrow} size={22} />
               </button>
