@@ -1,0 +1,307 @@
+{
+  "version": 1,
+  "note": "Here / Nearby / Anywhere baskets (2026-09-28). Every one is graded on whether the kitchen the recipe names fits the distance asked, against data/kitchens.json. Run with scripts/eval-distance.sh against the real model.",
+  "baskets": [
+    {
+      "id": "dist-pt-here",
+      "intent": "Portugal, Here: the market's own kitchen. Baseline for the three-way comparison",
+      "tags": [
+        "distance",
+        "here",
+        "med"
+      ],
+      "request": {
+        "basket": [
+          "quince",
+          "onion"
+        ],
+        "country": "PT",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "here"
+      }
+    },
+    {
+      "id": "dist-pt-nearby",
+      "intent": "Portugal, Nearby: a neighbour or family kitchen (Spanish, Moroccan, Goan, Japanese...), not Portuguese",
+      "tags": [
+        "distance",
+        "nearby",
+        "med"
+      ],
+      "request": {
+        "basket": [
+          "pumpkin",
+          "chestnut"
+        ],
+        "country": "PT",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "nearby"
+      }
+    },
+    {
+      "id": "dist-pt-anywhere",
+      "intent": "Portugal, Anywhere: a kitchen outside Here and Nearby, cooked straight, not fusion",
+      "tags": [
+        "distance",
+        "anywhere",
+        "med"
+      ],
+      "request": {
+        "basket": [
+          "persimmon-kaki",
+          "pomegranate"
+        ],
+        "country": "PT",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "anywhere"
+      }
+    },
+    {
+      "id": "dist-pt-default",
+      "intent": "No distance sent (every client before the control ships): must behave as Here",
+      "tags": [
+        "distance",
+        "default",
+        "med",
+        "regression"
+      ],
+      "request": {
+        "basket": [
+          "pear"
+        ],
+        "country": "PT",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": []
+      }
+    },
+    {
+      "id": "dist-es-nearby",
+      "intent": "Spain, Nearby: Latin American and Filipino family now count as Nearby",
+      "tags": [
+        "distance",
+        "nearby",
+        "med"
+      ],
+      "request": {
+        "basket": [
+          "sweet-potato",
+          "onion"
+        ],
+        "country": "ES",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "nearby"
+      }
+    },
+    {
+      "id": "dist-gb-here",
+      "intent": "Britain, Here: curry is British now, so an Indian, Pakistani or Bangladeshi dish is a fit",
+      "tags": [
+        "distance",
+        "here",
+        "temperate"
+      ],
+      "request": {
+        "basket": [
+          "cauliflower",
+          "potato",
+          "onion"
+        ],
+        "country": "GB",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "here"
+      }
+    },
+    {
+      "id": "dist-gb-nearby",
+      "intent": "Britain, Nearby: Irish, French, Scandinavian or Lowlands, or family (Jamaican, Hong Kong, Portuguese)",
+      "tags": [
+        "distance",
+        "nearby",
+        "temperate"
+      ],
+      "request": {
+        "basket": [
+          "leek",
+          "potato"
+        ],
+        "country": "GB",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "nearby"
+      }
+    },
+    {
+      "id": "dist-fr-here",
+      "intent": "France, Here: couscous counts as French now",
+      "tags": [
+        "distance",
+        "here",
+        "temperate"
+      ],
+      "request": {
+        "basket": [
+          "carrot",
+          "turnip"
+        ],
+        "country": "FR",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "here"
+      }
+    },
+    {
+      "id": "dist-dk-nearby",
+      "intent": "Denmark, Nearby with no family: neighbours only",
+      "tags": [
+        "distance",
+        "nearby",
+        "temperate",
+        "no-family"
+      ],
+      "request": {
+        "basket": [
+          "celeriac",
+          "apple"
+        ],
+        "country": "DK",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "nearby"
+      }
+    },
+    {
+      "id": "dist-gr-anywhere",
+      "intent": "Greece, Anywhere: nothing Greek, Turkish, Levantine, Italian or Balkan",
+      "tags": [
+        "distance",
+        "anywhere",
+        "med",
+        "no-family"
+      ],
+      "request": {
+        "basket": [
+          "pomegranate",
+          "fennel"
+        ],
+        "country": "GR",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "anywhere"
+      }
+    },
+    {
+      "id": "dist-nl-here",
+      "intent": "Netherlands, Here: Dutch, Indonesian or Surinamese",
+      "tags": [
+        "distance",
+        "here",
+        "temperate"
+      ],
+      "request": {
+        "basket": [
+          "red-cabbage",
+          "apple"
+        ],
+        "country": "NL",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "here"
+      }
+    },
+    {
+      "id": "dist-se-nearby",
+      "intent": "Sweden, Nearby: Nordic, German, Baltic, or Javanese family",
+      "tags": [
+        "distance",
+        "nearby",
+        "temperate"
+      ],
+      "request": {
+        "basket": [
+          "swede",
+          "carrot"
+        ],
+        "country": "SE",
+        "month": 10,
+        "prefs": {
+          "diet": "none",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "nearby"
+      }
+    },
+    {
+      "id": "dist-it-nearby-vegan",
+      "intent": "Italy, Nearby and vegan: the distance must never loosen a hard constraint",
+      "tags": [
+        "distance",
+        "nearby",
+        "med",
+        "diet"
+      ],
+      "request": {
+        "basket": [
+          "pumpkin"
+        ],
+        "country": "IT",
+        "month": 10,
+        "prefs": {
+          "diet": "vegan",
+          "allergies": []
+        },
+        "avoid": [],
+        "distance": "nearby"
+      }
+    }
+  ]
+}

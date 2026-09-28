@@ -51,6 +51,53 @@ def load_produce():
 def load_markets():
     return json.load(open(os.path.join(ASSETS, "markets.json")))
 
+# ------------------------------------------------- recipe distance (kitchens)
+# Mirrors worker/kitchens.js: Here = own kitchen + naturalised; Nearby =
+# neighbours + family; Anywhere = neither. Parenthesised names ("Galician",
+# "Dalmatian") count as the more specific form of their entry.
+KITCHENS = json.load(open(os.path.join(ASSETS, "kitchens.json")))
+LEGEND_MARKERS = ["medici", "kolschitzky", "kolschitzki", "radetzky", "lord sandys", "charles xii", "karl xii",
+                  "puebla convent", "rosas", "lavalle", "pot-au-feu", "pot au feu", "scraps from the master"]
+
+def _klabel(k):
+    return re.sub(r"\s*\(.*\)\s*$", "", str(k)).strip()
+
+def _kaliases(k):
+    m = re.search(r"\(([^)]*)\)", str(k))
+    if not m:
+        return []
+    return [s.strip() for s in re.split(r",|\band\b", re.sub(r"above all", "", m.group(1), flags=re.I)) if s.strip()]
+
+def _knorm(s):
+    import unicodedata
+    s = unicodedata.normalize("NFD", str(s or "").lower())
+    s = "".join(c for c in s if unicodedata.category(c) != "Mn")
+    return re.sub(r"[^a-z]+", " ", s).strip()
+
+def kitchen_sets(country):
+    m = KITCHENS["markets"].get(country) or KITCHENS["markets"]["PT"]
+    here = [m["here"]["kitchen"]] + [n["kitchen"] for n in m["here"]["naturalised"]]
+    nearby = list(m["neighbours"]) + [f["kitchen"] for f in m["family"]]
+    return here, nearby
+
+def kitchen_fits(country, distance, kitchen):
+    k = _knorm(kitchen)
+    if not k:
+        return False
+    here, nearby = kitchen_sets(country)
+    def hit(lst):
+        names = [x for e in lst for x in [_klabel(e)] + _kaliases(e)]
+        for x in names:
+            n = _knorm(x)
+            if n and (k == n or k.startswith(n + " ") or n.startswith(k + " ")):
+                return True
+        return False
+    if distance == "here":
+        return hit(here)
+    if distance == "nearby":
+        return hit(nearby)
+    return not hit(here) and not hit(nearby)
+
 # ------------------------------------------------------------- seasonality model
 # Calendar wheel in seasonal order, so a range "A–B" is a contiguous slice.
 WHEEL = [3,4,5,6,7,8,9,10,11,12,1,2]
@@ -296,7 +343,25 @@ def lint(recipe, req, produce):
                 warn.append(f"GRAB: '{grab}' overlaps basket item '{bid}'; the nudge should be a genuinely different thing")
                 break
 
-    return {"hard_fail": hard, "warn": warn, "off_season_items": off}
+    # G9 distance. The recipe names the kitchen it cooked in; that kitchen has
+    # to fit the distance asked (absent = here) against data/kitchens.json.
+    # Older engines return no kitchen (warn only) and the mock returns 'mock'
+    # (skipped), so the predeploy gate is unaffected.
+    distance = req.get("distance") or "here"
+    kitchen = recipe.get("kitchen")
+    if kitchen is None:
+        warn.append("KITCHEN: recipe names no kitchen (engine predates Here / Nearby / Anywhere)")
+    elif str(kitchen).strip().lower() != "mock":
+        if not kitchen_fits(req.get("country", ""), distance, kitchen):
+            hard.append(f"KITCHEN: '{kitchen}' is not a {distance} kitchen for {req.get('country')}")
+    # Legends (data/kitchens.json): a name from a rejected story showing up is
+    # worth a human look, not proof the story was told as fact.
+    for mk in LEGEND_MARKERS:
+        if mk in blob.lower():
+            warn.append(f"LEGEND: mentions '{mk}'; check the recipe does not state a rejected food legend as fact")
+
+    return {"hard_fail": hard, "warn": warn, "off_season_items": off, "kitchen": kitchen, "distance": distance,
+            "kitchen_fit": None if kitchen is None or str(kitchen).lower() == "mock" else kitchen_fits(req.get("country", ""), distance, kitchen)}
 
 # ------------------------------------------------------------------ judge pass
 JUDGE_SYSTEM = """You are a strict but fair recipe editor for "Green Days", grading one generated recipe against the app's principles. Score only what the principles ask for. Return ONLY minified JSON, no prose.
@@ -308,14 +373,14 @@ PRINCIPLES (condensed):
 - Main courses. A one-item basket stays produce-led and minimal. A basket of two or more MAY build a full main with a protein bought at the counter (the whole counter is open, good cuts included) and cooked into the method with real technique, marked register "counter" in the ingredients. Lean that way when the produce cannot be a meal on its own (pear, quince, orange, chilli, fennel, onion), and stay produce-led when the produce is at peak and restraint is the better dish. Vegan and vegetarian mains must have real heft, never a vegetable dish with a spoonful of pulses beside it.
 - Three ingredient registers: "basket" (the shopper's produce, dominant), "counter" (anything else they must buy, a protein above all but also tinned pulses or cheese), "pantry" (assumed staples, lightest).
 - Honesty rules: everything named in the title is in the ingredients and the method; basket items are never hedged with "if you have it"; an item left out quietly beats an item tacked on as a token side; grabOneMore is genuinely different from what is already in the basket; the time cue matches what the method actually takes.
-- Mediterranean-European home cooking as default voice, with a LIGHT inflection from the market's country. Rooted, not costumed.
+- The kitchen is set by the request's distance (see "distance" and "allowed_kitchens" in the input). HERE: the market's own kitchen, including dishes that arrived and stayed (curry in Britain, Indonesian in the Netherlands). NEARBY: one of the listed neighbour or family kitchens, NOT the market's own; that is the point, never mark it down for leaving home. ANYWHERE: a kitchen outside both lists, cooked the way that kitchen really cooks, not fusion. In every case: rooted, not costumed, and the basket still leads.
 - Servings 2, quantities scale obviously. Signal quick vs leisurely up front.
 - "Grab one more": one in-season item to complete the dish. "Make it a meal": 1-2 proteins ONLY when no protein is cooked into the dish, diet-aware; null whenever the method already cooks one. Honest off-season note only when an off-season item is in the basket. Honor diet/allergy silently.
 
 Score each dimension 1-5 (5 best):
 - voice: warm, spare, correct register; poetry confined to note + grab-one-more
 - technique: confident-home-cook level; technique earns its place; not fussy, not lazy; peak/variety dial right
-- seasonality: stars are the in-season picks; market-strict; location inflection light and correct; off-season handled honestly
+- seasonality: stars are the in-season picks; market-strict; the named kitchen fits the distance and is cooked convincingly; off-season handled honestly
 - structure: clear numbered method, scales to 2, the three ingredient registers used correctly, useful grab-one-more, protein rule respected, main-vs-produce-led call fits the basket size
 - appetite: would a real cook want to make and eat this
 Also give overall (1-5) and list hard_flags (array of short strings) for any principle-violation you see (allergen/diet breach, banned words, dishonest seasonality, non-market ingredient). rationale: one sentence.
@@ -334,8 +399,13 @@ def judge(recipe, req, produce, band):
             "id": i, "name": it.get("name_en", i), "season_label": it.get("season"),
             "in_season_here": in_season(it, req.get("month"), band) if it else None,
         })
+    here, nearby = kitchen_sets(req.get("country", ""))
+    distance = req.get("distance") or "here"
+    allowed = {"here": here, "nearby": nearby}.get(distance, {"not": here + nearby})
     user = {
         "market": {"country": req.get("country"), "band": band, "month": req.get("month")},
+        "distance": distance,
+        "allowed_kitchens": allowed,
         "prefs": req.get("prefs", {}),
         "basket": basket_ctx,
         "recipe": recipe,
@@ -355,7 +425,7 @@ def judge(recipe, req, produce, band):
 
 # --------------------------------------------------------------- recipe source
 def call_engine(req):
-    payload = {k: req[k] for k in ("basket","country","month","prefs","avoid") if k in req}
+    payload = {k: req[k] for k in ("basket","country","month","prefs","avoid","distance") if k in req}
     payload.setdefault("avoid", [])
     data = json.dumps(payload).encode()
     r = urllib.request.Request(RECIPE_URL, data=data, headers={"content-type":"application/json"})
@@ -395,6 +465,7 @@ def run():
         L = lint(recipe, req, produce)
         row = {"id": b["id"], "intent": b.get("intent"), "tags": b.get("tags", []),
                "hard_fail": L["hard_fail"], "warn": L["warn"], "off_season_items": L["off_season_items"],
+               "distance": L["distance"], "kitchen": L["kitchen"], "kitchen_fit": L["kitchen_fit"],
                "latency_ms": latency_ms, "recipe_title": recipe.get("title"), "recipe": recipe}
         if not args.no_judge:
             try:
@@ -412,6 +483,9 @@ def run():
     agg = {"baskets": len(results), "graded": n, "errored": len(results)-n,
            "hard_fail_baskets": hard_fail_n,
            "hard_fail_rate": round(hard_fail_n/n, 3) if n else None}
+    checked = [r for r in graded if r.get("kitchen_fit") is not None]
+    if checked:
+        agg["kitchen_fit"] = {"fit": sum(1 for r in checked if r["kitchen_fit"]), "checked": len(checked)}
     dims = ["voice","technique","seasonality","structure","appetite","overall"]
     judged = [r["judge"] for r in graded if isinstance(r.get("judge"), dict)]
     if judged:
@@ -448,6 +522,11 @@ def _print_summary(rep):
     print(f"Hard-gate failures: {a['hard_fail_baskets']} baskets  (rate {a['hard_fail_rate']})")
     if a.get("latency_ms"):
         L = a["latency_ms"]; print(f"Latency ms: median {L['median']}  p95 {L['p95']}  (min {L['min']}, max {L['max']})")
+    if a.get("kitchen_fit"):
+        k = a["kitchen_fit"]; print(f"Kitchen fits distance: {k['fit']}/{k['checked']}")
+        for r in rep["results"]:
+            if r.get("kitchen") is not None and r.get("kitchen_fit") is not None:
+                print(f"  {'✓' if r['kitchen_fit'] else '✗'} {r['id']}: {r['distance']} -> {r['kitchen']}  | {r.get('recipe_title')}")
     if a.get("judge_means"):
         print("Judge means: " + "  ".join(f"{k} {v}" for k,v in a["judge_means"].items()))
     for r in rep["results"]:
