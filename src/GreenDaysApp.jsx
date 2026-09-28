@@ -1367,16 +1367,20 @@ function NotifyWhenBack({ p, lang, country }) {
    the day itself (numeral, name, its line of lore, its dates), then what is
    arriving and what is leaving, each one tap from the basket. The rows are
    the ids the notification was built from, so the page keeps its promise
-   word for word. Web long read one tap away. */
-function TurningScreen({ turn, basket, lang, country, onAdd, onOpen, onClose, onCook }) {
+   word for word. Web long read one tap away.
+   The page is its own small basket (Ryan, 2026-09-28): Add picks here, Cook
+   this stays disabled until something is picked, and cooking REPLACES the
+   basket with the picks, not whatever was in it before. */
+function TurningScreen({ turn, lang, country, onOpen, onClose, onCook }) {
+  const [picked, setPicked] = React.useState([]);
   const day = turningDay(turn.num);
   if (!day) return null;
+  const togglePick = (id) => setPicked((xs) => (xs.indexOf(id) === -1 ? xs.concat(id) : xs.filter((x) => x !== id)));
   const [name] = day.name.split(' / ');
   const [lore] = day.working_name.split(' / ');
   const fmt = (md) => { const [m, d] = md.split('-').map(Number); return d + ' ' + MONTH_NAMES[m - 1]; };
   const rows = (ids) => ids.map((id) => decorate(byId(id), country)).filter(Boolean);
   const arriving = rows(turn.arriving || []), leaving = rows(turn.leaving || []);
-  const basketCount = Object.values(basket).reduce((s, n) => s + n, 0);
   const Row = ({ p }) => (
     <div onClick={() => onOpen(p.id)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderTop: '1px solid var(--color-border)', cursor: 'pointer' }}>
       <div style={{ width: 52, height: 52, flexShrink: 0 }}><ProduceThumb p={p} size={52} radius={12} /></div>
@@ -1384,7 +1388,7 @@ function TurningScreen({ turn, basket, lang, country, onAdd, onOpen, onClose, on
         <div style={{ fontWeight: 800, fontSize: 15.5 }}>{(lang && p.name_local[lang]) || p.name}</div>
         {lang && p.name_local[lang] && p.name_local[lang] !== p.name && <div style={{ fontSize: 13, color: 'var(--color-text-tertiary)' }}>{p.name}</div>}
       </div>
-      <AddControl p={p} qty={basket[p.id] || 0} onAdd={onAdd} />
+      <AddControl p={p} qty={picked.indexOf(p.id) === -1 ? 0 : 1} onAdd={() => togglePick(p.id)} />
     </div>
   );
   const section = (title, list) => list.length > 0 && (
@@ -1396,7 +1400,7 @@ function TurningScreen({ turn, basket, lang, country, onAdd, onOpen, onClose, on
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 20, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
       <div style={{ padding: '14px 20px 24px', flex: 1 }}>
-        <button onClick={onClose} aria-label="Back" className="gd-btn gd-btn--icon-only" style={{ background: 'var(--color-neutral)' }}><span className="gd-btn__icon"><Icon d={I.back || I.x} size={18} /></span></button>
+        <button onClick={onClose} aria-label="Back" className="gd-btn gd-btn--icon-only" style={{ background: 'var(--color-neutral)', color: 'var(--color-text-primary)' }}><span className="gd-btn__icon"><Icon d={I.back} size={18} /></span></button>
         <div style={{ fontFamily: 'var(--font-brand)', fontSize: 44, lineHeight: 1, color: 'var(--color-accent)', marginTop: 18 }}>{day.numeral}</div>
         <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 28, fontWeight: 900, margin: '6px 0 4px', lineHeight: 1.1 }}>{name}</h1>
         <div style={{ fontSize: 16, fontStyle: 'italic', color: 'var(--color-text-secondary)' }}>{lore}</div>
@@ -1405,11 +1409,13 @@ function TurningScreen({ turn, basket, lang, country, onAdd, onOpen, onClose, on
         {section('Last weeks', leaving)}
         <a href={SITE('/market-year/' + turningSlug(day) + '/')} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: 22, fontSize: 13.5, fontWeight: 700, color: 'var(--color-text-tertiary)', textDecoration: 'none' }}>Read the turning day →</a>
       </div>
-      {basketCount > 0 && (
-        <div style={{ position: 'sticky', bottom: 0, padding: 16, background: 'var(--color-background-surface)', borderTop: '1px solid var(--color-border)' }}>
-          <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" onClick={onCook}><span>Cook this</span></button>
-        </div>
-      )}
+      <div style={{ position: 'sticky', bottom: 0, padding: 16, background: 'var(--color-background-surface)', borderTop: '1px solid var(--color-border)' }}>
+        <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" disabled={picked.length === 0}
+          style={picked.length === 0 ? { opacity: 0.45, cursor: 'default' } : undefined}
+          onClick={() => { if (picked.length) onCook(picked); }}>
+          <span>{picked.length ? 'Cook this' : 'Add something to cook'}</span>
+        </button>
+      </div>
     </div>
   );
 }
@@ -2179,8 +2185,8 @@ export default function GreenDaysApp() {
     });
   }, []);
 
-  const cook = async (avoid, distanceOverride) => {
-    const ids = Object.keys(basket).filter((id) => basket[id] > 0);
+  const cook = async (avoid, distanceOverride, idsOverride) => {
+    const ids = idsOverride || Object.keys(basket).filter((id) => basket[id] > 0);
     if (ids.length === 0) return;
     const fresh = avoid.length === 0;
     if (fresh) { ev('basket_cook', { detail: prefs.diet, v1: ids.length }); cookTapAt.current = performance.now(); } // fresh Cook this
@@ -2222,6 +2228,14 @@ export default function GreenDaysApp() {
     }
   };
   const cookThis = () => { sessionAvoid.current = []; liveEntryId.current = null; cook([]); };
+  // From the turning-day page: the picks REPLACE the basket, then cook them.
+  // The ids go to cook() directly, since the new basket state is not readable
+  // until the next render.
+  const cookPicked = (ids) => {
+    setBasket(Object.fromEntries(ids.map((id) => [id, 1])));
+    sessionAvoid.current = []; liveEntryId.current = null;
+    cook([], undefined, ids);
+  };
   const tryAnother = () => { ev('recipe_try_another'); cook(sessionAvoid.current); };
   // Moving the switch on a live recipe saves the new distance and re-cooks the
   // same basket at it, swapping the open recipe like "Try another" does.
@@ -2277,7 +2291,7 @@ export default function GreenDaysApp() {
             <RecipeDetailScreen view={recipeView} history={history} local={local} localData={localData} onOpen={setDetail} onSearchProduce={searchProduce} onClose={closeRecipe}
               onGoHome={() => { closeRecipe(); setTab('home'); }} onTryAnother={tryAnother} onDistance={changeDistance} />
           )}
-          {turn && <TurningScreen turn={turn} basket={basket} lang={lang} country={country} onAdd={add} onOpen={setDetail} onClose={() => setTurn(null)} onCook={() => { setTurn(null); cookThis(); }} />}
+          {turn && <TurningScreen turn={turn} lang={lang} country={country} onOpen={setDetail} onClose={() => setTurn(null)} onCook={(ids) => { setTurn(null); cookPicked(ids); }} />}
           {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={add} onClose={() => setDetail(null)} onOpen={setDetail} fieldGuideSlugs={fieldGuideSlugs} />}
           {showPrefs && <PrefsScreen prefs={prefs} firstRun={!prefs.seen} country={place} onSetCountry={pickPlace} onSave={savePrefs} onClose={() => setShowPrefs(false)} />}
         </div>
