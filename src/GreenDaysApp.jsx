@@ -11,6 +11,7 @@ import {
 } from './produce.js';
 import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator, setMarket, COUNTRY_KEY } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
+import KITCHENS from '../data/kitchens.json';
 import { seedsFor, matchProduce, MAX_WITH, MAX_WITH_LEN } from './shelf.js';
 
 const MONTH_NAME = new Date().toLocaleString('en-GB', { month: 'long' });
@@ -775,7 +776,7 @@ function useRotatingCue(active, ms = 1400) {
   return COOK_CUES[i];
 }
 
-function RecipeDetailScreen({ view, history, local, localData, onOpen, onSearchProduce, onClose, onGoHome, onTryAnother }) {
+function RecipeDetailScreen({ view, history, local, localData, onOpen, onSearchProduce, onClose, onGoHome, onTryAnother, onDistance }) {
   const { entry, status, error, live } = view;
   // Names, banner, and seasonality follow the market the recipe was cooked in.
   const rc = entry ? entry.country : 'PT';
@@ -920,6 +921,14 @@ function RecipeDetailScreen({ view, history, local, localData, onOpen, onSearchP
               {r.time && <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 14, fontWeight: 700, color: 'var(--color-text-primary)' }}><Icon d={I.clock} size={17} style={{ color: 'var(--color-text-secondary)' }} /> {r.time}</span>}
               <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 14, fontWeight: 700, color: 'var(--color-text-primary)' }}><Icon d={I.users} size={17} style={{ color: 'var(--color-text-secondary)' }} /> Serves 2</span>
             </div>
+            {live && onDistance && (
+              <div className="gd-segmented" style={{ display: 'flex', width: '100%', marginTop: 16 }} role="group" aria-label="How far this recipe travels">
+                {Object.entries(DISTANCE_LABEL).map(([v, lbl]) => {
+                  const on = v === (r.distance || 'here');
+                  return <button key={v} className={'gd-segmented__item' + (on ? ' gd-segmented__item--active' : '')} style={{ flex: 1, padding: '8px 4px', fontSize: 13 }} onClick={() => { if (!on) onDistance(v); }}>{lbl}</button>;
+                })}
+              </div>
+            )}
           </div>
 
           <div className="gd-reveal" style={{ animationDelay: '40ms' }}>
@@ -1383,6 +1392,36 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, field
 const DIETS = [['none', 'No limits'], ['pescatarian', 'Pescatarian'], ['vegetarian', 'Vegetarian'], ['vegan', 'Vegan']];
 const ALLERGIES = ['Nuts', 'Dairy', 'Gluten', 'Eggs', 'Shellfish', 'Soy'];
 
+/* Here · Nearby · Anywhere. The hint names real kitchens for the market, read
+   from the same data/kitchens.json the recipe engine uses, so the promise on
+   the screen and the engine's allowed list can never drift apart. */
+const kLabel = (k) => String(k).replace(/\s*\(.*\)\s*$/, '');
+function distanceHint(d, country) {
+  const m = KITCHENS.markets[country] || KITCHENS.markets.PT;
+  if (d === 'nearby') {
+    const pick = [...m.neighbours.slice(0, 2), ...m.family.slice(0, 2).map((f) => f.kitchen)].map(kLabel);
+    return 'Its neighbours and family: ' + pick.join(', ') + '.';
+  }
+  if (d === 'anywhere') return 'Any kitchen further off. The produce stays; the hands that cook it travel.';
+  const also = m.here.naturalised.flatMap((n) => n.dish.split(',').slice(0, 1).map((x) => x.trim()));
+  const list = also.length > 1 ? also.slice(0, -1).join(', ') + ' and ' + also[also.length - 1] : also[0];
+  return kLabel(m.here.kitchen) + ' cooking' + (list ? ', with ' + list : '') + '.';
+}
+function DistancePicker({ value, onChange, country }) {
+  const d = DISTANCE_LABEL[value] ? value : 'here';
+  return (
+    <div>
+      <div style={{ fontSize: 12, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 10 }}>How far recipes travel</div>
+      <div className="gd-segmented" style={{ display: 'flex', width: '100%', marginBottom: 8 }}>
+        {Object.entries(DISTANCE_LABEL).map(([v, lbl]) => (
+          <button key={v} className={'gd-segmented__item' + (v === d ? ' gd-segmented__item--active' : '')} style={{ flex: 1, padding: '10px 4px', fontSize: 14 }} onClick={() => onChange(v)}>{lbl}</button>
+        ))}
+      </div>
+      <p style={{ fontSize: 12.5, lineHeight: 1.45, color: 'var(--color-text-tertiary)', margin: 0, minHeight: 36 }}>{distanceHint(d, country)}</p>
+    </div>
+  );
+}
+
 /* ================= First-run onboarding walkthrough =================
    Shown once, gated by the persisted gd_onboarded flag. Three forward-only
    steps (welcome, market, diet & allergies); "Get started" persists prefs +
@@ -1394,6 +1433,7 @@ function OnboardScreen({ country, outOfMarket, onSetCountry, prefs, onDone }) {
   // their saved diet/allergies; new users start at the defaults.
   const [diet, setDiet] = React.useState((prefs && prefs.diet) || 'none');
   const [allergies, setAllergies] = React.useState((prefs && prefs.allergies) || []);
+  const [distance, setDistance] = React.useState((prefs && prefs.distance) || 'here');
   const toggle = (a) => setAllergies((s) => s.indexOf(a) === -1 ? s.concat(a) : s.filter((x) => x !== a));
   // Onboarding funnel: next per step, complete on finish, abandon if the page
   // is hidden mid-flow (drop-off metric).
@@ -1406,7 +1446,7 @@ function OnboardScreen({ country, outOfMarket, onSetCountry, prefs, onDone }) {
   }, []);
   const advance = () => {
     if (step < 2) { ev('onboarding_step', { detail: ONBOARD_STEPS[step], extra: 'next', v1: step }); setStep(step + 1); }
-    else { ev('onboarding_step', { detail: 'diet', extra: 'complete', v1: 2 }); doneRef.current = true; onDone(diet, allergies); }
+    else { ev('onboarding_step', { detail: 'diet', extra: 'complete', v1: 2 }); doneRef.current = true; onDone(diet, allergies, distance); }
   };
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
@@ -1468,6 +1508,7 @@ function OnboardScreen({ country, outOfMarket, onSetCountry, prefs, onDone }) {
                 );
               })}
             </div>
+            <div style={{ marginTop: 28 }}><DistancePicker value={distance} onChange={setDistance} country={country} /></div>
           </div>
         )}
       </div>
@@ -1484,8 +1525,9 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
   const [diet, setDiet] = React.useState(prefs.diet || 'none');
   const [allergies, setAllergies] = React.useState(prefs.allergies || []);
   const [market, setMarket] = React.useState(country || 'PT');
+  const [distance, setDistance] = React.useState(prefs.distance || 'here');
   const toggle = (a) => setAllergies((s) => s.indexOf(a) === -1 ? s.concat(a) : s.filter((x) => x !== a));
-  const save = () => { if (market !== country) onSetCountry(market); onSave({ diet, allergies }); };
+  const save = () => { if (market !== country) onSetCountry(market); onSave({ diet, allergies, distance }); };
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 40, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
       <div style={{ flex: 1, padding: '22px 22px 12px' }}>
@@ -1528,6 +1570,7 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
             );
           })}
         </div>
+        <div style={{ marginTop: 28 }}><DistancePicker value={distance} onChange={setDistance} country={market} /></div>
       </div>
 
       <div style={{ position: 'sticky', bottom: 0, background: 'var(--color-background-surface)', borderTop: '1px solid var(--color-border)', padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -1656,7 +1699,8 @@ export default function GreenDaysApp() {
   // owns first-run. Only the Home settings icon opens PrefsScreen.
   const [showPrefs, setShowPrefs] = React.useState(false);
   const savePrefs = (p) => {
-    const np = { diet: p.diet, allergies: p.allergies, seen: true };
+    const np = { diet: p.diet, allergies: p.allergies, distance: p.distance || 'here', seen: true };
+    if (np.distance !== (prefs.distance || 'here')) ev('distance_set', { detail: np.distance, extra: 'prefs' });
     setPrefs(np);
     try { localStorage.setItem(PREFS_KEY, JSON.stringify(np)); } catch (e) { /* private mode */ }
     ev('prefs_set', { detail: np.diet, extra: np.allergies.map((a) => a.toLowerCase()).join(','), v1: np.allergies.length });
@@ -1669,8 +1713,9 @@ export default function GreenDaysApp() {
   const [onboarded, setOnboarded] = React.useState(() => {
     try { return localStorage.getItem(ONBOARD_KEY) === '1'; } catch (e) { return false; }
   });
-  const finishOnboarding = (diet, allergies) => {
-    const np = { diet, allergies, seen: true };
+  const finishOnboarding = (diet, allergies, distance = 'here') => {
+    const np = { diet, allergies, distance, seen: true };
+    ev('distance_set', { detail: distance, extra: 'onboarding' });
     setPrefs(np);
     try { localStorage.setItem(PREFS_KEY, JSON.stringify(np)); } catch (e) { /* private mode */ }
     ev('prefs_set', { detail: np.diet, extra: np.allergies.map((a) => a.toLowerCase()).join(','), v1: np.allergies.length });
@@ -1827,7 +1872,7 @@ export default function GreenDaysApp() {
 
   /* Cook this: generate live, open, and append to Recipes. "Try another"
      swaps the current one before it is committed (i.e. while still open). */
-  const cook = async (avoid) => {
+  const cook = async (avoid, distanceOverride) => {
     const ids = Object.keys(basket).filter((id) => basket[id] > 0);
     if (ids.length === 0) return;
     const fresh = avoid.length === 0;
@@ -1854,7 +1899,7 @@ export default function GreenDaysApp() {
     }
     try {
       // `declared` survives a re-roll: "Try another" reads the same state.
-      const recipe = await requestRecipe({ basket: ids, withItems: declared, country, prefs, avoid });
+      const recipe = await requestRecipe({ basket: ids, withItems: declared, country, prefs: distanceOverride ? { ...prefs, distance: distanceOverride } : prefs, avoid });
       const entry = { id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())), at: Date.now(), country, month0: MONTH, recipe };
       const swapId = avoid.length ? liveEntryId.current : null;
       setHistory((h) => {
@@ -1871,6 +1916,15 @@ export default function GreenDaysApp() {
   };
   const cookThis = () => { sessionAvoid.current = []; liveEntryId.current = null; cook([]); };
   const tryAnother = () => { ev('recipe_try_another'); cook(sessionAvoid.current); };
+  // Moving the switch on a live recipe saves the new distance and re-cooks the
+  // same basket at it, swapping the open recipe like "Try another" does.
+  const changeDistance = (d) => {
+    const np = { ...prefs, distance: d };
+    setPrefs(np);
+    try { localStorage.setItem(PREFS_KEY, JSON.stringify(np)); } catch (e) { /* private mode */ }
+    ev('distance_set', { detail: d, extra: 'recipe' });
+    cook(sessionAvoid.current, d);
+  };
 
   const openEntry = (id) => {
     const entry = history.find((e) => e.id === id);
@@ -1912,7 +1966,7 @@ export default function GreenDaysApp() {
           </div>
           {recipeView && (
             <RecipeDetailScreen view={recipeView} history={history} local={local} localData={localData} onOpen={setDetail} onSearchProduce={searchProduce} onClose={closeRecipe}
-              onGoHome={() => { closeRecipe(); setTab('home'); }} onTryAnother={tryAnother} />
+              onGoHome={() => { closeRecipe(); setTab('home'); }} onTryAnother={tryAnother} onDistance={changeDistance} />
           )}
           {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={add} onClose={() => setDetail(null)} onOpen={setDetail} fieldGuideSlugs={fieldGuideSlugs} />}
           {showPrefs && <PrefsScreen prefs={prefs} firstRun={!prefs.seen} country={place} onSetCountry={pickPlace} onSave={savePrefs} onClose={() => setShowPrefs(false)} />}
