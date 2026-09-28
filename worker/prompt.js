@@ -6,9 +6,10 @@
 export const RECIPE_SCHEMA = {
   type: 'object',
   additionalProperties: false,
-  required: ['title', 'time', 'note', 'stars', 'ingredients', 'offSeasonAdvice', 'grabOneMore', 'protein', 'method'],
+  required: ['title', 'kitchen', 'time', 'note', 'stars', 'ingredients', 'offSeasonAdvice', 'grabOneMore', 'protein', 'method'],
   properties: {
     title: { type: 'string', description: 'The recipe title. No em dashes.' },
+    kitchen: { type: 'string', description: 'The kitchen tradition this dish is cooked in, named as the Distance block in the request allows.' },
     time: { type: 'string', description: "The effort cue, e.g. 'Quick, about 20 minutes' or 'A slow hour'." },
     note: { type: 'string', description: 'One warm one-line seasonal note. The one place the voice sings.' },
     stars: {
@@ -272,11 +273,15 @@ function constraintLines(prefs) {
 }
 
 // The volatile, per-request half of the prompt.
-export function buildUserMessage({ basketItems, withItems = [], country, countryName, month1, season, band, prefs, inSeasonIds, avoid }) {
+export function buildUserMessage({ basketItems, withItems = [], country, countryName, month1, season, band, prefs, inSeasonIds, avoid, distanceLines = [] }) {
   const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][month1 - 1];
   const lines = [];
   lines.push(`Market: ${countryName} (${country}), ${monthName}. Season: ${season}, climate band: ${band}.`);
   lines.push('');
+  if (distanceLines.length) {
+    for (const l of distanceLines) lines.push(l);
+    lines.push('');
+  }
 
   const hard = constraintLines(prefs);
   if (hard.length) {

@@ -320,6 +320,9 @@ function AddControl({ p, qty, onAdd, size, block }) {
 }
 
 /* ---- recipe engine client ---- */
+// Here · Nearby · Anywhere: how far the kitchen travels while the produce
+// stays put. The worker's data/kitchens.json decides what each means per market.
+const DISTANCE_LABEL = { here: 'Here', nearby: 'Nearby', anywhere: 'Anywhere' };
 async function requestRecipe({ basket, withItems, country, prefs, avoid }) {
   const res = await fetch(ASSET('api/recipe'), {
     method: 'POST',
@@ -330,6 +333,8 @@ async function requestRecipe({ basket, withItems, country, prefs, avoid }) {
       country,
       month: MONTH + 1,
       prefs: { diet: prefs.diet || 'none', allergies: (prefs.allergies || []).map((a) => a.toLowerCase()) },
+      // Here · Nearby · Anywhere. Absent means here, server-side.
+      ...(DISTANCE_LABEL[prefs.distance] ? { distance: prefs.distance } : {}),
       avoid,
       sid: SID, // share the visit grouping with the server recipe_generated event
     }),
@@ -901,6 +906,7 @@ function RecipeDetailScreen({ view, history, local, localData, onOpen, onSearchP
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 10, color: 'var(--color-text-accent)', ...MONO }}>
                 <Icon d={I.sparkle} size={13} w={2.2} /> From your basket
+                {r.kitchen && r.kitchen !== 'mock' && <span style={{ color: 'var(--color-text-tertiary)' }}>· {DISTANCE_LABEL[r.distance] || 'Here'}: {r.kitchen}</span>}
               </div>
               {live && (
                 <button onClick={onTryAnother} className="gd-tag" style={{ gap: 6, height: 'auto', padding: '6px 12px', borderColor: 'var(--color-border-accent)', color: 'var(--color-text-accent)', ...MONO, fontSize: 10.5 }}>

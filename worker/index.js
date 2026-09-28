@@ -17,6 +17,7 @@ import { handleLocal, placeForEdge } from './local.js';
 import { negotiate } from './markdown.js';
 import { handleCatalog, withDiscoveryLinks } from './catalog.js';
 import { handleRemind } from './remind.js';
+import { DISTANCES, distanceBrief, kitchenFits } from './kitchens.js';
 // The one seasonality implementation, shared with the front end. Reaching
 // outside worker/ is already how ../data/*.json gets here, and season.js is
 // plain ESM with no import.meta, so wrangler bundles it. Do NOT import
@@ -224,6 +225,8 @@ async function handleRecipe(request, env, ctx) {
     .filter(Boolean))]
     .slice(0, 3);
   const sid = str(body.sid); // per-visit grouping, shared with client events
+  // Here · Nearby · Anywhere (worker/kitchens.js). Absent or unknown = here.
+  const distance = DISTANCES.has(body.distance) ? body.distance : 'here';
 
   // The shape of what people declare, never the words: a derived enum, so the
   // no-free-text analytics contract holds. Fresh cooks only, so a re-roll does
@@ -239,7 +242,7 @@ async function handleRecipe(request, env, ctx) {
   // recipe_generated is the money metric — record it (and errors) with the
   // session so activation/health queries line up with client events.
   const rg = (model, latencyMs, ok, tokens) =>
-    track(env, 'recipe_generated', { country: edgeCountry, band, market, detail: model, v1: latencyMs, v2: ok, v3: tokens, sid });
+    track(env, 'recipe_generated', { country: edgeCountry, band, market, detail: model, extra: distance, v1: latencyMs, v2: ok, v3: tokens, sid });
   const trackErr = (code) => track(env, 'error', { country: edgeCountry, band, market, detail: 'recipe', extra: code, sid });
 
   // Light rate limit per IP (cost control). Skipped under the local mock
@@ -267,8 +270,10 @@ async function handleRecipe(request, env, ctx) {
       date: onDate,
       diet: prefs.diet,
       allergies: [...prefs.allergies].sort(),
+      distance,
       model: env.RECIPE_MODEL || 'claude-sonnet-5',
-      v: 3,
+      // v4: the key gained `distance` and the recipe gained `kitchen`.
+      v: 4,
     });
     const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(keyMaterial));
     const hash = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
@@ -315,6 +320,7 @@ async function handleRecipe(request, env, ctx) {
       prefs,
       inSeasonIds,
       avoid,
+      distanceLines: distanceBrief(country, distance).lines,
     });
     const basketNames = basketItems.map((i) => i.name_en.toLowerCase());
 
@@ -410,7 +416,11 @@ async function handleRecipe(request, env, ctx) {
       return json({ error: 'Could not write a recipe that fits your preferences. Try another basket.' }, 502);
     }
     rg(MODEL, totalLatency, 1, totalTokens);
+    // Did the named kitchen fit the distance asked for? Counted, not enforced:
+    // a miss still ships, and the eval grades the rate.
+    track(env, 'kitchen_check', { country: edgeCountry, band, market, sid, extra: distance, detail: kitchenFits(country, distance, recipe.kitchen) ? 'fit' : 'miss' });
   }
+  recipe.distance = distance;
 
   const response = json(recipe, 200, {
     'cache-control': 'no-store',
@@ -440,6 +450,7 @@ function normalizeRecipe(r, basket) {
   }
   return {
     title: r.title,
+    kitchen: typeof r.kitchen === 'string' ? r.kitchen.trim().slice(0, 60) : '',
     time: typeof r.time === 'string' ? r.time : '',
     note: typeof r.note === 'string' ? r.note : '',
     stars: stars.length ? stars : basket.slice(0, 3),
@@ -605,6 +616,7 @@ function mockRecipe(basketItems, inSeasonIds, avoid, prefs = { diet: 'none', all
 
   return {
     title: `${lead.name_en}${avoid.length ? ', another way' : ', barely touched'} (mock)`,
+    kitchen: 'mock',
     time: 'Quick, about 15 minutes',
     note: 'A canned recipe from the local mock engine, so the flow can be tested without a key.',
     stars,
