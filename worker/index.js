@@ -78,9 +78,52 @@ function track(env, name, f = {}) {
 
 export default {
   async fetch(request, env, ctx) {
-    return withSecurityHeaders(await route(request, env, ctx));
+    const pre = corsPreflight(request);
+    if (pre) return withSecurityHeaders(pre);
+    return withSecurityHeaders(withCors(request, await route(request, env, ctx)));
   },
 };
+
+/* ---- CORS, for the iOS app ----
+   The native app (Capacitor) runs from capacitor://localhost, so to the
+   browser engine inside it every call to greendays.day is cross-origin.
+   /api/* is opened to the app's origin only, not to every website: the recipe
+   endpoint costs money per call. Static files the app loads from the web
+   (produce illustrations, season banners, the produce manifest) are public
+   anyway and get `*`, which the field-note share card also needs, because it
+   draws those images onto a canvas. */
+const APP_ORIGINS = new Set(['capacitor://localhost', 'ionic://localhost']);
+const PUBLIC_STATIC = /^\/(assets|gd|fonts)\/|^\/produce\/manifest\.json$/;
+
+function corsPreflight(request) {
+  if (request.method !== 'OPTIONS') return null;
+  const origin = request.headers.get('origin') || '';
+  const path = new URL(request.url).pathname;
+  if (!path.startsWith('/api/') || !APP_ORIGINS.has(origin)) return null;
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'access-control-allow-origin': origin,
+      'access-control-allow-methods': 'GET, POST, OPTIONS',
+      'access-control-allow-headers': 'content-type',
+      'access-control-max-age': '86400',
+      vary: 'origin',
+    },
+  });
+}
+
+function withCors(request, response) {
+  const origin = request.headers.get('origin') || '';
+  const path = new URL(request.url).pathname;
+  let allow = null;
+  if (path.startsWith('/api/') && APP_ORIGINS.has(origin)) allow = origin;
+  else if (PUBLIC_STATIC.test(path)) allow = '*';
+  if (!allow) return response;
+  const out = new Response(response.body, response);
+  out.headers.set('access-control-allow-origin', allow);
+  if (allow !== '*') out.headers.append('vary', 'origin');
+  return out;
+}
 
 async function route(request, env, ctx) {
   const url = new URL(request.url);

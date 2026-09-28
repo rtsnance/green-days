@@ -31,6 +31,7 @@ export const SOURCE = (() => {
 // measured as a share of all sessions, without a second beacon.
 export const DISPLAY_MODE = (() => {
   try {
+    if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) return 'ios-app';
     if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) return 'standalone';
     if (window.navigator.standalone === true) return 'standalone'; // iOS Safari
     return 'browser';
@@ -89,7 +90,11 @@ export function toggleOperator() {
   return IS_OPERATOR;
 }
 
-const ENDPOINT = import.meta.env.BASE_URL + 'api/event'; // /api/event
+// In the iOS app the page is not on greendays.day, so the beacon needs the full
+// address, and fetch rather than sendBeacon: sendBeacon cannot make the CORS
+// preflight a cross-origin JSON post requires.
+const NATIVE = DISPLAY_MODE === 'ios-app';
+const ENDPOINT = NATIVE ? 'https://greendays.day/api/event' : import.meta.env.BASE_URL + 'api/event';
 
 // Send one event. Only schema fields are ever included — never a query string.
 export function ev(name, data = {}) {
@@ -103,7 +108,7 @@ export function ev(name, data = {}) {
     if (data.v2 != null) payload.v2 = data.v2;
     if (data.v3 != null) payload.v3 = data.v3;
     const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-    if (navigator.sendBeacon) navigator.sendBeacon(ENDPOINT, blob);
+    if (!NATIVE && navigator.sendBeacon) navigator.sendBeacon(ENDPOINT, blob);
     else fetch(ENDPOINT, { method: 'POST', body: blob, keepalive: true }).catch(() => {});
   } catch (_) { /* analytics must never break the app */ }
 }

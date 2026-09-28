@@ -7,7 +7,7 @@ import React from 'react';
 import {
   PRODUCE, byId, decorate, MONTH, ASSET,
   langOf, bandOf, countryLabel, COUNTRIES,
-  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, nextSeasonStartLabel, hasLocalSeasonFor, timingFor, MONTH_NAMES,
+  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, nextSeasonStartLabel, hasLocalSeasonFor, timingFor, MONTH_NAMES, SITE,
 } from './produce.js';
 import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator, setMarket, COUNTRY_KEY } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
@@ -1250,7 +1250,7 @@ function NotifyWhenBack({ p, lang, country }) {
   const month = MONTH_NAMES.indexOf(label) + 1;
   if (month < 1) return null;
   const promised = savedNotifyLabel(p.id) || label;
-  const href = `/api/remind?id=${encodeURIComponent(p.id)}&month=${month}` + (lang ? `&lang=${encodeURIComponent(lang)}` : '');
+  const href = SITE('/api/remind') + `?id=${encodeURIComponent(p.id)}&month=${month}` + (lang ? `&lang=${encodeURIComponent(lang)}` : '');
 
   // An ordinary link, not a script-built download: it survives iOS home-screen
   // mode, where blob downloads are unreliable, and the Worker sets the
@@ -1377,7 +1377,7 @@ function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, field
         </div>
 
         {fieldGuideSlugs && fieldGuideSlugs.has(p.id) && (
-          <a href={`/produce/${p.id}/`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', fontSize: 13.5, fontWeight: 700, color: 'var(--color-text-tertiary)', textDecoration: 'none' }}>Field notes →</a>
+          <a href={SITE(`/produce/${p.id}/`)} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', fontSize: 13.5, fontWeight: 700, color: 'var(--color-text-tertiary)', textDecoration: 'none' }}>Field notes →</a>
         )}
       </div>
 
@@ -1578,7 +1578,7 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
           <span>{firstRun ? 'Save and start shopping' : 'Save'}</span>
         </button>
         <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--color-text-tertiary)' }}>Change these anytime from Home</div>
-        <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--color-text-tertiary)' }}>© {new Date().getFullYear()} Green Days · <a href="/privacy/" style={{ color: 'inherit' }}>Privacy</a></div>
+        <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--color-text-tertiary)' }}>© {new Date().getFullYear()} Green Days · <a href={SITE('/privacy/')} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>Privacy</a></div>
       </div>
     </div>
   );

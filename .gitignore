@@ -16,3 +16,6 @@ _to_delete/
 eval/__pycache__/
 *.pyc
 Claude outputs/
+
+# iOS app web layer, assembled from dist/ by scripts/build-app.mjs
+dist-app/

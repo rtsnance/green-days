@@ -11,7 +11,19 @@ import {
 } from './season.js';
 
 export { MARKETS };
-export const ASSET = (p) => import.meta.env.BASE_URL + p;
+// Inside the iOS app (Capacitor) the page is served from capacitor://localhost
+// and carries only the code, data and fonts; images and the API come from the
+// live site. window.Capacitor is injected by the native shell before this
+// module runs, so no Capacitor import is needed in the web bundle.
+export const IS_NATIVE = (() => {
+  try { return !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()); }
+  catch (_) { return false; }
+})();
+export const SITE_ORIGIN = 'https://greendays.day';
+export const ASSET = (p) => (IS_NATIVE ? SITE_ORIGIN + '/' : import.meta.env.BASE_URL) + p;
+// A page on the website (field guide, privacy, calendar files). Relative on the
+// web; absolute in the app, where the shell opens it in Safari.
+export const SITE = (path) => (IS_NATIVE ? SITE_ORIGIN : '') + path;
 
 /* ---- seasons ----
    The parser used to live here in duplicate (a third copy sat in worker/index.js).

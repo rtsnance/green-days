@@ -1,0 +1,9 @@
+{
+  "appId": "day.greendays.app",
+  "appName": "Green Days",
+  "webDir": "dist-app",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#fcf8ee"
+  }
+}
