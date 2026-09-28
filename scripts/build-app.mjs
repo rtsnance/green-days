@@ -24,9 +24,10 @@ for (const f of ['favicon.svg', 'manifest.webmanifest']) {
   if (existsSync(join(SRC, f))) cpSync(join(SRC, f), join(OUT, f));
 }
 cpSync(join(SRC, 'fonts'), join(OUT, 'fonts'), { recursive: true });
-// The hashed bundle only (index-*.js / index-*.css), never the image folders.
+// Every JS and CSS chunk (the main bundle plus lazily loaded ones, such as
+// the Keyboard plugin), never the image folders.
 for (const f of readdirSync(join(SRC, 'assets'))) {
-  if (/^index-.*\.(js|css)$/.test(f)) cpSync(join(SRC, 'assets', f), join(OUT, 'assets', f));
+  if (/\.(js|css)$/.test(f)) cpSync(join(SRC, 'assets', f), join(OUT, 'assets', f));
 }
 
 const size = (d) => readdirSync(d, { withFileTypes: true })
