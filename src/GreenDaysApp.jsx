@@ -7,9 +7,11 @@ import React from 'react';
 import {
   PRODUCE, byId, decorate, MONTH, ASSET,
   langOf, bandOf, countryLabel, COUNTRIES,
-  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, nextSeasonStartLabel, hasLocalSeasonFor, timingFor, MONTH_NAMES, SITE,
+  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, nextSeasonStartLabel, hasLocalSeasonFor, timingFor, MONTH_NAMES, SITE, IS_NATIVE,
 } from './produce.js';
-import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator, setMarket, COUNTRY_KEY } from './analytics.js';
+import { planNotifications, pruneWatches, readWatches, addWatch, nextTurning } from './notify.js';
+import { permission, askPermission, reschedule, onNotificationTap, sendTest } from './localNotify.js';
+import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator, isOperator, setMarket, COUNTRY_KEY } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
 import KITCHENS from '../data/kitchens.json';
 import { seedsFor, matchProduce, MAX_WITH, MAX_WITH_LEN } from './shelf.js';
@@ -1235,7 +1237,45 @@ const savedNotifyLabel = (id) => {
   catch (_) { return null; }
 };
 
+/* In the iOS app the promise is kept by the phone itself: the watch is saved
+   on the device and src/notify.js schedules a local notification for 09:00 on
+   the 1st of the month the season opens. Nothing leaves the phone. */
+function NativeNotifyWhenBack({ p, country }) {
+  const back = nextSeasonStartLabel(p, country);
+  const local = hasLocalSeasonFor(p, country);
+  const label = back || (local === null ? nextSeasonLabel(p.season, MONTH, bandOf(country)) : null);
+  const [state, setState] = React.useState(() => (readWatches().some((w) => w.id === p.id) ? 'saved' : 'idle'));
+  if (!label || MONTH_NAMES.indexOf(label) < 0) return null;
+  const onTap = async () => {
+    ev('notify_intent', { detail: p.id, extra: label });
+    addWatch(p.id, label);
+    let perm = await permission();
+    if (perm !== 'granted' && perm !== 'denied') {
+      perm = await askPermission();
+      ev('notify_permission', { detail: perm, extra: 'watch' });
+    }
+    window.dispatchEvent(new Event('gd-notify-changed'));
+    setState(perm === 'granted' ? 'saved' : 'off');
+  };
+  const note = { marginTop: 12, fontSize: 13.5, lineHeight: 1.55, color: 'var(--color-text-secondary)' };
+  if (state === 'saved') return <div style={{ ...note, fontWeight: 700, color: 'var(--color-text-accent)' }}>We'll tell you on 1 {label}.</div>;
+  if (state === 'off') return (
+    <div style={note}>Saved. Notifications are off for Green Days, so turn them on in Settings, then Green Days, then Notifications, and we'll tell you on 1 {label}.</div>
+  );
+  return (
+    <button onClick={onTap} style={{ marginTop: 12, width: '100%', border: '1px solid var(--color-border)', cursor: 'pointer',
+      padding: '11px 12px', borderRadius: 'var(--radius-element)', background: 'var(--color-background-surface)',
+      fontFamily: 'var(--font-body)', fontWeight: 800, fontSize: 14.5, color: 'var(--color-text-primary)', boxShadow: 'var(--shadow-low)' }}>
+      Tell me when it's back
+      <span style={{ display: 'block', fontWeight: 600, fontSize: 12.5, color: 'var(--color-text-tertiary)', marginTop: 2 }}>a notification on 1 {label}</span>
+    </button>
+  );
+}
+
 function NotifyWhenBack({ p, lang, country }) {
+  // IS_NATIVE never changes at run time, so this early return keeps the hook
+  // order stable.
+  if (IS_NATIVE) return <NativeNotifyWhenBack p={p} country={country} />;
   // Prefer the market's own dates. Falls back to the legacy label parser
   // when the market has NO entry at this scope. When the market's entry
   // declares no local season ({ ranges: [] }), no button: silently
@@ -1429,7 +1469,18 @@ function DistancePicker({ value, onChange, country, compact }) {
    Shown once, gated by the persisted gd_onboarded flag. Three forward-only
    steps (welcome, market, diet & allergies); "Get started" persists prefs +
    the market and lands on Home. Replaces the first-run role of PrefsScreen. */
-const ONBOARD_STEPS = ['welcome', 'market', 'diet'];
+// The app adds a fourth step: the notification ask, with a preview of the
+// first one. The web has no notifications, so its funnel is unchanged.
+const ONBOARD_STEPS = IS_NATIVE ? ['welcome', 'market', 'diet', 'notify'] : ['welcome', 'market', 'diet'];
+const ONBOARD_LAST = ONBOARD_STEPS.length - 1;
+const whenLabel = (d) => {
+  const now = new Date();
+  const days = Math.round((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 864e5);
+  const time = d.getHours() + ':00';
+  if (days === 0) return 'Today, ' + time;
+  if (days === 1) return 'Tomorrow, ' + time;
+  return d.getDate() + ' ' + MONTH_NAMES[d.getMonth()] + ', ' + time;
+};
 function OnboardScreen({ country, outOfMarket, onSetCountry, prefs, onDone }) {
   const [step, setStep] = React.useState(0);
   // Pre-fill from existing prefs so a returning user who taps through keeps
@@ -1448,9 +1499,21 @@ function OnboardScreen({ country, outOfMarket, onSetCountry, prefs, onDone }) {
     return () => document.removeEventListener('visibilitychange', onHide);
   }, []);
   const advance = () => {
-    if (step < 2) { ev('onboarding_step', { detail: ONBOARD_STEPS[step], extra: 'next', v1: step }); setStep(step + 1); }
-    else { ev('onboarding_step', { detail: 'diet', extra: 'complete', v1: 2 }); doneRef.current = true; onDone(diet, allergies, distance); }
+    if (step < ONBOARD_LAST) { ev('onboarding_step', { detail: ONBOARD_STEPS[step], extra: 'next', v1: step }); setStep(step + 1); }
+    else { ev('onboarding_step', { detail: ONBOARD_STEPS[ONBOARD_LAST], extra: 'complete', v1: ONBOARD_LAST }); doneRef.current = true; onDone(diet, allergies, distance); }
   };
+  // App only: the one iOS permission prompt is spent here, after the preview.
+  const answerNotify = async (yes) => {
+    if (yes) {
+      const perm = await askPermission();
+      ev('notify_permission', { detail: perm, extra: 'onboarding' });
+    } else {
+      ev('notify_permission', { detail: 'skipped', extra: 'onboarding' });
+    }
+    advance();
+    window.dispatchEvent(new Event('gd-notify-changed'));
+  };
+  const preview = step === 3 ? nextTurning(country) : null;
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 26px 12px', overflow: 'auto' }}>
@@ -1514,11 +1577,34 @@ function OnboardScreen({ country, outOfMarket, onSetCountry, prefs, onDone }) {
             <div style={{ marginTop: 28 }}><DistancePicker value={distance} onChange={setDistance} country={country} /></div>
           </div>
         )}
+        {step === 3 && preview && (
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ fontFamily: 'var(--font-brand)', fontSize: 34, lineHeight: 1.05, color: 'var(--color-accent)', marginBottom: 8 }}>When the market turns</div>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '0 0 26px', maxWidth: 320 }}>
+              About twice a month the market year turns. Green Days can tell you what's arriving and what's leaving, and anything you asked to know about. Nothing else. This is the next one:
+            </p>
+            <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start', padding: '14px 14px 16px', borderRadius: 22, background: 'var(--color-background-surface)', boxShadow: 'var(--shadow-low)', border: '1px solid var(--color-border)' }}>
+              <img src="/favicon.svg" alt="" style={{ width: 38, height: 38, borderRadius: 9, flexShrink: 0 }} />
+              <div style={{ minWidth: 0 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, fontSize: 12.5, color: 'var(--color-text-tertiary)' }}>
+                  <span style={{ fontWeight: 700 }}>Green Days</span><span>{whenLabel(preview.at)}</span>
+                </div>
+                <div style={{ fontWeight: 800, fontSize: 15, color: 'var(--color-text-primary)', marginTop: 2 }}>{preview.title}</div>
+                <div style={{ fontSize: 14, lineHeight: 1.4, color: 'var(--color-text-primary)', marginTop: 2 }}>{preview.body}</div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-      <div style={{ padding: '16px 16px calc(16px + env(safe-area-inset-bottom, 0px))', flexShrink: 0 }}>
-        <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" onClick={advance}>
-          <span>{step < 2 ? 'Next' : 'Get started'}</span>
-        </button>
+      <div style={{ padding: '16px 16px calc(16px + env(safe-area-inset-bottom, 0px))', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {step === 3 ? (<>
+          <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" onClick={() => answerNotify(true)}><span>Tell me when it turns</span></button>
+          <button className="gd-btn gd-btn--lg gd-btn--block" style={{ background: 'transparent', color: 'var(--color-text-secondary)' }} onClick={() => answerNotify(false)}><span>Not now</span></button>
+        </>) : (
+          <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" onClick={advance}>
+            <span>{step < ONBOARD_LAST ? 'Next' : 'Get started'}</span>
+          </button>
+        )}
       </div>
     </div>
   );
@@ -1529,8 +1615,11 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
   const [allergies, setAllergies] = React.useState(prefs.allergies || []);
   const [market, setMarket] = React.useState(country || 'PT');
   const [distance, setDistance] = React.useState(prefs.distance || 'here');
+  const [notify, setNotify] = React.useState(() => ({ turning: true, back: true, ...(prefs.notify || {}) }));
+  const [perm, setPerm] = React.useState(null);
+  React.useEffect(() => { if (IS_NATIVE) permission().then(setPerm); }, []);
   const toggle = (a) => setAllergies((s) => s.indexOf(a) === -1 ? s.concat(a) : s.filter((x) => x !== a));
-  const save = () => { if (market !== country) onSetCountry(market); onSave({ diet, allergies, distance }); };
+  const save = () => { if (market !== country) onSetCountry(market); onSave({ diet, allergies, distance, notify }); };
   // One-sheet layout: sized so the whole form, footer and tab bar fit a
   // 430x~740 Safari viewport (iPhone 16 Pro Max) without scrolling. Taller
   // content still scrolls on smaller phones.
@@ -1587,6 +1676,29 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
         </div>
 
         <DistancePicker value={distance} onChange={setDistance} country={market} compact />
+        {IS_NATIVE && (
+          <div style={{ marginTop: 22 }}>
+            <div style={{ fontSize: 11, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 8 }}>Notifications</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+              {[['turning', 'Turning days'], ['back', "When something's back"]].map(([k, lbl]) => {
+                const on = notify[k] !== false;
+                return (
+                  <button key={k} className={'gd-tag' + (on ? ' gd-tag--selected' : '')} style={{ height: 40, paddingInline: 16, fontSize: 14 }} onClick={() => setNotify((n) => ({ ...n, [k]: !on }))}>
+                    {on && <span className="gd-tag__icon"><Icon d={I.check} size={14} w={2.8} /></span>}{lbl}
+                  </button>
+                );
+              })}
+            </div>
+            {perm && perm !== 'granted' && (
+              perm === 'denied'
+                ? <p style={{ fontSize: 12, lineHeight: 1.4, color: 'var(--color-text-tertiary)', margin: '8px 0 0' }}>Notifications are off for Green Days. Turn them on in Settings, then Green Days, then Notifications.</p>
+                : <button className="gd-btn" style={{ marginTop: 10 }} onClick={async () => { const r = await askPermission(); ev('notify_permission', { detail: r, extra: 'settings' }); setPerm(r); window.dispatchEvent(new Event('gd-notify-changed')); }}><span>Allow notifications</span></button>
+            )}
+            {perm === 'granted' && isOperator() && (
+              <button className="gd-btn" style={{ marginTop: 10 }} onClick={() => sendTest(nextTurning(market))}><span>Test: the next turning day, in 10 seconds</span></button>
+            )}
+          </div>
+        )}
       </div>
 
       <div style={{ position: 'sticky', bottom: 0, background: 'var(--color-background-surface)', borderTop: '1px solid var(--color-border)', padding: '12px 16px 10px', display: 'flex', flexDirection: 'column', gap: 7 }}>
@@ -1714,7 +1826,7 @@ export default function GreenDaysApp() {
   // owns first-run. Only the Home settings icon opens PrefsScreen.
   const [showPrefs, setShowPrefs] = React.useState(false);
   const savePrefs = (p) => {
-    const np = { diet: p.diet, allergies: p.allergies, distance: p.distance || 'here', seen: true };
+    const np = { diet: p.diet, allergies: p.allergies, distance: p.distance || 'here', notify: p.notify || prefs.notify, seen: true };
     if (np.distance !== (prefs.distance || 'here')) ev('distance_set', { detail: np.distance, extra: 'prefs' });
     setPrefs(np);
     try { localStorage.setItem(PREFS_KEY, JSON.stringify(np)); } catch (e) { /* private mode */ }
@@ -1729,7 +1841,7 @@ export default function GreenDaysApp() {
     try { return localStorage.getItem(ONBOARD_KEY) === '1'; } catch (e) { return false; }
   });
   const finishOnboarding = (diet, allergies, distance = 'here') => {
-    const np = { diet, allergies, distance, seen: true };
+    const np = { diet, allergies, distance, notify: prefs.notify, seen: true };
     ev('distance_set', { detail: distance, extra: 'onboarding' });
     setPrefs(np);
     try { localStorage.setItem(PREFS_KEY, JSON.stringify(np)); } catch (e) { /* private mode */ }
@@ -1887,6 +1999,31 @@ export default function GreenDaysApp() {
 
   /* Cook this: generate live, open, and append to Recipes. "Try another"
      swaps the current one before it is committed (i.e. while still open). */
+  // iOS app: keep the phone's schedule matching the calendar. Rebuilt on every
+  // open, on a market or preference change, and whenever a watch is added or
+  // permission granted (the gd-notify-changed event). The plan replaces
+  // everything pending, and asked-about items that are back are dropped first.
+  const notifyKey = JSON.stringify([country, prefs.notify || {}]);
+  React.useEffect(() => {
+    if (!IS_NATIVE) return undefined;
+    const run = () => {
+      const now = new Date();
+      pruneWatches(country, now);
+      reschedule(planNotifications({ country, notify: prefs.notify || {}, now }));
+    };
+    run();
+    window.addEventListener('gd-notify-changed', run);
+    return () => window.removeEventListener('gd-notify-changed', run);
+  }, [notifyKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Tapping a "back" notification opens that produce.
+  React.useEffect(() => {
+    if (!IS_NATIVE) return;
+    onNotificationTap((x) => {
+      ev('notify_open', { detail: x.kind || '', extra: x.produceId || String(x.num || '') });
+      if (x.produceId) setDetail(x.produceId);
+    });
+  }, []);
+
   const cook = async (avoid, distanceOverride) => {
     const ids = Object.keys(basket).filter((id) => basket[id] > 0);
     if (ids.length === 0) return;
