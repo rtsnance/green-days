@@ -66,23 +66,37 @@ const list = (names) => (names.length <= 3
 // previous turning day, what will be gone by the next, or failing both, what is
 // at peak. Measuring between neighbouring turning days (not a fixed fortnight)
 // keeps two close days, like All Hallows and Martinmas, from repeating.
-export function turningBody(country, date, prevDate = addDays(date, -14), nextDate = addDays(date, 14)) {
-  const band = bandOf(country), lang = langOf(country);
+// The facts behind a turning day: produce arriving since the previous one,
+// leaving before the next, and at peak on the day. The notification's words
+// and the page it opens are both built from this, so they always agree.
+export function turningFacts(country, date, prevDate = addDays(date, -14), nextDate = addDays(date, 14)) {
+  const band = bandOf(country);
   const now = mmdd(date), before = mmdd(prevDate), after = mmdd(nextDate);
   const local = PRODUCE.filter((p) => p.availability !== 'imported');
   const s = (p, md) => seasonalityOf(p, md, band, country);
-  const arriving = local.filter((p) => s(p, before) === 'out' && s(p, now) !== 'out');
-  const leaving = local.filter((p) => s(p, now) !== 'out' && s(p, after) === 'out');
+  return {
+    arriving: local.filter((p) => s(p, before) === 'out' && s(p, now) !== 'out'),
+    leaving: local.filter((p) => s(p, now) !== 'out' && s(p, after) === 'out'),
+    peak: local.filter((p) => s(p, now) === 'peak'),
+  };
+}
+
+export function turningBody(country, date, prevDate, nextDate, facts = turningFacts(country, date, prevDate, nextDate)) {
+  const lang = langOf(country);
+  const { arriving, leaving, peak } = facts;
   const names = (xs) => list(distinct(xs, lang).map((p) => nameIn(p, lang)));
   const parts = [];
   if (arriving.length) parts.push('In now: ' + names(arriving) + '.');
   if (leaving.length) parts.push('Last weeks for ' + names(leaving) + '.');
   if (!parts.length) {
-    const peak = local.filter((p) => s(p, now) === 'peak');
     parts.push(peak.length ? 'At their peak in ' + countryLabel(country) + ': ' + names(peak) + '.' : 'A turning day in the market year.');
   }
   return parts.join(' ');
 }
+
+// For the page a turning-day notification opens.
+export const turningDay = (num) => TURNING.days.find((d) => d.num === num) || null;
+export const turningSlug = (day) => day.name.split(' / ')[0].normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 export function turningPlan(country, now) {
   const dated = TURNING.days.map((day) => ({ day, at: nextAt(day.opens, now) })).sort((a, b) => a.at - b.at);
@@ -94,9 +108,17 @@ export function turningPlan(country, now) {
       id: 1000 + day.num,
       kind: 'turning',
       at,
-      title: `${day.numeral} · ${day.name}`,
-      body: turningBody(country, at, prev, next),
-      extra: { kind: 'turning', num: day.num },
+      ...(() => {
+        const facts = turningFacts(country, at, prev, next);
+        const ids = (xs) => distinct(xs, langOf(country)).slice(0, 12).map((p) => p.id);
+        return {
+          title: `${day.numeral} · ${day.name}`,
+          body: turningBody(country, at, prev, next, facts),
+          // What the tap opens: the turning-day page when there is something to
+          // add to the basket, else home filtered to what is at peak.
+          extra: { kind: 'turning', num: day.num, arriving: ids(facts.arriving), leaving: ids(facts.leaving), peak: ids(facts.peak) },
+        };
+      })(),
     };
   });
 }

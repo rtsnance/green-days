@@ -9,7 +9,7 @@ import {
   langOf, bandOf, countryLabel, COUNTRIES,
   seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, nextSeasonStartLabel, hasLocalSeasonFor, timingFor, MONTH_NAMES, SITE, IS_NATIVE,
 } from './produce.js';
-import { planNotifications, pruneWatches, readWatches, addWatch, nextTurning } from './notify.js';
+import { planNotifications, pruneWatches, readWatches, addWatch, nextTurning, turningDay, turningSlug } from './notify.js';
 import { permission, askPermission, reschedule, onNotificationTap, sendTest } from './localNotify.js';
 import { locationPermission, askLocation, whereAmI } from './localLocate.js';
 import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator, isOperator, setMarket, COUNTRY_KEY } from './analytics.js';
@@ -349,7 +349,7 @@ async function requestRecipe({ basket, withItems, country, prefs, avoid }) {
 }
 
 /* ================= Home ================= */
-function HomeScreen({ basket, lang, country, place, local, localSource, localData, outOfMarket, onSetCountry, query, setQuery, onAdd, onOpen, onCook, onOpenPrefs, travel, onTravelSwitch, onTravelStay }) {
+function HomeScreen({ basket, lang, country, place, local, localSource, localData, outOfMarket, onSetCountry, query, setQuery, onAdd, onOpen, onCook, onOpenPrefs, travel, onTravelSwitch, onTravelStay, homeFilter, onClearFilter }) {
   const [cat, setCat] = React.useState('All');
   const term = query.trim();
   const q = stripDia(term);
@@ -357,8 +357,12 @@ function HomeScreen({ basket, lang, country, place, local, localSource, localDat
   // Search overrides categories: while a term is active the tabs snap to All
   // and the whole catalogue is searched (across every language, via matchesQuery).
   const activeCat = searching ? 'All' : cat;
+  // A turning-day notification with nothing arriving or leaving opens home
+  // filtered to what is at peak (homeFilter); search or a tab clears it.
+  const filtering = !!(homeFilter && homeFilter.ids && homeFilter.ids.length) && !searching;
   const list = PRODUCE
-    .filter((p) => searching || activeCat === 'All' || p.tab === activeCat || (activeCat === 'Herbs' && p.tab === 'Herb'))
+    .filter((p) => !filtering || homeFilter.ids.indexOf(p.id) !== -1)
+    .filter((p) => filtering || searching || activeCat === 'All' || p.tab === activeCat || (activeCat === 'Herbs' && p.tab === 'Herb'))
     .filter((p) => matchesQuery(p, q))
     .map((p) => decorate(p, country))
     .sort((a, b) => SEASON_RANK[a.seasonality] - SEASON_RANK[b.seasonality]
@@ -368,7 +372,7 @@ function HomeScreen({ basket, lang, country, place, local, localSource, localDat
   const clearSearch = () => { setQuery(''); setCat('All'); };
   // Picking a category tab takes effect by clearing any active search.
   const TAB_EV = { All: 'all', Fruit: 'fruit', Veg: 'veg', Herbs: 'herb' };
-  const pickCat = (c) => { setQuery(''); setCat(c); ev('tab_view', { detail: TAB_EV[c] }); };
+  const pickCat = (c) => { setQuery(''); setCat(c); if (onClearFilter) onClearFilter(); ev('tab_view', { detail: TAB_EV[c] }); };
   const basketCount = Object.values(basket).reduce((s, n) => s + n, 0);
   // The cook banner appears once the basket has something in it, fading in
   const [showCook, setShowCook] = React.useState(false);
@@ -504,6 +508,18 @@ function HomeScreen({ basket, lang, country, place, local, localSource, localDat
             <button key={c} className={'gd-segmented__item' + (c === activeCat ? ' gd-segmented__item--active' : '')} onClick={() => pickCat(c)}>{c}</button>
           ))}
         </div>
+        {filtering && (
+          <button onClick={onClearFilter} aria-label={'Clear filter: ' + homeFilter.label}
+            style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 6, maxWidth: 200, height: 34,
+              padding: '0 6px 0 14px', borderRadius: 999, border: 'none', cursor: 'pointer',
+              background: 'var(--color-accent)', color: 'var(--color-on-accent)',
+              fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13, boxShadow: 'var(--shadow-low)' }}>
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{homeFilter.label}</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 20, height: 20, borderRadius: 999, background: 'rgba(255,255,255,0.22)', flexShrink: 0 }}>
+              <Icon d={I.x} size={12} w={2.8} />
+            </span>
+          </button>
+        )}
         {searching && (
           <button onClick={clearSearch} aria-label={'Clear search: ' + term}
             style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 6, maxWidth: 170, height: 34,
@@ -1346,6 +1362,58 @@ function NotifyWhenBack({ p, lang, country }) {
   );
 }
 
+/* ================= Turning day =================
+   Where a turning-day notification leads when it named something to act on:
+   the day itself (numeral, name, its line of lore, its dates), then what is
+   arriving and what is leaving, each one tap from the basket. The rows are
+   the ids the notification was built from, so the page keeps its promise
+   word for word. Web long read one tap away. */
+function TurningScreen({ turn, basket, lang, country, onAdd, onOpen, onClose, onCook }) {
+  const day = turningDay(turn.num);
+  if (!day) return null;
+  const [name] = day.name.split(' / ');
+  const [lore] = day.working_name.split(' / ');
+  const fmt = (md) => { const [m, d] = md.split('-').map(Number); return d + ' ' + MONTH_NAMES[m - 1]; };
+  const rows = (ids) => ids.map((id) => decorate(byId(id), country)).filter(Boolean);
+  const arriving = rows(turn.arriving || []), leaving = rows(turn.leaving || []);
+  const basketCount = Object.values(basket).reduce((s, n) => s + n, 0);
+  const Row = ({ p }) => (
+    <div onClick={() => onOpen(p.id)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderTop: '1px solid var(--color-border)', cursor: 'pointer' }}>
+      <div style={{ width: 52, height: 52, flexShrink: 0 }}><ProduceThumb p={p} size={52} radius={12} /></div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontWeight: 800, fontSize: 15.5 }}>{(lang && p.name_local[lang]) || p.name}</div>
+        {lang && p.name_local[lang] && p.name_local[lang] !== p.name && <div style={{ fontSize: 13, color: 'var(--color-text-tertiary)' }}>{p.name}</div>}
+      </div>
+      <AddControl p={p} qty={basket[p.id] || 0} onAdd={onAdd} />
+    </div>
+  );
+  const section = (title, list) => list.length > 0 && (
+    <div style={{ marginTop: 22 }}>
+      <div style={{ fontSize: 12, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 6 }}>{title}</div>
+      {list.map((p) => <Row key={p.id} p={p} />)}
+    </div>
+  );
+  return (
+    <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 20, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
+      <div style={{ padding: '14px 20px 24px', flex: 1 }}>
+        <button onClick={onClose} aria-label="Back" className="gd-btn gd-btn--icon-only" style={{ background: 'var(--color-neutral)' }}><span className="gd-btn__icon"><Icon d={I.back || I.x} size={18} /></span></button>
+        <div style={{ fontFamily: 'var(--font-brand)', fontSize: 44, lineHeight: 1, color: 'var(--color-accent)', marginTop: 18 }}>{day.numeral}</div>
+        <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 28, fontWeight: 900, margin: '6px 0 4px', lineHeight: 1.1 }}>{name}</h1>
+        <div style={{ fontSize: 16, fontStyle: 'italic', color: 'var(--color-text-secondary)' }}>{lore}</div>
+        <div style={{ fontSize: 12, ...MONO, color: 'var(--color-text-tertiary)', marginTop: 10 }}>{fmt(day.opens)} to {fmt(day.closes)} · {countryLabel(country)}</div>
+        {section('In now', arriving)}
+        {section('Last weeks', leaving)}
+        <a href={SITE('/market-year/' + turningSlug(day) + '/')} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: 22, fontSize: 13.5, fontWeight: 700, color: 'var(--color-text-tertiary)', textDecoration: 'none' }}>Read the turning day →</a>
+      </div>
+      {basketCount > 0 && (
+        <div style={{ position: 'sticky', bottom: 0, padding: 16, background: 'var(--color-background-surface)', borderTop: '1px solid var(--color-border)' }}>
+          <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" onClick={onCook}><span>Cook this</span></button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ================= Product detail overlay ================= */
 function DetailScreen({ id, basket, lang, country, onAdd, onClose, onOpen, fieldGuideSlugs }) {
   const p = decorate(byId(id), country);   // the market's own calendar, when it has one
@@ -2091,12 +2159,23 @@ export default function GreenDaysApp() {
     setTravel(null);
   };
 
-  // Tapping a "back" notification opens that produce.
+  // Where a tap leads. "back": that produce. "turning": the turning-day page
+  // when the notification named something to add (arriving or leaving), else
+  // home filtered to what is at peak.
+  const [turn, setTurn] = React.useState(null);
+  const [homeFilter, setHomeFilter] = React.useState(null);
   React.useEffect(() => {
     if (!IS_NATIVE) return;
     onNotificationTap((x) => {
       ev('notify_open', { detail: x.kind || '', extra: x.produceId || String(x.num || '') });
-      if (x.produceId) setDetail(x.produceId);
+      if (x.produceId) { setDetail(x.produceId); return; }
+      if (x.kind === 'turning') {
+        const acts = (x.arriving || []).length + (x.leaving || []).length;
+        if (acts > 0) { setTurn({ num: x.num, arriving: x.arriving || [], leaving: x.leaving || [] }); return; }
+        const day = turningDay(x.num);
+        setTurn(null); setDetail(null); setTab('home');
+        setHomeFilter({ label: day ? day.numeral + ' · ' + day.name.split(' / ')[0] : 'At its peak', ids: x.peak || [] });
+      }
     });
   }, []);
 
@@ -2188,7 +2267,8 @@ export default function GreenDaysApp() {
         <div className="gd-screen-wrap">
           <div className="gd-screen">
             {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} place={place} local={local} localSource={localSource} localData={localData} outOfMarket={outOfMarket} onSetCountry={pickPlace} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)}
-              travel={travel} onTravelSwitch={travelSwitch} onTravelStay={travelStay} />}
+              travel={travel} onTravelSwitch={travelSwitch} onTravelStay={travelStay}
+              homeFilter={homeFilter} onClearFilter={() => setHomeFilter(null)} />}
             {tab === 'list' && <ListScreen basket={basket} checked={checked} lang={lang} country={country} prefs={prefs}
               declared={declared} onDeclare={declare} onUndeclare={undeclare} onAdd={add} onRemove={(id) => setQty(id, 0)} onToggle={toggle} onOpen={setDetail} onCook={cookThis} />}
             {tab === 'recipes' && <RecipesListScreen history={history} onOpenEntry={openEntry} onGoHome={() => setTab('home')} />}
@@ -2197,6 +2277,7 @@ export default function GreenDaysApp() {
             <RecipeDetailScreen view={recipeView} history={history} local={local} localData={localData} onOpen={setDetail} onSearchProduce={searchProduce} onClose={closeRecipe}
               onGoHome={() => { closeRecipe(); setTab('home'); }} onTryAnother={tryAnother} onDistance={changeDistance} />
           )}
+          {turn && <TurningScreen turn={turn} basket={basket} lang={lang} country={country} onAdd={add} onOpen={setDetail} onClose={() => setTurn(null)} onCook={() => { setTurn(null); cookThis(); }} />}
           {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={add} onClose={() => setDetail(null)} onOpen={setDetail} fieldGuideSlugs={fieldGuideSlugs} />}
           {showPrefs && <PrefsScreen prefs={prefs} firstRun={!prefs.seen} country={place} onSetCountry={pickPlace} onSave={savePrefs} onClose={() => setShowPrefs(false)} />}
         </div>
