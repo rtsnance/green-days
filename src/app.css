@@ -28,6 +28,19 @@ html, body { margin: 0; height: 100%; }
 }
 .gd-statusbar { display: none; }
 
+/* iOS app only (html.gd-native, set in main.jsx). The shell draws edge to
+   edge (capacitor.config contentInset "never"), so the app starts below the
+   status bar and camera cutout itself; otherwise the logo and the back button
+   sat in the untappable strip at the top. Every screen and overlay lives
+   inside .gd-phone, so moving its top edge moves them all. The strip above
+   shows .gd-stage's background, the same cream. The bottom was already
+   handled by the tab bar's safe-area padding. */
+.gd-native .gd-phone {
+  margin-top: env(safe-area-inset-top, 0px);
+  height: calc(var(--app-height, 100dvh) - env(safe-area-inset-top, 0px));
+}
+.gd-native .gd-stage { align-items: flex-start; }
+
 @media (min-width: 700px) {
   .gd-stage {
     padding: 24px;

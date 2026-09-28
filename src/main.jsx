@@ -10,6 +10,8 @@ import GreenDaysApp from './GreenDaysApp.jsx';
 // The Keyboard plugin is registered by the native shell; on the web
 // window.Capacitor is absent and this does nothing.
 if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
+  // Scopes the app-only CSS (safe-area top in app.css).
+  document.documentElement.classList.add('gd-native');
   // Loaded only inside the app, as its own small chunk; the website never fetches it.
   import('@capacitor/keyboard')
     .then(({ Keyboard }) => Keyboard.setAccessoryBarVisible({ isVisible: false }))
