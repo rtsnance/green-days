@@ -1407,17 +1407,17 @@ function distanceHint(d, country) {
   const list = also.length > 1 ? also.slice(0, -1).join(', ') + ' and ' + also[also.length - 1] : also[0];
   return kLabel(m.here.kitchen) + ' cooking' + (list ? ', with ' + list : '') + '.';
 }
-function DistancePicker({ value, onChange, country }) {
+function DistancePicker({ value, onChange, country, compact }) {
   const d = DISTANCE_LABEL[value] ? value : 'here';
   return (
     <div>
-      <div style={{ fontSize: 12, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 10 }}>How far recipes travel</div>
-      <div className="gd-segmented" style={{ display: 'flex', width: '100%', marginBottom: 8 }}>
+      <div style={{ fontSize: compact ? 11 : 12, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: compact ? 6 : 10 }}>How far recipes travel</div>
+      <div className="gd-segmented" style={{ display: 'flex', width: '100%', boxSizing: 'border-box', marginBottom: compact ? 6 : 8 }}>
         {Object.entries(DISTANCE_LABEL).map(([v, lbl]) => (
-          <button key={v} className={'gd-segmented__item' + (v === d ? ' gd-segmented__item--active' : '')} style={{ flex: 1, padding: '10px 4px', fontSize: 14 }} onClick={() => onChange(v)}>{lbl}</button>
+          <button key={v} className={'gd-segmented__item' + (v === d ? ' gd-segmented__item--active' : '')} style={{ flex: 1, padding: compact ? '8px 4px' : '10px 4px', fontSize: 14 }} onClick={() => onChange(v)}>{lbl}</button>
         ))}
       </div>
-      <p style={{ fontSize: 12.5, lineHeight: 1.45, color: 'var(--color-text-tertiary)', margin: 0, minHeight: 36 }}>{distanceHint(d, country)}</p>
+      <p style={{ fontSize: compact ? 12 : 12.5, lineHeight: 1.4, color: 'var(--color-text-tertiary)', margin: 0, minHeight: compact ? 34 : 36 }}>{distanceHint(d, country)}</p>
     </div>
   );
 }
@@ -1528,57 +1528,69 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
   const [distance, setDistance] = React.useState(prefs.distance || 'here');
   const toggle = (a) => setAllergies((s) => s.indexOf(a) === -1 ? s.concat(a) : s.filter((x) => x !== a));
   const save = () => { if (market !== country) onSetCountry(market); onSave({ diet, allergies, distance }); };
+  // One-sheet layout: sized so the whole form, footer and tab bar fit a
+  // 430x~740 Safari viewport (iPhone 16 Pro Max) without scrolling. Taller
+  // content still scrolls on smaller phones.
+  const LABEL = { fontSize: 11, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 8 };
+  const SECTION = { marginBottom: 22 };
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 40, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
-      <div style={{ flex: 1, padding: '22px 22px 12px' }}>
-        {!firstRun && (
-          <button onClick={onClose} aria-label="Close" className="gd-btn gd-btn--icon-only" style={{ background: 'var(--color-neutral)', marginBottom: 10 }}><span className="gd-btn__icon"><Icon d={I.x} size={18} /></span></button>
-        )}
-        <div style={{ fontFamily: 'var(--font-brand)', fontSize: 34, lineHeight: 1.05, color: 'var(--color-accent)' }}>A few quick things</div>
-        <p style={{ fontSize: 15, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '8px 0 26px' }}>Set these once and every recipe quietly follows. We won't ask again.</p>
+      <div style={{ flex: 1, padding: '16px 20px 6px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+          <div style={{ fontFamily: 'var(--font-brand)', fontSize: 30, lineHeight: 1.05, color: 'var(--color-accent)' }}>A few quick things</div>
+          {!firstRun && (
+            <button onClick={onClose} aria-label="Close" className="gd-btn gd-btn--icon-only" style={{ background: 'var(--color-neutral)', height: 38, flexShrink: 0 }}><span className="gd-btn__icon"><Icon d={I.x} size={17} /></span></button>
+          )}
+        </div>
+        <p style={{ fontSize: 14, lineHeight: 1.4, color: 'var(--color-text-secondary)', margin: '4px 0 20px' }}>Set these once and every recipe quietly follows.</p>
 
         {/* Market — displays the current location and lets the shopper pick
             another; a real <select> overlays the row (same picker as Home). */}
-        <div style={{ fontSize: 12, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 10 }}>Where you shop</div>
-        <div style={{ position: 'relative', marginBottom: 8 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '13px 16px', borderRadius: 'var(--radius-element)', border: '1px solid var(--color-border)', background: 'var(--color-background-surface)' }}>
-            <Icon d={I.pin} size={18} style={{ color: 'var(--color-accent)', flexShrink: 0 }} />
-            <span style={{ flex: 1, minWidth: 0, fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary)' }}>{placeLabel(market)}</span>
-            <Icon d={I.chevron} size={18} style={{ color: 'var(--color-text-tertiary)', flexShrink: 0, transform: 'rotate(90deg)' }} />
+        <div style={SECTION}>
+          <div style={LABEL}>Where you shop · names &amp; seasons</div>
+          <div style={{ position: 'relative' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, height: 44, padding: '0 14px', boxSizing: 'border-box', borderRadius: 'var(--radius-element)', border: '1px solid var(--color-border)', background: 'var(--color-background-surface)' }}>
+              <Icon d={I.pin} size={17} style={{ color: 'var(--color-accent)', flexShrink: 0 }} />
+              <span style={{ flex: 1, minWidth: 0, fontSize: 15.5, fontWeight: 700, color: 'var(--color-text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{placeLabel(market)}</span>
+              <Icon d={I.chevron} size={17} style={{ color: 'var(--color-text-tertiary)', flexShrink: 0, transform: 'rotate(90deg)' }} />
+            </div>
+            <select className="gd-locpick" aria-label="Market country" value={market} onChange={(e) => setMarket(e.target.value)}>
+              {placeOptions()}
+            </select>
           </div>
-          <select className="gd-locpick" aria-label="Market country" value={market} onChange={(e) => setMarket(e.target.value)}>
-            {placeOptions()}
-          </select>
-        </div>
-        <p style={{ fontSize: 12.5, lineHeight: 1.4, color: 'var(--color-text-tertiary)', margin: '0 0 28px' }}>Sets your market's produce names and what's in season.</p>
-
-        <div style={{ fontSize: 12, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 10 }}>How you eat</div>
-        <div className="gd-segmented" style={{ display: 'flex', width: '100%', marginBottom: 28 }}>
-          {DIETS.map(([v, lbl]) => (
-            <button key={v} className={'gd-segmented__item' + (v === diet ? ' gd-segmented__item--active' : '')} style={{ flex: 1, padding: '10px 4px', fontSize: 14 }} onClick={() => setDiet(v)}>{lbl}</button>
-          ))}
         </div>
 
-        <div style={{ fontSize: 12, ...MONO, color: 'var(--color-text-tertiary)', marginBottom: 10 }}>Anything to avoid</div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-          {ALLERGIES.map((a) => {
-            const on = allergies.indexOf(a) !== -1;
-            return (
-              <button key={a} className={'gd-tag' + (on ? ' gd-tag--selected' : '')} style={{ height: 44, paddingInline: 18, fontSize: 15 }} onClick={() => toggle(a)}>
-                {on && <span className="gd-tag__icon"><Icon d={I.check} size={15} w={2.8} /></span>}{a}
-              </button>
-            );
-          })}
+        <div style={SECTION}>
+          <div style={LABEL}>How you eat</div>
+          <div className="gd-segmented" style={{ display: 'flex', width: '100%', boxSizing: 'border-box' }}>
+            {DIETS.map(([v, lbl]) => (
+              <button key={v} className={'gd-segmented__item' + (v === diet ? ' gd-segmented__item--active' : '')} style={{ flex: 1, padding: '8px 2px', fontSize: 14 }} onClick={() => setDiet(v)}>{lbl}</button>
+            ))}
+          </div>
         </div>
-        <div style={{ marginTop: 28 }}><DistancePicker value={distance} onChange={setDistance} country={market} /></div>
+
+        <div style={SECTION}>
+          <div style={LABEL}>Anything to avoid</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+            {ALLERGIES.map((a) => {
+              const on = allergies.indexOf(a) !== -1;
+              return (
+                <button key={a} className={'gd-tag' + (on ? ' gd-tag--selected' : '')} style={{ height: 38, paddingInline: 8, fontSize: 14.5, justifyContent: 'center' }} onClick={() => toggle(a)}>
+                  {on && <span className="gd-tag__icon"><Icon d={I.check} size={14} w={2.8} /></span>}{a}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <DistancePicker value={distance} onChange={setDistance} country={market} compact />
       </div>
 
-      <div style={{ position: 'sticky', bottom: 0, background: 'var(--color-background-surface)', borderTop: '1px solid var(--color-border)', padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <div style={{ position: 'sticky', bottom: 0, background: 'var(--color-background-surface)', borderTop: '1px solid var(--color-border)', padding: '12px 16px 10px', display: 'flex', flexDirection: 'column', gap: 7 }}>
         <button className="gd-btn gd-btn--primary gd-btn--lg gd-btn--block" onClick={save}>
           <span>{firstRun ? 'Save and start shopping' : 'Save'}</span>
         </button>
-        <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--color-text-tertiary)' }}>Change these anytime from Home</div>
-        <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--color-text-tertiary)' }}>© {new Date().getFullYear()} Green Days · <a href={SITE('/privacy/')} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>Privacy</a></div>
+        <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--color-text-tertiary)' }}>Change these anytime from Home · © {new Date().getFullYear()} Green Days · <a href={SITE('/privacy/')} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>Privacy</a></div>
       </div>
     </div>
   );
