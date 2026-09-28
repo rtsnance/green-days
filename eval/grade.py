@@ -489,7 +489,12 @@ def run():
     dims = ["voice","technique","seasonality","structure","appetite","overall"]
     judged = [r["judge"] for r in graded if isinstance(r.get("judge"), dict)]
     if judged:
-        agg["judge_means"] = {d: round(sum(j.get(d,0) for j in judged)/len(judged), 2) for d in dims}
+        # A score the judge left out is skipped, not counted as 0 (it was, until
+        # 2026-09-28: three missing "overall" values dragged 4.1 down to 3.15).
+        def _mean(d):
+            v = [j[d] for j in judged if isinstance(j.get(d), (int, float))]
+            return round(sum(v) / len(v), 2) if v else None
+        agg["judge_means"] = {d: _mean(d) for d in dims}
         agg["judged"] = len(judged)
     lats = sorted(r["latency_ms"] for r in graded if r.get("latency_ms"))
     if lats:
