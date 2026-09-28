@@ -457,7 +457,7 @@ function HomeScreen({ basket, lang, country, place, local, localSource, localDat
           <p style={{ fontSize: 13.5, lineHeight: 1.45, color: 'var(--color-text-secondary)', margin: '4px 0 10px' }}>Switch to {placeLabel(travel)}'s market and what's in season there?</p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <button className="gd-btn gd-btn--primary" onClick={onTravelSwitch}><span>Switch to {placeLabel(travel)}</span></button>
-            <button className="gd-btn" style={{ background: 'transparent' }} onClick={onTravelStay}><span>Stay with {placeLabel(place)}</span></button>
+            <button className="gd-btn" style={{ background: 'transparent', color: 'var(--color-text-secondary)' }} onClick={onTravelStay}><span>Stay with {placeLabel(place)}</span></button>
           </div>
         </div>
       )}
@@ -1572,7 +1572,7 @@ function OnboardScreen({ country, outOfMarket, onSetCountry, prefs, onDone }) {
                 </p>
                 <div style={{ display: 'flex', gap: 8 }}>
                   <button className="gd-btn gd-btn--primary" disabled={locAsk === 'busy'} onClick={useLocation}><span>{locAsk === 'busy' ? 'Finding…' : 'Use my location'}</span></button>
-                  <button className="gd-btn" style={{ background: 'transparent' }} onClick={() => { setLocAsk('idle'); ev('location_soft_prompt', { detail: 'declined', extra: 'onboarding' }); }}><span>Not now</span></button>
+                  <button className="gd-btn" style={{ background: 'transparent', color: 'var(--color-text-secondary)' }} onClick={() => { setLocAsk('idle'); ev('location_soft_prompt', { detail: 'declined', extra: 'onboarding' }); }}><span>Not now</span></button>
                 </div>
               </div>
             )}
