@@ -1,0 +1,147 @@
+{
+  "_about": "Recipe distance (Here / Nearby / Anywhere) per market. Here = the market's own kitchen plus what arrived and stayed (everyday in homes or high streets, not only within one community). Nearby = neighbours (hand-drawn: kitchens a cook there would call next door) plus family (kitchens joined by a documented dish-level exchange, vetted against sources 2026-09-28). Anywhere = every kitchen not in Here or Nearby. The climate band in markets.json decides seasons only, never cooking. `care: true` means the link is real but the proof must be worded exactly as `proof` says. `legends` are popular stories historians reject: the engine must never state them as fact. A new market needs three hand-written entries: here, neighbours, family.",
+  "markets": {
+    "PT": {
+      "here": { "kitchen": "Portuguese", "naturalised": [] },
+      "neighbours": ["Spanish (Galician above all)", "Moroccan", "Italian", "southern French"],
+      "family": [
+        { "kitchen": "Brazilian", "proof": "Feijoada descends from Portuguese pork-and-bean stews; black beans are the Brazilian substitution." },
+        { "kitchen": "Goan", "proof": "Vindaloo takes its name and method from Portuguese carne de vinha d'alhos, with palm vinegar for wine." },
+        { "kitchen": "Macanese", "proof": "Macanese cooking is a Portuguese, Cantonese and Southeast Asian fusion from the 16th century on, carrying dishes like bacalhau and cabidela." },
+        { "kitchen": "Japanese", "proof": "Kasutera grew from the pão de ló Portuguese missionaries brought to Nagasaki; tempura's batter frying arrived through the same Nanban trade." },
+        { "kitchen": "Thai", "proof": "Foi thong comes from Portuguese fios de ovos, thong yip from trouxas de ovos." },
+        { "kitchen": "Mozambican", "care": true, "proof": "The piri-piri chilli and sauce came to Portugal from Portuguese Mozambique." },
+        { "kitchen": "Kristang (Malacca)", "care": true, "proof": "The Portuguese-Eurasian community of Malacca cooks curry debal, a vinegar-soured Christmas curry." }
+      ]
+    },
+    "ES": {
+      "here": { "kitchen": "Spanish", "naturalised": [] },
+      "neighbours": ["Portuguese", "French", "Italian", "Moroccan"],
+      "family": [
+        { "kitchen": "Mexican", "proof": "Chocolate reached the Spanish court from Mexico in the 16th century and was sweetened and spiced in Spain; modern mole carries Old World spices, nuts and bread." },
+        { "kitchen": "Filipino", "proof": "Philippine empanadas and leche flan descend from their Spanish originals; adobo took the Spanish name for a native vinegar braise." },
+        { "kitchen": "Cuban", "proof": "Ropa vieja came to Cuba from Spain via Canary Islanders and is recorded there by 1857." },
+        { "kitchen": "Argentine", "proof": "Argentina's regional empanadas descend from the Iberian empanada recorded in the Cantigas and the Llibre del Coch." },
+        { "kitchen": "Peruvian", "care": true, "proof": "Spanish-borne citrus and onion reshaped a pre-Hispanic raw-fish dish into ceviche." }
+      ]
+    },
+    "FR": {
+      "here": { "kitchen": "French", "naturalised": [
+        { "kitchen": "Maghrebi", "dish": "couscous", "proof": "Couscous came to France with the pieds-noirs in the 1960s and ranks among France's favourite dishes." }
+      ] },
+      "neighbours": ["Italian", "Spanish", "Belgian", "Swiss", "German (Alsatian)", "British"],
+      "family": [
+        { "kitchen": "Vietnamese", "proof": "Bánh mì puts French baguette and pâté into a Saigon sandwich." },
+        { "kitchen": "Louisiana Creole and Cajun", "proof": "Louisiana gumbo is built on a French roux, cooked darker." },
+        { "kitchen": "Québécois", "proof": "Tourtière is named for the French tourtière pie dish." },
+        { "kitchen": "Genoese", "proof": "Provençal pistou comes from Genoese pesto, without the pine nuts." }
+      ]
+    },
+    "IT": {
+      "here": { "kitchen": "Italian", "naturalised": [] },
+      "neighbours": ["French", "Spanish", "Greek", "Swiss", "Austrian", "Slovenian", "Croatian (Istrian, Dalmatian)"],
+      "family": [
+        { "kitchen": "Argentine and Uruguayan", "proof": "Fainá is Genoese farinata, brought by Ligurian immigrants; milanesa is cotoletta alla milanese." },
+        { "kitchen": "Somali", "proof": "Baasto, spaghetti with suugo suqaar, became a staple under Italian rule." },
+        { "kitchen": "Eritrean", "proof": "Pasta al sugo e berbere joins Italian pasta and tomato to Eritrean spice." },
+        { "kitchen": "Libyan", "proof": "Macaroni dishes (macaroona) came with Italian rule." }
+      ]
+    },
+    "GR": {
+      "here": { "kitchen": "Greek", "naturalised": [] },
+      "neighbours": ["Turkish", "Cypriot", "Lebanese and Levantine", "Italian", "Bulgarian", "Albanian", "North Macedonian"],
+      "family": []
+    },
+    "DE": {
+      "here": { "kitchen": "German", "naturalised": [
+        { "kitchen": "Turkish", "dish": "döner", "proof": "The döner sandwich was popularised in West Berlin from the early 1970s (Berlin popularised it; it did not invent it)." },
+        { "kitchen": "Italian", "dish": "Spaghettieis", "proof": "Spaghettieis was created in Mannheim in 1969 by Dario Fontanella of an Italian gelato family." }
+      ] },
+      "neighbours": ["Austrian", "Swiss", "Dutch", "Belgian", "French (Alsatian)", "Polish", "Czech", "Danish"],
+      "family": [
+        { "kitchen": "Chilean", "proof": "German settlers brought kuchen to southern Chile in the 19th century." },
+        { "kitchen": "American (Pennsylvania Dutch)", "proof": "Palatine German immigrants brought the soft pretzel to Pennsylvania." }
+      ]
+    },
+    "AT": {
+      "here": { "kitchen": "Austrian", "naturalised": [] },
+      "neighbours": ["German", "Swiss", "Hungarian", "Czech", "Slovenian", "South Tyrolean"],
+      "family": [
+        { "kitchen": "Ottoman Turkish", "care": true, "proof": "Vienna's first coffeehouse was opened by the Armenian Johannes Diodato, who brought coffee from Ottoman lands; strudel probably descends from Ottoman layered pastry." }
+      ]
+    },
+    "CH": {
+      "here": { "kitchen": "Swiss (French, German, Italian and Romansh)", "naturalised": [] },
+      "neighbours": ["French", "German", "Italian", "Austrian"],
+      "family": []
+    },
+    "NL": {
+      "here": { "kitchen": "Dutch", "naturalised": [
+        { "kitchen": "Indonesian", "dish": "rijsttafel, nasi goreng, saté", "proof": "The rijsttafel came with repatriates from the Indies and is on the Dutch intangible heritage register; nasi and saté are everyday Dutch food." },
+        { "kitchen": "Surinamese", "dish": "pom", "proof": "Pom became popular in the Netherlands through Surinamese migration." }
+      ] },
+      "neighbours": ["Belgian", "German", "British", "Danish", "northern French"],
+      "family": [
+        { "kitchen": "American", "proof": "Coleslaw (koolsla) and cookies (koekjes) came from New Netherland." },
+        { "kitchen": "Cape South African", "care": true, "proof": "The koeksister is probably from Dutch koek, mixed with Cape Malay and Indonesian influence." }
+      ]
+    },
+    "BE": {
+      "here": { "kitchen": "Belgian", "naturalised": [] },
+      "neighbours": ["French", "Dutch", "German", "Luxembourgish"],
+      "family": [
+        { "kitchen": "Congolese", "proof": "Poulet moambe was the Congolese dish Belgian colonials cooked most, and is served today in Brussels' Matonge." },
+        { "kitchen": "American", "proof": "The Belgian waffle was introduced to Americans at the 1962 and 1964 World's Fairs, based on the Brussels waffle." }
+      ]
+    },
+    "DK": {
+      "here": { "kitchen": "Danish", "naturalised": [] },
+      "neighbours": ["Swedish", "Norwegian", "German", "Dutch", "Icelandic"],
+      "family": []
+    },
+    "GB": {
+      "here": { "kitchen": "British", "naturalised": [
+        { "kitchen": "Indian", "dish": "kedgeree, mulligatawny", "proof": "Kedgeree is khichri with fish, common in 19th-century British cookbooks; mulligatawny is Tamil milagu-thanni." },
+        { "kitchen": "Pakistani and Kashmiri", "dish": "balti", "proof": "Balti was created in Birmingham around 1975." },
+        { "kitchen": "Bangladeshi (Sylheti)", "dish": "the curry house", "proof": "Sylheti cooks run most of Britain's 'Indian' restaurants." }
+      ] },
+      "neighbours": ["Irish", "French", "Scandinavian", "Dutch", "Belgian"],
+      "family": [
+        { "kitchen": "Jamaican", "care": true, "proof": "The Jamaican patty is usually described as a descendant of the British pasty, remade with scotch bonnet." },
+        { "kitchen": "Hong Kong", "proof": "Hong Kong-style milk tea adapted British milk tea, with evaporated milk and a cloth strainer." },
+        { "kitchen": "Portuguese", "proof": "Marmalade takes its name from Portuguese marmelada, a quince paste imported into England from the 15th century." }
+      ]
+    },
+    "IE": {
+      "here": { "kitchen": "Irish", "naturalised": [] },
+      "neighbours": ["British", "French (Breton)", "Scandinavian", "Dutch", "Belgian"],
+      "family": [
+        { "kitchen": "Irish-American", "proof": "Corned beef and cabbage is Irish-American: New York immigrants put corned brisket in place of the bacon in bacon and cabbage." }
+      ]
+    },
+    "SE": {
+      "here": { "kitchen": "Swedish", "naturalised": [
+        { "kitchen": "Ottoman Turkish", "dish": "kåldolmar", "proof": "Cajsa Warg's cookbook (1765 edition) gives a dolma and suggests cabbage leaves in place of vine leaves." }
+      ] },
+      "neighbours": ["Norwegian", "Danish", "Finnish", "German", "Baltic"],
+      "family": [
+        { "kitchen": "Javanese", "proof": "Swedish punsch is built on Batavia arrack, first shipped to Gothenburg by the Swedish East India Company in 1733." }
+      ]
+    }
+  },
+  "legends": [
+    "Feijoada was made by enslaved people from pork scraps.",
+    "Catherine de' Medici brought Italian cooking to France.",
+    "The croissant was invented in Vienna to celebrate the 1683 siege.",
+    "Kolschitzky opened Vienna's first coffeehouse with beans the Turks left behind.",
+    "Wiener Schnitzel came from Milan via Radetzky.",
+    "Worcestershire sauce came from a recipe Lord Sandys brought back from Bengal.",
+    "Fish and chips' fried fish was brought by Portuguese Jews (a popular claim historians dispute).",
+    "Charles XII's soldiers brought kåldolmar back from Turkey.",
+    "Swedish meatballs came from Turkey.",
+    "Dulce de leche was invented in 1829 during the Rosas-Lavalle meeting.",
+    "Chicken tikka masala was invented in Glasgow (only ever 'claimed by' Glasgow).",
+    "Mole was invented by the nuns of a Puebla convent.",
+    "Phở is named after pot-au-feu."
+  ]
+}
