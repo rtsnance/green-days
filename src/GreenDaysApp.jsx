@@ -341,6 +341,7 @@ async function requestRecipe({ basket, withItems, country, prefs, avoid }) {
       ...(DISTANCE_LABEL[prefs.distance] ? { distance: prefs.distance } : {}),
       avoid,
       sid: SID, // share the visit grouping with the server recipe_generated event
+      platform: DISPLAY_MODE, // so recipe_generated can be split web vs iOS
     }),
   });
   const data = await res.json().catch(() => ({}));

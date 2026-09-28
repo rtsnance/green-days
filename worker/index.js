@@ -66,12 +66,16 @@ const CLIENT_EVENTS = new Set([
   'local_banner_view', 'local_list_tap', 'local_order_tap', 'local_picked',
 ]);
 const MARKET_CODE = /^[A-Z]{2}$/;
+// Platform enum (src/analytics.js DISPLAY_MODE), blob8. Anything else — an old
+// client that sends none, or a forged value — is stored empty, never verbatim.
+const PLATFORMS = new Set(['ios-app', 'standalone', 'browser']);
+const platformOf = (p) => (PLATFORMS.has(p) ? p : '');
 function track(env, name, f = {}) {
   if (!env.GD_EVENTS) return; // binding absent (e.g. vite-only dev) → no-op
   try {
     env.GD_EVENTS.writeDataPoint({
       indexes: [name],
-      blobs: [name, str(f.country, 2), str(f.band, 16), str(f.detail), str(f.extra), str(f.sid), str(f.market, 2)],
+      blobs: [name, str(f.country, 2), str(f.band, 16), str(f.detail), str(f.extra), str(f.sid), str(f.market, 2), str(f.platform, 16)],
       doubles: [num(f.v1), num(f.v2), num(f.v3)],
     });
   } catch (_) { /* never let analytics break a request */ }
@@ -185,6 +189,7 @@ async function handleEvent(request, env) {
     country, band: bandOf(country),
     detail: b.detail, extra: b.extra, v1: b.v1, v2: b.v2, v3: b.v3, sid: b.sid,
     market: MARKET_CODE.test(b.market || '') ? b.market : '',
+    platform: platformOf(b.platform),
   });
   return new Response(null, { status: 204 });
 }
@@ -270,6 +275,7 @@ async function handleRecipe(request, env, ctx) {
     .filter(Boolean))]
     .slice(0, 3);
   const sid = str(body.sid); // per-visit grouping, shared with client events
+  const platform = platformOf(body.platform); // web vs iOS split on /metrics
   // Here · Nearby · Anywhere (worker/kitchens.js). Absent or unknown = here.
   const distance = DISTANCES.has(body.distance) ? body.distance : 'here';
 
@@ -278,7 +284,7 @@ async function handleRecipe(request, env, ctx) {
   // not count the same declaration twice, and ahead of the cache so hits count.
   if (withItems.length && avoid.length === 0) {
     track(env, 'with_declared', {
-      country: edgeCountry, band, sid, market,
+      country: edgeCountry, band, sid, market, platform,
       extra: [...new Set(withItems.map(shelfBucket))].sort().join(','),
       v1: withItems.length,
     });
@@ -287,8 +293,8 @@ async function handleRecipe(request, env, ctx) {
   // recipe_generated is the money metric — record it (and errors) with the
   // session so activation/health queries line up with client events.
   const rg = (model, latencyMs, ok, tokens) =>
-    track(env, 'recipe_generated', { country: edgeCountry, band, market, detail: model, extra: distance, v1: latencyMs, v2: ok, v3: tokens, sid });
-  const trackErr = (code) => track(env, 'error', { country: edgeCountry, band, market, detail: 'recipe', extra: code, sid });
+    track(env, 'recipe_generated', { country: edgeCountry, band, market, platform, detail: model, extra: distance, v1: latencyMs, v2: ok, v3: tokens, sid });
+  const trackErr = (code) => track(env, 'error', { country: edgeCountry, band, market, platform, detail: 'recipe', extra: code, sid });
 
   // Light rate limit per IP (cost control). Skipped under the local mock
   // engine so the eval gate can fire 40 requests without throttling.

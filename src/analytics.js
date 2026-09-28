@@ -97,10 +97,12 @@ const NATIVE = DISPLAY_MODE === 'ios-app';
 const ENDPOINT = NATIVE ? 'https://greendays.day/api/event' : import.meta.env.BASE_URL + 'api/event';
 
 // Send one event. Only schema fields are ever included — never a query string.
+// Every event carries the platform (the DISPLAY_MODE enum above), so any
+// metric can be split web vs iOS without joining back to app_open.
 export function ev(name, data = {}) {
   if (IS_OPERATOR) return; // operator's own device — see the block above
   try {
-    const payload = { name, sid: SID };
+    const payload = { name, sid: SID, platform: DISPLAY_MODE };
     if (MARKET) payload.market = MARKET;
     if (data.detail != null) payload.detail = String(data.detail).slice(0, 64);
     if (data.extra != null) payload.extra = String(data.extra).slice(0, 64);

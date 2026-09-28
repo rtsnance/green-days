@@ -133,6 +133,15 @@ export async function handleMetrics(request, env) {
     // old flow promised a notification to, taking the calendar instead.
     notifyCal: `SELECT blob5 AS kind, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='notify_calendar' AND timestamp > ${I} GROUP BY kind ORDER BY n DESC`,
     displayMode: `SELECT blob5 AS mode, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY mode`,
+    // Web vs iOS. app_open's blob5 (extra) has carried the display mode —
+    // 'ios-app' / 'standalone' / 'browser' — since launch, so sessions and the
+    // returning split (double2) group by platform over the whole window.
+    platformSessions: `SELECT blob5 AS mode, double2 AS returning, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY mode, returning`,
+    // blob8 = platform on every event from 28 Sep 2026 (src/analytics.js sends
+    // it; /api/recipe forwards it to the server-side recipe_generated). Rows
+    // before that date have an empty blob8 and drop out of the per-platform
+    // activation, so a window reaching further back undercounts it evenly.
+    platformRecipes: `SELECT blob8 AS platform, COUNT(DISTINCT blob6) AS sessions, SUM(_sample_interval) AS recipes FROM ${DATASET} WHERE blob1='recipe_generated' AND blob8 != '' AND timestamp > ${I} GROUP BY platform`,
     pwaInstall: `SELECT SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='pwa_install' AND timestamp > ${I}`,
     health: `SELECT quantileWeighted(0.5)(double1, _sample_interval) AS p50_ms, quantileWeighted(0.95)(double1, _sample_interval) AS p95_ms, SUM(double2 * _sample_interval) / SUM(_sample_interval) AS ok_rate, SUM(double3 * _sample_interval) / SUM(_sample_interval) AS avg_tokens, SUM(_sample_interval) AS recipes FROM ${DATASET} WHERE blob1='recipe_generated' AND timestamp > ${I}`,
     // double2 on app_open = returning (1) vs first-ever-visit (0), set client-side
@@ -257,6 +266,36 @@ export async function handleMetrics(request, env) {
     android_installs: num(((rows.pwaInstall || [])[0] || {}).n),
   };
 
+  // Web vs iOS. Unknown/empty modes bucket into 'browser', matching the
+  // Install card's reading of the same rows.
+  const PLATFORMS = ['ios-app', 'standalone', 'browser'];
+  const pSess = {};
+  PLATFORMS.forEach((p) => { pSess[p] = { sessions: 0, returning: 0 }; });
+  (rows.platformSessions || []).forEach((r) => {
+    const p = pSess[r.mode] ? r.mode : 'browser';
+    pSess[p].sessions += num(r.sessions);
+    if (num(r.returning) === 1) pSess[p].returning += num(r.sessions);
+  });
+  const pRec = {};
+  (rows.platformRecipes || []).forEach((r) => {
+    const p = pSess[r.platform] ? r.platform : 'browser';
+    pRec[p] = { recipe_sessions: (pRec[p] ? pRec[p].recipe_sessions : 0) + num(r.sessions), recipes: (pRec[p] ? pRec[p].recipes : 0) + num(r.recipes) };
+  });
+  const platformTotal = PLATFORMS.reduce((s, p) => s + pSess[p].sessions, 0);
+  const platform = {
+    total_sessions: platformTotal,
+    ios_share: platformTotal ? pSess['ios-app'].sessions / platformTotal : null,
+    by_platform: PLATFORMS.map((p) => ({
+      platform: p,
+      sessions: pSess[p].sessions,
+      returning_sessions: pSess[p].returning,
+      returning_rate: pSess[p].sessions ? pSess[p].returning / pSess[p].sessions : null,
+      recipe_sessions: pRec[p] ? pRec[p].recipe_sessions : 0,
+      recipes: pRec[p] ? pRec[p].recipes : 0,
+      activation: pSess[p].sessions && pRec[p] ? pRec[p].recipe_sessions / pSess[p].sessions : null,
+    })),
+  };
+
   const h = (rows.health && rows.health[0]) || {};
   const health = {
     p50_ms: rows.health && rows.health.length ? num(h.p50_ms) : null,
@@ -298,7 +337,7 @@ export async function handleMetrics(request, env) {
   const known = sourceRows.filter((r) => r.source !== '(direct)').reduce((s, r) => s + r.sessions, 0);
   const source = { total_sessions: sourceTotal, attributed_sessions: known, by_source: sourceRows };
 
-  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, edge, market, market_locked: marketLocked, field_guide: fieldGuide, field_note: fieldNote, install, notify, health, retention, affiliate, source, errors };
+  const metrics = { dataset: DATASET, days, generated_at: new Date().toISOString(), activation, onboarding, recipes_per_session: recipesPerSession, try_another: tryAnother, search, edge, market, market_locked: marketLocked, field_guide: fieldGuide, field_note: fieldNote, install, platform, notify, health, retention, affiliate, source, errors };
 
   if (wantJson) return withSession(json(metrics, 200));
   if (wantCsv) return withSession(csv(renderCsv(metrics), days));
@@ -380,6 +419,18 @@ function renderCsv(m) {
   push('install', '', 'standalone_sessions', I.standalone_sessions);
   push('install', '', 'browser_sessions', I.browser_sessions);
   push('install', '', 'android_installs', I.android_installs);
+
+  const PL = m.platform;
+  push('platform', '', 'total_sessions', PL.total_sessions);
+  push('platform', '', 'ios_share', PL.ios_share);
+  for (const r of PL.by_platform) {
+    push('platform', r.platform, 'sessions', r.sessions);
+    push('platform', r.platform, 'returning_sessions', r.returning_sessions);
+    push('platform', r.platform, 'returning_rate', r.returning_rate);
+    push('platform', r.platform, 'recipe_sessions', r.recipe_sessions);
+    push('platform', r.platform, 'recipes', r.recipes);
+    push('platform', r.platform, 'activation', r.activation);
+  }
 
   const N = m.notify;
   push('notify', '', 'intent_total', N.intent_total);
@@ -551,6 +602,18 @@ function renderPage(m) {
      <div class="note">${I2.standalone_sessions} of ${I2.standalone_sessions + I2.browser_sessions} sessions ran as an installed app · ${I2.android_installs} Android install events (iOS fires none)</div>`
     : NO_DATA, e.displayMode || e.pwaInstall);
 
+  const P = m.platform;
+  const PLATFORM_LABEL = { 'ios-app': 'iOS app', standalone: 'Web · installed', browser: 'Web · browser' };
+  const maxPl = Math.max(1, ...P.by_platform.map((r) => r.sessions));
+  const platformCard = card('Web vs iOS', P.total_sessions ?
+    `<div class="big">${pct(P.ios_share)}</div>
+     <div class="note">of ${P.total_sessions} sessions ran in the iOS app</div>
+     ${P.by_platform.map((r) => `<div class="row"><span class="k">${esc(PLATFORM_LABEL[r.platform] || r.platform)}</span><span class="bar"><i style="width:${(r.sessions / maxPl * 100).toFixed(0)}%"></i></span><span class="v">${r.sessions}</span></div>`).join('')}
+     <div class="note">per platform: returning rate · activation</div>
+     ${P.by_platform.map((r) => `<div class="row"><span class="k">${esc(PLATFORM_LABEL[r.platform] || r.platform)}</span><span class="v">${pct(r.returning_rate)} · ${r.activation == null ? '—' : pct(r.activation)}${r.recipe_sessions ? ` <span style="color:var(--muted);font-weight:600">${r.recipe_sessions}/${r.sessions}</span>` : ''}</span></div>`).join('')}
+     <div class="note">activation splits by platform from 28 Sep 2026 — earlier recipes carry no platform and drop out of the split, not out of the Activation card</div>`
+    : NO_DATA, e.platformSessions || e.platformRecipes);
+
   const maxNi = Math.max(1, ...m.notify.by_produce.map((f) => f.n));
   const notifyCard = card('Tell me when it\'s back', m.notify.intent_total ?
     `<div class="big small">${m.notify.intent_total}</div>
@@ -587,7 +650,7 @@ function renderPage(m) {
      ${S.by_source.map((r) => `<div class="row"><span class="k">${esc(r.source)}</span><span class="bar"><i style="width:${(r.sessions / maxSrc * 100).toFixed(0)}%"></i></span><span class="v">${r.sessions}</span></div>`).join('')}`
     : NO_DATA, e.source);
 
-  const grid = `<div class="grid">${activation}${retention}${onboarding}${rps}${ta}${search}${market}${edgeCard}${fieldGuideCard}${fieldNoteCard}${installCard}${notifyCard}${affiliateCard}${sourceCard}${health}</div>`;
+  const grid = `<div class="grid">${activation}${retention}${platformCard}${onboarding}${rps}${ta}${search}${market}${edgeCard}${fieldGuideCard}${fieldNoteCard}${installCard}${notifyCard}${affiliateCard}${sourceCard}${health}</div>`;
   return shell(grid, m.days);
 }
 
