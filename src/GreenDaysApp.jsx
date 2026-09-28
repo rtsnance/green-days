@@ -910,7 +910,7 @@ function RecipeDetailScreen({ view, history, local, localData, onOpen, onSearchP
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 10, color: 'var(--color-text-accent)', ...MONO }}>
                 <Icon d={I.sparkle} size={13} w={2.2} /> From your basket
-                {r.kitchen && r.kitchen !== 'mock' && <span style={{ color: 'var(--color-text-tertiary)' }}>· {DISTANCE_LABEL[r.distance] || 'Here'}: {r.kitchen}</span>}
+                {r.kitchen && r.kitchen !== 'mock' && <span style={{ color: 'var(--color-text-tertiary)' }}>· {DISTANCE_LABEL[r.distance] || 'Here'}: {r.kitchen.replace(/\s*\(.*\)\s*$/, '')}</span>}
               </div>
               {live && (
                 <button onClick={onTryAnother} className="gd-tag" style={{ gap: 6, height: 'auto', padding: '6px 12px', borderColor: 'var(--color-border-accent)', color: 'var(--color-text-accent)', ...MONO, fontSize: 10.5 }}>
