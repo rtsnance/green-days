@@ -805,7 +805,10 @@ function RecipeDetailScreen({ view, history, local, localData, onOpen, onSearchP
   const yours = r ? r.ingredients.filter((i) => registerOf(i) === 'yours') : [];
   const counter = r ? r.ingredients.filter((i) => registerOf(i) === 'counter') : [];
   const pantry = r ? r.ingredients.filter((i) => registerOf(i) === 'pantry') : [];
-  const grabTerm = r && r.grabOneMore ? String(r.grabOneMore).trim() : '';
+  // A sentence is not a produce name (older recipes can hold one, before the
+  // worker learned to rescue the id from it): show nothing rather than search it.
+  const grabRaw = r && r.grabOneMore ? String(r.grabOneMore).trim() : '';
+  const grabTerm = grabRaw && grabRaw.split(/\s+/).length <= 3 ? grabRaw : '';
   const oneMore = grabTerm ? decorate(resolveSuggestion(grabTerm), rc) : null;
 
   // Match a fresh-ingredient line back to a produce print where possible.

@@ -419,7 +419,7 @@ async function handleRecipe(request, env, ctx) {
       const text = (message.content || []).find((b) => b.type === 'text')?.text;
       let candidate;
       try {
-        candidate = normalizeRecipe(JSON.parse(text), basket);
+        candidate = normalizeRecipe(JSON.parse(text), basket, inSeasonIds);
       } catch (err) {
         console.error('bad recipe JSON', String(err), (text || '').slice(0, 300));
         failCode = 'bad_json';
@@ -479,18 +479,45 @@ async function handleRecipe(request, env, ctx) {
 
 // Belt-and-braces on top of the schema-constrained output: coerce shapes and
 // keep stars/grabOneMore inside the produce vocabulary.
-function normalizeRecipe(r, basket) {
+// Produce ids a free-text string mentions, in the order they appear, matched
+// on the id ("spring-onion" or "spring onion") or the English name.
+function produceMentions(text) {
+  const t = ' ' + String(text).toLowerCase().replace(/[^a-z\u00c0-\u024f]+/g, ' ') + ' ';
+  const hits = [];
+  for (const p of PRODUCE) {
+    const forms = [p.id.replace(/-/g, ' '), String(p.name_en || '').toLowerCase().replace(/[^a-z\u00c0-\u024f]+/g, ' ').trim()];
+    let at = -1;
+    for (const f of forms) {
+      if (!f) continue;
+      const i = t.lastIndexOf(' ' + f + ' ');
+      if (i > at) at = i;
+    }
+    if (at >= 0) hits.push([at, p.id]);
+  }
+  return hits.sort((a, b) => a[0] - b[0]).map((h) => h[1]);
+}
+
+function normalizeRecipe(r, basket, inSeasonIds = []) {
   if (!r || typeof r.title !== 'string' || !Array.isArray(r.method) || r.method.length === 0) {
     throw new Error('missing title or method');
   }
   const stars = (Array.isArray(r.stars) ? r.stars : []).filter((id) => basket.includes(id));
-  // Prefer a valid catalogue id (skip anything already in the basket); if the
-  // model returned a name instead, pass it through so the client can resolve it
-  // to a produce detail or fall back to a Home search.
+  // Prefer a valid catalogue id (skip anything already in the basket). If the
+  // model wrote a sentence instead ("spring-onion is not on the list, so reach
+  // for leek instead", seen 2026-09-28), rescue the produce it names: the
+  // in-season one mentioned last, else any not in the basket. A short plain
+  // name still passes through for the client to resolve; a sentence with no
+  // produce in it is dropped rather than shown and searched as-is.
   let grab = null;
   if (typeof r.grabOneMore === 'string') {
     const g = r.grabOneMore.trim();
-    if (g) grab = BY_ID.has(g) ? (basket.includes(g) ? null : g) : g.slice(0, 60);
+    if (g && BY_ID.has(g)) grab = basket.includes(g) ? null : g;
+    else if (g) {
+      const found = produceMentions(g).filter((id) => !basket.includes(id));
+      const inSeason = found.filter((id) => inSeasonIds.includes(id));
+      grab = inSeason[inSeason.length - 1] || found[found.length - 1]
+        || (g.split(/\s+/).length <= 3 && g.length <= 30 ? g : null);
+    }
   }
   return {
     title: r.title,

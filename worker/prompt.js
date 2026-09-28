@@ -40,7 +40,7 @@ export const RECIPE_SCHEMA = {
     },
     grabOneMore: {
       anyOf: [{ type: 'string' }, { type: 'null' }],
-      description: 'One in-season produce id (from the provided in-season list, not already in the basket) to buy right now to complete the dish. Null only if nothing fits.',
+      description: 'One in-season produce id, exactly as written in the provided in-season list (for example "leek"), not already in the basket, to buy right now to complete the dish. A bare id, never a sentence or an explanation. Null only if nothing fits.',
     },
     protein: {
       anyOf: [{ type: 'array', items: { type: 'string' } }, { type: 'null' }],
