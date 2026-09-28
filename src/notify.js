@@ -43,7 +43,20 @@ export function nextAt(md, now) {
 // clutter in a two-line notification, so keep the first of each. English names
 // put the kind last ("Plum/San Marzano tomato"), so the family is the last word.
 const family = (p) => p.name.toLowerCase().replace(/\(.*?\)/g, '').trim().split(/[\s\-/]+/).pop();
-const distinct = (xs) => { const seen = new Set(); return xs.filter((p) => { const f = family(p); if (seen.has(f)) return false; seen.add(f); return true; }); };
+// Local names group the other way ("Calabacín", "Calabacín grande" are
+// courgette and marrow in English), so a second key, the local name's first
+// word, catches what the English one misses.
+const localFamily = (p, lang) => String((lang && p.name_local && p.name_local[lang]) || '').toLowerCase().split(/[\s\-]+/)[0];
+const distinct = (xs, lang) => {
+  const seen = new Set();
+  return xs.filter((p) => {
+    const keys = ['en:' + family(p)], lf = localFamily(p, lang);
+    if (lf) keys.push('local:' + lf);
+    if (keys.some((k) => seen.has(k))) return false;
+    keys.forEach((k) => seen.add(k));
+    return true;
+  });
+};
 
 const list = (names) => (names.length <= 3
   ? names.join(names.length === 2 ? ' and ' : ', ').replace(/, ([^,]*)$/, ' and $1')
@@ -60,7 +73,7 @@ export function turningBody(country, date, prevDate = addDays(date, -14), nextDa
   const s = (p, md) => seasonalityOf(p, md, band, country);
   const arriving = local.filter((p) => s(p, before) === 'out' && s(p, now) !== 'out');
   const leaving = local.filter((p) => s(p, now) !== 'out' && s(p, after) === 'out');
-  const names = (xs) => list(distinct(xs).map((p) => nameIn(p, lang)));
+  const names = (xs) => list(distinct(xs, lang).map((p) => nameIn(p, lang)));
   const parts = [];
   if (arriving.length) parts.push('In now: ' + names(arriving) + '.');
   if (leaving.length) parts.push('Last weeks for ' + names(leaving) + '.');
