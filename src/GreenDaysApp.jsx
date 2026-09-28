@@ -11,6 +11,7 @@ import {
 } from './produce.js';
 import { planNotifications, pruneWatches, readWatches, addWatch, nextTurning } from './notify.js';
 import { permission, askPermission, reschedule, onNotificationTap, sendTest } from './localNotify.js';
+import { locationPermission, askLocation, whereAmI } from './localLocate.js';
 import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator, isOperator, setMarket, COUNTRY_KEY } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
 import KITCHENS from '../data/kitchens.json';
@@ -348,7 +349,7 @@ async function requestRecipe({ basket, withItems, country, prefs, avoid }) {
 }
 
 /* ================= Home ================= */
-function HomeScreen({ basket, lang, country, place, local, localSource, localData, outOfMarket, onSetCountry, query, setQuery, onAdd, onOpen, onCook, onOpenPrefs }) {
+function HomeScreen({ basket, lang, country, place, local, localSource, localData, outOfMarket, onSetCountry, query, setQuery, onAdd, onOpen, onCook, onOpenPrefs, travel, onTravelSwitch, onTravelStay }) {
   const [cat, setCat] = React.useState('All');
   const term = query.trim();
   const q = stripDia(term);
@@ -449,6 +450,16 @@ function HomeScreen({ basket, lang, country, place, local, localSource, localDat
         <p style={{ margin: '8px 0 0', fontSize: 13, lineHeight: 1.5, color: 'var(--color-text-secondary)' }}>
           {outOfMarketLine(outOfMarket, country, 'home')}
         </p>
+      )}
+      {travel && (
+        <div className="gd-card" style={{ marginTop: 12, padding: 14 }}>
+          <div style={{ fontWeight: 800, fontSize: 15 }}>You're in {placeLabel(travel)}.</div>
+          <p style={{ fontSize: 13.5, lineHeight: 1.45, color: 'var(--color-text-secondary)', margin: '4px 0 10px' }}>Switch to {placeLabel(travel)}'s market and what's in season there?</p>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <button className="gd-btn gd-btn--primary" onClick={onTravelSwitch}><span>Switch to {placeLabel(travel)}</span></button>
+            <button className="gd-btn" style={{ background: 'transparent' }} onClick={onTravelStay}><span>Stay with {placeLabel(place)}</span></button>
+          </div>
+        </div>
       )}
       {local && localData && localData.ok && <LocalWeekBanner data={localData} source={localSource} />}
 
@@ -1514,6 +1525,18 @@ function OnboardScreen({ country, outOfMarket, onSetCountry, prefs, onDone }) {
     window.dispatchEvent(new Event('gd-notify-changed'));
   };
   const preview = step === 3 ? nextTurning(country) : null;
+  // App only: "Use where I am" on the market step opens a soft prompt; iOS's
+  // own location dialog appears only after "Use my location".
+  const [locAsk, setLocAsk] = React.useState('idle'); // idle | ask | busy | none | off
+  const useLocation = async () => {
+    setLocAsk('busy');
+    const perm = await askLocation();
+    ev('location_permission', { detail: perm, extra: 'onboarding' });
+    if (perm !== 'granted') { setLocAsk('off'); return; }
+    const here = await whereAmI();
+    if (here) { onSetCountry(here.country); setLocAsk('idle'); }
+    else setLocAsk('none');
+  };
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'var(--color-background-body)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '48px 26px 12px', overflow: 'auto' }}>
@@ -1535,6 +1558,29 @@ function OnboardScreen({ country, outOfMarket, onSetCountry, prefs, onDone }) {
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '0 0 26px', maxWidth: 320 }}>
                 {outOfMarketLine(outOfMarket, country, 'onboarding')}
               </p>
+            )}
+            {IS_NATIVE && locAsk === 'idle' && (
+              <button className="gd-btn gd-btn--block" style={{ marginBottom: 14 }} onClick={() => { setLocAsk('ask'); ev('location_soft_prompt', { detail: 'shown', extra: 'onboarding' }); }}>
+                <span className="gd-btn__icon"><Icon d={I.pin} size={17} /></span><span>Use where I am</span>
+              </button>
+            )}
+            {IS_NATIVE && (locAsk === 'ask' || locAsk === 'busy') && (
+              <div className="gd-card" style={{ marginBottom: 14, padding: 16 }}>
+                <div style={{ fontWeight: 800, fontSize: 15, marginBottom: 6 }}>Find your market from where you are</div>
+                <p style={{ fontSize: 14, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '0 0 12px' }}>
+                  Green Days checks which country you're in when you open it, so when you travel it can offer that market's calendar. Only roughly where you are, only while the app is open, and it never leaves your phone.
+                </p>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button className="gd-btn gd-btn--primary" disabled={locAsk === 'busy'} onClick={useLocation}><span>{locAsk === 'busy' ? 'Finding…' : 'Use my location'}</span></button>
+                  <button className="gd-btn" style={{ background: 'transparent' }} onClick={() => { setLocAsk('idle'); ev('location_soft_prompt', { detail: 'declined', extra: 'onboarding' }); }}><span>Not now</span></button>
+                </div>
+              </div>
+            )}
+            {IS_NATIVE && locAsk === 'none' && (
+              <p style={{ fontSize: 13.5, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '0 0 14px' }}>You seem to be outside the markets Green Days covers so far. Pick the nearest one below.</p>
+            )}
+            {IS_NATIVE && locAsk === 'off' && (
+              <p style={{ fontSize: 13.5, lineHeight: 1.5, color: 'var(--color-text-secondary)', margin: '0 0 14px' }}>No problem. Pick your market below; you can turn location on later in Settings.</p>
             )}
             {/* The 14 markets from markets.json; picking one sets the app-wide
                 country that drives produce language + climate band (Fix 7). */}
@@ -2015,6 +2061,36 @@ export default function GreenDaysApp() {
     window.addEventListener('gd-notify-changed', run);
     return () => window.removeEventListener('gd-notify-changed', run);
   }, [notifyKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  // iOS app, travel (level 1): on open, if location was granted, ask the phone
+  // which market it is in, and offer to switch when it differs. Never switches
+  // on its own, and "Stay" quiets the offer for that place for the day.
+  const [travel, setTravel] = React.useState(null); // a place value (country code or IBIZA)
+  const TRAVEL_KEY = 'gd_travel_stay';
+  const dayStamp = () => new Date().toISOString().slice(0, 10);
+  React.useEffect(() => {
+    if (!IS_NATIVE || !onboarded) return;
+    let live = true;
+    (async () => {
+      if ((await locationPermission()) !== 'granted') return;
+      const here = await whereAmI();
+      if (!live || !here) return;
+      const v = here.place === 'ibiza' ? IBIZA : here.country;
+      if (v === place) return;
+      let stay = null;
+      try { stay = localStorage.getItem(TRAVEL_KEY); } catch (_) { /* none */ }
+      if (stay === v + '|' + dayStamp()) return;
+      setTravel(v);
+      ev('travel_offer', { detail: here.country, extra: 'shown' });
+    })();
+    return () => { live = false; };
+  }, [onboarded]); // eslint-disable-line react-hooks/exhaustive-deps
+  const travelSwitch = () => { ev('travel_offer', { detail: travel, extra: 'switch' }); pickPlace(travel); setTravel(null); };
+  const travelStay = () => {
+    ev('travel_offer', { detail: travel, extra: 'stay' });
+    try { localStorage.setItem(TRAVEL_KEY, travel + '|' + dayStamp()); } catch (_) { /* session only */ }
+    setTravel(null);
+  };
+
   // Tapping a "back" notification opens that produce.
   React.useEffect(() => {
     if (!IS_NATIVE) return;
@@ -2111,7 +2187,8 @@ export default function GreenDaysApp() {
             them is scrolled; only .gd-screen itself scrolls. */}
         <div className="gd-screen-wrap">
           <div className="gd-screen">
-            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} place={place} local={local} localSource={localSource} localData={localData} outOfMarket={outOfMarket} onSetCountry={pickPlace} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)} />}
+            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} place={place} local={local} localSource={localSource} localData={localData} outOfMarket={outOfMarket} onSetCountry={pickPlace} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)}
+              travel={travel} onTravelSwitch={travelSwitch} onTravelStay={travelStay} />}
             {tab === 'list' && <ListScreen basket={basket} checked={checked} lang={lang} country={country} prefs={prefs}
               declared={declared} onDeclare={declare} onUndeclare={undeclare} onAdd={add} onRemove={(id) => setQty(id, 0)} onToggle={toggle} onOpen={setDetail} onCook={cookThis} />}
             {tab === 'recipes' && <RecipesListScreen history={history} onOpenEntry={openEntry} onGoHome={() => setTab('home')} />}

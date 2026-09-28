@@ -61,6 +61,7 @@ const CLIENT_EVENTS = new Set([
   'affiliate_cta_tap', 'field_guide_add', 'field_note_share_tap',
   'pwa_install', 'notify_intent', 'notify_permission', 'notify_calendar',
   'distance_set', 'notify_open',
+  'location_permission', 'location_soft_prompt', 'travel_offer',
   'market_locked',
   'local_banner_view', 'local_list_tap', 'local_order_tap', 'local_picked',
 ]);
