@@ -7,7 +7,7 @@ import React from 'react';
 import {
   PRODUCE, byId, decorate, MONTH, ASSET,
   langOf, bandOf, countryLabel, COUNTRIES,
-  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, nextSeasonStartLabel, hasLocalSeasonFor, timingFor,
+  seasonBannerSrc, matchesQuery, stripDia, affiliatePartnerOf, nextSeasonLabel, nextSeasonStartLabel, hasLocalSeasonFor, timingFor, MONTH_NAMES,
 } from './produce.js';
 import { ev, evOnce, SID, SOURCE, DISPLAY_MODE, toggleOperator, setMarket, COUNTRY_KEY } from './analytics.js';
 import { renderFieldNoteCard } from './fieldNote.js';
@@ -1200,38 +1200,15 @@ function RecipesListScreen({ history, onOpenEntry, onGoHome }) {
 }
 
 /* ================= "Tell me when it's back" =================
-   The permission ask, fired at peak intent — the moment someone has just been
-   told they can't have the thing. The button itself is the soft pre-prompt: the
-   real browser dialog only ever fires for someone who already tapped yes, so the
-   one-shot permission prompt is never spent on an uninterested user.
-   iOS cannot prompt at all until the site is installed to the Home Screen (no
-   install API exists), so iPhone gets the instruction instead. That is a bigger
-   ask, delivered at the only moment anyone would tolerate it. */
-const isIOS = () => {
-  try {
-    return /iphone|ipad|ipod/i.test(navigator.userAgent)
-      || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); // iPadOS
-  } catch (_) { return false; }
-};
-const isStandalone = () => {
-  try {
-    return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
-      || window.navigator.standalone === true;
-  } catch (_) { return false; }
-};
-function rememberNotify(id, label) {
-  try {
-    const cur = JSON.parse(localStorage.getItem(NOTIFY_KEY) || '[]');
-    if (cur.indexOf(id) === -1) { cur.push(id); localStorage.setItem(NOTIFY_KEY, JSON.stringify(cur)); }
-    // Persist the promised month next to the id so the saved-state message
-    // keeps saying what the user was told when they tapped, not whatever the
-    // range walker returns on the next render. Sourcing pass shifts (GB
-    // cauliflower moved from "October" to "December" on 2026-09-15) would
-    // otherwise silently rewrite the promise in place.
-    const labels = JSON.parse(localStorage.getItem(NOTIFY_LABEL_KEY) || '{}');
-    if (label && labels[id] !== label) { labels[id] = label; localStorage.setItem(NOTIFY_LABEL_KEY, JSON.stringify(labels)); }
-  } catch (_) { /* private mode — the intent event still fired, which is the measurement */ }
-}
+   Out-of-season pages are the one place in Green Days with a real,
+   unmanufactured disappointment, and this is the answer to it.
+   Until 28 Sep 2026 the button asked for notification permission and promised
+   a push that nothing would ever send (the sender, Part C, was never built, and
+   the 1 September promises passed silently). The web now keeps the promise the
+   only way it can without a server: a calendar event on the 1st of the month
+   the season opens, served by /api/remind. People who tapped under the old
+   flow see an apology and the same calendar link. The native app will replace
+   this with local notifications scheduled on the phone. */
 // The month string a shopper was promised when they tapped this item's
 // notify button. null when never tapped, or when tapped before the label
 // store existed (falls back to the current label at render time).
@@ -1243,86 +1220,60 @@ const savedNotifyLabel = (id) => {
 function NotifyWhenBack({ p, lang, country }) {
   // Prefer the market's own dates. Falls back to the legacy label parser
   // when the market has NO entry at this scope. When the market's entry
-  // declares no local season ({ ranges: [] }), no button — silently
+  // declares no local season ({ ranges: [] }), no button: silently
   // promising the label's month over the market's authored "no season
   // here" is exactly the contradiction Phase A closed on the copy side.
   const back = nextSeasonStartLabel(p, country);
   const local = hasLocalSeasonFor(p, country);
   const label = back || (local === null ? nextSeasonLabel(p.season, MONTH, bandOf(country)) : null);
+  // 'owed': tapped under the old flow, told "we'll tell you", never told.
   const [state, setState] = React.useState(() => {
-    try { return JSON.parse(localStorage.getItem(NOTIFY_KEY) || '[]').indexOf(p.id) > -1 ? 'saved' : 'idle'; }
+    try { return JSON.parse(localStorage.getItem(NOTIFY_KEY) || '[]').indexOf(p.id) > -1 ? 'owed' : 'idle'; }
     catch (_) { return 'idle'; }
   });
-  if (!label) return null; // no honest month to promise → no button
-  const name = (lang && p.name_local[lang]) || p.name;
+  if (!label) return null; // no honest month to promise, so no button
+  const month = MONTH_NAMES.indexOf(label) + 1;
+  if (month < 1) return null;
+  const promised = savedNotifyLabel(p.id) || label;
+  const href = `/api/remind?id=${encodeURIComponent(p.id)}&month=${month}` + (lang ? `&lang=${encodeURIComponent(lang)}` : '');
 
-  const confirm = () => {
-    try {
-      const body = `Noted — we'll tell you when ${name} is back. Around ${label}.`;
-      if (navigator.serviceWorker && navigator.serviceWorker.ready) {
-        navigator.serviceWorker.ready
-          .then((r) => r.showNotification('green days', { body, icon: '/assets/icon-192.png', tag: 'gd-notify-' + p.id }))
-          .catch(() => { try { new Notification('green days', { body }); } catch (_) {} });
-      } else {
-        new Notification('green days', { body });
-      }
-    } catch (_) { /* confirmation is a nicety, never a failure path */ }
-  };
-
+  // An ordinary link, not a script-built download: it survives iOS home-screen
+  // mode, where blob downloads are unreliable, and the Worker sets the
+  // attachment headers. The calendar then does the reminding.
   const onTap = () => {
     ev('notify_intent', { detail: p.id, extra: label });
-    if (isIOS() && !isStandalone()) {
-      ev('notify_permission', { detail: 'needs_install' });
-      setState('needs-install');
-      return;
-    }
-    if (typeof Notification === 'undefined') {
-      ev('notify_permission', { detail: 'unsupported' });
-      setState('blocked');
-      return;
-    }
-    let done = false;
-    const handle = (result) => {
-      if (done) return; done = true;
-      ev('notify_permission', { detail: result });
-      if (result === 'granted') { rememberNotify(p.id, label); confirm(); setState('saved'); }
-      else setState('blocked');
-    };
-    try {
-      const r = Notification.requestPermission(handle); // older callback form
-      if (r && typeof r.then === 'function') r.then(handle).catch(() => handle('error'));
-    } catch (_) { handle('error'); }
+    ev('notify_calendar', { detail: p.id, extra: state === 'owed' ? 'owed' : 'new' });
+    setState('added');
   };
 
-  if (state === 'saved') return (
-    <div style={{ marginTop: 12, fontSize: 13.5, fontWeight: 700, color: 'var(--color-text-accent)' }}>
-      Noted. We'll tell you around {savedNotifyLabel(p.id) || label}.
+  const linkStyle = { display: 'block', marginTop: 12, width: '100%', boxSizing: 'border-box', textAlign: 'center',
+    textDecoration: 'none', border: '1px solid var(--color-border)', cursor: 'pointer',
+    padding: '11px 12px', borderRadius: 'var(--radius-element)',
+    background: 'var(--color-background-surface)', fontFamily: 'var(--font-body)',
+    fontWeight: 800, fontSize: 14.5, color: 'var(--color-text-primary)', boxShadow: 'var(--shadow-low)' };
+  const note = { marginTop: 12, fontSize: 13.5, lineHeight: 1.55, color: 'var(--color-text-secondary)' };
+
+  if (state === 'added') return (
+    <div style={note}>
+      Added for 1 {label}. Your calendar will remind you that morning.
     </div>
   );
-  if (state === 'needs-install') return (
-    <div style={{ marginTop: 12, fontSize: 13.5, lineHeight: 1.55, color: 'var(--color-text-secondary)' }}>
-      To be told when it's back, keep green days on your Home Screen — tap
-      <b> Share</b>, then <b>Add to Home Screen</b>. Open it from there and ask again.
-    </div>
-  );
-  if (state === 'blocked') return (
-    <div style={{ marginTop: 12, fontSize: 13.5, lineHeight: 1.55, color: 'var(--color-text-secondary)' }}>
-      Notifications are off for this site. Your browser settings can turn them back on.
+  if (state === 'owed') return (
+    <div>
+      <div style={note}>
+        Earlier we said we'd tell you when it's back, around {promised}. We can't send that
+        from here yet. Sorry. Put it in your calendar and it will.
+      </div>
+      <a href={href} onClick={onTap} style={linkStyle}>Add to my calendar</a>
     </div>
   );
   return (
-    <button
-      onClick={onTap}
-      style={{ marginTop: 12, width: '100%', border: '1px solid var(--color-border)', cursor: 'pointer',
-               padding: '11px 12px', borderRadius: 'var(--radius-element)',
-               background: 'var(--color-background-surface)', fontFamily: 'var(--font-body)',
-               fontWeight: 800, fontSize: 14.5, color: 'var(--color-text-primary)',
-               boxShadow: 'var(--shadow-low)' }}>
-      Tell me when it's back
+    <a href={href} onClick={onTap} style={linkStyle}>
+      Remind me when it's back
       <span style={{ display: 'block', fontWeight: 600, fontSize: 12.5, color: 'var(--color-text-tertiary)', marginTop: 2 }}>
-        usually around {label}
+        adds 1 {label} to your calendar
       </span>
-    </button>
+    </a>
   );
 }
 
@@ -1578,7 +1529,7 @@ function PrefsScreen({ prefs, firstRun, country, onSetCountry, onSave, onClose }
           <span>{firstRun ? 'Save and start shopping' : 'Save'}</span>
         </button>
         <div style={{ textAlign: 'center', fontSize: 12, color: 'var(--color-text-tertiary)' }}>Change these anytime from Home</div>
-        <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--color-text-tertiary)' }}>© {new Date().getFullYear()} Green Days</div>
+        <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--color-text-tertiary)' }}>© {new Date().getFullYear()} Green Days · <a href="/privacy/" style={{ color: 'inherit' }}>Privacy</a></div>
       </div>
     </div>
   );

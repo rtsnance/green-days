@@ -4,6 +4,7 @@
    Routes: GET  /api/context  → market country, band, season
            POST /api/recipe   → the recipe engine (Anthropic API)
            GET  /api/local    → a local grower's week, scored (worker/local.js)
+           GET  /api/remind   → a calendar file for "tell me when it's back" (worker/remind.js)
            GET  /.well-known/api-catalog, /openapi.json, /docs/api,
                 /api/health   → API discovery (worker/catalog.js)
    Everything else is served from the built front-end by the assets binding. */
@@ -15,6 +16,7 @@ import { withSecurityHeaders } from './headers.js';
 import { handleLocal, placeForEdge } from './local.js';
 import { negotiate } from './markdown.js';
 import { handleCatalog, withDiscoveryLinks } from './catalog.js';
+import { handleRemind } from './remind.js';
 // The one seasonality implementation, shared with the front end. Reaching
 // outside worker/ is already how ../data/*.json gets here, and season.js is
 // plain ESM with no import.meta, so wrangler bundles it. Do NOT import
@@ -56,7 +58,7 @@ const CLIENT_EVENTS = new Set([
   'product_view', 'produce_added', 'fallback_shown', 'basket_cook', 'recipe_try_another',
   'grab_one_more_tap', 'offseason_added', 'error', 'time_to_first_content',
   'affiliate_cta_tap', 'field_guide_add', 'field_note_share_tap',
-  'pwa_install', 'notify_intent', 'notify_permission',
+  'pwa_install', 'notify_intent', 'notify_permission', 'notify_calendar',
   'market_locked',
   'local_banner_view', 'local_list_tap', 'local_order_tap', 'local_picked',
 ]);
@@ -115,6 +117,7 @@ async function route(request, env, ctx) {
   if (url.pathname === '/api/recipe') return handleRecipe(request, env, ctx);
   if (url.pathname === '/api/event') return handleEvent(request, env);
   if (url.pathname === '/api/local') return handleLocal(request, { byId: BY_ID, bandOf });
+  if (url.pathname === '/api/remind') return handleRemind(request, BY_ID);
   if (url.pathname === '/metrics') return handleMetrics(request, env);
   if (url.pathname.startsWith('/api/')) return json({ error: 'not found' }, 404);
   // Pages answer Accept: text/markdown with a markdown rendering; browsers

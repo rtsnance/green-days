@@ -128,6 +128,10 @@ export async function handleMetrics(request, env) {
     fieldNote: `SELECT blob4 AS produce, SUM(_sample_interval) AS shares FROM ${DATASET} WHERE blob1='field_note_share_tap' AND timestamp > ${I} GROUP BY produce ORDER BY shares DESC`,
     notifyIntent: `SELECT blob4 AS produce, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='notify_intent' AND timestamp > ${I} GROUP BY produce ORDER BY n DESC`,
     notifyPerm: `SELECT blob4 AS result, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='notify_permission' AND timestamp > ${I} GROUP BY result ORDER BY n DESC`,
+    // From 28 Sep 2026 the button adds a calendar event (/api/remind) instead
+    // of asking for push permission. blob5: 'new' tap, or 'owed' = someone the
+    // old flow promised a notification to, taking the calendar instead.
+    notifyCal: `SELECT blob5 AS kind, SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='notify_calendar' AND timestamp > ${I} GROUP BY kind ORDER BY n DESC`,
     displayMode: `SELECT blob5 AS mode, COUNT(DISTINCT blob6) AS sessions FROM ${DATASET} WHERE blob1='app_open' AND timestamp > ${I} GROUP BY mode`,
     pwaInstall: `SELECT SUM(_sample_interval) AS n FROM ${DATASET} WHERE blob1='pwa_install' AND timestamp > ${I}`,
     health: `SELECT quantileWeighted(0.5)(double1, _sample_interval) AS p50_ms, quantileWeighted(0.95)(double1, _sample_interval) AS p95_ms, SUM(double2 * _sample_interval) / SUM(_sample_interval) AS ok_rate, SUM(double3 * _sample_interval) / SUM(_sample_interval) AS avg_tokens, SUM(_sample_interval) AS recipes FROM ${DATASET} WHERE blob1='recipe_generated' AND timestamp > ${I}`,
@@ -239,6 +243,7 @@ export async function handleMetrics(request, env) {
     by_produce: notifyByProduce,
     permission: notifyPermRows,
     grant_rate: permTotal ? granted / permTotal : null,
+    calendar: (rows.notifyCal || []).map((r) => ({ kind: r.kind || '(unknown)', n: num(r.n) })),
   };
 
   let standalone = 0, browser = 0;
@@ -379,6 +384,7 @@ function renderCsv(m) {
   const N = m.notify;
   push('notify', '', 'intent_total', N.intent_total);
   push('notify', '', 'grant_rate', N.grant_rate);
+  for (const r of N.calendar) push('notify_calendar', r.kind, 'n', r.n);
   for (const r of N.permission) push('notify_permission', r.result, 'n', r.n);
   for (const r of N.by_produce) push('notify_intent', r.produce, 'n', r.n);
 
@@ -551,6 +557,7 @@ function renderPage(m) {
     `<div class="big small">${m.notify.intent_total}</div>
      <div class="note">taps on out-of-season produce · ${m.notify.grant_rate == null ? 'no permission results yet' : (m.notify.grant_rate * 100).toFixed(0) + '% granted'}</div>
      ${m.notify.permission.map((r) => `<div class="row"><span class="k">${esc(r.result)}</span><span class="v">${r.n}</span></div>`).join('')}
+     ${m.notify.calendar.length ? `<div class="note">added to a calendar (from 28 Sep)</div>` + m.notify.calendar.map((r) => `<div class="row"><span class="k">${esc(r.kind)}</span><span class="v">${r.n}</span></div>`).join('') : ''}
      <div class="note">declared demand, ranked — this is the authoring queue</div>
      ${m.notify.by_produce.map((f) => `<div class="row"><span class="k">${esc(f.produce)}</span><span class="bar"><i style="width:${(f.n / maxNi * 100).toFixed(0)}%"></i></span><span class="v">${f.n}</span></div>`).join('')}`
     : NO_DATA, e.notifyIntent || e.notifyPerm);
