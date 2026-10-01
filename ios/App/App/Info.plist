@@ -28,6 +28,8 @@
 	<true/>
 	<key>NSLocationDefaultAccuracyReduced</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Green Days only checks your location while the app is open, to see which country you're in. It never tracks you in the background, and your location never leaves your phone.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Green Days checks which country you're in when you open it, so when you travel it can offer that market's calendar. Your location never leaves your phone.</string>
 	<key>UIApplicationSceneManifest</key>
