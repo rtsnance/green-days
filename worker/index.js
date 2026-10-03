@@ -56,7 +56,7 @@ const num = (x) => { const n = Number(x); return Number.isFinite(n) ? n : 0; };
 // Client-postable events (recipe_generated is server-only and not in this set).
 const CLIENT_EVENTS = new Set([
   'app_open', 'onboarding_step', 'market_selected', 'prefs_set', 'search', 'tab_view',
-  'product_view', 'produce_added', 'fallback_shown', 'basket_cook', 'recipe_try_another',
+  'product_view', 'produce_added', 'produce_removed', 'fallback_shown', 'basket_cook', 'recipe_try_another',
   'grab_one_more_tap', 'offseason_added', 'error', 'time_to_first_content',
   'affiliate_cta_tap', 'field_guide_add', 'field_note_share_tap',
   'pwa_install', 'notify_intent', 'notify_permission', 'notify_calendar',

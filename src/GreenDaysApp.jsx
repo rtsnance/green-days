@@ -314,11 +314,10 @@ function AddControl({ p, qty, onAdd, size, block }) {
   const cls = 'gd-btn ' + (added ? 'gd-btn--primary' : 'gd-btn--outline')
     + (lg ? ' gd-btn--lg' : ' gd-btn--sm') + (block ? ' gd-btn--block' : '');
   return (
-    <button className={cls} aria-label={(added ? 'Added ' : 'Add ') + p.name}
-      onClick={(e) => { e.stopPropagation(); onAdd(p.id, 1); }}>
+    <button className={cls} aria-pressed={added} aria-label={(added ? 'Remove ' : 'Add ') + p.name}
+      onClick={(e) => { e.stopPropagation(); onAdd(p.id); }}>
       <span className="gd-btn__icon"><Icon d={added ? I.check : I.plus} size={lg ? 18 : 15} w={2.6} /></span>
       <span>{added ? 'Added' : 'Add'}</span>
-      {qty > 1 && <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 800, fontSize: lg ? 14 : 12, opacity: 0.85 }}>×{qty}</span>}
     </button>
   );
 }
@@ -553,9 +552,9 @@ function HomeScreen({ basket, lang, country, place, local, localSource, localDat
               <div style={{ padding: '10px 52px 12px 12px' }}>
                 <ProduceName p={p} lang={lang} />
               </div>
-              <button onClick={(e) => { e.stopPropagation(); onAdd(p.id, 1); }} aria-label={(qty ? 'Added ' : 'Add ') + p.name}
+              <button onClick={(e) => { e.stopPropagation(); onAdd(p.id); }} aria-pressed={qty > 0} aria-label={(qty ? 'Remove ' : 'Add ') + p.name}
                 style={{ position: 'absolute', right: 10, bottom: 10, width: 40, height: 40, borderRadius: 999, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', background: qty ? 'var(--color-accent)' : 'var(--color-background-surface)', color: qty ? '#fff' : 'var(--color-accent)', boxShadow: qty ? 'var(--shadow-low)' : 'inset 0 0 0 2px var(--color-accent), var(--shadow-low)', fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 14 }}>
-                {qty > 1 ? '×' + qty : <Icon d={qty ? I.check : I.plus} size={20} w={2.6} />}
+                <Icon d={qty ? I.check : I.plus} size={20} w={2.6} />
               </button>
             </div>
           );
@@ -679,7 +678,7 @@ function KitchenShelf({ declared, prefs, basket, lang, country, onDeclare, onUnd
             </span>
             {!hitInBasket && (
               <button type="button" className="gd-btn gd-btn--outline gd-btn--sm" onMouseDown={keepFocus}
-                onClick={() => { onAdd(produceHit.id, 1); setProduceHit(null); setDraft(''); }}>
+                onClick={() => { onAdd(produceHit.id); setProduceHit(null); setDraft(''); }}>
                 <span className="gd-btn__icon"><Icon d={I.plus} size={15} w={2.6} /></span><span>Add</span>
               </button>
             )}
@@ -746,8 +745,8 @@ function ListScreen({ basket, checked, lang, country, prefs, declared, onDeclare
                 <span className="gd-list-item__trailing" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   {/* Every row here is already added, so no Added button: it said
                       nothing and crushed the name to one word per line on phones.
-                      Quantity shows only when it's more than one. */}
-                  {basket[p.id] > 1 && <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 800, fontSize: 13, color: 'var(--color-text-secondary)' }} aria-label={basket[p.id] + ' in basket'}>×{basket[p.id]}</span>}
+                      No quantity either: the recipe engine only ever receives
+                      the ids, so a count was a promise it couldn't keep. */}
                   <button className="gd-btn gd-btn--ghost gd-btn--icon-only gd-btn--sm" aria-label={'Remove ' + p.name} onClick={(e) => { e.stopPropagation(); onRemove(p.id); }} style={{ color: 'var(--color-text-tertiary)' }}>
                     <span className="gd-btn__icon"><Icon d={I.x} size={16} w={2.4} /></span>
                   </button>
@@ -1879,7 +1878,8 @@ export default function GreenDaysApp() {
   const [basketState, setBasketState] = React.useState(() => {
     try {
       const s = JSON.parse(localStorage.getItem(BASKET_KEY));
-      if (s && s.items) return (s.startedAt && Date.now() - s.startedAt > HRS36) ? { items: {}, with: [], startedAt: null } : { ...s, with: s.with ?? [] };
+      if (s && s.items) return (s.startedAt && Date.now() - s.startedAt > HRS36) ? { items: {}, with: [], startedAt: null }
+        : { ...s, items: Object.fromEntries(Object.keys(s.items).filter((id) => s.items[id] > 0).map((id) => [id, 1])), with: s.with ?? [] };
     } catch (e) { /* fresh start */ }
     return { items: {}, with: [], startedAt: null };
   });
@@ -1895,7 +1895,7 @@ export default function GreenDaysApp() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('add');
     if (!id || !byId(id)) return;
-    add(id, 1);
+    add(id);
     setTab('list');
     if (params.get('src') === 'field_guide') ev('field_guide_add', { detail: id });
     params.delete('add');
@@ -2109,17 +2109,25 @@ export default function GreenDaysApp() {
   }, [local]);
   const lang = langOf(country);
 
-  const add = (id, n) => {
-    setBasket((b) => ({ ...b, [id]: (b[id] || 0) + n }));
+  // The basket is a set, not a tally: the recipe engine is sent ids only and
+  // writes its own amounts. add() is idempotent; toggleItem() is what Add
+  // buttons call, so a second tap takes the item back out.
+  const add = (id) => {
+    if (basket[id] > 0) return;
+    setBasket((b) => ({ ...b, [id]: 1 }));
     const p = decorate(byId(id), country);
     if (p) {
       ev('produce_added', { detail: id, extra: (p.tab || '').toLowerCase(), v1: p.seasonality !== 'out' ? 1 : 0 });
       if (p.seasonality === 'out') ev('offseason_added', { detail: id });
     }
   };
+  const toggleItem = (id) => {
+    if (basket[id] > 0) { setQty(id, 0); ev('produce_removed', { detail: id }); }
+    else add(id);
+  };
   const setQty = (id, n) => setBasket((b) => { const c = { ...b }; if (n <= 0) delete c[id]; else c[id] = n; return c; });
   const toggle = (id) => setChecked((c) => ({ ...c, [id]: !c[id] }));
-  const count = Object.values(basket).reduce((s, n) => s + n, 0);
+  const count = Object.keys(basket).filter((id) => basket[id] > 0).length;
 
   /* Cook this: generate live, open, and append to Recipes. "Try another"
      swaps the current one before it is committed (i.e. while still open). */
@@ -2284,7 +2292,7 @@ export default function GreenDaysApp() {
             them is scrolled; only .gd-screen itself scrolls. */}
         <div className="gd-screen-wrap">
           <div className="gd-screen">
-            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} place={place} local={local} localSource={localSource} localData={localData} outOfMarket={outOfMarket} onSetCountry={pickPlace} query={homeQuery} setQuery={setHomeQuery} onAdd={add} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)}
+            {tab === 'home' && <HomeScreen basket={basket} lang={lang} country={country} place={place} local={local} localSource={localSource} localData={localData} outOfMarket={outOfMarket} onSetCountry={pickPlace} query={homeQuery} setQuery={setHomeQuery} onAdd={toggleItem} onOpen={setDetail} onCook={cookThis} onOpenPrefs={() => setShowPrefs(true)}
               travel={travel} onTravelSwitch={travelSwitch} onTravelStay={travelStay}
               homeFilter={homeFilter} onClearFilter={() => setHomeFilter(null)} />}
             {tab === 'list' && <ListScreen basket={basket} checked={checked} lang={lang} country={country} prefs={prefs}
@@ -2296,7 +2304,7 @@ export default function GreenDaysApp() {
               onGoHome={() => { closeRecipe(); setTab('home'); }} onTryAnother={tryAnother} onDistance={changeDistance} />
           )}
           {turn && <TurningScreen turn={turn} lang={lang} country={country} onOpen={setDetail} onClose={() => setTurn(null)} onCook={(ids) => { setTurn(null); cookPicked(ids); }} />}
-          {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={add} onClose={() => setDetail(null)} onOpen={setDetail} fieldGuideSlugs={fieldGuideSlugs} />}
+          {detail && <DetailScreen id={detail} basket={basket} lang={lang} country={country} onAdd={toggleItem} onClose={() => setDetail(null)} onOpen={setDetail} fieldGuideSlugs={fieldGuideSlugs} />}
           {showPrefs && <PrefsScreen prefs={prefs} firstRun={!prefs.seen} country={place} onSetCountry={pickPlace} onSave={savePrefs} onClose={() => setShowPrefs(false)} />}
         </div>
 
